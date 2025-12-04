@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DEI SOGGETTI ANAGRAFICI -->
+ <class select-before-update="false" 
+ 		dynamic-update="true" rowid="rowid" name="it.ras.arco.bean.FinSoggetto" 
+ 		batch-size="1"
+ 		table="FIN_SOGGETTO" where="GSTD_ESIST_B='S'">
+
+  <id name="soggettoId" column="SOGGETTO_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_SOGGETTO_SEQ</param>
+   </generator>
+  </id>
+
+  <property name="ndgArco" type="integer" column="NDG_ARCO_N"/>
+  <property name="dataInsCli" type="timestamp" column="DATA_INS_CLI_D"/>
+  <property name="cognome" type="string" column="COGNOME_S" length="35"/>
+  <property name="nome" type="string" column="NOME_S" length="30"/>
+  <property name="tipoSogg" type="string" column="TIPO_SOGG_B" length="1"/>
+  <property name="condPartSogg" type="string" column="COND_PART_SOGG_B" length="1"/>
+  <property name="sesso" type="string" column="SESSO_B" length="1"/>
+  <property name="codiceFiscale" type="string" column="CODICE_FISCALE_S" length="16"/>
+  <property name="partitaIva" type="string" column="PARTITA_IVA_S" length="11"/> 
+  <property name="dataNascita" type="date" column="DATA_NASCITA_D"/>
+  <property name="comuneNascita" type="string" column="COMUNE_NASCITA_S" length="40"/>
+  <property name="provNascita" type="string" column="PROV_NASCITA_T" length="3"/>
+  <property name="denominazione" type="string" column="DENOMINAZIONE_S" length="4000"/>
+  <property name="cittadinanza" type="string" column="CITTADINANZA_T" length="3"/>
+  <property name="nazNascita" type="string" column="NAZ_NASCITA_T" length="3"/>
+  <property name="capNascita" type="string" column="CAP_NASCITA_S" length="7"/>
+  <property name="tipoSocieta" type="string" column="TIPO_SOCIETA_T" length="6"/>
+  <property name="attivita" type="string" column="ATTIVITA_T" length="3"/>
+  <property name="settore" type="string" column="SETTORE_T" length="3"/>
+  <property name="statoCivile" type="string" column="STATO_CIVILE_T" length="3"/> 
+  <!-- 
+   <property name="titoloStudio" type="string" column="TITOLO_STUDIO_T" length="3"/>
+  <property name="noteTitoloStu" type="string"
+   column="NOTE_TITOLO_STU_B" length="1"/>
+  <property name="attivita" type="string" column="ATTIVITA_T" length="3"/>
+  <property name="noteAttivita" type="string" column="NOTE_ATTIVITA_B" length="1"/>
+  <property name="settore" type="string" column="SETTORE_T" length="3"/>
+  <property name="noteSettore" type="string" column="NOTE_SETTORE_B" length="1"/>
+  <property name="qualifica" type="string" column="QUALIFICA_T" length="3"/>
+  <property name="noteQualifica" type="string" column="NOTE_QUALIFICA_B" length="1"/>
+  
+   -->
+  <property name="statoCensim" type="string" column="STATO_CENSIM_B" length="1"/>
+  <property name="provDatiAnag" type="string" column="PROV_DATI_ANAG_T" length="3"/>
+  <property name="datiSupl" type="string" column="DATI_SUPL_S" length="20"/>
+  <property name="userUltimaModifica" type="string"
+   column="GSTD_ULT_USER_S" length="20"/>
+  <property name="proceduraUltimaModifica" type="string"
+   column="GSTD_ULT_PROC_S" length="20"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string"
+   column="GSTD_USER_INS_S" length="20"/>
+  <property name="tipoUltimaModifica" type="string"
+   column="GSTD_TIPO_MOD_B" length="1"/>
+ <property name="statoCliente" type="string" column="STATO_CLIENTE_T" length="1"/>
+ <property name="regoleProm" type="string" column="REGOLE_PROM_B" length="1"/>
+ <property name="sogMinore" type="string" column="SOGG_MINORE_B" length="1"/>
+ <property name="sogInterdetto" type="string" column="SOGG_INTERD_B" length="1"/>
+ <property name="borsa" type="string" column="BORSA_B" length="1"/>
+ <property name="attoCostit" type="string" column="ATTO_COSTIT_B" length="1"/>
+ <property name="statoOper" type="string" column="STATO_OPER_T" length="1"/>
+ <property name="capitaleSoc" type="string" column=" CAPITALE_SOC_S" length="15"/>
+ <property name="capitaleVer" type="string" column=" CAPITALE_VER_S" length="12"/>
+ <property name="dataFondaz" type="timestamp" column="DATA_FONDAZ_D"/>
+ <property name="dataSciogli" type="timestamp" column="DATA_SCIOGLI_D"/>
+ <property name="dataIscrRea" type="timestamp" column="DATA_ISCR_REA_D"/>
+ <property name="fotocopiaDoc" type="string" column="FOTOCOPIA_DOC_B" length="1"/>
+ <property name="fasciaCli" type="string" column="FASCIA_CLI_S" length="2"/>
+ <property name="numCCIAA" type="string" column="NUM_CCIAA_S" length="10"/>
+ <property name="numREA" type="string" column="NUM_REA_S" length="1"/>
+ <property name="pattiChiari" type="string" column="PATTI_CHIARI_B" length="1"/>
+ <property name="provREA" type="string" column="PROV_REA_T" length="3"/>
+ <property name="socEstera" type="string" column="SOC_ESTERA_B" length="1"/>
+ <property name="statuto" type="string" column="STATUTO_B" length="1"/>
+ <property name="sedeTribunale" type="string" column="SEDE_TRIBUNALE_S" length="40"/>
+ <property name="patrimonioTot" type="string" column="PATRIMONIO_TOT_S" length="18"/>
+ <property name="certifVigenza" type="string" column="CERTIF_VIGENZA_B" length="1"/>
+ <property name="verbalePoteri" type="string" column="VERBALE_POTERI_B" length="1"/>
+ <property name="dataCCIAA" type="string" column="CCIAA_B" length="1"/>
+ <property name="verbaleNomina" type="string" column="VERBALE_NOMINA_B" length="1"/>
+ <property name="citta" type="string" column="CITTA_S" length="40"/>
+ <property name="copiaCodFisc" type="string" column="COPIA_COD_FISC_B" length="1"/>
+ <property name="copiaCocLeg" type="string" column="COPIA_DOC_LEG_B" length="1"/>
+ <property name="copiaRegTrib" type="string" column="COPIA_REG_TRIB_B" length="1"/> 
+ <property name="numeroRappresentantiLegali" type="integer" column="NUM_LEG_RAP"/>
+ <property name="note" type="string" column="NOTE_S" length="200"/>
+ <property name="titoloStudioBatch" type="string" column="TITOLO_STUDIO_BATCH_S" />  
+  
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  <property name="attEcoPrisma" type="string" column="ATT_ECO_PRISMA" length="5"/>
+  <property name="tipoCliente" type="string" column="TIPO_CLIENTE_T" length="10"/>
+  <property name="codUserMc" type="string" column="COD_USER_MC" />
+  <property name="statoRapportoMc" type="string" column="STATO_RAPPORTO_MC" />
+  
+  
+  
+  
+  <set name="estrazioni"  cascade="lock" lazy="true" where ="FL_INVIATO='N' AND TABLE_NAME='FIN_SOGGETTO' " >
+   <key column="ID"/>
+   <one-to-many class="it.ras.arco.bean.SnpEstrazioni" not-found="ignore" />
+  </set>  
+  
+  <!-- RELAZIONE CON FIN_DOCUMENTO-->
+  <set name="documenti" cascade="lock" inverse="true" lazy="true" where ="GSTD_ESIST_B='S'">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinDocumento" not-found="ignore" />
+  </set>
+
+  <set name="serviziAggiuntivi" cascade="lock"  lazy="true" where ="GSTD_ESIST_B='S'">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinServizioAggiuntivo" not-found="ignore" />
+  </set>
+
+
+  <!-- RELAZIONE CON FIN_RECAPITO-->
+   <set name="recapito" lazy="true" inverse="true" where ="GSTD_ESIST_B='S'" cascade="lock">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinRecapito" not-found="ignore" />
+  </set>
+  
+  <!-- RELAZIONE CON FIN_RECAPITO per Abitazione -->
+  <set name="recapitoAbitazione" cascade="save-update,lock" inverse="true"  lazy="true" where ="GSTD_ESIST_B='S' AND TIPO_RECAPITO_T='TL1'">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinRecapito" not-found="ignore" />
+  </set>
+
+  <!-- RELAZIONE CON FIN_RECAPITO per Ufficio -->
+  <set name="recapitoUfficio" cascade="save-update,lock" inverse="true" lazy="true" where ="GSTD_ESIST_B='S' AND TIPO_RECAPITO_T='TL2'">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinRecapito" not-found="ignore" />
+  </set> 
+  
+  <!-- RELAZIONE CON FIN_RECAPITO per Cellulare -->
+  <set name="recapitoCellulare" cascade="save-update,lock"  inverse="true" lazy="true" where ="GSTD_ESIST_B='S' AND TIPO_RECAPITO_T='CEL'">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinRecapito" not-found="ignore" />
+  </set>
+
+  <!-- RELAZIONE CON FIN_RECAPITO per Fax -->
+  <set name="recapitoFax" cascade="save-update,lock"  inverse="true" lazy="true" where ="GSTD_ESIST_B='S' AND TIPO_RECAPITO_T='FAX'">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinRecapito" not-found="ignore" />
+  </set>
+  
+   <!-- RELAZIONE CON FIN_RECAPITO per Email -->
+  <set name="recapitoEmail" cascade="save-update,lock"  inverse="true" lazy="true" where ="GSTD_ESIST_B='S' AND TIPO_RECAPITO_T='EML'">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinRecapito" not-found="ignore" />
+  </set>
+  
+  
+  <!-- RELAZIONE CON FIN_COINTESTAZIONE-->
+  <set name="cointestazione" lazy="true" inverse="true" where ="GSTD_ESIST_B='S'" cascade="lock">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinCointestazione" not-found="ignore"  />
+  </set>
+  
+  <set name="cointestazioneSoggCoin" lazy="true" inverse="true" where ="GSTD_ESIST_B='S'" cascade="lock">
+   <key column="SOGG_COIN_N"/>
+   <one-to-many class="it.ras.arco.bean.FinCointestazione" not-found="ignore"  />
+  </set>
+
+ <!-- RELAZIONE CON FIN_PROMOTORE-->
+
+	<!--
+		V: Ho aggiunto al where il filtro sui promotori cessati. Se dovesse creare problemi al batch basta metterlo sotto gli ambienti.
+	-->
+    	 
+ <set name="promotori" lazy="true" inverse="true" where ="GSTD_ESIST_B='S' AND STATO_B &lt;&gt; 'C'" outer-join="false" cascade="lock">
+  		<key column="SOGGETTO_ID"/>
+   		<one-to-many class="it.ras.arco.bean.FinPromotore"  not-found="ignore" />
+ </set>	
+  
+<!--  RELAZIONE CON FIN_SOGG_SCHEDA --> 
+
+ <set name="soggScheda" lazy="true" inverse="true" where ="GSTD_ESIST_B='S'" outer-join="false" cascade="lock,none">
+  		<key column="SOGGETTO_ID"/>
+   		<one-to-many class="it.ras.arco.bean.FinSoggScheda" not-found="ignore"  />
+ </set>	
+  
+<!--  RELAZIONE CON FIN_ULT_INFO_SOGG --> 
+
+ <!--
+ <set name="soggUltInfo" lazy="true" inverse="true" where ="GSTD_ESIST_B='S'" outer-join="false" cascade="lock">
+  		<key column="SOGGETTO_ID"/>
+   		<one-to-many class="it.ras.arco.bean.FinUltInfoSoggetto" not-found="ignore"  />
+ </set>
+ -->
+
+ 
+ <!--  RELAZIONE CON FIN_SOGG_FASCIA --> 
+
+ <set name="soggFascia" lazy="true"  where ="GSTD_ESIST_B='S'" outer-join="false" cascade="save-update">
+  		<key column="SOGGETTO_ID"/>
+   		<one-to-many class="it.ras.arco.bean.FinSoggFascia" not-found="ignore"  />
+ </set>	
+
+<!--      <one-to-one name="promotore" class="it.ras.arco.bean.FinPromotore" property-ref="soggettoId" lazy="true" outer-join="true"/> -->
+	
+	<!-- RELAZIONE CON FIN_SOGG_PRIVACY-->
+   
+   <one-to-one name="soggettoPrivacy" class="it.ras.arco.bean.FinSoggettoPrivacy" 
+   		cascade="save-update,lock" property-ref="soggetto" 
+   		fetch="select"   			
+   		lazy="proxy" outer-join="false"/>
+	
+	<!-- Relazione con NORM_SOGGETTO_MC -->
+
+  <one-to-one name="soggettoMC" class="it.ras.arco.bean.NormSoggettoMC" 
+  		cascade="save-update,lock" lazy="proxy" 
+   		fetch="select"   			
+  		outer-join="false" />	
+ 
+  
+  <!-- RELAZIONE CON LA FIN_INDIRIZZO DI TIPO DOMICILIO -->
+  <set name="indirizzoDomicilio" inverse="true" cascade="lock,none" lazy="true" where ="GSTD_ESIST_B='S' AND TIPO_INDIRIZZO_T='DOM' AND DATA_FINE_D>SYSDATE  ">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinSoggettoIndir"  not-found="ignore" />
+  </set>
+  
+  <!-- RELAZIONE CON LA FIN_INDIRIZZO DI TIPO RESIDENZA -->
+  <set name="indirizzoResidenza" inverse="true" cascade="lock,none" lazy="true" where ="GSTD_ESIST_B='S' AND TIPO_INDIRIZZO_T='RES' AND DATA_FINE_D>SYSDATE  ">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinSoggettoIndir" not-found="ignore" />
+  </set>
+  
+   <!-- RELAZIONE CON LA FIN_INDIRIZZO DI TIPO FISCALE -->
+  <set name="indirizzoFiscale" inverse="true" cascade="lock,none" lazy="true" where ="GSTD_ESIST_B='S' AND TIPO_INDIRIZZO_T='FIS' AND DATA_FINE_D>SYSDATE">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinSoggettoIndir" not-found="ignore" />
+  </set>
+  
+ <!-- RELAZIONE CON LA FIN_INDIRIZZO DI TIPO ELETTO -->
+  <set name="indirizzoEletto" inverse="true" cascade="lock,none" lazy="true" where ="GSTD_ESIST_B='S' AND TIPO_INDIRIZZO_T='ELE' AND DATA_FINE_D>SYSDATE">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinSoggettoIndir" not-found="ignore" />
+  </set>
+  
+ <!-- RELAZIONE DIRETTA CON LA FIN_INDIRIZZO NEL CASO DI INDIRIZZO DI CORRISPONDENZA RAM  -->
+  <set name="indirizzoRam" inverse="true" cascade="all,lock" lazy="true" where ="GSTD_ESIST_B='S'">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinIndirizzo"/>
+  </set>
+
+  <!-- RELAZIONE CON DECOD_NDG_FABBR-->
+  <set name="decodNdgFabbr" lazy="true" inverse="true" where ="GSTD_ESIST_B='S'" cascade="lock">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinDecodNdgFabbr" not-found="ignore" />
+  </set>
+	
+  <!-- RELAZIONE CON LA FIN_SOTTOSCRIZIONE-->
+  <set name="sottoscrizioni" lazy="true" inverse="true" where ="GSTD_ESIST_B='S'" cascade="save-update,lock">
+   <key column="SOGGETTO_RICHIED_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinSottoscrizione" not-found="ignore" />
+  </set>
+
+
+	
+  <!-- RELAZIONE CON LA FIN_RUOLO - INSIEME DEI RUOLI IN CUI E' RAPPRESENTANTE -->
+  <set name="ruoliComeRappresentante" lazy="true" inverse="true" where ="GSTD_ESIST_B='S'" cascade="lock,none">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinRuolo" not-found="ignore" />
+  </set>
+	
+  <!-- RELAZIONE CON LA FIN_RUOLO - INSIEME DEI RUOLI IN CUI E' RAPPRESENTATO -->
+  <set name="ruoliComeRappresentato" lazy="true" inverse="true" where ="GSTD_ESIST_B='S'" cascade="lock,none">
+   <key column="SOGG_COLL_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinRuolo" not-found="ignore" />
+  </set>
+  
+  <!-- RELAZIONE CON FIN_SOGG_BOZZA-->
+	
+ <set name="soggBozza" lazy="true" inverse="true" where ="GSTD_ESIST_B='S'" cascade="lock,none">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinSoggettoBozza" not-found="ignore" />
+  </set>
+  
+    <!-- RELAZIONE CON FIN_SOGG_BOZZA-->
+	
+ <set name="soggBozzaOriginali" lazy="true" inverse="true" where ="GSTD_ESIST_B='S'" cascade="lock,none">
+   <key column="SOGGETTO_OLD_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinSoggettoBozza" not-found="ignore" />
+  </set>
+  
+  <!-- RELAZIONE CON FIN_BONIFICO_PF, per bonifci ordinati -->
+  <set name="bonificiOrdinati" inverse="true" lazy="true" cascade="lock" where ="GSTD_ESIST_B='S'">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinBonificoAdapterBase" not-found="ignore" />
+  </set> 
+ 
+  <!-- RELAZIONE CON FIN_ORDINE_TITOLO_PF, per ordini di titoli eseguiti -->
+  <set name="titoliOrdinati" inverse="true" lazy="true" cascade="lock" where ="GSTD_ESIST_B='S'">
+   <key column="SOGGETTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinOrdineTitolo" not-found="ignore" />
+  </set> 
+
+
+ </class>
+ <!-- QUERY -->
+  <query name="GetSoggettoCFStatoCensimento">select s from it.ras.arco.bean.FinSoggetto s where s.codiceFiscale = :codiceFiscale and s.statoCensim = :statoCensimento</query>
+ <query name="GetSoggettoByCodiceFiscale">select s from it.ras.arco.bean.FinSoggetto s where s.codiceFiscale = :codiceFiscale</query>
+ <query name="GetSoggettoByPartitaIva">select s from it.ras.arco.bean.FinSoggetto s where s.partitaIva = :partitaIva</query>
+ <query name="GetSoggettoByPartitaIvaDenominazione">select s from it.ras.arco.bean.FinSoggetto s where s.partitaIva = :partitaIva and s.denominazione = :denominazione and  s.tipoSogg = :tipoSogg</query>
+ <query name="GetSoggettoByCodiceFiscaleDenominazione">select s from it.ras.arco.bean.FinSoggetto s where s.codiceFiscale = :codiceFiscale and s.denominazione = :denominazione </query>
+ <query name="GetSoggettoBySoggettoID">select s from it.ras.arco.bean.FinSoggetto s where s.soggettoId = :soggetto </query>
+ <query name="GetSoggettoByCodiceFiscaleCognomeNome">select s from it.ras.arco.bean.FinSoggetto s where s.codiceFiscale = :codiceFiscale and s.cognome = :cognome and s.nome = :nome </query>
+ <query name="GetSoggettoByCodiceFiscaleCognomeNomeDataNascita">select s from it.ras.arco.bean.FinSoggetto s where s.codiceFiscale = :codiceFiscale and s.cognome = :cognome and s.nome = :nome and s.dataNascita = :dataNascita and s.tipoSogg = :tipoSogg</query>
+ <!-- 
+ <query name="GetSoggettoByCodiceEsternoFabbrica">select s from it.ras.arco.bean.FinSoggetto s join s.decodNdgFabbr d where d.ndgFab = :codiceEsterno and d.fabbrica= :fabbrica</query>
+ 
+
+ <query name="GetSoggettoMCByMatchCodeFull">select s from it.ras.arco.bean.FinSoggetto s join s.soggettoMC d where d.codMatchCodeNom1 = :codMatchCodeNom1 and d.codMatchCodeNom2 = :codMatchCodeNom2 and d.codMatchCodeDNas = :codMatchCodeDNas and d.codMatchCodeCFis = :codMatchCodeCFis and d.tipoSogg = :tipoSogg and d.flagEsistenza ='S'</query>
+ <query name="GetSoggettoByMCNullCF">select s from it.ras.arco.bean.FinSoggetto s join s.soggettoMC d where d.codMatchCodeNom1 = :codMatchCodeNom1 and d.codMatchCodeNom2 = :codMatchCodeNom2 and d.codMatchCodeDNas = :codMatchCodeDNas and d.codMatchCodeCFis = :codMatchCodeCFis and d.tipoSogg = :tipoSogg and d.flagEsistenza ='S'</query>
+ <query name="GetSoggettoByMCWithoutCF">select s from it.ras.arco.bean.FinSoggetto s join s.soggettoMC d where d.codMatchCodeNom1 = :codMatchCodeNom1 and d.codMatchCodeNom2 = :codMatchCodeNom2 and d.codMatchCodeDNas = :codMatchCodeDNas and d.tipoSogg = :tipoSogg and d.flagEsistenza ='S'</query> 
+-->
+ <query name="CURSOR_SOGGETTO">select s from it.ras.arco.bean.FinSoggetto s where s.statoCensim = 'D'</query>
+
+ <query name="GetSoggettoByNdgArco">select s from it.ras.arco.bean.FinSoggetto s where s.ndgArco = :ndgArco</query>
+
+
+
+ 
+ <!--
+ <sql-query name="GetSoggettoByCodiceFiscaleCognomeNomeDataNascitaNdgfabbr">
+ 	<return alias="s" class="it.ras.arco.bean.FinSoggetto"/>
+		select {s.*} 
+		from Fin_Soggetto s 
+		where s.GSTD_ESIST_B = 'S' 
+		and s.CODICE_FISCALE_S =:codiceFiscale
+		and s.COGNOME_S =:cognome
+		and s.NOME_S =:nome         
+		and s.DATA_NASCITA_D =:dataNascita 
+		and s.TIPO_SOGG_B = :tipoSogg
+		and s.soggetto_id not in
+		(
+		 select s.soggetto_id from 
+		 FIN_DECOD_NDG_FABBR a,Fin_Soggetto s  
+		 where a.GSTD_ESIST_B ='S' 
+		 and a.TIPO_T='M' 
+		 and a.FABBRICA_T = :fabbrica
+		 and s.GSTD_ESIST_B = 'S' 
+		 and s.CODICE_FISCALE_S = :codiceFiscale
+		 and s.COGNOME_S =:cognome
+		 and s.NOME_S = :nome
+		 and s.DATA_NASCITA_D =:dataNascita 
+		 and s.TIPO_SOGG_B = :tipoSogg
+		 and a.SOGGETTO_ID =s.SOGGETTO_ID 
+		)
+		order by s.SOGGETTO_ID asc
+ </sql-query>
+ <sql-query name="GetSoggettoByPartitaIvaDenominazioneNdgfabbr">
+ 	<return alias="s" class="it.ras.arco.bean.FinSoggetto"/>
+		select {s.*} 
+		from Fin_Soggetto s 
+		where s.GSTD_ESIST_B = 'S' 
+		and s.PARTITA_IVA_S = :partitaIva
+		and s.DENOMINAZIONE_S = :denominazione 
+		and s.TIPO_SOGG_B = :tipoSogg
+		and soggetto_id not in
+		(
+		 select s.soggetto_id from 
+		 FIN_DECOD_NDG_FABBR a,Fin_Soggetto s  
+		 where a.GSTD_ESIST_B ='S' 
+		 and a.TIPO_T= 'M' 
+		 and a.FABBRICA_T = :fabbrica
+		 and s.GSTD_ESIST_B = 'S' 
+		 and s.PARTITA_IVA_S = :partitaIva
+		 and s.DENOMINAZIONE_S = :denominazione 
+		 and s.TIPO_SOGG_B = :tipoSogg
+		 and a.SOGGETTO_ID =s.SOGGETTO_ID 
+		)
+		order by s.SOGGETTO_ID asc
+ </sql-query>
+ <sql-query name="GetSoggettoMCByMatchCodeFull">
+ 	<return alias="soggetto" class="it.ras.arco.bean.FinSoggetto"/>
+	SELECT   {soggetto.*}
+    FROM fin_soggetto soggetto JOIN (SELECT soggetto_id, 1 AS COUNT
+                                FROM norm_soggetto_mc d
+                               WHERE d.cod_matc_code_nom1 =:codMatchCodeNom1
+                                 AND d.cod_matc_code_nom2 =:codMatchCodeNom2
+                                 AND d.cod_matc_code_dnas =:codMatchCodeDNas
+                                 AND d.cod_matc_code_cfis =:codMatchCodeCFis
+                                 AND d.cod_tipo_sogg =:tipoSogg
+                                 AND d.gstd_esist_b = 'S'
+                              UNION
+                              SELECT soggetto_id, 2 AS COUNT
+                                FROM norm_soggetto_mc d
+                               WHERE d.cod_stri_ric1 =:codStriRic1
+                                 AND d.gstd_esist_b = 'S'
+                              UNION
+                              SELECT soggetto_id, 3 AS COUNT
+                                FROM norm_soggetto_mc d
+                               WHERE d.cod_stri_ric2 =:codStriRic2 
+                                 AND d.gstd_esist_b = 'S') dd ON soggetto.soggetto_id =
+                                                                   dd.soggetto_id
+                                                            AND soggetto.gstd_esist_b =
+                                                                           'S'
+     ORDER BY dd.COUNT, dd.soggetto_id
+ </sql-query>
+ <sql-query name="GetSoggettoMCByMatchCodeFullNdgFabbr">
+ 	<return alias="soggetto" class="it.ras.arco.bean.FinSoggetto"/>
+		 	SELECT {soggetto.*}
+			FROM fin_soggetto soggetto 
+			JOIN (
+		  	SELECT soggetto_id, 1 AS COUNT
+		  	FROM norm_soggetto_mc d
+		  	WHERE d.cod_matc_code_nom1 	= :codMatchCodeNom1
+		  	AND d.cod_matc_code_nom2  	= :codMatchCodeNom2
+		  	AND d.cod_matc_code_dnas  	= :codMatchCodeDNas
+		  	AND d.cod_matc_code_cfis  	= :codMatchCodeCFis
+		  	AND d.cod_tipo_sogg     = :tipoSogg
+		  	AND d.gstd_esist_b = 'S'
+		  	UNION
+		  	SELECT soggetto_id, 2 AS COUNT
+		  	FROM norm_soggetto_mc d
+		  	WHERE d.cod_stri_ric1 = :codStriRic1
+		  	AND d.gstd_esist_b = 'S'
+		  	UNION
+		  	SELECT soggetto_id, 3 AS COUNT
+		  	FROM norm_soggetto_mc d
+		  	WHERE d.cod_stri_ric2 = :codStriRic2
+		  	AND d.gstd_esist_b = 'S'
+			) dd 
+			ON soggetto.soggetto_id = dd.soggetto_id
+			AND soggetto.gstd_esist_b ='S'
+			and soggetto.soggetto_id not in
+			(
+		  	SELECT d.soggetto_id
+		  FROM FIN_DECOD_NDG_FABBR a,norm_soggetto_mc d
+		   where a.GSTD_ESIST_B ='S' 
+		  and a.TIPO_T= 'M' 
+		  and a.FABBRICA_T = :fabbrica
+		  and a.SOGGETTO_ID =d.SOGGETTO_ID 
+		  AND d.gstd_esist_b = 'S' 
+		  AND( 
+		  (   d.cod_matc_code_nom1  = :codMatchCodeNom1
+		  AND d.cod_matc_code_nom2  = :codMatchCodeNom2
+		  AND d.cod_matc_code_dnas  = :codMatchCodeDNas
+		  AND d.cod_matc_code_cfis  = :codMatchCodeCFis
+		  AND d.cod_tipo_sogg     = :tipoSogg
+		  ) 
+		  OR 
+		  d.cod_stri_ric1 = :codStriRic1
+		  OR
+		  d.cod_stri_ric2 = :codStriRic2
+		  )
+		)
+		ORDER BY dd.COUNT asc, dd.soggetto_id asc
+ </sql-query>
+ <sql-query name="GetSoggettoByMCWithoutCF">
+ 	<return alias="soggetto" class="it.ras.arco.bean.FinSoggetto"/>
+SELECT {soggetto.*} FROM fin_soggetto soggetto JOIN (SELECT soggetto_id, 1 AS COUNT
+FROM norm_soggetto_mc d
+WHERE d.cod_matc_code_nom1 =:codMatchCodeNom1
+AND d.cod_matc_code_nom2 =:codMatchCodeNom2
+AND d.cod_matc_code_dnas =:codMatchCodeDNas
+                                 AND d.cod_tipo_sogg =:tipoSogg
+                                 AND d.gstd_esist_b = 'S'
+                              UNION
+                              SELECT soggetto_id, 2 AS COUNT
+                                FROM norm_soggetto_mc d
+                               WHERE d.cod_stri_ric1 =:codStriRic1
+                                 AND d.gstd_esist_b = 'S'
+                              UNION
+                              SELECT soggetto_id, 3 AS COUNT
+                                FROM norm_soggetto_mc d
+                               WHERE d.cod_stri_ric2 =:codStriRic2 
+                                 AND d.gstd_esist_b = 'S') dd ON soggetto.soggetto_id =
+                                                                   dd.soggetto_id
+                                                            AND soggetto.gstd_esist_b =
+                                                                           'S'
+     ORDER BY dd.COUNT, dd.soggetto_id
+ </sql-query>
+ <sql-query name="GetSoggettoByMCWithoutCFNdgFabbr">
+ 	<return alias="soggetto" class="it.ras.arco.bean.FinSoggetto"/>
+	 	SELECT {soggetto.*}
+		FROM fin_soggetto soggetto 
+		JOIN (
+	  	SELECT soggetto_id, 1 AS COUNT
+	 	FROM norm_soggetto_mc d
+	  	WHERE d.cod_matc_code_nom1 = :codMatchCodeNom1
+	  	AND d.cod_matc_code_nom2  = :codMatchCodeNom2
+	  	AND d.cod_matc_code_dnas  = :codMatchCodeDNas
+	  	AND d.cod_tipo_sogg     = :tipoSogg
+	  	AND d.gstd_esist_b = 'S'
+	  	UNION
+	  	SELECT soggetto_id, 2 AS COUNT
+	  	FROM norm_soggetto_mc d
+	  	WHERE d.cod_stri_ric1 = :codStriRic1
+	  	AND d.gstd_esist_b = 'S'
+	  	UNION
+	  	SELECT soggetto_id, 3 AS COUNT
+	  	FROM norm_soggetto_mc d
+	  	WHERE d.cod_stri_ric2 = :codStriRic2
+	  	AND d.gstd_esist_b = 'S'
+		) dd 
+		ON soggetto.soggetto_id = dd.soggetto_id
+		AND soggetto.gstd_esist_b ='S'
+		and soggetto.soggetto_id not in
+		(
+	  	SELECT d.soggetto_id
+	  	FROM FIN_DECOD_NDG_FABBR a,norm_soggetto_mc d
+	   	where a.GSTD_ESIST_B ='S' 
+	  	and a.TIPO_T= 'M' 
+	  	and a.FABBRICA_T = :fabbrica
+	  	and a.SOGGETTO_ID =d.SOGGETTO_ID 
+	  	AND d.gstd_esist_b = 'S' 
+	  	AND( 
+	  	(   d.cod_matc_code_nom1  = :codMatchCodeNom1
+	  	AND d.cod_matc_code_nom2  = :codMatchCodeNom2
+	  	AND d.cod_matc_code_dnas  = :codMatchCodeDNas
+	  	AND d.cod_tipo_sogg       = :tipoSogg
+	  	) 
+	  	OR 
+	  	d.cod_stri_ric1 = :codStriRic1
+	  	OR
+	  	d.cod_stri_ric2 = :codStriRic2
+	 	 )
+		)
+		ORDER BY dd.COUNT asc, dd.soggetto_id asc
+ </sql-query>
+ <sql-query name="GetSoggettoByMCNullCFNdgFabbr">
+ 	<return alias="soggetto" class="it.ras.arco.bean.FinSoggetto"/>
+		SELECT {soggetto.*}
+		FROM fin_soggetto soggetto 
+		JOIN (
+		  SELECT soggetto_id
+		  FROM norm_soggetto_mc d
+		  WHERE d.cod_matc_code_nom1 = :codMatchCodeNom1
+		  AND d.cod_matc_code_nom2  = :codMatchCodeNom2
+		  AND d.cod_matc_code_dnas  = :codMatchCodeDNas
+		  AND d.cod_matc_code_cfis  = :codMatchCodeCFis
+		  AND d.cod_tipo_sogg     = :tipoSogg
+		  AND d.gstd_esist_b = 'S'
+		) dd 
+		ON soggetto.soggetto_id = dd.soggetto_id
+		AND soggetto.gstd_esist_b ='S'
+		and soggetto.soggetto_id not in
+		(
+		  SELECT d.soggetto_id
+		  FROM FIN_DECOD_NDG_FABBR a,norm_soggetto_mc d
+		  where a.GSTD_ESIST_B ='S' 
+		  and a.TIPO_T= 'M' 
+		  and a.FABBRICA_T = :fabbrica
+		  and a.SOGGETTO_ID =d.SOGGETTO_ID 
+		  AND d.gstd_esist_b = 'S' 
+		  AND d.cod_matc_code_nom1   = :codMatchCodeNom1
+		  AND d.cod_matc_code_nom2  = :codMatchCodeNom2
+		  AND d.cod_matc_code_dnas  = :codMatchCodeDNas
+		  AND d.cod_matc_code_cfis  = :codMatchCodeCFis
+		  AND d.cod_tipo_sogg     = :tipoSogg
+		)
+		ORDER BY dd.soggetto_id asc
+ </sql-query>
+ <query name="GetSoggettoByMCNullCF">select s from it.ras.arco.bean.FinSoggetto s join s.soggettoMC d where d.codMatchCodeNom1 = :codMatchCodeNom1 and d.codMatchCodeNom2 = :codMatchCodeNom2 and d.codMatchCodeDNas = :codMatchCodeDNas and d.codMatchCodeCFis = :codMatchCodeCFis and d.tipoSogg = :tipoSogg and d.flagEsistenza ='S'</query>
+
+-->
+
+
+ <sql-query name="OutboundSoggetto">
+ <return alias="soggetto" class="it.ras.arco.bean.FinSoggetto"/>
+		select 
+		distinct {soggetto.*}
+		from
+		SNP_ESTRAZIONI a, 
+		FIN_SOGGETTO soggetto
+		where 
+		a.ID = soggetto.SOGGETTO_ID and
+		a.DEST = 'ANT' and
+		a.TABLE_NAME = 'FIN_SOGGETTO'
+		and a.FL_INVIATO='N'
+ </sql-query>
+ 
+
+
+
+
+
+
+
+
+
+</hibernate-mapping>

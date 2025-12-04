@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+
+ <class name="it.ras.arco.bean.FinValoriCambi" rowid="rowid" table="FIN_VALORI_CAMBI" where="GSTD_ESIST_B = 'S'">
+	
+	<id name="valCambiId" column="VAL_CAMBI_ID" type="integer">
+		<generator class="sequence">
+			<param name="sequence">FIN_VALORI_CAMBI_SEQ</param>
+		</generator>
+	</id>
+
+
+	<!--	*******	CAMPI PROPRI *******		-->
+	<property name="data"	column="DATA_D"		type="timestamp" />
+	<property name="tasso" 	column="TASSO_C"	type="double" />
+
+
+
+
+	<!-- RELAZIONE CON LA CAMBI -->
+	<many-to-one name="cambio" lazy="proxy"
+		class="it.ras.arco.bean.FinCambi" column="CAMBIO_ID"
+		update="true" insert="true" cascade="lock" 
+		not-found="ignore" fetch="join"
+		/>
+
+
+
+
+
+
+	<!--
+	***********************
+	  CAMPI STANDARD
+	***********************
+	-->
+	<property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="40"/>
+	<property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="40"/>
+	<property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+	<property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+	<property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+	<property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="40"/>
+	<property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+	
+	<!-- Duplicazione campi standard x Update (SLAVE) -->	
+	<property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+	<property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+	<property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+	<property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+
+
+
+ </class>
+ 
+  <!--   CARICAMENTO CAMBI	-->
+  <query name="MAF_CARICA_VALORE_CAMBIO_PER_COD_MAF_E_DATA">
+  	<![CDATA[
+  		select	p
+	  	from  	it.ras.arco.bean.FinValoriCambi p 
+	  			join p.cambio c
+	  	where	c.codiceMaf = :codice_maf_cambio
+	  	and		p.data = :data_valore_cambio
+	]]>
+  </query>
+
+  <!--  Ricerca di una tupla della talbella FIN_VALORI_CAMBI che abbia il Cambio associato (FinAnagraficaCambi)
+  		con un codiceIn = '242' (Euro) e codiceOut = al valore passato come parametro (preso da un'AttFin), 
+  		ordinando le tuple per la data del ValoreCambio e prendendo solo la prima riga valida (rowNum = 1). -->
+  <query name="GetValoreCambioByDivisaComp">
+  		select	v
+	  	from 
+		  		it.ras.arco.bean.FinValoriCambi v 
+		  		join v.cambio c
+	  	where
+	  	(	c.valutaIn = '242' and c.valutaOut = ?   )
+	  	or
+	  	(	c.valutaOut = '242' and c.valutaIn = ?   )
+	  	and
+	  		rowNum = 1 
+	  	order by v.data DESC
+  </query>
+
+
+  <!--  rownum gestito architetturalmente -->
+  <query name="GetValoreCambioByDivisaCompPaged">
+  		select	v
+	  	from 
+		  		it.ras.arco.bean.FinValoriCambi v 
+		  		join v.cambio c
+	  	where
+	  	(	c.valutaIn = '242' and c.valutaOut = ?   )
+	  	or
+	  	(	c.valutaOut = '242' and c.valutaIn = ?   )
+		or
+	  	(	c.valutaIn = 'EUR' and c.valutaOut = ?   )
+	  	or
+	  	(	c.valutaOut = 'EUR' and c.valutaIn = ?   )
+	  	order by v.data DESC
+  </query>
+
+
+
+  <!--   CARICAMENTO  VALORE PIU' RECENTE CAMBI	-->
+  <query name="MAF_CARICA_ULTIMO_VALORE_PER_CAMBIO">
+  	<![CDATA[
+  		select		p
+	  	from  		it.ras.arco.bean.FinValoriCambi p 
+	  				join p.cambio c
+	  	where		c.cambioId = ?
+	  	order by  	p.data desc
+	]]>
+  </query>
+
+</hibernate-mapping>
+

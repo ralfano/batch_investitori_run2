@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxRBVitaPortCli" rowid="rowid" table="FLX_RBVITA_PORT_CLI" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="java.lang.Integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_RBVITA_PORT_CLI_SEQUENCE</param>
+   </generator>
+  </id>
+  <property name="compagniaSiag" type="java.lang.Integer" column="COMPAGNIA_SIAG"/>
+  <property name="polizzaSiag" type="java.lang.Integer" column="POLIZZA_SIAG"/>
+  <property name="ramoSiag" type="java.lang.Integer" column="RAMO_SIAG"/>
+  <property name="agenziaSiag" type="java.lang.Integer" column="AGENZIA_SIAG"/>
+  <property name="compagnia" type="java.lang.Integer" column="COMPAGNIA"/>
+  <property name="codiceAgente" type="java.lang.String"
+   column="CODICE_AGENTE" length="5"/>
+  <property name="rete" type="java.lang.String" column="RETE" length="1"/>
+  <property name="cognome" type="java.lang.String" column="COGNOME" length="32"/>
+  <property name="nome" type="java.lang.String" column="NOME" length="32"/>
+  <property name="codiceFiscale" type="java.lang.String"
+   column="CODICE_FISCALE" length="16"/>
+  <property name="dataNascita" type="java.util.Date" column="DATA_NASCITA"/>
+  <property name="comuneNascita" type="java.lang.String"
+   column="COMUNE_NASCITA" length="35"/>
+  <property name="provinciaNascita" type="java.lang.String"
+   column="PROVINCIA_NASCITA" length="3"/>
+  <property name="capNascita" type="java.lang.String"
+   column="CAP_NASCITA" length="5"/>
+  <property name="nazioneNascita" type="java.lang.String"
+   column="NAZIONE_NASCITA" length="3"/>
+  <property name="indirizzo" type="java.lang.String" column="INDIRIZZO" length="30"/>
+  <property name="comune" type="java.lang.String" column="COMUNE" length="30"/>
+  <property name="provincia" type="java.lang.String" column="PROVINCIA" length="3"/>
+  <property name="cap" type="java.lang.String" column="CAP" length="5"/>
+  <property name="nazione" type="java.lang.String" column="NAZIONE" length="3"/>
+  <property name="telefonoAbitazione" type="java.lang.String"
+   column="TELEFONO_ABITAZIONE" length="15"/>
+  <property name="telefonoUfficio" type="java.lang.String"
+   column="TELEFONO_UFFICIO" length="15"/>
+  <property name="telefonoCellulare" type="java.lang.String"
+   column="TELEFONO_CELLULARE" length="15"/>
+  <property name="sesso" type="java.lang.String" column="SESSO" length="1"/>
+  <property name="titoloOnorifico" type="java.lang.String"
+   column="TITOLO_ONORIFICO" length="20"/>
+  <property name="professione" type="java.lang.String"
+   column="PROFESSIONE" length="20"/>
+  <property name="tipoDocumento" type="java.lang.Integer" column="TIPO_DOCUMENTO"/>
+  <property name="numeroDocumento" type="java.lang.String"
+   column="NUMERO_DOCUMENTO" length="11"/>
+  <property name="dataRilascio" type="java.util.Date" column="DATA_RILASCIO"/>
+  <property name="statoElab" type="java.lang.String"
+   column="STATO_ELAB_B" length="2"/>
+  <property name="istanza" type="java.lang.String" column="ISTANZA_S" length="1"/>
+  <property name="dataCaricamento" type="date" column="DATA_CARICAMENTO_S"/>
+  <property name="descError" type="java.lang.String" column="DESCRIZIONE_ERRORE_S" length="100"/>
+  <property name="dataElab" type="timestamp" column="DATA_ELAB_D"/>
+ </class>
+ <query name="RBVITAPORTCLI_ELENCO_SQL">from
+        it.ras.arco.batch.bean.FlxRBVitaPortCli </query>
+</hibernate-mapping>

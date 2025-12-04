@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DEI SOGGETTI ANAGRAFICI -->
+ <class name="it.ras.arco.bean.FinRuolo" table="FIN_RUOLO" where="GSTD_ESIST_B='S'">
+  
+  
+  <id name="ruoloId" column="RUOLO_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_RUOLO_SEQ</param>
+   </generator>
+  </id>
+
+  <property name="ruolo" type="string" column="RUOLO_T" length="3"/>  
+  <property name="dataInizio" type="timestamp" column="DATA_INIZIO_D" />
+  <property name="dataFine" type="timestamp" column="DATA_FINE_D" />
+
+  <property name="userUltimaModifica" type="string"   column="GSTD_ULT_USER_S" length="40"/>
+  <property name="proceduraUltimaModifica" type="string"   column="GSTD_ULT_PROC_S" length="40"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string"   column="GSTD_USER_INS_S" length="40"/>
+  <property name="tipoUltimaModifica" type="string"   column="GSTD_TIPO_MOD_B" length="1"/>  
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+
+
+
+  <!-- RELAZIONE CON FIN_SOGGETTO, SOGGETTO CHE HA QUESTO RUOLO -->
+  <many-to-one name="soggetto" class="it.ras.arco.bean.FinSoggetto" column="SOGGETTO_ID" not-found="ignore" cascade="lock" />
+
+  <!-- RELAZIONE CON FIN_SOGGETTO, SOGGETTO SU CUI E' ESERCITATO QUESTO RUOLO -->
+  <many-to-one name="soggettoCollegato" class="it.ras.arco.bean.FinSoggetto" column="SOGG_COLL_ID" not-found="ignore" cascade="lock" />
+
+  <!-- RELAZIONE CON FIN_CONTRATTO-->
+  <many-to-one name="contratto" class="it.ras.arco.bean.FinContratto" column="CONTRATTO_ID" not-found="ignore" cascade="lock" />
+
+ </class> 
+ 
+ <!--
+ <query name="GetRuoloBySoggettoSoggettoCollegamentoLegame">select s from it.ras.arco.bean.FinRuolo s join s.soggetto so where so.soggettoId = :clienteId and s.soggettoCollegamento = :collegatoId and s.ruolo= :tipoLegame</query>
+ <query name="GetRuoloBySoggettoContrattoLegame">select s from it.ras.arco.bean.FinRuolo s join s.soggetto so where so.soggettoId = :clienteId and s.contrattoId = :contrattoID and s.ruolo= :tipoLegame</query>
+-->
+
+<sql-query name="GetRuoloBySoggettoSoggettoCollegamentoLegame">
+<return alias="ruolo" class="it.ras.arco.bean.FinRuolo"/>
+select {ruolo.*} from FIN_RUOLO ruolo    
+where
+ruolo.SOGGETTO_ID=:clienteId 
+and 
+ruolo.SOGG_COLL_ID=:collegatoId
+and
+ruolo.RUOLO_T=:tipoLegame
+and ruolo.GSTD_ESIST_B='S'
+</sql-query>
+
+
+<sql-query name="GetRuoloBySoggettoContrattoLegame">
+<return alias="ruolo" class="it.ras.arco.bean.FinRuolo"/>
+select {ruolo.*} from FIN_RUOLO ruolo    
+where
+ruolo.SOGGETTO_ID=:clienteId 
+and 
+ruolo.CONTRATTO_ID=:contrattoID
+and
+ruolo.RUOLO_T=:tipoLegame
+and ruolo.GSTD_ESIST_B='S'
+</sql-query>
+
+ 
+</hibernate-mapping>

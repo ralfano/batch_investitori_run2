@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DEI CONTRATTI TERZI DI TIPO CC-->
+ <class name="@CONTRATTO_TERZI_CC.class@" table="WP_CONTRATTO_TERZI_CC" where="GSTD_ESIST_B='S'">
+  <id name="contrattoTerziId" column="CONTRATTO_TERZI_ID" type="integer">
+  </id>
+
+  <property name="progressivo"   	              column="PROGRESSIVO_C"                  type="integer" />
+  <property name="banca"                    	  column="BANCA_S"                        type="string" length="50" />
+  <property name="numeroConto"                    column="NUMERO_CONTO_S"                 type="string" length="10" />
+  <property name="divisa"                         column="DIVISA_S"                       type="string" length="3" />
+  <property name="contoPrincipale"                column="CONTO_PRINCIPALE_B"             type="string" length="1" />
+  <property name="cartaCredito"		              column="CARTA_CREDITO_B"                type="string" length="1"  />
+  <property name="librettoAssegni"                column="LIBRETTO_ASSEGNI_B"             type="string" length="1" />
+    
+  <!-- Relazione con la tabella WP_CONTRATTO_TERZI -->	
+	<one-to-one name="contrattoterzi" 
+	lazy="@CONTRATTO_TERZI_CC-contrattoterzi.lazy@" 
+	class="@CONTRATTO_TERZI.class@" 
+	cascade="@CONTRATTO_TERZI_CC-contrattoterzi.cascade@" 
+	fetch="@CONTRATTO_TERZI_CC-contrattoterzi.fetch@"
+	/>
+	
+  <!--
+ 	***********************
+	  CAMPI STANDARD
+	***********************
+	-->
+	<property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="40"/>
+	<property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="40"/>
+	<property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+	<property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+	<property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+	<property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="40"/>
+	<property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+	
+	<!-- Duplicazione campi standard x Update (SLAVE) -->	
+	<property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+	<property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+	<property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+	<property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+
+ </class>
+ 
+</hibernate-mapping>

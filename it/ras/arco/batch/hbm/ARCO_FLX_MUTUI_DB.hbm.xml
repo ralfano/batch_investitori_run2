@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxMutuiDB" table="FLX_DB_MUTUI">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_DB_MUTUI_SEQ</param>
+   </generator>
+  </id>
+  <property name="naturaGiuridica"        type="string"  column="NATURA_GIURIDICA"           length="1"/>
+  <property name="codiceFiscale"          type="string"  column="CODICE_FISCALE"             length="16"/>
+  <property name="partitaIva"             type="string"  column="PARTITA_IVA"                length="11"/>
+  <property name="cognome"                type="string"  column="COGNOME"                    length="30"/>
+  <property name="nome"                   type="string"  column="NOME"                       length="30"/>
+  <property name="sesso"                  type="string"  column="SESSO"                      length="1"/>
+  <property name="dataNascita"            type="date"    column="DATA_NASCITA"/>
+  <property name="indirizzoResidenza"     type="string"  column="INDIRIZZO_RESIDENZA"        length="85"/>
+  <property name="cap"                    type="string"  column="CAP"                        length="7"/>
+  <property name="frazione"               type="string"  column="FRAZIONE"                   length="20"/>
+  <property name="comune"                 type="string"  column="COMUNE"                     length="25"/>
+  <property name="provincia"              type="string"  column="PROVINCIA"                  length="3"/>
+  <property name="nazione"                type="string"  column="NAZIONE"                    length="20"/>
+  <property name="comuneNascita"          type="string"  column="COMUNE_NASCITA"             length="40"/>
+  <property name="provNascita"            type="string"  column="PROV_NASCITA"               length="3"/>
+  <property name="nazioneNascita"         type="string"  column="NAZIONE_NASCITA"            length="20"/>
+  <property name="posizione"              type="integer" column="POSIZIONE"/>
+  <property name="codiceAbiConto"         type="string"  column="CODICE_ABI_CONTO"           length="5"/>
+  <property name="codiceCabConto"         type="string"  column="CODICE_CAB_CONTO"           length="5"/>
+  <property name="codiceCinConto"         type="string"  column="CODICE_CIN_CONTO"           length="1"/>
+  <property name="numeroContoCorrente"    type="string"  column="NUMERO_CONTO_CORRENTE"      length="16"/>
+  <property name="tipoMutuo"              type="string"  column="TIPO_MUTUO"                 length="1"/>
+  <property name="dettaglioTipologia"     type="string"  column="DETTAGLIO_TIPOLOGIA"        length="25"/>
+  <property name="finalitaMutuo"          type="string"  column="FINALITA_MUTUO"             length="3"/>
+  <property name="tipoGaranzia"           type="string"  column="TIPO_GARANZIA"              length="20"/>
+  <property name="dettaglioGaranzia"      type="string"  column="DETTAGLIO_GARANZIA"         length="20"/>
+  <property name="flagPromozione"         type="string"  column="FLAG_PROMOZIONE"            length="10"/>
+  <property name="dataAccensioneMutuo"    type="date"    column="DATA_ACCENSIONE_MUTUO"/>
+  <property name="dataScadenzaMutuo"      type="date"    column="DATA_SCADENZA_MUTUO"/>
+  <property name="dataChiusuraAnticipata" type="date"    column="DATA_CHIUSURA_ANTICIPATA"/>
+  <property name="importoMutuo"           type="double"  column="IMPORTO_MUTUO"/>
+  <property name="patrimonioGarantito"    type="double"  column="PATRIMONIO_GARANTITO"/>
+  <property name="importoRimborsato"      type="double"  column="IMPORTO_RIMBORSATO"/>
+  <property name="importoDaRimborsare"    type="double"  column="IMPORTO_DA_RIMBORSARE"/>
+  <property name="importoProgPagamenti"   type="double"  column="IMPORTO_PROG_PAGAMENTI"/>
+  <property name="tasso"                  type="double"  column="TASSO"/>
+  <property name="frequenzaRimborso"      type="string"  column="FREQUENZA_RIMBORSO"         length="1"/>
+  <property name="importoRata"            type="double"  column="IMPORTO_RATA"/>
+  <property name="importoRataAnnuale"     type="double"  column="IMPORTO_RATA_ANNUALE"/>
+  <property name="codicePromotore"        type="string"  column="CODICE_PROMOTORE"           length="5"/>
+  <property name="reteVenditaPromotore"   type="string"  column="RETE_VENDITA_PROMOTORE"     length="3"/>
+  <property name="importoProvvigioneUt"   type="double"  column="IMPORTO_PROVVIGIONE_UT"/>
+  <property name="minimoGarantitoUt"      type="double"  column="MINIMO_GARANTITO_UT"/>
+  <property name="importoProvvRicorrente" type="double"  column="IMPORTO_PROVV_RICORRENTE"/>
+  <property name="convenzione"            type="string"  column="CONVENZIONE"                length="3"/>
+  <property name="polizzaAbbinata"        type="double"  column="POLIZZA_ABBINATA"/>
+  <property name="statoElab"              type="string"  column="STATO_ELAB_B"               length="2"/>
+  <property name="istanza"                type="string"  column="ISTANZA_S"                  length="1"/>
+  <property name="dataCaricamento"        type="date"    column="DATA_CARICAMENTO_S"/>
+  <property name="descrizioneErrore"      type="string"  column="DESCRIZIONE_ERRORE_S"       length="100"/>
+  <property name="dataElab"               type="timestamp"    column="DATA_ELAB_D"/>
+ </class>
+ <query name="MUTUI_DB_QRY">from it.ras.arco.batch.bean.FlxMutuiDB pc where pc.statoElab='D' order by pc.posizione</query>
+</hibernate-mapping>

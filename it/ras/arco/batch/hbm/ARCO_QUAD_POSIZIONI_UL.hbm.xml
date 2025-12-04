@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.QuadPosizioniUl" rowid="rowid" table="QUAD_POSIZIONI_UL">
+  <id name="flxid" column="FLX_ID" type="java.lang.Integer">
+   <generator class="sequence">
+    <param name="sequence">QUAD_POSIZIONI_UL_SEQ</param>
+   </generator>
+  </id>
+  <property name="codCompagnia" type="string" column="COD_COMPAGNIA" length="2"/>
+  <property name="polizzaSiag" type="integer" column="POLIZZA_SIAG" length="11"/>
+  <property name="ramoSiag" type="string" column="RAMO_SIAG" length="3"/>
+  <property name="agenziaSiag" type="string" column="AGENZIA_SIAG" length="7"/>
+  <property name="codProdotto" type="string" column="COD_PRODOTTO" length="10"/>
+  <property name="descrizione" type="string" column="DESCRIZIONE" length="30"/>
+  <property name="numQuote" type="double" column="N_QUOTE"/>
+  <property name="valQuota" type="double" column="VAL_QUOTA"/>
+  <property name="dataQuotazione" type="date" column="DATA_QUOTAZIONE"/>
+  <property name="controvalore" type="double" column="CONTROVALORE"/>
+  <property name="bonus" type="double" column="BONUS"/>
+  <property name="percDescrittivo" type="string" column="PERC_DESCRITTIVO" length="40"/>
+  <property name="numVersioneProd" type="integer" column="NUM_VERS_PRODOTTO"/>
+  <property name="valAggQuota" type="double" column="VAL_AGG_QUOTA"/>
+  <property name="valAggNumQuota" type="double" column="VAL_AGG_NUM_QUOTA"/>
+  <property name="dataUltAggiornam" type="date" column="DATA_ULT_AGGT"/>
+  <property name="totValore" type="double" column="TOT_VALORE"/>
+  <property name="codFondoFin" type="string" column="COD_FONDO_FIN" length="5"/>
+  <property name="codFondoNvi" type="string" column="COD_FONDO_NVI" length="10"/>
+  <property name="statoElab" type="string" column="STATO_ELAB_B" length="2"/>
+  <property name="istanza" type="string" column="ISTANZA_S" length="1"/>
+  <property name="dataCaricamento" type="date" column="DATA_CARICAMENTO_S"/>
+ </class>
+  <query name="GetPosizioneUL">from it.ras.arco.batch.bean.QuadPosizioniUl qp
+ 		where qp.polizzaSiag = ? and qp.statoElab = 'D'</query>
+</hibernate-mapping>

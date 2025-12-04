@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO GENERICO SOGGETTOMANAGER -->
+    
+  
+	
+	 <bean id="InsQuotazione"      class="it.ras.arco.batch.service.QuotazioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>INSERT</value>
+		</property>
+	</bean>
+	 <bean id="GetQuotazione"      class="it.ras.arco.batch.service.QuotazioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET</value>
+		</property>
+	</bean>
+	<bean id="UpdQuotazione"      class="it.ras.arco.batch.service.QuotazioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>UPDATE</value>
+		</property>
+	</bean>
+	
+	
+<!--	<bean id="InsUpdQuotazioneMD"    class="it.ras.arco.batch.module.InsUpdQuotazioneMD"   	   singleton="false" />
+	-->
+	<bean id="UpdQuotazioneMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>9</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>OBJ_FIN_QUOTAZIONE</value>
+      </list>
+     </property>
+    
+     </bean>   
+	
+	<bean id="InsQuotazioneMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>5</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>OBJ_QUOTAZIONE</value>
+      </list>
+     </property>
+    
+     </bean>   
+	
+	
+	<!--bean id="InsUpdAttFinMD"    class="it.ras.arco.batch.module.InsUpdAttFinMD"   	   singleton="false" /-->
+	
+	
+	<bean id="UpdAttFinMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>9</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>OBJ_FIN_ATT_FIN</value>
+      </list>
+     </property>
+    
+     </bean>   
+	
+	<bean id="InsAttFinMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>5</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>OBJ_FIN_ATT_FIN</value>
+      </list>
+     </property>
+    
+     </bean>
+		
+	
+	
+	<!--  <bean id="GetQuotazioneMD"    class="it.ras.arco.batch.module.GetQuotazioneMD"   	   singleton="false" />
+	-->
+	
+	<bean id="GetQuotazioneMD"    
+    class="it.ras.flag.module.DefaultDbModule" >
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetQuotazione</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>ATT_FIN_ID</value>
+    			<value>DATA_QUO</value>	
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>QUOTAZIONE</value>
+    	</property>
+    </bean>
+
+</beans> 
+
+

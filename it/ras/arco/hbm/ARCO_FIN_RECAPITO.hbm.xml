@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA RECAPITI SOGGETTI  -->
+ <class select-before-update="true" dynamic-update="true" rowid="rowid" name="it.ras.arco.bean.FinRecapito" table="FIN_RECAPITO" where="GSTD_ESIST_B='S'">
+  <id name="recapitoId" column="RECAPITO_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_RECAPITO_SEQ</param>
+   </generator>
+  </id>
+ <!--   <property name="soggettoId" type="integer" column="SOGGETTO_ID"/> -->
+  <property name="tipoRecapito" type="string" column="TIPO_RECAPITO_T" length="3"/>
+  <property name="statoVariaz" type="string" column="STATO_VARIAZ_T" length="3"/>
+  <property name="daCancellare" type="string" column="DA_CANCELLARE_B" length="1"/>
+  <property name="desRecapito" type="string" column="DES_RECAPITO_S" length="50"/>
+  <property name="presNote" type="string" column="PRES_NOTE_B" length="1"/>
+  <property name="datiSupl" type="string" column="DATI_SUPL_S" length="25"/>
+  <property name="inizioVali" type="date" column="INIZIO_VALI_D"/>
+  <property name="fineVali" type="date" column="FINE_VALI_D"/>
+  <property name="dominato" type="string" column="DOMINATO_B" length="1"/>
+  <property name="userUltimaModifica" type="string"
+   column="GSTD_ULT_USER_S" length="20"/>
+  <property name="proceduraUltimaModifica" type="string"
+   column="GSTD_ULT_PROC_S" length="20"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string"
+   column="GSTD_USER_INS_S" length="20"/>
+  <property name="tipoUltimaModifica" type="string"
+   column="GSTD_TIPO_MOD_B" length="1"/>
+    <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  
+   
+   <!-- RELAZIONE CON FIN_SOGGETTO -->
+  <many-to-one name="soggetto" class="it.ras.arco.bean.FinSoggetto" column = "SOGGETTO_ID" not-null="true" update="true" insert="true"  cascade="lock"  not-found="ignore"  />
+  
+ </class>
+ 
+  
+ <query name="GetRecapitoByTipoRecapito_SoggettoId">select r from it.ras.arco.bean.FinRecapito r join r.soggetto s where r.tipoRecapito = ? and s.soggettoId = ? and r.fineVali > ? </query>
+ 
+</hibernate-mapping>
+

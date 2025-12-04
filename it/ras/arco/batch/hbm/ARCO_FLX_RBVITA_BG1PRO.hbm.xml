@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxRBVitaBg1pro" table="FLX_RBVITA_BG1PRO">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_RBVITA_BG1PRO_SEQ</param>
+   </generator>
+  </id>
+ 
+<property name="tipoRecord"                    column="TIPO_RECORD"                    type="string" length="3"  />
+<property name="provPortafRas"                column="PROV_PORTAF_RAS"                type="string" length="2"  />
+<property name="dtElab"                        column="DT_ELAB"                        type="date"  />
+<property name="compagnia"                      column="COMPAGNIA"                      type="string" length="3"  />
+<property name="ramo"                           column="RAMO"                           type="string" length="3"  />
+<property name="polizza"                        column="POLIZZA"                        type="string" length="11"  />
+<property name="liberata"                       column="LIBERATA"                       type="string" length="1"  />
+<property name="proposta"                       column="PROPOSTA"                       type="string" length="11"  />
+<property name="divisaIso"                     column="DIVISA_ISO"                     type="string" length="3"  />
+<property name="durCtr"                        column="DUR_CTR"                        type="integer"  />
+<property name="codPfia"                       column="COD_PFIA"                       type="string" length="2"  />
+<property name="codFraz"                       column="COD_FRAZ"                       type="string" length="2"  />
+<property name="tassoFraz"                      column="TASSO_FRAZ"                     type="double"  />
+<property name="codTrasf"                      column="COD_TRASF"                      type="string" length="1"  />
+<property name="polSost1"                     column="POL_SOST1"                     type="string" length="11"  />
+<property name="polSost2"                     column="POL_SOST2"                     type="string" length="11"  />
+<property name="polSost3"                     column="POL_SOST3"                     type="string" length="11"  />
+<property name="polSost4"                     column="POL_SOST4"                     type="string" length="11"  />
+<property name="dtEmisCtr"                    column="DT_EMIS_CTR"                    type="date"  />
+<property name="dtDecorCtr"                   column="DT_DECOR_CTR"                   type="date"  />
+<property name="dtScaCtr"                     column="DT_SCA_CTR"                     type="date"  />
+<property name="dtUltRataPag"                column="DT_ULT_RATA_PAG"                type="date"  />
+<property name="dtUltRataInc"                column="DT_ULT_RATA_INC"                type="date"  />
+<property name="dtDecRataSuc"                column="DT_DEC_RATA_SUC"                type="date"  />
+<property name="codProdotto"                   column="COD_PRODOTTO"                   type="string" length="10"  />
+<property name="descProdotto"                  column="DESC_PRODOTTO"                  type="string" length="40"  />
+<property name="codTariffa"                    column="COD_TARIFFA"                    type="string" length="9"  />
+<property name="descTariffa"                   column="DESC_TARIFFA"                   type="string" length="30"  />
+<property name="tipoTariffa"                   column="TIPO_TARIFFA"                   type="string" length="2"  />
+<property name="descCompl"                     column="DESC_COMPL"                     type="string" length="29"  />
+<property name="dtInizPagPrem"               column="DT_INIZ_PAG_PREM"               type="date"  />
+<property name="dtFinePagPrem"               column="DT_FINE_PAG_PREM"               type="date"  />
+<property name="codStorno"                     column="COD_STORNO"                     type="string" length="2"  />
+<property name="dtStorno"                      column="DT_STORNO"                      type="date"  />
+<property name="flagLiquidata"                 column="FLAG_LIQUIDATA"                 type="string" length="1"  />
+<property name="codTassaVita"                 column="COD_TASSA_VITA"                 type="string" length="2"  />
+<property name="codTassaCi"                   column="COD_TASSA_CI"                   type="string" length="2"  />
+<property name="tipoInval"                     column="TIPO_INVAL"                     type="string" length="5"  />
+<property name="pctInval"                      column="PCT_INVAL"                      type="double"  />
+<property name="baseTecnica"                   column="BASE_TECNICA"                   type="string" length="5"  />
+<property name="tassoTariffa"                  column="TASSO_TARIFFA"                  type="double"  />
+<property name="impSovrapProf"                column="IMP_SOVRAP_PROF"                type="double"  />
+<property name="impSovrapSport"               column="IMP_SOVRAP_SPORT"               type="double"  />
+<property name="impSovrapSanit"               column="IMP_SOVRAP_SANIT"               type="double"  />
+<property name="impSovrapGener"               column="IMP_SOVRAP_GENER"               type="double"  />
+<property name="ultPrPagLor"                 column="ULT_PR_PAG_LOR"                 type="double"  />
+<property name="ultPrPagNet"                 column="ULT_PR_PAG_NET"                 type="double"  />
+<property name="ultPrPagLorCi"              column="ULT_PR_PAG_LOR_CI"              type="double"  />
+<property name="ultPrPagNetCi"              column="ULT_PR_PAG_NET_CI"              type="double"  />
+<property name="ultRataEmesLor"              column="ULT_RATA_EMES_LOR"              type="double"  />
+<property name="ultRataEmesNet"              column="ULT_RATA_EMES_NET"              type="double"  />
+<property name="ultRataEmesLorCi"           column="ULT_RATA_EMES_LOR_CI"           type="double"  />
+<property name="ultRataEmesNetCi"           column="ULT_RATA_EMES_NET_CI"           type="double"  />
+<property name="cumPrPagLor"                 column="CUM_PR_PAG_LOR"                 type="double"  />
+<property name="cumPrPagLorCi"              column="CUM_PR_PAG_LOR_CI"              type="double"  />
+<property name="cumPrPagNet"                 column="CUM_PR_PAG_NET"                 type="double"  />
+<property name="cumPrPagNetCi"              column="CUM_PR_PAG_NET_CI"              type="double"  />
+<property name="diritPerfez"                   column="DIRIT_PERFEZ"                   type="double"  />
+<property name="diritQuiet"                    column="DIRIT_QUIET"                    type="double"  />
+<property name="primoPrPag"                   column="PRIMO_PR_PAG"                   type="double"  />
+<property name="primoPrPagCi"                column="PRIMO_PR_PAG_CI"                type="double"  />
+<property name="prestitoEsist"                 column="PRESTITO_ESIST"                 type="double"  />
+<property name="capitMatuCa"                  column="CAPIT_MATU_CA"                  type="double"  />
+<property name="capitMatuCu"                  column="CAPIT_MATU_CU"                  type="double"  />
+<property name="capitMatuCi"                  column="CAPIT_MATU_CI"                  type="double"  />
+<property name="capitDiffer"                   column="CAPIT_DIFFER"                   type="double"  />
+<property name="rendMaturaCa"                 column="REND_MATURA_CA"                 type="double"  />
+<property name="rendMaturaCu"                 column="REND_MATURA_CU"                 type="double"  />
+<property name="rendDiff"                      column="REND_DIFF"                      type="double"  />
+<property name="partiValuta"                   column="PARTI_VALUTA"                   type="double"  />
+<property name="prestIniz"                     column="PREST_INIZ"                     type="double"  />
+<property name="indInizValuta"                column="IND_INIZ_VALUTA"                type="double"  />
+<property name="ul"                             column="UL"                             type="string" length="1"  />
+<property name="prodotto"                       column="PRODOTTO"                       type="string" length="30"  />
+<property name="indirCorrispondenza"           column="INDIR_CORRISPONDENZA"           type="string" length="30"  />
+<property name="localitaCorrispondenza"        column="LOCALITA_CORRISPONDENZA"        type="string" length="30"  />
+<property name="capCorrispondenza"             column="CAP_CORRISPONDENZA"             type="string" length="5"  />
+<property name="provCorrispondenza"            column="PROV_CORRISPONDENZA"            type="string" length="3"  />
+<property name="nazioneCorrispondenza"         column="NAZIONE_CORRISPONDENZA"         type="string" length="3"  />
+<property name="codfiscContr"                  column="CODFISC_CONTR"                  type="string" length="16"  />
+<property name="nomeAssic"                     column="NOME_ASSIC"                     type="string" length="40"  />
+<property name="dtNascAssic"                  column="DT_NASC_ASSIC"                  type="date"  />
+<property name="etaCompAssic"                 column="ETA_COMP_ASSIC"                 type="integer"  />
+<property name="sessoAssic"                    column="SESSO_ASSIC"                    type="string" length="1"  />
+<property name="codAgente"                     column="COD_AGENTE"                     type="string" length="5"  />
+<property name="codSelfcheck"                  column="COD_SELFCHECK"                  type="string" length="5"  />
+<property name="codRete"                       column="COD_RETE"                       type="string" length="1"  />
+<property name="riassegnazione"                 column="RIASSEGNAZIONE"                 type="string" length="1"  />
+<property name="codAgenteSplit"               column="COD_AGENTE_SPLIT"               type="string" length="5"  />
+<property name="codAgenzia"                    column="COD_AGENZIA"                    type="string" length="7"  />
+<property name="numMand"                       column="NUM_MAND"                       type="string" length="11"  />
+<property name="stGiuCtr"                     column="ST_GIU_CTR"                     type="string" length="2"  />
+<property name="compagniaSiag"                 column="COMPAGNIA_SIAG"                 type="string" length="2"  />
+<property name="polizzaSiag"                   column="POLIZZA_SIAG"                   type="string" length="11"  />
+<property name="ramoSiag"                      column="RAMO_SIAG"                      type="string" length="3"  />
+<property name="codAgenziaSiag"               column="COD_AGENZIA_SIAG"               type="string" length="7"  />
+<property name="dtRifRival"                   column="DT_RIF_RIVAL"                   type="date"  />
+<property name="cambioUltRatEme1"             column="CAMBIO_ULT_RAT_EME_1"           type="double"  />
+<property name="cambioUltRatPag1"             column="CAMBIO_ULT_RAT_PAG_1"           type="double"  />
+<property name="cambioUltRatEme2"             column="CAMBIO_ULT_RAT_EME_2"           type="double"  />
+<property name="cambioUltRatPag2"             column="CAMBIO_ULT_RAT_PAG_2"           type="double"  />
+<property name="dtUltRataEme"                column="DT_ULT_RATA_EME"                type="date"  />
+<property name="pctRival"                      column="PCT_RIVAL"                      type="double"  />
+<property name="numVerProdo"                  column="NUM_VER_PRODO"                  type="integer"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+
+
+
+ </class>
+ <query name="RBVITA_BG1PRO">from
+it.ras.arco.batch.bean.FlxRBVitaBg1pro pc where pc.statoElab='D' order by pc.flxId</query>
+
+
+</hibernate_mapping>

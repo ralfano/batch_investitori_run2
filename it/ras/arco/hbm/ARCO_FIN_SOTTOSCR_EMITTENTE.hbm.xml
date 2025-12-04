@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+ <!-- TABELLA PRODOTTO_LINEA  -->
+ <class name="it.ras.arco.bean.FinSottoscrEmittente"
+	table="FIN_SOTTOSCR_EMITTENTE" where="GSTD_ESIST_B='S'"
+	select-before-update="true"
+	batch-size="50"
+	dynamic-update="true"
+	dynamic-insert="true"
+	>
+  
+
+  <id name="sottoscrEmittenteId" column="SOTTOSCR_EMITTENTE_ID" type="integer">
+	<generator class="sequence">
+		<param name="sequence">FIN_SOTTOSCR_EMITTENTE_SEQ</param>
+	</generator>
+  </id>
+<!--
+  <composite-id>
+   <key-many-to-one name="prodotto"
+    class="it.ras.arco.bean.FinProdotto" column="PRODOTTO_ID"/>
+   <key-many-to-one name="attFin"
+    class="it.ras.arco.bean.FinAttivitaFinanziaria" column="ATTIVITA_FIN_ID"/>
+  </composite-id>
+-->
+
+
+  <property name="dataInizio" type="timestamp" column="DATA_INIZIO_D"/>
+  <property name="dataFine" type="timestamp" column="DATA_FINE_D"/>
+
+
+
+
+  <!-- 
+  	RELAZIONE CON LA FIN_PRODOTTO 
+  	lazy="true"
+  -->
+  <many-to-one name="emittente" 
+   	class="it.ras.arco.bean.FinEmittente" column="EMITTENTE_ID"
+   	update="true" insert="true" cascade="lock" 
+   	not-found="ignore" fetch="join"
+   	/>
+
+  <!-- RELAZIONE CON LA FIN_ATT_FIN -->
+  <many-to-one name="sottoscrizione" 
+   	class="it.ras.arco.bean.FinSottoscrizione" column="SOTTOSCRIZIONE_ID"
+   	update="true" insert="true" cascade="save-update, lock" 
+   	not-found="ignore" fetch="join"
+   	/>
+
+
+
+
+  <!--
+  	***********************
+  	  CAMPI STANDARD
+  	***********************
+  -->
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="40"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="40"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="40"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+
+  <!-- Duplicazione campi standard x Update (SLAVE) -->	
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+
+  <property name="flagInvio" type="string" column="FLG_INVIO" length="1" />
+  <property name="numeroInvio" type="integer" column="NUMERO_INVIO" />
+  <property name="dataPrimoInvio" type="timestamp" column="DATA_PRIMO_INVIO_D" />
+  <property name="dataUtimoInvio" type="timestamp" column="DATA_ULT_INVIO_D" />
+
+ </class>
+ 
+ 
+ 
+</hibernate-mapping>
+

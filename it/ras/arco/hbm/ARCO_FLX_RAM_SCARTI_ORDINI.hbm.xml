@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA SCARTI ORDINI RAM -->
+ <class name="@FLX_RAM_SCARTI_ORDINI.class@" table="FLX_RAM_SCARTI_ORDINI" >
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_RAM_SCARTI_ORDINI_SEQ</param>
+   </generator>
+  </id>
+  	<property name="tipoRecord" column="TIPO_RECORD" type="string" />
+  	<property name="numDispArco" column="NUM_DISP_ARCO" type="integer"  />
+  	<property name="codiceErrore" column="CODICE_ERRORE" type="integer"  />
+  	<property name="descrizioneErrore" column="DESCRIZIONE_ERRORE" type="string"  />
+	<property name="statoElab" column="STATO_ELAB_B" type="string" />
+	<property name="istanza" column="ISTANZA_S" type="string" />
+	<property name="dataCaricamento" column="DATA_CARICAMENTO_D" type="date" />
+	<property name="cognome" column="COGNOME_S" type="string"  />
+	<property name="nome" column="NOME_S" type="string"  />
+	<property name="ndgArco" column="NDG_ARCO" type="integer"  />
+
+  <!-- RELAZIONE CON FIN_SOTTOSCRIZIONE -->
+  <many-to-one name="sottoscrizione" class="it.ras.arco.bean.FinSottoscrizione" column = "SOTTOSCRIZIONE_ID" insert="false" update="false" />
+ </class>
+</hibernate-mapping>
+
+

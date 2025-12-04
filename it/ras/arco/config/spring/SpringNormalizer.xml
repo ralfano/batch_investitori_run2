@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+
+	<!-- Messo Da Vicio -->
+	   <bean id="dataSourceNormalizer" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>oracle.jdbc.driver.OracleDriver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:oracle:thin:@192.168.24.132:1521:ARCOT</value>
+		</property>
+		<property name="username">
+			<value>ter_it</value>
+		</property>
+		<property name="password">
+			<value>ter_it</value>
+		</property>
+	</bean>
+	
+	<!-- -->
+
+	<bean id="RasNormalizer" class="it.ras.arco.normalizer.RasTransparentNormalizer"
+		singleton="true" init-method="init" destroy-method="destroy">
+		<property name="forzaturaCF">
+			<value>false</value>
+		</property>
+		<!-- Messo da Vicio -->
+		<property name="dataSource">
+			<ref bean="dataSourceNormalizer" />
+		</property>
+		<!-- -->
+		<property name="onLine">
+			<value>false</value>
+		</property>
+		<property name="user">
+			<value>ter_it</value>
+		</property>
+		<property name="password">
+			<value>ter_it</value>
+		</property>
+		<property name="serverName">
+			<value>breacodbav05.ras</value>
+		</property>
+		<property name="portNumber">
+			<value>1521</value>
+		</property>
+		<property name="dataBaseName">
+			<value>ARCOP</value>
+		</property>
+		<property name="driver">
+			<value>oracle.jdbc.driver.OracleDriver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:oracle:thin:@breacodbav05.ras:1521:ARCOP</value>
+		</property>
+		<property name="minLimit">
+			<value>5</value>
+		</property>
+		<property name="maxLimit">
+			<value>50</value>
+		</property>
+		<property name="initialLimit">
+			<value>5</value>
+		</property>
+		<property name="inactivityTimeout">
+			<value>1800</value>
+		</property>
+		<property name="abandonedConnectionTimeout">
+			<value>900</value>
+		</property>
+		<property name="maxStatementsLimit">
+			<value>30</value>
+		</property>
+		<property name="propertyCheckInterval">
+			<value>60</value>
+		</property>
+		<property name="connectionWaitTimeout">
+			<value>1800</value>
+		</property>
+		<property name="normalizzaSoggettoService" ref="normalizzaSoggettoService"></property>
+		<property name="normalizzaIndirizzoService" ref="normalizzaIndirizzoService"></property>
+	</bean>
+
+
+
+	<!-- INIZIO denis.damico Chiamata normalizzatore - normalize subject -->
+	<bean id="DateType" class="org.hibernate.type.DateType" />
+ 	<bean id="StringType" class="org.hibernate.type.StringType" />
+	<bean id="IntegerType" class="org.hibernate.type.IntegerType" />
+	
+	<bean id="normalizzaSoggettoService" class="it.ras.arco.common.service.SingleModuleService">
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="moduleName">
+			<value>normalizzaSoggettoMD</value>
+		</property>
+	</bean>
+
+    <bean id="normalizzaSoggettoMD" class="it.ras.flag.module.DefaultDbModuleExtended">
+	   	<property name="dao"><ref bean="RasDaoExtended" /></property>
+	   	<property name="query"><value>103</value></property>
+	   	<property name="springConfigurableQuery" ref="proceduraNormalizzaSoggetto" />
+	   	<property name="parameters">
+			<list>
+				<value>denominazione</value>
+				<value>cognome</value>
+				<value>nome</value>
+				<value>tipoSogg</value>
+				<value>sesso</value>
+				<value>dataNascita</value>
+				<value>luogoDiNascita</value>
+				<value>provinciaDiNascita</value>
+				<value>codiceFiscale</value>
+				<value>partitaIva</value>
+			</list>		
+		</property> 
+	   	<property name="output">
+	   		<value>RESULT</value>
+	   	</property>
+    </bean>
+    <bean id="normalizzatoreContainer" class="it.ras.flag.query.NormalizzatoreContainer" />
+
+   	<bean id="proceduraNormalizzaSoggetto" class="it.ras.flag.query.SpringConfigurableQueryImpl">
+		<property name="queryName">
+ 			<value>select * from table (normalizzatore_batch.normalizeSubject(':denominazione',':cognome',':nome',':tipoSogg',':sesso',to_date(':dataNascita','yyyy-mm-dd'),':luogoDiNascita',':provinciaDiNascita',':codiceFiscale',':partitaIva'))</value>
+		</property>
+		<property name="resultContainer">
+			<ref bean="normalizzatoreContainer"/>
+		</property>
+		<property name="paramNamesList">
+			<list>
+				<value>denominazione</value>
+				<value>cognome</value>
+				<value>nome</value>
+				<value>tipoSogg</value>
+				<value>sesso</value>
+				<value>dataNascita</value>
+				<value>luogoDiNascita</value>
+				<value>provinciaDiNascita</value>
+				<value>codiceFiscale</value>
+				<value>partitaIva</value>
+			</list>
+		</property>
+		<property name="aliasList">
+			<list>
+ 				<value>denominazione</value>
+  				<value>cognome</value>
+				<value>nome</value>
+				<value>tiposogg</value>
+				<value>sesso</value>
+				<value>datanascita</value>
+				<value>luogodinascita</value>
+				<value>provinciadinascita</value>
+				<value>codicefiscale</value>
+				<value>partitaiva</value>
+				<value>msg</value>
+				<value>error</value>
+				<value>error_des</value>
+				<value>error_name</value>
+				<value>error_name_des</value>
+				<value>error_cf</value>
+				<value>error_cf_des</value>
+				<value>error_piva</value>
+				<value>error_piva_des</value>
+				<value>error_sex</value>
+				<value>error_sex_des</value>
+			</list>
+		</property>
+		<property name="typeList">
+			<list>
+ 				<ref bean="StringType"/>
+  				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+ 				<ref bean="DateType"/>
+  				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+  				<ref bean="StringType"/>
+  				<ref bean="StringType"/>
+  				<ref bean="StringType"/>
+  				<ref bean="StringType"/>
+  				<ref bean="StringType"/>
+  				<ref bean="StringType"/>
+  				<ref bean="StringType"/>
+  				<ref bean="StringType"/>
+  				<ref bean="StringType"/>
+  				<ref bean="StringType"/>
+  				<ref bean="StringType"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="normalizzaIndirizzoService" class="it.ras.arco.common.service.SingleModuleService">
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="moduleName">
+			<value>normalizzaIndirizzoMD</value>
+		</property>
+	</bean>
+
+    <bean id="normalizzaIndirizzoMD" class="it.ras.flag.module.DefaultDbModuleExtended">
+	   	<property name="dao"><ref bean="RasDaoExtended" /></property>
+	   	<property name="query"><value>103</value></property>
+	   	<property name="springConfigurableQuery" ref="proceduraNormalizzaIndirizzo" />
+	   	<property name="parameters">
+			<list>
+				<value>toponimoIn</value>
+				<value>indirizzoIn</value>
+				<value>numCivicoIn</value>
+				<value>pressoIn</value>
+				<value>localitaIn</value>
+				<value>provIn</value>
+				<value>capIn</value>
+				<value>nazioneIn</value>  
+			</list>		
+		</property> 
+	   	<property name="output">
+	   		<value>RESULT</value>
+	   	</property>
+    </bean>
+
+   	<bean id="proceduraNormalizzaIndirizzo" class="it.ras.flag.query.SpringConfigurableQueryImpl">
+		<property name="queryName">
+ 			<value>select * from table (normalizzatore_batch.normalizeAddress(':toponimoIn',':indirizzoIn',':numCivicoIn',':pressoIn',':localitaIn',':provIn',':capIn',':nazioneIn'))</value>
+		</property>
+		<property name="resultContainer">
+			<ref bean="normalizzatoreContainer"/>
+		</property>
+		<property name="paramNamesList">
+			<list>
+				<value>toponimoIn</value>
+				<value>indirizzoIn</value>
+				<value>numCivicoIn</value>
+				<value>pressoIn</value>
+				<value>localitaIn</value>
+				<value>provIn</value>
+				<value>capIn</value>
+				<value>nazioneIn</value>           
+			</list>
+		</property>
+		<property name="aliasList">
+			<list>
+ 				<value>codToponimo</value>
+  				<value>desToponimo</value>
+				<value>indirizzo</value>
+				<value>numCivico</value>
+				<value>cap</value>
+				<value>localita</value>
+				<value>comune</value>
+				<value>prov</value>
+				<value>nazione</value>
+				<value>presso</value>
+				<value>cab</value>
+				<value>flag_normalizzato</value>
+				<value>indi_separato</value>
+				<value>msg</value>
+				<value>error</value>
+				<value>error_des</value>
+				<value>error_loca</value>
+				<value>error_loca_des</value>
+				<value>error_via</value>
+				<value>error_via_des</value>
+			</list>
+		</property>
+		<property name="typeList">
+			<list>
+ 				<ref bean="StringType"/>
+  				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+  				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+  				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+  				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+ 				<ref bean="StringType"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="RasDaoExtended" class="it.ras.flag.dao.RasDaoExtended"
+		singleton="false" parent="RasBatchDao">
+	</bean>
+	
+	 <bean id="RasBatchDao"			 class="it.ras.flag.batch.skeleton.RasBatchDao" 		   singleton="false">
+	    <property name="sessionFactory">
+    		<ref bean="sessionFactory"/>
+    	</property>
+    </bean>
+	
+</beans> 
+

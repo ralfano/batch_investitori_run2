@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO GENERICO SOGGETTOMANAGER -->
+    
+  
+	
+	 <bean id="InsertArchivioSRV"      class="it.ras.arco.service.ArchivioBonManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>INSERT</value>
+		</property>
+	</bean>
+	 
+	<bean id="UpdateArchivioSRV"      class="it.ras.arco.service.ArchivioBonManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>UPDATE</value>
+		</property>
+	</bean>
+	
+	
+
+	<bean id="UpdArchivioMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>9</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>ARCHIVIO</value>
+      </list>
+     </property>
+    
+     </bean>   
+	
+	<bean id="InsArchivioMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>5</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>ARCHIVIO</value>
+      </list>
+     </property>
+    
+     </bean>   
+	
+	
+
+	
+	
+    
+	
+</beans> 
+
+

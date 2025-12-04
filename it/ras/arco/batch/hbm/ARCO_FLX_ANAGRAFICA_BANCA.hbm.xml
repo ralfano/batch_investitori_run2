@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ANAGRAFICA CC -->
+ <class name="it.ras.arco.batch.bean.FlxAnagraficaBanca" table="FLX_ANAGRAFICA_BANCA" where="STATO_ELAB_B='D'">
+  <id name="flxID" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_ANAGRAFICA_BANCA_SEQ</param>
+   </generator>
+  </id> <property name="abi"                            column="ABI"                            type="integer"  />
+<property name="cab"                            column="CAB"                            type="integer"  />
+<property name="swift"                          column="SWIFT"                          type="string" length="11"  />
+<property name="bic"                            column="BIC"                            type="string" length="8"  />
+<property name="filiale"                        column="FILIALE"                        type="string" length="4"  />
+<property name="agenzia"                        column="AGENZIA"                        type="string" length="5"  />
+<property name="descrizioneAgenzia"             column="DESCRIZIONE_AGENZIA"            type="string" length="40"  />
+<property name="tipoVia"                        column="TIPO_VIA"                       type="string" length="20"  />
+<property name="indirizzoAgenzia"               column="INDIRIZZO_AGENZIA"              type="string" length="40"  />
+<property name="capAgenzia"                     column="CAP_AGENZIA"                    type="string" length="5"  />
+<property name="cittaAgenzia"                   column="CITTA_AGENZIA"                  type="string" length="40"  />
+<property name="provinciaAgenzia"               column="PROVINCIA_AGENZIA"              type="string" length="2"  />
+<property name="nazioneAgenzia"                 column="NAZIONE_AGENZIA"                type="string" length="40"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+ 	</class>
+ <query name="ANAGRAFICA_BANCA_SQL">from  
+ it.ras.arco.batch.bean.FlxAnagraficaBanca p where p.statoElab='D'</query>
+</hibernate-mapping>
+ 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxRBVitaPoli" rowid="rowid" table="ARCO_FLX_RBVITA_POLLI" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="java.lang.Integer">
+   <generator class="sequence">
+    <param name="sequence">ARCO_FLX_RBVITA_POLI_SEQUENCE</param>
+   </generator>
+  </id>
+	<property name="flxId"                          column="FLX_ID"                         type="integer"  />
+	<property name="compagniaSiag"                  column="COMPAGNIA_SIAG"                 type="integer"  />
+	<property name="polizzaSiag"                    column="POLIZZA_SIAG"                   type="integer"  />
+	<property name="ramoSiag"                       column="RAMO_SIAG"                      type="integer"  />
+	<property name="agenziaSiag"                    column="AGENZIA_SIAG"                   type="integer"  />
+	<property name="codProd"                        column="COD_PROD"                       type="string" length="10"  />
+	<property name="descBenefic"                    column="DESC_BENEFIC"                   type="string" length="40"  />
+	<property name="impLiqLor"                      column="IMP_LIQ_LOR"                    type="string" length="17"  />
+	<property name="impLiqNet"                      column="IMP_LIQ_NET"                    type="string" length="17"  />
+	<property name="cmbLiq"                         column="CMB_LIQ"                        type="string" length="10"  />
+	<property name="fndDest"                        column="FND_DEST"                       type="string" length="40"  />
+	<property name="modPag"                         column="MOD_PAG"                        type="string" length="40"  />
+	<property name="dtLiq"                          column="DT_LIQ"                         type="date"  />
+	<property name="descIntest"                     column="DESC_INTEST"                    type="string" length="150"  />
+	<property name="abi"                            column="ABI"                            type="string" length="5"  />
+	<property name="cab"                            column="CAB"                            type="string" length="5"  />
+	<property name="numCc"                          column="NUM_CC"                         type="string" length="12"  />
+	<property name="dtOpe"                          column="DT_OPE"                         type="date"  />
+	<property name="numVersProd"                    column="NUM_VERS_PROD"                  type="integer"  />
+	<property name="tipLiq"                         column="TIP_LIQ"                        type="integer"  />
+	<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+	<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+	<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+ </class>
+ <query name="RBVITAMOVIMENTO_ELENCO_SQL">from it.ras.arco.batch.bean.FlxRBVitaPoli </query>
+</hibernate-mapping>

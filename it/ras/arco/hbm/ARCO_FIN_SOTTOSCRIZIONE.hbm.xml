@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA SOTTOSCRIZIONE  -->
+ <class name="it.ras.arco.bean.FinSottoscrizione"
+	table="FIN_SOTTOSCRIZIONE" where="GSTD_ESIST_B='S'" optimistic-lock="dirty" dynamic-update="true"
+	batch-size="1"
+   >
+  
+  <id name="sottoscrizioneId" column="SOTTOSCRIZIONE_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_SOTTOSCRIZIONE_SEQ</param>
+   </generator> 
+  </id> 
+  <property name="dataSottoscr" type="date" column="DATA_SOTTOSCR_D"/>
+    
+  <!--  PROPERTY aggiunte durante la sottoscrizione(altri dati) -->
+  <property name="dataInserSottoscr" type="date" column="DATA_INSERIMENTO"/>
+  <property name="dataRicezione" type="date" column="DATA_RICEZIONE"/>
+  <property name="percentualeSplit" type="double" column="PERCENTUALE_SPLIT" length="5"/>
+  <property name="codiceSconto" type="string" column="CODICE_SCONTO" length="8"/>
+  <property name="codiceConvenzione" type="string" column="COD_CONVENZIONE" length="8"/>
+  <property name="flgNoPagAmministrative" type="string" column="FLG_NO_PAG_AMMINISTRATIVE" length="1"/>
+  <property name="stato" type="string" column="STATO" length="1"/>
+  <property name="tipoOperazione" type="string" column="TIPO_OPERAZIONE_T" length="3"/>
+  <property name="numSottoscrizione" type="string" column="NUM_SOTTOSCRIZIONE_S" length="11"/>
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="20"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="20"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="20"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  <property name="tipoTrasferimento" type="string" column="TIPO_TRASFERIMENTO_T" length="1"/>
+  <property name="flagSede" type="string" column="SEDE" length="1" /> 
+  <property name="note" type="string" column="NOTE_S" length="160" /> 
+  
+  <property name="nuovePosizioni" type="string" column="NUOVE_POSIZIONI_B" length="1"/>
+  <property name="dataLavorazione" type="date" column="DATA_LAVORAZIONE"/>
+   <!-- relazione con disp_pagamento--> 
+	
+  <property name="numeroDisposizioneRam" type="integer" column="DISPOSIZIONE_RAM"/>
+  <property name="flgNoCommissioni" type="string" column="FLG_NO_COMMISSIONI" length="1"/>
+  
+   <set name="dispPagamento"   where ="GSTD_ESIST_B='S'" cascade="save-update,lock" lazy="true" inverse="true">
+    <key column="SOTTOSCRIZIONE_ID"/>
+    <one-to-many class="it.ras.arco.bean.FinDispPagamento" not-found="ignore" />
+   </set>
+
+   
+  <!-- relazione con fin_ordine-->
+  <set name="ordine"   inverse="true" where="GSTD_ESIST_B='S' " order-by= "" cascade="save-update,lock">
+   <key column="SOTTOSCRIZIONE_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinOrdine" not-found="ignore" />
+  </set>
+  
+  
+  <set name="estrazioni"  cascade="lock" lazy="true" where ="FL_INVIATO='N' AND TABLE_NAME='FIN_SOTTOSCRIZIONE' " >
+   <key column="ID"/>
+   <one-to-many class="it.ras.arco.bean.SnpEstrazioni" not-found="ignore" />
+  </set>  
+  
+  <!-- RELAZIONE CON SOTTOSCRIZIONE_CONTRATTO -->
+  <set name="contratto" inverse="true" cascade="save-update,lock" lazy="true" where ="GSTD_ESIST_B='S'">
+   <key column="SOTTOSCRIZIONE_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinSottoscrizioneCont" not-found="ignore" />
+  </set>
+
+
+   <many-to-one name="promotore" class="it.ras.arco.bean.FinPromotore"       
+   		column="CODICE_PROMOTORE_ID"  cascade="all, lock" 
+   		fetch="select"   			
+   		not-found="ignore" lazy="proxy" />
+
+   <many-to-one name="promotoreSplit" class="it.ras.arco.bean.FinPromotore"  
+   		column="CODICE_PROM_SPLIT_ID" cascade="all, lock" 
+   		fetch="select"   			
+   		not-found="ignore" lazy="proxy" />
+
+   <many-to-one name="soggettoRichiedente" class="it.ras.arco.bean.FinSoggetto"  
+   		column="SOGGETTO_RICHIED_ID" cascade="lock" 
+   		fetch="select"   			
+   		not-found="ignore" lazy="proxy" />
+
+   <many-to-one name="primoContratto" class="it.ras.arco.bean.FinContratto"  
+   		fetch="select"   			
+   		column="CONTRATTO_ID" cascade="lock" not-found="ignore"  />
+
+<!--  vecchia relazione con la servizio_aggiuntivo  
+  <set name="serviziAggiuntivi" cascade="lock" >
+   <key column="SOTTOSCRIZIONE_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinServizioAggiuntivo" not-found="ignore" />
+  </set>
+  -->  
+ 
+  <!-- nuova relazione con la servizio_aggiuntivo  -->
+ 
+  <many-to-one name="serviziAggiuntivi" class="it.ras.arco.bean.FinServizioAggiuntivo" 
+   		fetch="select"   			
+  		cascade="save-update,lock"  column="SERV_AGGIUN_ID" not-found="ignore" />
+  
+    		
+  <!--  Nuova tabella di legame tra la sottoscrizione e la servizio aggiuntivo -->  		
+  <set name="sottoscrServAgg" cascade="save-update,lock" 
+		  inverse="true" where ="GSTD_ESIST_B='S'">
+   <key column="SOTTOSCRIZIONE_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinSottoscrServAgg"/>
+  </set>
+  
+  
+  <!-- Francesco: RELAZIONE CON FIN_INDIRIZZO -->
+  <many-to-one name="indirizzo" class="it.ras.arco.bean.FinIndirizzo" column="INDIRIZZO_ID" 
+        cascade="save-update,lock" lazy="proxy" 
+   		fetch="select"   			
+        update="true" insert="true" 
+  		not-found="ignore"      
+  /> 
+
+
+  
+  <!-- V: RELAZIONE CON EMITTENTE -->
+<!--  
+  <many-to-one name="emittente" lazy="false"
+   	class="it.ras.arco.bean.FinEmittente" column="EMITTENTE_ID"
+   	update="true" insert="true" cascade="lock" not-found="ignore" />
+-->
+
+  <!-- V: RELAZIONE CON FIN_SOTTOSCRIZIONE -->
+  <set name="emitSottoscrizioni" cascade="lock" 
+		  inverse="true" where ="GSTD_ESIST_B='S'">
+   <key column="SOTTOSCRIZIONE_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinSottoscrEmittente"/>
+  </set>
+  
+
+  
+ </class>
+
+
+
+
+<!-- 
+TEST ANIMA
+3101947 PS
+3101950 PS
+3101951 PS
+3101952 INV.SUCC
+3030118 RIMB TOT
+3101868 VARIAZIONE IND.CORR
+3030117 VARIAZIONE ANAGRAFICA
+3101954 SWITCH
+-->
+
+ <query name="OutboundAnima">
+ 	from it.ras.arco.bean.FinSottoscrizione o 
+ 	where o.sottoscrizioneId  in (3101947,3101950,3101951,3101952,3030118,3101868,3030117,3101954)
+ </query>
+
+
+ <query name="Outbound">
+ 	from it.ras.arco.bean.FinSottoscrizione o 
+ 	where o.sottoscrizioneId  in (639951)
+ </query>
+  
+  <query name="GetSottoscrizioneByNumDispRam">from it.ras.arco.bean.FinSottoscrizione pc where pc.numeroDisposizioneRam=?</query>
+  
+  <query name="GetMccByContrattoData">
+  		from it.ras.arco.bean.FinSottoscrizione s
+  		join s.contratto sc
+  		join sc.contratto c
+  		where c.contrattoId = :contratto 
+  		and s.tipoOperazione = :tipoSottoscrizione
+  		and s.dataInserimento >= :dataInizioDip
+  </query>
+  
+  <query name="GetMccByContrattoSoggettoData">
+  		from it.ras.arco.bean.FinSottoscrizione s
+  		join s.contratto sc
+  		join sc.contratto c
+  		join s.soggettoRichiedente sogg
+  		where c.contrattoId = :contratto 
+  		and sogg.soggettoId = :soggetto
+  		and s.tipoOperazione = :tipoSottoscrizione
+  		and s.dataInserimento >= :dataInizioDip
+  </query>
+  
+  <query name="GetMsoBySoggettoDataPostContratto">
+  		from it.ras.arco.bean.FinSottoscrizione s
+  		join s.soggettoRichiedente sogg
+  		where sogg.soggettoId = :soggetto
+  		and s.tipoOperazione = :tipoSottoscrizione
+  		and s.dataInserimento >= :dataInizioDip
+  		and s.dataInserimento >= :dataInserimentoContratto
+  </query>
+  
+  
+<sql-query name="OutboundSottoscrizioneMovimentiGP">
+ <return alias="sottoscrizione" class="it.ras.arco.bean.FinSottoscrizione"/> 
+	select {sottoscrizione.*} from fin_ordine o, fin_movimento m, FIN_SOTTOSCRIZIONE sottoscrizione
+	where m.GSTD_ESIST_B='S' and o.GSTD_ESIST_B='S' and sottoscrizione.GSTD_ESIST_B='S'
+	and m.ORDINE_ID=o.ORDINE_ID
+	and sottoscrizione.SOTTOSCRIZIONE_ID=o.SOTTOSCRIZIONE_ID
+	and o.SOTTOSCRIZIONE_ID in (
+			select 
+			distinct sottoscrizione.sottoscrizione_id
+			from
+			SNP_ESTRAZIONI a, 
+			FIN_SOTTOSCRIZIONE sottoscrizione
+			where 
+			a.ID = sottoscrizione.SOTTOSCRIZIONE_ID and
+			a.DEST = 'ANT' and
+			a.TABLE_NAME = 'FIN_SOTTOSCRIZIONE' 
+			and a.FL_INVIATO='N'
+	)
+	and m.CAUSALE_T  not in (634,635,636)
+ </sql-query>
+
+<sql-query name="OutboundGPContratti">
+<return alias="sottoscrizione" class="it.ras.arco.bean.FinSottoscrizione"/> 
+ select {sottoscrizione.*} from fin_sottoscrizione sottoscrizione JOIN
+  FIN_SOTTOSCR_EMITTENTE se ON se.sottoscrizione_id = sottoscrizione.sottoscrizione_id 
+  where (se.emittente_id IN (14) 
+  AND sottoscrizione.STATO = 'A'
+  AND sottoscrizione.tipo_operazione_t = 'SOT'
+  AND sottoscrizione.nuove_posizioni_b = 'S' 
+  AND sottoscrizione.GSTD_ESIST_B = 'S'
+  AND se.GSTD_ESIST_B = 'S'
+  AND trunc(sottoscrizione.GSTD_INSE_D) &gt; trunc(sysdate - 7) )  
+  
+  OR sottoscrizione.sottoscrizione_id = 3068025
+ </sql-query>
+ 
+<sql-query name="OutboundBnlMovimenti">
+ <return alias="o" class="it.ras.arco.bean.FinOrdine"/> 
+ SELECT {o.*}
+  FROM fin_sottoscrizione sottoscrizione 
+  JOIN fin_sottoscr_emittente se ON se.sottoscrizione_id = sottoscrizione.sottoscrizione_id
+ JOIN fin_ordine o ON o.sottoscrizione_id = sottoscrizione.sottoscrizione_id
+ WHERE (se.emittente_id IN (5)
+   AND sottoscrizione.stato = 'A'
+   AND ((sottoscrizione.tipo_operazione_t IN ('SOT', 'ACQ', 'RSO') 
+   	   	AND nvl(sottoscrizione.nuove_posizioni_b,'N') &lt;&gt; 'S')
+		OR sottoscrizione.tipo_operazione_t = 'PSO')
+   AND sottoscrizione.GSTD_ESIST_B = 'S'
+   AND se.GSTD_ESIST_B = 'S'
+   AND o.GSTD_ESIST_B = 'S'
+   AND trunc(sottoscrizione.GSTD_INSE_D) &gt; trunc(sysdate - 7))
+   OR sottoscrizione.sottoscrizione_id = 3068025
+</sql-query>
+
+ <sql-query name="OutboundBnlVariazioni">
+ <return alias="sottoscrizione" class="it.ras.arco.bean.FinSottoscrizione"/> 
+  select {sottoscrizione.*} from fin_sottoscrizione sottoscrizione JOIN
+                  FIN_SOTTOSCR_EMITTENTE se ON se.sottoscrizione_id = sottoscrizione.sottoscrizione_id 
+                  where (se.emittente_id IN (5) 
+                  AND sottoscrizione.STATO = 'A'
+                  AND sottoscrizione.tipo_operazione_t IN ('ASA', 'MCC')
+                  AND sottoscrizione.GSTD_ESIST_B = 'S'
+                  AND se.GSTD_ESIST_B = 'S'
+                  AND trunc(sottoscrizione.GSTD_INSE_D) &gt; trunc(sysdate - 7)) 
+                  OR sottoscrizione.sottoscrizione_id = 3068025
+ </sql-query>
+ 
+ <sql-query name="OutboundBnlContratti">
+ <return alias="sottoscrizione" class="it.ras.arco.bean.FinSottoscrizione"/> 
+ select {sottoscrizione.*} from fin_sottoscrizione sottoscrizione JOIN
+                  FIN_SOTTOSCR_EMITTENTE se ON se.sottoscrizione_id = sottoscrizione.sottoscrizione_id 
+                  where (se.emittente_id IN (5) 
+                  AND sottoscrizione.STATO = 'A'
+                  AND sottoscrizione.tipo_operazione_t = 'SOT'
+                  AND sottoscrizione.nuove_posizioni_b = 'S' 
+                  AND sottoscrizione.GSTD_ESIST_B = 'S'
+                  AND se.GSTD_ESIST_B = 'S'
+                  AND trunc(sottoscrizione.GSTD_INSE_D) &gt; trunc(sysdate - 7)) 
+                  OR sottoscrizione.sottoscrizione_id = 3068025
+ </sql-query>
+ 
+<sql-query name="OutboundCitco">
+ <return alias="sottoscrizione" class="it.ras.arco.bean.FinSottoscrizione" />
+            select {sottoscrizione.*} from fin_sottoscrizione sottoscrizione JOIN
+                  FIN_SOTTOSCR_EMITTENTE se ON se.sottoscrizione_id = sottoscrizione.sottoscrizione_id 
+                  where se.emittente_id IN (6,8) 
+                  AND sottoscrizione.STATO = 'A' 
+                  AND sottoscrizione.GSTD_ESIST_B = 'S'
+                  AND se.GSTD_ESIST_B = 'S'
+                  AND trunc(sottoscrizione.GSTD_INSE_D) &gt; trunc(sysdate - 7)
+</sql-query>
+ 
+ <sql-query name="OutboundRam19">
+ <return alias="sottoscrizione" class="it.ras.arco.bean.FinSottoscrizione" />
+            select {sottoscrizione.*} from fin_sottoscrizione sottoscrizione JOIN
+                  FIN_SOTTOSCR_EMITTENTE se ON se.sottoscrizione_id = sottoscrizione.sottoscrizione_id 
+                  where se.emittente_id IN (14) 
+                  AND sottoscrizione.STATO in ('A') 
+                  AND sottoscrizione.GSTD_ESIST_B = 'S'
+                  AND trunc(sottoscrizione.GSTD_INSE_D) = trunc(sysdate)
+</sql-query>
+
+<sql-query name="OutboundRam15">
+ <return alias="sottoscrizione" class="it.ras.arco.bean.FinSottoscrizione" />
+            select {sottoscrizione.*} 
+                  from fin_sottoscrizione sottoscrizione
+                  JOIN FIN_SOTTOSCR_EMITTENTE se ON se.sottoscrizione_id = sottoscrizione.sottoscrizione_id 
+                  JOIN FIN_DISP_PAGAMENTO d ON d.sottoscrizione_id = sottoscrizione.sottoscrizione_id
+                  where se.emittente_id IN (14) 
+                  AND sottoscrizione.STATO = 'A' 
+                  AND sottoscrizione.GSTD_ESIST_B = 'S'
+                  AND sottoscrizione.TIPO_OPERAZIONE_T = 'SOT'
+                  AND trunc(sottoscrizione.GSTD_INSE_D) = trunc(sysdate)
+                  AND d.mezzo_pagamento_t = 'BO'                 
+</sql-query> 
+ 
+ 
+  <query name="GetSottoscrizione">
+  		from it.ras.arco.bean.FinSottoscrizione pc 
+  		where pc.sottoscrizioneId=?
+  </query>
+ 
+  <query name="GetSottoscrizioneByNumeroSottoscrizione">
+  		from it.ras.arco.bean.FinSottoscrizione pc 
+  		where pc.numSottoscrizione=?
+  </query>
+
+  <query name="GetCountSottoscrizioniByContrattoId">
+ 	select count(s) 
+ 	from it.ras.arco.bean.FinSottoscrizione s 
+ 		inner join s.contratto c
+ 		join c.contratto cont
+ 	where cont.contrattoId = ?
+  </query>
+  
+</hibernate-mapping>
+

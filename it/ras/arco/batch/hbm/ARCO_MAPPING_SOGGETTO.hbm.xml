@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DEI SOGGETTI ANAGRAFICI 
+ 
+ <class name="it.ras.arco.batch.bean.FinSoggetto" table="FIN_SOGGETTO" where="GSTD_ESIST_B=&apos;S&apos;">
+  <id name="soggettoID" column="SOGGETTO_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_SOGGETTO_SEQ</param>
+   </generator>
+  </id>
+  <property name="ndgArcoN" type="integer" column="NDG_ARCO_N"/>
+  <property name="cognomeS" type="string" column="COGNOME_S" length="35"/>
+  <property name="nomeS" type="string" column="NOME_S" length="30"/>
+  <property name="tipoSoggB" type="string" column="TIPO_SOGG_B" length="1"/>
+  <property name="condPartSoggB" type="string" column="COND_PART_SOGG_B" length="1"/>
+  <property name="sessoB" type="string" column="SESSO_B" length="1"/>
+  <property name="codiceFiscaleS" type="string"
+   column="CODICE_FISCALE_S" length="16"/>
+  <property name="partitaIvaS" type="string" column="PARTITA_IVA_S" length="11"/>
+  <property name="dataNascitaD" type="date" column="DATA_NASCITA_D"/>
+  <property name="comuneNascitaS" type="string"
+   column="COMUNE_NASCITA_S" length="40"/>
+  <property name="provNascitaT" type="string" column="PROV_NASCITA_T" length="3"/>
+  <property name="nazNascitaT" type="string" column="NAZ_NASCITA_T" length="3"/>
+  <property name="denominazioneS" type="string" column="DENOMINAZIONE_S" length="70"/>
+  <property name="cittadinanzaT" type="string" column="CITTADINANZA_T" length="3"/>
+  <property name="statoCivileT" type="string" column="STATO_CIVILE_T" length="3"/>
+  <property name="tipoSocietaT" type="string" column="TIPO_SOCIETA_T" length="6"/>
+  <property name="titoloStudioT" type="string" column="TITOLO_STUDIO_T" length="3"/>
+  <property name="noteTitoloStuB" type="string"
+   column="NOTE_TITOLO_STU_B" length="1"/>
+  <property name="attivitaT" type="string" column="ATTIVITA_T" length="3"/>
+  <property name="noteAttivitaB" type="string" column="NOTE_ATTIVITA_B" length="1"/>
+  <property name="settoreT" type="string" column="SETTORE_T" length="3"/>
+  <property name="noteSettoreB" type="string" column="NOTE_SETTORE_B" length="1"/>
+  <property name="qualificaT" type="string" column="QUALIFICA_T" length="3"/>
+  <property name="noteQualificaB" type="string"
+   column="NOTE_QUALIFICA_B" length="1"/>
+  <property name="statoCensimB" type="string" column="STATO_CENSIM_B" length="1"/>
+  <property name="provDatiAnagT" type="string" column="PROV_DATI_ANAG_T" length="3"/>
+  <property name="datiSuplS" type="string" column="DATI_SUPL_S" length="20"/>
+  <property name="userUltimaModifica" type="string"
+   column="GSTD_ULT_USER_S" length="20"/>
+  <property name="proceduraUltimaModifica" type="string"
+   column="GSTD_ULT_PROC_S" length="20"/>
+  <property name="dataUltimaModifica" type="date" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="date" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string"
+   column="GSTD_USER_INS_S" length="20"/>
+  <property name="tipoUltimaModifica" type="string"
+   column="GSTD_TIPO_MOD_B" length="1"/>
+
+  <set name="indirizzo" table="FIN_SOGGETTO_INDIR" cascade="all" where="GSTD_ESIST_B=&apos;S&apos;">
+   <key column="SOGGETTO_ID"/>
+   <composite-element class="it.ras.arco.batch.bean.FinSoggettoIndir">
+    <parent name="soggettoId"/>
+    <many-to-one name="indirizzoFisico"
+     class="it.ras.arco.batch.bean.FinIndirizzo" column="INDIRIZZO_ID" not-null="true"/>
+    <property name="statoVariaz" type="string" column="STATO_VARIAZ_T" length="3"/>
+    <property name="flgDaCanc" type="string" column="FLG_DA_CANC_B" length="1"/>
+    <property name="presNote" type="string" column="PRES_NOTE_B" length="1"/>
+    <property name="dataInizio" type="date" column="DATA_INIZIO_D"/>
+    <property name="dataFine" type="date" column="DATA_FINE_D"/>
+    <property name="datiSupl" type="string" column="DATI_SUPL_S" length="10"/>
+    <property name="userUltimaModifica" type="string"
+     column="GSTD_ULT_USER_S" length="20"/>
+    <property name="proceduraUltimaModifica" type="string"
+     column="GSTD_ULT_PROC_S" length="20"/>
+    <property name="dataUltimaModifica" type="date" column="GSTD_ULT_MOD_D"/>
+    <property name="dataInserimento" type="date" column="GSTD_INSE_D"/>
+    <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+    <property name="utenteInserimento" type="string"
+     column="GSTD_USER_INS_S" length="20"/>
+    <property name="tipoUltimaModifica" type="string"
+     column="GSTD_TIPO_MOD_B" length="1"/>
+   </composite-element>
+  </set>
+ </class>
+ -->
+ <query name="SELECT_INDIRIZZO">from it.ras.arco.batch.bean.FinIndirizzo a
+  where         a.indirizzo =?      and a.numeroCivico= ?      and
+  a.cap=? and a.nazione=?</query>
+ <query name="OLD_INDIRIZZO">from it.ras.arco.batch.bean.FinIndirizzo a
+  where         a.soggettoId =?      and a.stato= ?</query>
+ <query name="OLD_SOGG_IND">from it.ras.arco.batch.bean.FinSoggettoIndir a
+  where         a.soggettoId =?      and a.dataFine&gt; CURRENT DATE</query>
+</hibernate-mapping>

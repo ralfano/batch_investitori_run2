@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping> 
+ <!-- TABELLA DELLA SCP -->
+ <class dynamic-update="true" rowid="rowid" name="@SCP_ELENCO.class@" 
+ 		table="SCP_ELENCO_BCK" where="@SCP_ELENCO.where@">
+
+  <id name="elencoId" column="ELENCO_ID" type="integer">
+   <generator class="sequence"> 
+    <param name="sequence">SCP_ELENCO_SEQ</param>
+   </generator>
+  </id>
+	  <property name="scpNumber" type="integer" column="SCP_NUMBER" length="18"/>
+	  
+	  <!-- property name="dettaglioCorId" type="integer" column="DETTAGLIO_COR_ID" length="18"/>
+	  <property name="squadraId" type="integer" column="SQUADRA_ID" length="18"/ -->
+
+	  <property name="ndgArco" type="integer" column="NDG_ARCO_N" length="18"/>	  
+	  <property name="codiceIdentificativo" type="string" column="CODICE_IDENTIFICATIVO_S" length="3"/>		  
+	  <property name="cognome" type="string" column="COGNOME_S" length="50"/>  
+	  <property name="nome" type="string" column="NOME_S" length="40"/>	  
+	  <property name="denominazione" type="string" column="DENOMINAZIONE_S" length="4000"/>	  
+	  <property name="intestatarioScp" type="string" column="INTESTATARIO_SCP_S" length="4000"/>	  
+	  <property name="sesso" type="string" column="SESSO_B" length="1"/>	  
+	  <property name="codiceFiscale" type="string" column="CODICE_FISCALE_S" length="16"/>	  
+	  <property name="partitaIva" type="string" column="PARTITA_IVA_S" length="11"/>  
+	  <property name="cointestatari" type="string" column="COINTESTATARI_S" length="600"/>	  
+	  <property name="cfCointestatari" type="string" column="CF_COINTESTATARI_S" length="400"/>	  
+	  <property name="indirizzoS" type="string" column="INDIRIZZO_S" length="200"/>
+	  <property name="capS" type="string" column="CAP_S" length="7"/>
+	  <property name="comuneS" type="string" column="COMUNE_S" length="40"/>
+	  <property name="provT" type="string" column="PROV_T" length="3"/>	 
+	  <property name="codPromotore" type="string" column="COD_PROMOTORE_S" length="8"/>  
+	  <property name="desPromotore" type="string" column="DES_PROMOTORE_S" length="50"/> 	   
+	  <property name="codRete" type="string" column="COD_RETE_T" length="3"/>  	  
+	  <property name="codAgenzia" type="string" column="COD_AGENZIA_S" length="5"/>  
+	  <property name="indirizzoAgenzia" type="string"   column="INDIRIZZO_AGENZIA_S" length="50"/>  
+	  <property name="capAgenzia" type="string" column="CAP_AGENZIA_S" length="7"/> 
+	  <property name="cittaAgenzia" type="string" column="CITTA_AGENZIA_S" length="30"/> 
+	  <property name="provAgenzia" type="string" column="PROV_AGENZIA_S" length="2"/> 	 
+	  <property name="telPrefissoAgenzia" type="string" column="TEL_PREFISSO_AGENZIA_S" length="5"/> 
+	  <property name="telNumero1Agenzia" type="string" column="TEL_NUMERO_1_AGENZIA_S" length="9"/>
+	  <property name="telNumero2Agenzia" type="string" column="TEL_NUMERO_2_AGENZIA_S" length="9"/> 
+	  <property name="telNumero3Agenzia" type="string" column="TEL_NUMERO_3_AGENZIA_S" length="9"/>	
+	  <property name="flagAllegato" type="string" column="FLG_ALLEGATO_S" length="1"/> 
+	  <property name="flagRaccomandata" type="string" column="FLG_RACCOMANDATA_S" length="1"/> 
+	  <property name="flagPolizzaSingola" type="string" column="FLG_POLIZZA_SINGOLA_S" length="1"/>  
+	  <property name="flagProdottoVisibile" type="string" column="FLG_PRODOTTO_VISIBILE_S" length="1"/> 
+	  <property name="statoElaborazione" type="string" column="STATO_ELAB_B" length="2"/>	  
+	  <property name="dataEstrazione" type="timestamp"	column="DATA_ESTRAZIONE_D" />
+	  
+	  <property name="totaleRiepilogo" type="double" column="TOTALE_RIEPILOGO" length="18"/> 
+	  
+	  	<!-- 
+	  		Campi architetturali	  	
+	  	 -->
+	  	<property name="userUltimaModifica" type="string"
+			column="GSTD_ULT_USER_S" length="20" />
+		<property name="proceduraUltimaModifica" type="string"
+			column="GSTD_ULT_PROC_S" length="20" />
+		<property name="dataUltimaModifica" type="timestamp"
+			column="GSTD_ULT_MOD_D" />
+		<property name="dataInserimento" type="timestamp"
+			column="GSTD_INSE_D" />
+		<property name="flagEsistenza" type="string"
+			column="GSTD_ESIST_B" length="1" />
+		<property name="utenteInserimento" type="string"
+			column="GSTD_USER_INS_S" length="20" />
+		<property name="tipoUltimaModifica" type="string"
+			column="GSTD_TIPO_MOD_B" length="1" />
+		
+		<property name="userUltimaModificaSlave" type="string"
+			column="GSTD_ULT_USER_S" length="40" insert="false" update="false" />
+		<property name="proceduraUltimaModificaSlave" type="string"
+			column="GSTD_ULT_PROC_S" length="40" insert="false" update="false" />
+		<property name="dataUltimaModificaSlave" type="timestamp"
+			column="GSTD_ULT_MOD_D" insert="false" update="false" />
+		<property name="tipoUltimaModificaSlave" type="string"
+			column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false" />
+			
+		<!-- RELAZIONE CON SCP_FLUSSO, SCP_TOTALI, SCP_SEMAFORO-->
+  		<set name="elencoFlusso" cascade="lock" inverse="true" lazy="true" where ="@SCP_FLUSSO.where@">
+   			<key column="ELENCO_ID"/>
+   			<one-to-many class="@SCP_FLUSSO.class@" not-found="ignore" />
+  		</set>
+  		<set name="elencoTotali" cascade="lock" inverse="true" lazy="true" where ="@SCP_TOTALI.where@">
+   			<key column="ELENCO_ID"/>
+   			<one-to-many class="@SCP_TOTALI.class@" not-found="ignore" />
+  		</set>
+  		
+  		<many-to-one name="semaforo" class="@SCP_SEMAFORO.class@" 
+		column="SEMAFORO_ID" not-null="true" insert="false" lazy="proxy" 
+		update="false" cascade="lock" />
+  		
+  		
+   </class>
+ </hibernate-mapping>
+
+ 
+ 
+
+
+
+
+

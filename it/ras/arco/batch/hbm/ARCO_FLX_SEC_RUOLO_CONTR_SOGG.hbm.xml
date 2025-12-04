@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA RUOLO CONTRATTO SOGGETTO CC -->
+ <class name="it.ras.arco.batch.bean.FlxSecRuoloContrSogg" table="FLX_SEC_RUOLO_CONTR_SOGG" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SEC_RUOLO_CONTR_SOGG_SEQ</param>
+   </generator>
+  </id>
+<property name="ndg"                            column="NDG"                            type="string" length="20"  />
+<property name="codSrvSec"                      column="COD_SRV_SEC"                    type="string" length="5" />
+<property name="codFilSec"                      column="COD_FIL_SEC"                    type="string" length="5" />
+<property name="codCatSec"                      column="COD_CAT_SEC"                    type="string" length="5" />
+<property name="numPartSec"                     column="NUM_PART_SEC"                   type="string" length="8" />
+<property name="cfil"                           column="CFIL"                           type="string" length="5" />
+<property name="cage"                           column="CAGE"                           type="string" length="5" />
+<property name="cprg"                           column="CPRG"                           type="string" length="11" />
+<property name="csot"                           column="CSOT"                           type="string" length="11" />
+<property name="numeroRapportoGespat"           column="NUMERO_RAPPORTO_GESPAT"         type="string" length="11"  />
+<property name="tipoProdotto"                   column="TIPO_PRODOTTO"                  type="string" length="1"  />
+<property name="ruolo"                          column="RUOLO"                          type="string" length="2"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+<property name="descrizioneErrore"                column="DESCRIZIONE_ERRORE_S"             type="string" length="100" />
+<property name="dataElaborazione"                column="DATA_ELAB_D"             type="date"  />
+
+</class>
+ <query name="SEC_RUOLO_CONTR_SOGG_SQL">from  
+ it.ras.arco.batch.bean.FlxSecRuoloContrSogg</query>
+</hibernate-mapping>

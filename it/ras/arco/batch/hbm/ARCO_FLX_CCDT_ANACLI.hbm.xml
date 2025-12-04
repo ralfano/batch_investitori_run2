@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA CESSAZIONI CLIENTI -->
+ <class name="it.ras.arco.batch.bean.FlxCcdtAnacli" table="FLX_CCDT_ANACLI">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_CCDT_ANACLI_sequence</param>
+   </generator>
+  </id>
+  <property name="parametro" type="string" column="PARAMETRO" length="1"/>
+  <property name="codiceFilialeRapporto" type="integer" column="CODICE_FILIALE_RAPPORTO"/>
+  <property name="categoriaRapporto" type="integer" column="CATEGORIA_RAPPORTO"/>
+  <property name="numeroRapporto" type="integer" column="NUMERO_RAPPORTO"/>
+  <property name="cin" type="integer" column="CIN"/>
+  <property name="codiceIban" type="string" column="CODICE_IBAN" length="27"/>
+  <property name="intestazioneBreve" type="string"
+   column="INTESTAZIONE_BREVE" length="30"/>
+  <property name="dataAperturaC" type="date" column="DATA_APERTURA_C_C"/>
+  <property name="indirizzoDiCorrispondenza" type="string"
+   column="INDIRIZZO_DI_CORRISPONDENZA" length="30"/>
+  <property name="citaDiCorrispondenza" type="string"
+   column="CITA_DI_CORRISPONDENZA" length="30"/>
+  <property name="capDiCorrispondenza" type="integer" column="CAP_DI_CORRISPONDENZA"/>
+  <property name="provinciaDiCorrispondenza" type="string"
+   column="PROVINCIA_DI_CORRISPONDENZA" length="2"/>
+  <property name="carteBancomat" type="string" column="CARTE_BANCOMAT" length="1"/>
+  <property name="carteDiCredito" type="string"
+   column="CARTE_DI_CREDITO" length="1"/>
+  <property name="librettiAssegni" type="string"
+   column="LIBRETTI_ASSEGNI" length="1"/>
+  <property name="nominativoIIntestatario" type="string"
+   column="NOMINATIVO_I_INTESTATARIO" length="30"/>
+  <property name="indirizzoIIntestatario" type="string"
+   column="INDIRIZZO_I_INTESTATARIO" length="30"/>
+  <property name="cittaIIntestatario" type="string"
+   column="CITTA_I_INTESTATARIO" length="30"/>
+  <property name="provinciaIIntestatario" type="string"
+   column="PROVINCIA_I_INTESTATARIO" length="2"/>
+  <property name="nTelefonoIIntestatario" type="string"
+   column="N_TELEFONO_I_INTESTATARIO" length="15"/>
+  <property name="statoMcIIntestatario" type="string"
+   column="STATO_MC_I_INTESTATARIO" length="12"/>
+  <property name="flagAbilitazioneHbIIntesta" type="string"
+   column="FLAG_ABILITAZIONE_HB_I_INTESTA" length="1"/>
+  <property name="filler1" type="string" column="FILLER1" length="1"/>
+  <property name="iIntestatario" type="string" column="I_INTESTATARIO" length="2"/>
+  <property name="nominativoIiIntestatario" type="string"
+   column="NOMINATIVO_II_INTESTATARIO" length="30"/>
+  <property name="indirizzoIiIntestatario" type="string"
+   column="INDIRIZZO_II_INTESTATARIO" length="30"/>
+  <property name="cittaIiIntestatario" type="string"
+   column="CITTA_II_INTESTATARIO" length="30"/>
+  <property name="provinciaIiIntestatario" type="string"
+   column="PROVINCIA_II_INTESTATARIO" length="2"/>
+  <property name="nTelefonoIiIntestatario" type="string"
+   column="N_TELEFONO_II_INTESTATARIO" length="15"/>
+  <property name="statoMcIiIntestatario" type="string"
+   column="STATO_MC_II_INTESTATARIO" length="12"/>
+  <property name="flagAbilitazioneHbIiIntest" type="string"
+   column="FLAG_ABILITAZIONE_HB_II_INTEST" length="1"/>
+  <property name="filler2" type="string" column="FILLER2" length="1"/>
+  <property name="iiIntestatario" type="string" column="II_INTESTATARIO" length="2"/>
+  <property name="nominativoIiiIntestatario" type="string"
+   column="NOMINATIVO_III_INTESTATARIO" length="30"/>
+  <property name="indirizzoIiiIntestatario" type="string"
+   column="INDIRIZZO_III_INTESTATARIO" length="30"/>
+  <property name="cittaIiiIntestatario" type="string"
+   column="CITTA_III_INTESTATARIO" length="30"/>
+  <property name="provinciaIiiIntestatario" type="string"
+   column="PROVINCIA_III_INTESTATARIO" length="2"/>
+  <property name="nTelefonoIiiIntestatario" type="string"
+   column="N_TELEFONO_III_INTESTATARIO" length="15"/>
+  <property name="statoMcIiiIntestatario" type="string"
+   column="STATO_MC_III_INTESTATARIO" length="12"/>
+  <property name="flagAbilitazioneHbIiiIntes" type="string"
+   column="FLAG_ABILITAZIONE_HB_III_INTES" length="1"/>
+  <property name="filler3" type="string" column="FILLER3" length="1"/>
+  <property name="iiiIntestatario" type="string"
+   column="III_INTESTATARIO" length="2"/>
+  <property name="nominativoIvIntestatario" type="string"
+   column="NOMINATIVO_IV_INTESTATARIO" length="30"/>
+  <property name="indirizzoIvIntestatario" type="string"
+   column="INDIRIZZO_IV_INTESTATARIO" length="30"/>
+  <property name="cittaIvIntestatario" type="string"
+   column="CITTA_IV_INTESTATARIO" length="30"/>
+  <property name="provinciaIvIntestatario" type="string"
+   column="PROVINCIA_IV_INTESTATARIO" length="2"/>
+  <property name="nTelefonoIvIntestatario" type="string"
+   column="N_TELEFONO_IV_INTESTATARIO" length="15"/>
+  <property name="statoMcIvIntestatario" type="string"
+   column="STATO_MC_IV_INTESTATARIO" length="12"/>
+  <property name="flagAbilitazioneHbIvIntest" type="string"
+   column="FLAG_ABILITAZIONE_HB_IV_INTEST" length="1"/>
+  <property name="filler4" type="string" column="FILLER4" length="1"/>
+  <property name="ivIntestatario" type="string" column="IV_INTESTATARIO" length="2"/>
+  <property name="descrizioneTipoC" type="string"
+   column="DESCRIZIONE_TIPO_C_C" length="30"/>
+  <property name="abilitazioneTol" type="string"
+   column="ABILITAZIONE_TOL" length="1"/>
+  <property name="abilitazioneFol" type="string"
+   column="ABILITAZIONE_FOL" length="1"/>
+  <property name="divisaDelC" type="string" column="DIVISA_DEL_C_C" length="3"/>
+  <property name="segnoSaldoContabileC" type="string"
+   column="SEGNO_SALDO_CONTABILE_C_C" length="1"/>
+  <property name="saldoContabileC" type="string"
+   column="SALDO_CONTABILE_C_C" length="17"/>
+  <property name="segnoControvaloreDossierTit" type="string"
+   column="SEGNO_CONTROVALORE_DOSSIER_TIT" length="1"/>
+  <property name="controvaloreDossierTitoli" type="string"
+   column="CONTROVALORE_DOSSIER_TITOLI" length="17"/>
+  <property name="codiceEsperienza" type="string"
+   column="CODICE_ESPERIENZA" length="2"/>
+  <property name="descrizioneEsperienza" type="string"
+   column="DESCRIZIONE_ESPERIENZA" length="50"/>
+  <property name="codiceRischio" type="string" column="CODICE_RISCHIO" length="2"/>
+  <property name="descrizioneRischio" type="string"
+   column="DESCRIZIONE_RISCHIO" length="50"/>
+  <property name="codiceObiettivoConsob" type="string"
+   column="CODICE_OBIETTIVO_CONSOB" length="2"/>
+  <property name="descrizioneObiettivoConsob" type="string"
+   column="DESCRIZIONE_OBIETTIVO_CONSOB" length="70"/>
+ </class>
+ <query name="PROVA_SQL">select * from
+ras.batch.bean.FlxCcdtAnacli pc</query>
+</hibernate-mapping>

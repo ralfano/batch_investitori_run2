@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ANAGRAFICA GP -->
+ <class name="it.ras.arco.batch.bean.FlxRasBankGpAnagraficaCon" rowid="rowid"
+  table="FLX_RASBANKGP_ANAGRAFICA_CON" lazy="true">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_RASBANKGP_ANAG_CON_SEQ</param>
+   </generator>
+  </id>
+  <property name="numeroRapporto" type="string" column="NUMERO_RAPPORTO" length="8"/>
+  <property name="codiceAgente" type="string" column="CODICE_AGENTE" length="5"/>
+  <property name="codiceRete" type="string" column="CODICE_RETE" length="1"/>
+  <property name="codiceCompagnia" type="string"
+   column="CODICE_COMPAGNIA" length="2"/>
+  <property name="dataAperturaGpf" type="date" column="DATA_APERTURA_GPF"/>
+  <property name="codiceLinea" type="string" column="CODICE_LINEA" length="2"/>
+  <property name="descrizioneLinea" type="string"
+   column="DESCRIZIONE_LINEA" length="30"/>
+  <property name="controvaloreNav" type="double" column="CONTROVALORE_NAV"/>
+  <property name="prenotateDare" type="double" column="PRENOTATE_DARE"/>
+  <property name="prenotateAvere" type="double" column="PRENOTATE_AVERE"/>
+  <property name="perfInizioTrimestre" type="double" column="PERF_INIZIO_TRIMESTRE"/>
+  <property name="perfInizioAnno" type="double" column="PERF_INIZIO_ANNO"/>
+  <property name="perfAnnualizzataDaInizioGe" type="double" column="PERF_ANNUALIZZATA_DA_INIZIO_GE"/>
+  <property name="perfLordaInizioAnno" type="double" column="PERF_LORDA_INIZIO_ANNO"/>
+  <property name="perfLordaInizioTrimestre" type="double" column="PERF_LORDA_INIZIO_TRIMESTRE"/>
+  <property name="dataElabPerf" type="date" column="DATA_ELAB_PERF"/>
+  <property name="navCalcoloPerf" type="double" column="NAV_CALCOLO_PERF"/>
+  <property name="perfBenchInizioTrim" type="double" column="PERF_BENCH_INIZIO_TRIM"/>
+  <property name="perfBenchInizioAnno" type="double" column="PERF_BENCH_INIZIO_ANNO"/>
+  <property name="dataCreazione" type="date" column="DATA_CREAZIONE"/>
+  <property name="dataEstinzione" type="date" column="DATA_ESTINZIONE"/>
+  <property name="indirizzoPostale" type="string"
+   column="INDIRIZZO_POSTALE" length="32"/>
+  <property name="capPostale" type="string" column="CAP_POSTALE" length="5"/>
+  <property name="localitaPostale" type="string"
+   column="LOCALITA_POSTALE" length="32"/>
+  <property name="provinciaPostale" type="string"
+   column="PROVINCIA_POSTALE" length="2"/>
+  <property name="saldoCc" type="double" column="SALDO_CC"/>
+  <property name="saldoDossier" type="double" column="SALDO_DOSSIER"/>
+  <property name="dataVal" type="date" column="DATA_VAL"/>
+  <property name="statoElaborazione" type="string" column="STATO_ELAB_B" length="2"/>
+  <property name="istanza" type="string" column="ISTANZA_S" length="1"/>
+  <property name="tipoProd" type="string" column="TIPO_PROD" />
+   <property name="dataElab" column="DATA_ELAB_D" type="timestamp"  />
+   <property name="descrizioneErrore"  column="DESCRIZIONE_ERRORE_S" type="string" length="100"  />
+ </class>
+ <query name="CURSOR_RASBANKGP_ANAGR">from it.ras.arco.batch.bean.FlxRasBankGpAnagraficaCon agp where agp.statoElaborazione='D' order by agp.flxId </query>
+</hibernate-mapping>

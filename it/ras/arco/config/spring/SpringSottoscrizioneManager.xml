@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO GENERICO SOGGETTOMANAGER -->
+    
+  
+	
+	
+	 <bean id="GetSottoscrizione"      class="it.ras.arco.service.SottoscrizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GetSottoscrizioneBySottoscrizioneId</value>
+		</property>
+	</bean>
+	
+	
+	 <bean id="UpdSottoscrizioneSRV"      class="it.ras.arco.service.SottoscrizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>UpdSottoscrizione</value>
+		</property>
+	</bean>
+	
+	
+	<bean id="GetSottoscrizioneByNumDispRamSRV"      class="it.ras.arco.service.SottoscrizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GetSottoscrizioneByNumDispRam</value>
+		</property>
+	</bean>
+	
+	<bean id="GetSottoscrizioneByNumSottoscrizioneSRV"      class="it.ras.arco.service.SottoscrizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GetSottoscrizioneByNumSottoscrizioneMD</value>
+		</property>
+	</bean>
+	
+	<bean id="GetSottoscrizioneByCSOTSEC"      class="it.ras.arco.service.SottoscrizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GetSottoscrizioneByCSOTSECMD</value>
+		</property>
+	</bean>
+	
+	 <bean id="InsSottoscrizioneSRV"
+    	class="it.ras.arco.service.SottoscrizioneManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>InsSottoscrizione</value>
+    	</property>
+    </bean>
+
+	<bean id="GetSottoscrizioneBySottoscrizioneId"    
+    class="it.ras.flag.module.DefaultDbModule" >
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSottoscrizione</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>SOTTOSCRIZIONE_ID</value>	
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOTTOSCRIZIONE</value>
+    	</property>
+    </bean>
+    
+    
+    <bean id="GetSottoscrizioneByNumDispRam"    
+    class="it.ras.flag.module.DefaultDbModule" >
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSottoscrizioneByNumDispRam</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>NUM_DISP_ARCO</value>	
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOTTOSCRIZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetSottoscrizioneByNumSottoscrizioneMD"    
+    class="it.ras.flag.module.DefaultDbModule" >
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSottoscrizioneByNumeroSottoscrizione</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>NUM_SOTTOSCRIZIONE</value>	
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOTTOSCRIZIONE</value>
+    	</property>
+    </bean>
+    <bean id="GetSottoscrizioneByCSOTSECMD"    
+    class="it.ras.flag.module.DefaultDbModule" >
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSottoscrizioneByCSOTSEC</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>NUM_SOTTOSCRIZIONE</value>	
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOTTOSCRIZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertSottoscrizioneMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		
+		<property name="parameters">
+			<list>
+				<value>SOTTOSCRIZIONE</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>SOTTOSCRIZIONE</value>
+		</property>
+	</bean>
+	
+	<bean id="InsertSottoscrContMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		
+		<property name="parameters">
+			<list>
+				<value>SOTTOSCR_CONT</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>SOTTOSCR_CONT</value>
+		</property>
+	</bean>
+	
+	<bean id="UpdSottoscrizione" class="it.ras.flag.module.DefaultDbModule">
+	  <property name="dao">
+	   <ref bean="RasBatchDao" />
+	  </property>
+	  <property name="query">
+	   <value>9</value>
+	  </property>
+	  <property name="parameters">
+	   <list>
+	    <value>SOTTOSCRIZIONE</value>
+	   </list>
+	  </property>
+	  <property name="output">
+	   <value>SOTTOSCRIZIONE</value>
+	  </property>
+	 </bean>
+
+	<bean id="updateNumeroMD" class="it.ras.flag.module.DefaultDbModule">
+	  <property name="dao">
+	   <ref bean="RasBatchDao" />
+	  </property>
+		<property name="query"><value>10</value></property>
+		<property name="parameters">
+			<list>
+				<value>NUMERO_CONTRATTO</value>
+			</list>		
+		</property>
+	</bean>
+	
+   
+</beans> 
+

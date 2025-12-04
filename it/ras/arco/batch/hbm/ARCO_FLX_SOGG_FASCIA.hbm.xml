@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+ <class name="it.ras.arco.batch.bean.FlxSoggFascia" rowid="rowid" table="FLX_SOGG_FASCIA">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SOGG_FASCIA_SEQ</param>
+   </generator>
+  </id>
+<property name="dataRife"                       column="DATA_RIFE"                      type="date"  />
+<property name="codSogg"                        column="COD_SOGG"                       type="integer"  />
+<property name="navPrimLiv"                     column="NAV_PRIM_LIV"                   type="double"  />
+<property name="navSecoLiv"                     column="NAV_SECO_LIV"                   type="double"  />
+<property name="fascCalc"                       column="FASC_CALC"                      type="string" length="1"  />
+<property name="fascEred"                       column="FASC_ERED"                      type="string" length="1"  />
+<property name="fascSec"                        column="FASC_SEC"                       type="string" length="1"  />
+<property name="dataSec"                        column="DATA_SEC"                       type="date"  />
+<property name="fascAsse"                       column="FASC_ASSE"                      type="string" length="1"  />
+<property name="causAsse"                       column="CAUS_ASSE"                      type="string" length="2"  />
+<property name="dataAsse"                       column="DATA_ASSE"                      type="date"  />
+<property name="numContCorr"                    column="NUM_CONT_CORR"                  type="integer"  />
+<property name="numIncoe"                       column="NUM_INCOE"                      type="integer"  />
+<property name="dataIncoe"                      column="DATA_INCOE"                     type="date"  />
+<property name="flgUpDown"                      column="FLG_UP_DOWN"                    type="string" length="1"  />
+<property name="dataUpDown"                     column="DATA_UP_DOWN"                   type="date"  />
+<property name="flgConsPriv"                    column="FLG_CONS_PRIV"                  type="string" length="1"  />
+<property name="codCliePorfCcor"                column="COD_CLIE_PORF_CCOR"             type="integer"  />
+<property name="datInse"                        column="DAT_INSE"                       type="date"  />
+<property name="datVarz"                        column="DAT_VARZ"                       type="date"  />
+<property name="codUltiUser"                    column="COD_ULTI_USER"                  type="string" length="8"  />
+<property name="tmpUltiVarz"                    column="TMP_ULTI_VARZ"                  type="date"  />
+<property name="flgVali"                        column="FLG_VALI"                       type="string" length="1"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="descrizioneErrore"              column="DESCRIZIONE_ERRORE_S"           type="string" length="100"  />
+<property name="dataErrore"                     column="DATA_ERRORE"                    type="date" />
+
+
+ </class>
+ <query name="FLX_SOGG_FASCIA_CUR">from it.ras.arco.batch.bean.FlxSoggFascia p where p.statoElab in ('D','KO')</query>
+
+
+
+</hibernate-mapping>

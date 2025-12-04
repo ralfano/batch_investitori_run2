@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxTrasferProg" rowid="rowid" table="FLX_TRASFER_PROGRAM" >
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_TRASFER_PROG_SEQ</param>
+   </generator>
+  </id>
+  	<property name="tipoRecord"                     column="TIPO_RECORD"                    type="string"   />  
+	<property name="numDispArco"                    column="NUM_DISP_ARCO"                  type="string"   />
+	<property name="tipoOperazione"                 column="TIPO_OPERAZIONE"                type="string" length="1"  />
+	<property name="dataCreazioneDisp"              column="DATA_CREAZIONE_DISP"            type="timestamp"   />
+	<property name="codiceRichiedente"              column="CODICE_RICHIEDENTE"             type="string" length="7"  />
+	<property name="tabellaPosizioniInUscita"       column="TABELLA_POSIZIONI_IN_USCITA"    type="string" length="110"  />
+	<property name="quoteInUscita"                  column="QUOTE_IN_USCITA"                type="string" length="90"  />
+	<property name="quoteSplit"                  	column="QUOTE_SPLIT"                	type="double" />
+	<property name="importoInUscita"                column="IMPORTO_IN_USCITA"              type="string" length="90"  />
+	<property name="importoInUscitaSplit"           column="IMPORTO_USCITA_SPLIT"           type="double"  />	
+	<property name="tabellaPosizioniInEntrata"      column="TABELLA_POSIZIONI_IN_ENTRATA"   type="string" length="110"  />
+	<property name="importoInEntrata"               column="IMPORTO_IN_ENTRATA"             type="string" length="90"  />
+	<property name="importoInEntrataSplit"          column="IMPORTO_ENTRATA_SPLIT"          type="double"  />	
+	<property name="percentualiInEntrata"           column="PERCENTUALI_IN_ENTRATA"         type="string" length="50"  />
+	<property name="percentualiInEntrataSplit"           column="PERCENTUALI_ENTRATA_SPLIT"         type="double"   />
+	<property name="periodicitaTrasferimento"       column="PERIODICITA_TRASFERIMENTO"      type="string" length="1"  />
+	<property name="numeroTrasferimenti"            column="NUMERO_TRASFERIMENTI"           type="integer"  />
+	<property name="scadenzaFineMese"               column="SCADENZA_FINE_MESE"             type="string" length="1"  />
+	<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+	<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+	<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+	<property name="descrizioneErrore" 				column="DESCRIZIONE_ERRORE_S" 			type="string" length="300"/>
+	<property name="dataElaborazione" 				column="DATA_ELAB_D"					type="timestamp"/>  	
+
+ </class>
+
+<query name="BATCH_TRASF_PROG">from it.ras.arco.batch.bean.FlxTrasferProg pc where pc.statoElab='D' order by pc.codiceRichiedente,pc.numDispArco</query>
+</hibernate-mapping>

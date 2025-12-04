@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO GENERICO UTILITAMIGRAZIONE -->
+    
+    
+    
+    <bean id="GetBySoggettoIndir"
+    	class="it.ras.arco.batch.service.UtilitaMigrazioneXP" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_BY_SOGG_INDIR</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetByContrattoIndir"
+    	class="it.ras.arco.batch.service.UtilitaMigrazioneXP" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_BY_CONTR_INDIR</value>
+    	</property>
+    </bean>
+    
+    <!--	MODULI	-->
+    
+    
+    
+    <bean id="getBySoggettoIndir"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    	<value>GetBySoggIndir</value>
+    	</property>
+    	<property name="parameters">
+    		<list>    			
+    			<value>INDIRIZZO_ID</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>indirizzoId</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO_INDIRIZZO</value>
+    	</property>
+    </bean>
+    
+    <bean id="getByContrattoIndir"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    	<value>GetByContrIndir</value>
+    	</property>
+    	<property name="parameters">
+    		<list>    			
+    			<value>INDIRIZZO_ID</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>indirizzoId</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO_INDIRIZZO</value>
+    	</property>
+    </bean>
+     <!-- 
+    <bean id="sessionFactory"
+		class="it.ras.flag.batch.skeleton.BatchSessionFactory">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="mappingResources">
+			<value> 
+			  	 /it/ras/arco/hbm/ARCO_FIN_SEGNALAZIONI_CC_DT.hbm.xml,
+				 /it/ras/arco/hbm/ARCO_FIN_SEGNAL_CC_DT_TITOLI.hbm.xml,
+				 /it/ras/arco/hbm/ARCO_FIN_BONIFICO.hbm.xml, 
+				 /it/ras/arco/hbm/ARCO_FIN_ORDINE_TITOLO.hbm.xml			
+			</value>
+		</property>
+	 </bean>  
+	 -->
+</beans>

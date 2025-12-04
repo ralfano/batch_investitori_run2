@@ -1,0 +1,1567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    
+                        <!--   SERVIZI INSERT  -->
+    
+    <bean id="InsertContrattoSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>InsertContratto</value>
+    	</property>
+    	<property name="creaPosizione">
+    		<value>1</value>
+    	</property>
+      </bean>
+    
+    <bean id="InsertContrattoNoPosizioneSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>InsertContratto</value>
+    	</property>
+    	<property name="creaPosizione">
+    		<value>0</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertProiezionePolizzaSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>InsertProiezionePolizza</value>
+    	</property>
+      </bean>
+    
+     <bean id="InsertContrattoDtSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_CONTRATTO_DT</value>
+    	</property>
+        </bean>
+    
+    <bean id="InsertContrattoCCSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_CONTRATTO_CC</value>
+    	</property>
+      </bean>
+    
+    <bean id="InsertPolizzaSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>InsertPolizza</value>
+    	</property>
+    	  
+    </bean>
+    
+    <bean id="InsertGpStoricoSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_GP_STORICO</value>
+    	</property>
+    	  
+    </bean>
+    
+    <bean id="InsertPremioPolizzaSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>InsertPremioPolizza</value>
+    	</property>
+    	
+    </bean>
+    
+    <bean id="InsertAssegnazioneSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_ASSEGNAZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertAssegnoSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>InsertAssegno</value>
+    	</property>
+    </bean>
+    
+                 <!--  FINE  SERVIZI INSERT  -->
+    
+    
+                <!--   SERVIZI UPDATE    -->
+    
+    <bean id="UpdateProiezionePolizzaSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UpdateProiezionePolizza</value>
+    	</property>
+     </bean>
+    
+    <bean id="UpdateIntestContrattoSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UpdateIntestContratto</value>
+    	</property>
+      </bean>
+    
+     <bean id="UpdateFondoSicavSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UpdateFondoSicav</value>
+    	</property>
+      </bean>
+      
+      
+       <bean id="UpdateFinGpSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UpdateFinGp</value>
+    	</property>
+      </bean>
+      
+      
+       <bean id="UpdateGpStoricoSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UPDATE_GP_STORICO</value>
+    	</property>
+      </bean>
+      
+  
+  <bean id="UpdateAssegnazioneSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UPDATE_ASSEGNAZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="UpdateAssegnoSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UpdateAssegno</value>
+    	</property>
+    </bean>
+    
+    <bean id="UpdatePremioPolizzaSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UpdatePremioPolizza</value>
+    	</property>
+      </bean>
+ 
+                  <!--  FINE  SERVIZI UPDATE  -->
+  
+  
+                  <!--   SERVIZI GET  -->
+  
+  
+  
+  <bean id="GetContrattoByNumContrattoEmittIDSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrattoByNumContrattoEmittId</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+  
+    
+    <bean id="GetContrattoByNumContrattoSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrattoByNumContratto</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+    
+    <bean id="GetGpStoricoByContrattoIdDataValSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetGpStoricoByContrattoIdDataVal</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+    <bean id="GetContrattoByNumRapportoSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrattoByNumRapporto</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean> 
+   <bean id="GetContrattoByDossierSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrattoByDossier</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    <bean id="GetContrattoByNumPraticaSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrattoByNumPratica</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+     <bean id="GetDtByNumDtSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetDtByNumDt</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+    
+    
+    <bean id="GetContrattoByContrattoIdSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrattoByContrattoId</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+   
+    
+    <bean id="GetContrattoByNumContrattoProdottoIdSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrattoByNumContrattoProdottoId</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>      
+    </bean>
+    
+    
+    <bean id="GetContrattoByNumContrattoAttFinSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrattoByNumContrattoAttFin</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>      
+    </bean>
+    
+    
+    <bean id="GetContrattoByNumContrattoCodEmittenteSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrattoByNumContrattoCodEmittente</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    <bean id="GetContrattoByNumContrattoCodInterfacciaTipoSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrattoByNumContrattoCodInterfacciaTipo</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+    <bean id="GetContrattoByNumContrattoCodEmittenteCodInterfacciaSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrattoByNumContrattoCodEmittenteCodInterfaccia</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+    <bean id="GetContrattoByNumContrattoCodEmittenteProdIdSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrattoByNumContrattoCodEmittenteProdId</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>    
+    
+     <bean id="GetContrattoByNumContrattoTipoSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrattoByNumContrattoTipo</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+    <bean id="GetContrattoByNumContrattoCodInterfacciaSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrattoByNumContrattoCodInterfaccia</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+    
+     <bean id="GetContrattoBySoggPrimoIntProdottoIdSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrattoBySoggPrimoIntProdottoId</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+    
+    
+    <bean id="GetFondiSicavByContrattoIdSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetFondiSicavByContrattoId</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+     <bean id="GetMovimentoByContrattoIdSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetMovimentoByContrattoId</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+     <bean id="GetArchivioByContrattoIdSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetArchivioByContrattoId</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+    <bean id="GetPolizzaByNumPropostaSRV" class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetPolizzaByNumProposta</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+   
+     <bean id="GetProiezionePolizzaByContrattoIdSRV" class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+          <property name="moduleManager">
+              <ref bean="RasModuleManager" />
+         </property>
+         <property name="action">
+            <value>GET_PROIEZIONE_POLIZZA_BY_CONTRATTO_ID</value>
+        </property>
+        <property name="onLine">
+			<value>false</value>
+		</property>  
+     </bean>
+
+     <bean id="GetAssegnazioneAttivaByContrattoPromotoreSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_ASSEGNAZIONE_ATTIVA_BY_CONTRATTO_PROMOTORE</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+   <bean id="GetContrattoByNumCarnetSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_ASSEGNO_BY_NUM_CARNET</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+    <bean id="GetBancaByABICABSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_BANCA_BY_ABI_CAB</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+    
+     <bean id="GetContrByNConProdIdDossierTecSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrByNumContrProdIdDoss</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+    <bean id="GetAltroProdottoByNumContrattoProdottoIdSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetAltroProdottoByNumContrattoProdottoId</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean> 
+    
+    
+     <bean id="GetContrattoBySoggPrimoIntProdottoIdNumContrSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrattoBySoggPrimoIntProdottoIdNumContr</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+    
+    <bean id="GetContrattoByCointIdProdottoIdNumContrSRV"
+    	class="it.ras.arco.service.ContrattoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetContrattoByCointIdProdottoIdNumContr</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+              <!-- FINE  SERVIZI GET  -->
+    
+    
+    
+    
+   
+    
+    
+    
+    
+                  <!-- Inizio Moduli generici per l'insertContratto -->
+                  
+                  <!-- MODULI INSERIMENTO -->
+                  
+     <bean id="InserimentoDettaglio" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		
+		<property name="parameters">
+			<list>
+				<value>DETTAGLIO</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>DETTAGLIO</value>
+		</property>
+	</bean>
+   
+   
+   <bean id="InserimentoGpStorico" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		
+		<property name="parameters">
+			<list>
+				<value>GP_STORICO</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>GP_STORICO</value>
+		</property>
+	</bean>
+   
+   
+   
+      <bean id="InsertPremioPolizzaMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>PREMIO_POLIZZA</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>PREMIO_POLIZZA</value>
+		</property>
+	</bean>
+	
+	
+    
+	
+    
+    <bean id="InsertAssegnazioneMD"    
+   		class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+      		<ref bean="RasBatchDao" />
+     	</property>
+     	<property name="query">
+      		<value>5</value>
+     	</property>
+     	<property name="parameters">
+      	<list>
+       		<value>ASSEGNAZIONE</value>
+     	</list>
+     	</property>
+     	<property name="output">
+     		<value>ASSEGNAZIONE</value>
+    	</property>
+     </bean>
+     
+   
+    <bean id="InserimentoPosizione" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>POSIZIONE</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>POSIZIONE</value>
+		</property>
+	</bean>
+	
+	
+	
+	<bean id="InsertProiezionePolizzaMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>PROIEZIONE</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>PROIEZIONE</value>
+		</property>
+	</bean>
+	
+	<bean id="InsertAssegnoMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>ASSEGNO</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>ASSEGNO</value>
+		</property>
+	</bean>
+	
+	 <!--     FINE  MODULI INSERIMENTO  -->
+	 
+	                       <!--  MODULI UPDATE -->
+	 
+	<bean id="UpdateProiezionePolizzaMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>PROIEZIONE</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>PROIEZIONE</value>
+		</property>
+	</bean>
+	
+	<bean id="UpdateDettaglio" class="it.ras.flag.module.DefaultDbModule">
+	  <property name="dao">
+	   <ref bean="RasBatchDao" />
+	  </property>
+	  <property name="query">
+	   <value>9</value>
+	  </property>
+	  <property name="parameters">
+	   <list>
+	    <value>DETTAGLIO</value>
+	   </list>
+	  </property>
+	  <property name="output">
+	   <value>CONTRATTO</value>
+	  </property>
+	 </bean>
+	
+	
+	<bean id="UpdateGpStorico" class="it.ras.flag.module.DefaultDbModule">
+	  <property name="dao">
+	   <ref bean="RasBatchDao" />
+	  </property>
+	  <property name="query">
+	   <value>9</value>
+	  </property>
+	  <property name="parameters">
+	   <list>
+	    <value>GP_STORICO</value>
+	   </list>
+	  </property>
+	  <property name="output">
+	   <value>GP_STORICO</value>
+	  </property>
+	 </bean>
+	
+	
+	
+     <bean id="UpdateAssegnazioneMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>ASSEGNAZIONE</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>ASSEGNAZIONE</value>
+		</property>
+	</bean>
+	
+	<bean id="UpdateAssegnoMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>ASSEGNO</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>ASSEGNO</value>
+		</property>
+	</bean>
+	
+	<bean id="UpdatePremioPolizza" class="it.ras.flag.module.DefaultDbModule">
+	  <property name="dao">
+	   <ref bean="RasBatchDao" />
+	  </property>
+	  <property name="query">
+	   <value>9</value>
+	  </property>
+	  <property name="parameters">
+	   <list>
+	    <value>PREMIO_POLIZZA</value>
+	   </list>
+	  </property>
+	  <property name="output">
+	   <value>PREMIO_POLIZZA</value>
+	  </property>
+	 </bean>
+	 
+	                                       <!--   MODULI GET  --> 
+	
+	
+	  <bean id="GetFondiSicavByContrattoId"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetFondiSicavByContrattoId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+    
+     <bean id="GetContrattoBySoggPrimoIntProdottoId"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrattoBySoggPrimoIntProdottoId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    		    <value>SOGGETTO_PRIMO_INT</value>
+    			<value>PRODOTTOID</value>
+    			
+    		</list>
+      	</property>
+    		<property name="paramNames">
+    		<list>
+    			<value>soggettoPrimoInt</value>
+    			<value>prodottoId</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+    
+    
+    
+    
+    
+    <bean id="GetMovimentoByContrattoId"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetMovimentoByContrattoId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+    
+    
+    
+     <bean id="GetArchivioByContrattoId"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetArchivioByContrattoId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetContrattoByNumContratto"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrattoByNumContratto</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+   
+    <bean id="GetContrattoByNumContrattoCodInterfacciaTipo"
+
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrattoByNumContrattoCodInterfacciaTipo</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>INTERFACCIA</value>   			
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+     <bean id="GetGpStoricoByContrattoIdDataVal"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetGpStoricoByContrattoIdDataVal</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>DATA</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>GP_STORICO</value>
+    	</property>
+    </bean>
+   
+   
+   <bean id="GetContrByNumContrProdIdDoss"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrByNumContrProdIdDoss</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>PRODOTTOID</value>
+    			<value>DOSSIER</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+   
+   
+   
+   
+   
+   <bean id="GetContrattoByNumRapporto"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrattoByNumRapporto</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+    <bean id="GetContrattoByDossier"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrattoByDossier</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetContrattoByNumPratica"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrattoByNumPratica</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+   <bean id="GetDtByNumDt"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetDtByNumDt</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>DT</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+   
+   
+    
+    
+    <bean id="GetContrattoByNumContrattoTipo"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrattoByNumContrattoTipo</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>TIPO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+    
+    
+    <bean id="GetContrattoByContrattoId"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrattoByContrattoId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+    
+    
+    
+    <bean id="GetContrattoByNumContrattoCodEmittente"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrattoByNumContrattoCodEmittente</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>CODEMITTENTE</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+    
+    
+    <bean id="GetContrattoByNumContrattoEmittId"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrattoByNumContrattoEmittente</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>EMITTENTE</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>numContratto</value>
+    			<value>emittenteId</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetContrattoByNumContrattoCodEmittenteCodInterfaccia"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrattoByNumContrattoCodEmittenteCodInterfaccia</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>CODEMITTENTE</value>
+    			<value>INTERFACCIA</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetContrattoByNumContrattoCodEmittenteProdId"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrattoByNumContrattoCodEmittenteProdId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>CODEMITTENTE</value>
+    			<value>PRODOTTO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+
+    <bean id="GetContrattoByNumContrattoCodInterfaccia"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrattoByNumContrattoCodInterfaccia</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>INTERFACCIA</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetContrattoByNumContrattoProdottoId"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrattoByNumContrattoProdottoId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>PRODOTTOID</value>
+    		</list>
+    	</property>
+    		<property name="paramNames">
+    		<list>
+    			<value>numContratto</value>
+    			<value>prodottoId</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+    <bean id="GetContrattoByNumContrattoAttFin"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrattoByNumContrattoAttFin</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>ATT_FIN</value>
+    		</list>
+    	</property>
+    		<property name="paramNames">
+    		<list>
+    			<value>contratto</value>
+    			<value>attFin</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetPolizzaByNumPropostaMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetPolizzaByNumProposta</value>
+    	</property>
+    	<property name="parameters">
+    			<value>NUM_PROPOSTA</value>
+    	</property>
+    		<property name="paramNames">
+    			<value>numProposta</value>
+    	</property>
+    	<property name="output">
+    		<value>POLIZZA</value>
+    	</property>
+    </bean>
+    
+   
+    <bean id="GetProiezioneByContrattoIdMD"
+         class="it.ras.flag.module.DefaultDbModule">
+      <property name="dao">
+          <ref bean="RasBatchDao" />
+      </property>
+      <property name="query">
+        <value>0</value>
+      </property>
+      <property name="queryName">
+        <value>GetProiezioneByContrattoId</value>
+      </property>
+      <property name="parameters">
+         <value>CONTRATTO_ID</value>
+      </property>
+      <property name="paramNames">
+         <value>contrattoId</value>
+      </property>
+     <property name="output">
+       <value>PROIEZIONE</value>
+    </property>
+  </bean>
+
+<bean id="GetAssegnazioneAttivaByContrattoPromotoreMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetAssegnazioneAttivaByContrattoPromotore</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>PROMOTORE</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>ASSEGNAZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetAssegnoByNumCarnetMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetAssegnoByNumeroCarnet</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>NUMERO_CARNET</value>    			
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>ASSEGNO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetBancaByABICABMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetBancaByABICAB</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>ABI</value> 
+    			<value>CAB</value>   			
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>BANCA</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetAltroProdottoByNumContrattoProdottoId"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetAltroProdottoByNumContrattoProdottoId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>PRODOTTOID</value>
+    		</list>
+    	</property>
+    		<property name="paramNames">
+    		<list>
+    			<value>numContratto</value>
+    			<value>prodottoId</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+    
+    
+    <bean id="GetContrattoBySoggPrimoIntProdottoIdNumContr"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrattoBySoggPrimoIntProdottoIdNumContr</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    		    <value>SOGGETTO_PRIMO_INT</value>
+    			<value>PRODOTTOID</value>
+    			<value>CONTRATTO</value>
+    			
+    			
+    		</list>
+      	</property>
+    		<property name="paramNames">
+    		<list>
+    			<value>soggettoPrimoInt</value>
+    			<value>prodottoId</value>
+    			<value>numContr</value>
+    			
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetContrattoByCointIdProdottoIdNumContr"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetContrattoByCointestazioneIdProdottoIdNumContr</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    		    <value>COINTESTAZIONE</value>
+    			<value>PRODOTTOID</value>
+    			<value>CONTRATTO</value>
+    			
+    			
+    		</list>
+      	</property>
+    		<property name="paramNames">
+    		<list>
+    			<value>cointestazioneId</value>
+    			<value>prodottoId</value>
+    			<value>numContr</value>
+    			
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONTRATTO</value>
+    	</property>
+    </bean>
+    
+    
+    
+    
+    
+    <!--             FINE  MODULI GET             --> 
+    
+    
+   
+</beans> 
+
+

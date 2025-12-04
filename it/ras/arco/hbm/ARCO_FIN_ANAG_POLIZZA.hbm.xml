@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+<class name="it.ras.arco.bean.FinAnagPolizza" table="FIN_ANAG_POLIZZA" where="GSTD_ESIST_B='S'">
+  <id name="anagPolizzaId" column="ANAG_POLIZZA_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_ANAG_POLIZZA_SEQ</param>
+   </generator>
+  </id>
+ 
+<!--property name="contrattoId"                              type="integer"       column="CONTRATTO_ID"/-->
+<property name="soggettoId"                     column="SOGGETTO_ID"                    type="integer"  />
+<property name="tipoAnag"                       column="TIPO_ANAG_T"                    type="string" length="3"  />
+<property name="intestazione"                   column="INTESTAZIONE_S"                 type="string" length="50"  />
+<property name="sesso"                          column="SESSO_T"                        type="string" length="3"  />
+<property name="dataNascita"                    column="DATA_NASCITA_D"                 type="date"  />
+<property name="userUltimaModifica"             column="GSTD_ULT_USER_S"                type="string" length="40"  />
+<property name="proceduraUltimaModifica"        column="GSTD_ULT_PROC_S"                type="string" length="40"  />
+<property name="dataUltimaModifica"             column="GSTD_ULT_MOD_D"                 type="date"  />
+<property name="dataInserimento"                column="GSTD_INSE_D"                    type="date"  />
+<property name="flagEsistenza"                  column="GSTD_ESIST_B"                   type="string" length="1"  />
+<property name="utenteInserimento"              column="GSTD_USER_INS_S"                type="string" length="40"  />
+<property name="tipoUltimaModifica"             column="GSTD_TIPO_MOD_B"                type="string" length="1"  />
+<property name="etaComp"                        column="ETA_COMP"                       type="integer"  />
+ <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+ 
+ 
+ 
+
+<!-- RELAZIONE CON FIN_POLIZZA-->
+  <many-to-one name="polizza" class="it.ras.arco.bean.FinPolizza" 
+    	column="CONTRATTO_ID" not-null="true" cascade="all,lock" insert="true" update="true"  not-found="ignore" />
+  
+
+</class>
+
+</hibernate-mapping>
+

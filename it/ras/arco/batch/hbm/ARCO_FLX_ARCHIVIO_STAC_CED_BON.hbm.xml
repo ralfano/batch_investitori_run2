@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxArchivioStacCedBon" rowid="rowid" table="FLX_ARCHIVIO_STAC_CED_BON">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_ARCHIVIO_STAC_CED_BON_SEQUENCE</param>
+   </generator>
+  </id>
+  
+
+<property name="numeroMandato"                  column="NUMERO_MANDATO"                 type="string" length="11"  />
+<property name="codiceAbi"                      column="CODICE_ABI"                     type="string" length="5"  />
+<property name="codiceCab"                      column="CODICE_CAB"                     type="string" length="5"  />
+<property name="cinIban"                        column="CIN_IBAN"                       type="string" length="1"  />
+<property name="checkDigitIban"                 column="CHECK_DIGIT_IBAN"               type="string" length="2"  />
+<property name="codicePaeseIban"                column="CODICE_PAESE_IBAN"              type="string" length="2"  />
+<property name="numeroContoCorrente"            column="NUMERO_CONTO_CORRENTE"          type="string" length="15"  />
+<property name="codiceIntestatarioBonifico"     column="CODICE_INTESTATARIO_BONIFICO"   type="string" length="7"  />
+<property name="codiceSocieta"                  column="CODICE_SOCIETA"                 type="string" length="3"  />
+<property name="percentualeEnte"                column="PERCENTUALE_ENTE"               type="double"  />
+<property name="importoEnte"                    column="IMPORTO_ENTE"                   type="double"  />
+<property name="durata"                         column="DURATA"                         type="string" length="3"  />
+<property name="dataInizioErogazione"           column="DATA_INIZIO_EROGAZIONE"         type="timestamp"  />
+<property name="fondoEtico"                     column="FONDO_ETICO"                    type="string" length="1"  />
+<property name="flagGestioneEccedenza"          column="FLAG_GESTIONE_ECCEDENZA"        type="string" length="1"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="timestamp"  />
+<property name="tipoOperazione"                column="TIPO_OPERAZIONE"             type="string"  />
+  
+  </class>
+ <query name="ARCHIVIO_STAC_CED_BON">from
+it.ras.arco.batch.bean.FlxArchivioStacCedBon pc where pc.statoElab='D' order by pc.flxId</query>
+
+
+</hibernate-mapping>

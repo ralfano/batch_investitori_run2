@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxProfiloRischio" rowid="rowid" table="FLX_PROFILO_RISCHIO" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="java.lang.Integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_PROFILO_RISCHIO_SEQ</param>
+   </generator>
+  </id>
+  	<property name="codSoggettoSiag"                column="COD_SOGGETTO_SIAG"              type="string" length="9"  />
+	<property name="cognome"                        column="COGNOME"                        type="string" length="50"  />
+	<property name="nome"                           column="NOME"                           type="string" length="25"  />
+	<property name="dataNascita"                    column="NASCITA_D"                      type="date"  />
+	<property name="codFiscale"                     column="COD_FISCALE"                    type="string" length="16"  />
+	<property name="tpSoggetto"                     column="TP_SOGGETTO"                    type="string" length="1"  />
+	<property name="codReteFinanziaria"             column="COD_RETE_FINANZIARIA"           type="string" length="1"  />
+	<property name="codPromotore"                   column="COD_PROMOTORE"                  type="string" length="5"  />
+	<property name="flgPromotoreRif"                column="FLG_PROMOTORE_RIF"              type="string" length="1"  />
+	<property name="provenienzaInfo"                column="PROVENIENZA_INFO"               type="string" length="2"  />
+	<property name="flgConsensoCli"                 column="FLG_CONSENSO_CLI"               type="string" length="1"  />
+	<property name="classeRischioMan"               column="CLASSE_RISCHIO_MAN"             type="string" length="1"  />
+	<property name="classeRischioAut"               column="CLASSE_RISCHIO_AUT"             type="string" length="1"  />
+	<property name="esperienza"                     column="ESPERIENZA"                     type="string" length="1"  />
+	<property name="sitFinanziaria"                 column="SIT_FINANZIARIA"                type="string" length="1"  />
+	<property name="obiettivi"                      column="OBIETTIVI"                      type="string" length="1"  />
+	<property name="propensioneRischio"             column="PROPENSIONE_RISCHIO"            type="string" length="1"  />
+	<property name="dataInizioValidita"             column="INIZIO_VALIDITA_D"              type="date"  />
+	<property name="dataFineValidita"               column="FINE_VALIDITA_D"                type="date"  />
+	<property name="dataRegistrazione"              column="REGISTRAZIONE_D"                type="date"  />
+	<property name="codUtente"                      column="COD_UTENTE"                     type="string" length="8" />
+	<property name="codSocieta"                     column="COD_SOCIETA"                    type="string" length="3"  />
+	<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+	<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+	<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+	<property name="descrizioneErrore"              column="DESCRIZIONE_ERRORE_S"           type="string" length="100"  />
+	<property name="dataErrore"                     column="DATA_ERRORE"                    type="date" />
+	<property name="sesso"             column="SESSO"            type="string" length="1"  />
+	
+	
+ </class>
+ <query name="PROFILO_RISCHIO_SQL">from
+        it.ras.arco.batch.bean.FlxProfiloRischio</query>
+</hibernate-mapping>

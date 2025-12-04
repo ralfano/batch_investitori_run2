@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DEI CONTRATTI BIS-->
+ <class name="it.ras.arco.bean.FinOrdineTitolo" table="FIN_ORDINE_TITOLO_PF" where="GSTD_ESIST_B='S'">
+  <id name="ordineId" column="ID_ORDINE_TITOLO" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_ORDINE_TITOLO_PF_SEQ</param>
+   </generator>
+  </id>
+ 
+  <property name="dataOrdine"                     column="DATA_ORDINE_D"         	   type="timestamp" />    
+  <property name="sottoDossier"          		  column="NUM_SOTTO_DOSSIER_S"         type="string" length="2" />    
+  <property name="intestazione"          		  column="INTESTAZIONE_DOSSIER_S"         type="string" length="30" />    
+
+  <property name="numeroOrdine"          		  column="NUM_ORNINE_S"        		   type="string" length="27" />    
+  <property name="esitoOrdine"          		  column="ESITO_ORDINE_S"        	   type="string" length="10" />    
+  <property name="descrizioneTitolo"              column="DESCRIZIONE_TITOLO_S"        type="string" length="30" />    
+  <property name="codiceInterno"          		  column="CODICE_INTERNO"        	   type="integer" />    
+  <property name="codiceISIN"          			  column="CODICE_ISIN"        		   type="string" length="17" />    
+  <property name="divisaTrattazione"              column="DIVISA_TRATTAZIONE_S"        type="string" length="3" />   
+  <property name="divisaRegolamento"          	  column="DIVISA_REGOLAMENTO_S"        type="string" length="3" />   
+  <property name="piazza"          				  column="PIAZZA_S"        	   		   type="string" length="7" />   
+  <property name="quantitaMinima"                 column="QUANTITA_MINIMA"        	   type="double" />   
+  <property name="quantita"                       column="QUANTITA"        	   		   type="double" />   
+  <property name="tipoOperazione"                 column="TIPO_OPERAZIONE"        	   type="string" length="10"   />   
+  <property name="dataValidita"          		  column="VALIDO_SINO_D"        	   type="date"  />  
+  <property name="prezzoLimite"                   column="PREZZO_LIMITE"        	   type="double"   />  
+  <property name="controvalorePresunto"           column="CONTROVALORE_PRESUNTO"       type="double"   />  
+  <property name="parametroQuantita"              column="PARAMETRO_QUANTITA_S"        type="string" length="3"  />  
+  <property name="parametroTempo"                 column="PARAMETRO_TEMPO_S"           type="string" length="3"  /> 
+  <property name="parametroEsecuzione"            column="PARAMETRO_ESECUZIONE_S"      type="string" length="3"  /> 
+  <property name="parametroPrezzo"                column="PARAMETRO_PREZZO_S"          type="string" length="3"  /> 
+  <property name="controparte"          		  column="CONTROPARTE_S"               type="string" length="12"  /> 
+  <property name="flagOrdineTitoloFisso"          column="ORDINE_TITOLO_FISSO_B"       type="string" length="1"  />
+  <property name="flagAdeguatezza"         		  column="ADEGUATEZZA_B"               type="string" length="1"  />
+  <property name="flagConflittoInteresse"         column="CONFLITTO_INTERESSE_B"       type="string" length="1"  />
+  <property name="flagPattiChiari"          	  column="PATTI_CHIARI_B"              type="string" length="1"  />
+  <property name="dispositiva"          		  column="DISPOSITIVA_S"               type="string" length="26"  />
+
+
+  <property name="userUltimaModifica"             column="GSTD_ULT_USER_S"             type="string" length="40"  />
+  <property name="proceduraUltimaModifica"        column="GSTD_ULT_PROC_S"             type="string" length="40"  />
+  <property name="dataUltimaModifica"             column="GSTD_ULT_MOD_D"              type="date"  />
+  <property name="dataInserimento"                column="GSTD_INSE_D"                 type="date"  />
+  <property name="flagEsistenza"                  column="GSTD_ESIST_B"                type="string" length="1"  />
+  <property name="utenteInserimento"              column="GSTD_USER_INS_S"             type="string" length="40"  />
+  <property name="tipoUltimaModifica"             column="GSTD_TIPO_MOD_B"             type="string" length="1"  />
+
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+
+
+  <many-to-one name="contrattoDt" class="it.ras.arco.bean.FinContratto" 
+   column="CONTRATTO_ID" update="true" insert="true" unique="true" not-null="true" not-found="ignore" />
+
+  <many-to-one name="promotore" class="it.ras.arco.bean.FinPromotore" 
+   column="PROMOTORE_ID" update="true" insert="true" unique="true" not-null="true" not-found="ignore" />
+
+  <many-to-one name="soggetto" class="it.ras.arco.bean.FinSoggetto" 
+   column="SOGGETTO_ID" update="true" insert="true" unique="true" not-null="true" not-found="ignore" />
+
+</class>
+
+
+</hibernate-mapping>

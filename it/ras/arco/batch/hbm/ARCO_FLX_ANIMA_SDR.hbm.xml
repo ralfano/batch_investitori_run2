@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA INDIRIZZI SY -->
+ <class name="it.ras.arco.batch.bean.FlxAnimaSdr" rowid="rowid"
+  table="FLX_ANIMA_SDR"
+	dynamic-update="true" dynamic-insert="true" batch-size="100" lazy="true" >
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_ANIMA_SDR_SEQ</param>
+   </generator>
+  </id>
+  <property name="dataSaldo" type="date" column="DATA_SALDO" length="8"/>
+  <property name="codRete" type="string" column="COD_RETE" length="7"/>
+  <property name="codPromotore" type="string" column="COD_PROMOTORE" length="7"/>
+  <property name="numContratto" type="string" column="NUM_CONTRATTO" length="16"/>
+  <property name="tipoContratto" type="string" column="TIPO_CONTRATTO" length="3"/>
+  <property name="rataUnitaria" type="string" column="RATA_UNITARIA" length="11"/>
+  <property name="numRifSocProdotto" type="string" column="NUM_RIF_SOC_PRODOTTO" length="7"/>
+  <property name="codFondo" type="string" column="COD_FONDO" length="2"/>
+  <property name="saldoQuoteCumul" type="integer" column="SALDO_QUOTE_CUMUL" length="15"/>
+  <property name="saldoQuoteFis" type="integer" column="SALDO_QUOTE_FIS" length="15"/>
+  <property name="numRatePacVers" type="string" column="NUM_RATE_PAC_VERS" length="3"/>
+  <property name="statoElabB" type="string" column="STATO_ELAB_B" length="2"/>
+  <property name="istanzaS" type="string" column="ISTANZA_S" length="1"/>
+  <property name="descrizioneErrore"              column="DESCRIZIONE_ERRORE_S"           type="string" length="100"  />
+  <property name="dataErrore"                     column="DATA_ERRORE"                    type="date" />
+ </class>
+ <query name="CURSOR_ANIMA_SDR">from it.ras.arco.batch.bean.FlxAnimaSdr a where a.statoElabB='D' </query>
+</hibernate-mapping>

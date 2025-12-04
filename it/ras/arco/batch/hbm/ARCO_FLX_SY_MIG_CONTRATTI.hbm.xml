@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA INDIRIZZI SY -->
+ <class name="it.ras.arco.batch.bean.FlxSyMigContratti" rowid="rowid"
+  table="FLX_SY_MIG_CONTRATTI" >
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SY_CONTRATTI_SEQ</param>
+   </generator>
+  </id>
+<property name="codiceFabbrica"                 column="CODICE_FABBRICA"                type="string" length="5"  />
+<property name="numeroContrattoSec"             column="NUMERO_CONTRATTO_SEC"           type="string" length="25"  />
+<property name="tipoProdotto"                   column="TIPO_PRODOTTO"                  type="integer"  />
+<property name="codiceCompartoSec"              column="CODICE_COMPARTO_SEC"            type="integer"  />
+<property name="codiceCompartoFabbrica"         column="CODICE_COMPARTO_FABBRICA"       type="string" length="5"  />
+<property name="dataApertura"                   column="DATA_APERTURA"                  type="date"  />
+<property name="stato"                          column="STATO"                          type="string" length="1"  />
+<property name="dataChiusura"                   column="DATA_CHIUSURA"                  type="date"  />
+<property name="codicePromotore"                column="CODICE_PROMOTORE"               type="string" length="5"  />
+<property name="codiceRete"                     column="CODICE_RETE"                    type="string" length="1"  />
+<property name="codiceCompagnia"                column="CODICE_COMPAGNIA"               type="integer"  />
+<property name="numeroDossierTecnicoFabbric"    column="NUMERO_DOSSIER_TECNICO_FABBRIC" type="string" length="25"  />
+<property name="codiceClienteSecPrimoIntes"     column="CODICE_CLIENTE_SEC_PRIMO_INTES" type="string" length="9"  />
+<property name="csot"                           column="CSOT"                           type="string" length="11"  />
+<property name="rapporto"                       column="RAPPORTO"                       type="string" length="13"  />
+<property name="dataCaricamentoContratto"       column="DATA_CARICAMENTO_CONTRATTO"     type="integer"  />
+<property name="flagPac"                        column="FLAG_PAC"                       type="string" length="1"  />
+<property name="numRatePac"                     column="NUM_RATE_PAC"                   type="integer"  />
+<property name="impRataPac"                     column="IMP_RATA_PAC"                   type="double"  />
+<property name="fonFlagRid"                     column="FON_FLAG_RID"                   type="string" length="3"  />
+<property name="numRateVers"                    column="NUM_RATE_VERS"                  type="integer"  />
+<property name="freqVers"                       column="FREQ_VERS"                      type="string" length="1"  />
+<property name="tipCerti"                       column="TIP_CERTI"                      type="string" length="1"  />
+<property name="custCert"                       column="CUST_CERT"                      type="string" length="1"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="descrizioneErrore"              column="DESCRIZIONE_ERRORE_S"           type="string" length="100"  />
+<property name="dataErrore"                     column="DATA_ERRORE"                    type="date" /> 
+   </class>
+ <query name="CURSOR_SY_MIG_CONTRATTI">from it.ras.arco.batch.bean.FlxSyMigContratti c where c.statoElab='D2' 
+ order by c.dataApertura </query>
+</hibernate-mapping>

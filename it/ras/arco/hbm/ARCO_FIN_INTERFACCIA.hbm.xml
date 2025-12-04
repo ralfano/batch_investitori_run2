@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA INTERFACCIA -->
+ <class name="it.ras.arco.bean.FinInterfaccia" table="FIN_INTERFACCIA" where="GSTD_ESIST_B='S'">
+  <id name="interfacciaId" column="INTERFACCIA_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_INTERFACCIA_SEQ</param>
+   </generator>
+  </id>  
+<property name="emittenteId"                    column="EMITTENTE_ID"                   type="integer"  />
+<property name="interfaccia"                    column="INTERFACCIA"                    type="string" length="10"  />
+<property name="userUltimaModifica"             column="GSTD_ULT_USER_S"                type="string" length="40"  />
+<property name="proceduraUltimaModifica"        column="GSTD_ULT_PROC_S"                type="string" length="40"  />
+<property name="dataUltimaModifica"             column="GSTD_ULT_MOD_D"                 type="timestamp"  />
+<property name="dataInserimento"                column="GSTD_INSE_D"                    type="timestamp"  />
+<property name="flagEsistenza"                  column="GSTD_ESIST_B"                   type="string" length="1"  />
+<property name="utenteInserimento"              column="GSTD_USER_INS_S"                type="string" length="40"  />
+<property name="tipoUltimaModifica"             column="GSTD_TIPO_MOD_B"                type="string" length="1"  />
+   <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  
+   <!-- RELAZIONE CON FIN_EMITTENTE-->
+ <many-to-one name="emittente"
+   class="it.ras.arco.bean.FinEmittente" column="EMITTENTE_ID"
+   update="false" insert="false" cascade="lock" not-found="ignore" />
+ </class>
+ 
+ <!-- commenteta perchè al momento del checkout del file non funzionava con l'ultima versione di bean presente su pvcs  
+ 	<query name="getProdotto">select p,a from it.ras.arco.bean.FinInterfaccia i join i.emittente e  join e.prodotto p
+	join p.attFin pl join pl.attFin a 
+ 	where i.codInterfaccia = ?
+	and a.codAttFinExt = ?
+	and p.tipo = ?</query> -->
+</hibernate-mapping>
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA SALDI/FONDI GP -->
+ <class name="it.ras.arco.batch.bean.FlxSaldiFondi" rowid="rowid" table="FLX_SALDI_FONDI">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SALDI_FONDI_SEQ</param>
+   </generator>
+  </id>
+  <property name="numeroRapporto" type="string" column="NUMERO_RAPPORTO" length="8"/>
+  <property name="codiceAgente" type="string" column="CODICE_AGENTE" length="5"/>
+  <property name="codiceRete" type="string" column="CODICE_RETE" length="1"/>
+  <property name="codiceCompagnia" type="string"
+   column="CODICE_COMPAGNIA" length="2"/>
+  <property name="descrizioneTitolo" type="string"
+   column="DESCRIZIONE_TITOLO" length="27"/>
+  <property name="quantitaDisponibile" type="double" column="QUANTITA_DISPONIBILE"/>
+  <property name="prezzo" type="double" column="PREZZO"/>
+  <property name="rateo" type="double" column="RATEO"/>
+  <property name="divisa" type="string" column="DIVISA" length="3"/>
+  <property name="cambio" type="double" column="CAMBIO"/>
+  <property name="controvalore" type="double" column="CONTROVALORE"/>
+  <property name="prezzoMedio" type="double" column="PREZZO_MEDIO"/>
+  <property name="codiceIsin" type="string" column="CODICE_ISIN" length="12"/>
+  <property name="categoria" type="string" column="CATEGORIA" length="2"/>
+  <property name="paeseDiEmissione" type="string"
+   column="PAESE_DI_EMISSIONE" length="3"/>
+  <property name="cambioMedio" type="double" column="CAMBIO_MEDIO"/>
+  <property name="statoElab" type="string" column="STATO_ELAB_B" length="2"/>
+  <property name="istanza" type="string" column="ISTANZA_S" length="1"/>
+ <property name="descrizioneErrore"  column="DESCRIZIONE_ERRORE_S" type="string" length="100"  />
+ <property name="dataElab" column="DATA_ELAB_D" type="timestamp"  />
+ </class>
+ <query name="SALDI_FONDI_SQL">from  
+ it.ras.arco.batch.bean.FlxSaldiFondi c where c.statoElab  in ('D')</query>
+</hibernate-mapping>

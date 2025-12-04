@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+ <!-- TABELLA EMITTENTE -->
+ <class name="it.ras.arco.bean.FinEmittenteFlyweight" table="FIN_EMITTENTE" 
+ 	where="GSTD_ESIST_B='S'"
+    	select-before-update="false"
+    	>
+ 
+  <id name="emittenteId" column="EMITTENTE_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_EMITTENTE_SEQ</param>
+   </generator>
+  </id>
+  
+  <property name="descrizione" type="string" column="DESCRIZIONE_S" length="50" insert="false" update="false"/>
+  <property name="tipoSocieta" type="string" column="TIPO_SOCIETA_T" length="3" insert="false" update="false"/>
+
+  
+
+
+  <!-- RELAZIONE CON FIN_PRODOTTO-->
+  <set 	name="prodotto"
+  	cascade="none" 
+  	where ="GSTD_ESIST_B='S'"
+  	inverse="true"
+  	>
+   <key column="EMITTENTE_ID" /> 
+   <one-to-many class="it.ras.arco.bean.FinProdottoFlyweight"/>
+  </set>
+
+
+  
+ </class>
+
+  
+</hibernate-mapping>
+

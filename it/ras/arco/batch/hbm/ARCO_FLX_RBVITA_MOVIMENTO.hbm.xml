@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxRBVitaMovimento" table="FLX_RBVITA_MOVIMENTO" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="java.lang.Integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_RBVITA_MOVIMENTO_SEQ</param>
+   </generator>
+  </id>
+	<property name="t60Lung"       column="T60_LUNG"       type="integer"/>
+	<property name="tipoRecord"    column="TIPO_RECORD"    type="string" length="3"/>
+	<property name="provPortRas"   column="PROV_PORT_RAS"  type="integer"/>
+	<property name="dtElab"        column="DT_ELAB"        type="date"/>
+	<property name="provenienza"   column="PROVENIENZA"    type="string" length="2"/>
+	<property name="compagnia"     column="COMPAGNIA"      type="integer"/>
+	<property name="ramo"          column="RAMO"           type="integer"/>
+	<property name="polizza"       column="POLIZZA"        type="integer"/>
+	<property name="prodDival"     column="PROD_DIVAL"     type="integer"/>
+	<property name="contraente"    column="CONTRAENTE"     type="string" length="40"/>
+	<property name="prodVend"      column="PROD_VEND"      type="string" length="10"/>
+	<property name="versProd"      column="VERS_PROD"      type="integer"/>
+	<property name="codIspettore"  column="COD_ISPETTORE"  type="string" length="4"/>
+	<property name="chkIspettore"  column="CHK_ISPETTORE"  type="string" length="1"/>
+	<property name="codIspettore2" column="COD_ISPETTORE2" type="string" length="4"/>
+	<property name="chkIspettore2" column="CHK_ISPETTORE2" type="string" length="1"/>
+	<property name="titolo"        column="TITOLO"         type="string" length="1"/>
+	<property name="annualita"     column="ANNUALITA"      type="integer"/>
+	<property name="frazionamento" column="FRAZIONAMENTO"  type="integer"/>
+	<property name="divisaIso"     column="DIVISA_ISO"     type="string" length="3"/>
+	<property name="dtScadTit"     column="DT_SCAD_TIT"    type="date"/>
+	<property name="premioLordo"   column="PREMIO_LORDO"   type="double"/>
+	<property name="provvigioni"   column="PROVVIGIONI"    type="double"/>
+	<property name="premioNetto"   column="PREMIO_NETTO"   type="double"/>
+	<property name="tipoPremio"    column="TIPO_PREMIO"    type="string" length="1"/>
+	<property name="ag0041"        column="AG0041"         type="string" length="1"/>
+	<property name="agenziaSiag"  column="AGENZIA_SIAG"  type="integer" length="7"/>
+	<property name="progOperaz"  column="PROG_OPERAZ"  type="integer" length="6"/>
+	<property name="codMotOperaz"  column="COD_MOT_OPERAZ"  type="integer" length="6"/>
+	<property name="tipoOperaz"  column="TIPO_OPERAZ"  type="integer" length="6"/>
+	<property name="progTabella"  column="PROG_TABELLA"  type="integer" length="6"/>
+	<property name="progGaranziaUnit"  column="PROG_GARANZIA_UNIT"  type="integer" length="6"/>
+	<property name="codiceTitolo"  column="CODICE_TITOLO"  type="integer" length="2"/>
+	<property name="progDelTitolo"  column="PROG_DEL_TITOLO"  type="integer" length="6"/>
+	<property name="progDellaComunic"  column="PROG_DELLA_COMUNIC"  type="integer" length="6"/>
+	<property name="progDellaComunic1"  column="PROG_DELLA_COMUNIC1"  type="integer" length="8"/>
+	<property name="progFondo"  column="PROG_FONDO"  type="integer" length="6"/>
+    <property name="codFondo"  column="COD_FONDO"  type="string" length="10"/>
+    <property name="codLinea"  column="COD_LINEA"  type="string" length="8"/>
+    <property name="dataInizioEffetto"  column="DATA_INIZIO_EFFETTO"  type="string" length="10"/>
+    <property name="acquistoVendita"  column="ACQUISTO_VENDITA"  type="string" length="1"/>
+    <property name="stato"  column="STATO"  type="integer" length="6"/>
+    <property name="tipoInvestim"  column="TIPO_INVESTIM"  type="string" length="1"/>	
+    <property name="codValuta"  column="COD_VALUTA"  type="string" length="3"/>
+    <property name="premioInvestire"  column="PREMIO_INVESTIRE"  type="double"/>
+    <property name="ImpLordoTitolo"  column="IMP_LORDO_TITOLO"  type="double"/>
+    <property name="ImpPremioPuro"  column="IMP_PREMIO_PURO"  type="double"/>
+    <property name="commissioni"  column="COMMISSIONI"  type="double"/>
+    <property name="numQuoteFondo"  column="NUM_QUOTE_FONDO"  type="double"/>
+    <property name="numQuoteInvest"  column="NUM_QUOTE_INVEST"  type="double"/>
+    <property name="numQuoteRiservate"  column="NUM_QUOTE_RISERVATE"  type="double"/>
+    <property name="dataValCambio"  column="DATA_VAL_CAMBIO"  type="string"/>
+    <property name="dataComunica1"  column="DATA_COMUNICA1"  type="string" length="10"/>
+    <property name="dataComunica2"  column="DATA_COMUNICA2"  type="string" length="10"/>
+    <property name="dataRegisOperaz"  column="DATA_REGIS_OPERAZ"  type="string" length="10"/>
+    <property name="codProd"  column="COD_PROD"  type="string" length="10"/>
+    <property name="descBenefic"  column="DESC_BENEFIC"  type="string" length="40"/>
+    <property name="impLiqLor"  column="IMP_LIQ_LOR"  type="string" length="17"/>
+    <property name="impLiqNet"  column="IMP_LIQ_NET"  type="string" length="17"/>
+    <property name="cmbLiq"  column="CMB_LIQ"  type="string" length="10"/>
+    <property name="fndDest"  column="FND_DEST"  type="string" length="40"/>
+    <property name="modPag"  column="MOD_PAG"  type="string" length="40"/>
+    <property name="dtLiq"  column="DT_LIQ"  type="date"/>
+    <property name="descIntest"  column="DESC_INTEST"  type="string" length="150"/>
+    <property name="abi"  column="ABI"  type="string" length="5"/>
+    <property name="cab"  column="CAB"  type="string" length="5"/>
+    <property name="numCc"  column="NUM_CC"  type="string" length="12"/>
+    <property name="dtOpe"  column="DT_OPE"  type="date"/>
+    <property name="numVersProd"  column="NUM_VERS_PROD"  type="integer" length="4"/>
+    <property name="tipLiq"  column="TIP_LIQ"  type="integer" length="4"/>
+	<property name="statoElab" type="java.lang.String"
+	 column="STATO_ELAB_B" length="2"/>
+	<property name="istanza" type="java.lang.String" column="ISTANZA_S" length="1"/>
+	<property name="dataCaricamento" type="timestamp" column="DATA_CARICAMENTO_S"/>
+	
+ </class>
+ <query name="RBVITAMOVIMENTO_ELENCO_SQL">from it.ras.arco.batch.bean.FlxRBVitaMovimento </query>
+</hibernate-mapping>

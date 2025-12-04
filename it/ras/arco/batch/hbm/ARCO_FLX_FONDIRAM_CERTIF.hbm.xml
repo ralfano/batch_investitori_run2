@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxFondiRamCertif" rowid="rowid" table="FLX_ARCHIVIO_CERT_RAM" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="java.lang.Integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_ARCHIVIO_CERT_RAM_SEQ</param>
+   </generator>
+  </id>
+  <property name="tipoRecord"                     column="TIPO_RECORD"                    type="string"  />
+  <property name="numDispArco"                    column="NUM_DISP_ARCO"                  type="string"   />  
+  <property name="codiceFondo"                    column="CODICE_FONDO"                   type="string"   />
+  <property name="numeroMandato"                  column="NUMERO_MANDATO"                 type="string"   />
+  <property name="numeroCertificato"              column="NUMERO_CERTIFICATO"             type="string"  />
+  <property name="codiceIntCertificato"	          column="COD_INT_CERTIFICATO"            type="string"  />
+  <property name="dataCompetenza"                 column="DATA_COMPETENZA"                type="date"  />
+  <property name="tipoCertificato" 			      column="TIPO_CERTIFICATO"               type="string" length="1"  />
+  <property name="giacCertificato" 		          column="GIAC_CERTIFICATO"               type="string"  />
+  <property name="quoteCertificate"               column="QUOTE_CERTIFICATE"              type="double"  />
+  <property name="numPrestampato"  			      column="NUM_PRESTAMPATO"                type="string"  />
+  <property name="codiceAbi"                      column="COD_ABI"                        type="string"   />
+  <property name="codiceCab"                      column="COD_CAB"                        type="string"   />
+  <property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+  <property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+  <property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+  <property name="descrizioneErrore" type="string" column="DESCRIZIONE_ERRORE_S" length="100"/>
+  <property name="dataElaborazione" type="timestamp" column="DATA_ELAB_D"/>  
+ </class>
+ <query name="FONDIRAM_CERTIFICATI_SQL">
+ 	from it.ras.arco.batch.bean.FlxFondiRamCertif f order by f.numeroMandato, f.numeroCertificato, f.dataCompetenza, f.quoteCertificate
+ </query>
+</hibernate-mapping>

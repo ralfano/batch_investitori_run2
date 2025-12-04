@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO GENERICO UTILITAMIGRAZIONE -->
+    
+    <bean id="GetSoggettoBySoggettoID"
+    	class="it.ras.arco.service.UtilitaMigrazioneSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_BY_SOGGETTO_ID</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetSoggettoIDBySoggettoXP"
+    	class="it.ras.arco.service.UtilitaMigrazioneSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_SOGG_ID_BY_SOGG_XP</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsDecodSoggetto"
+    	class="it.ras.arco.service.UtilitaMigrazioneSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_DECOD_SOGGETTO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetSoggettoID"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    	<value>GetSoggettoBySoggettoID</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>SOGGETTO_ID</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>soggetto</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+    
+    
+     <bean id="GetSoggIDBySoggXP"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    	<value>GetSoggettoIDBySoggettoXP</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>SOGGETTO_XP</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>soggettoXp</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertDecodSoggetto"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>5</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>SOGGETTO_XP_ARCO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO_XP_ARCO</value>
+    	</property>
+    </bean>
+        
+</beans>

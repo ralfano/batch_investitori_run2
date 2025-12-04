@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxRBVitaT60" rowid="rowid" table="FLX_RBVITA_T60" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_RBVITA_T60_SEQ</param>
+   </generator>
+  </id>
+	<property name="t60Lung"                        column="T60_LUNG"                       type="integer"  />
+	<property name="tipoRecord"                     column="TIPO_RECORD"                    type="string" length="3"  />
+	<property name="provPortRas"                    column="PROV_PORT_RAS"                  type="integer"  />
+	<property name="dtElab"                         column="DT_ELAB"                        type="date"  />
+	<property name="provenienza"                    column="PROVENIENZA"                    type="string" length="2"  />
+	<property name="compagnia"                      column="COMPAGNIA"                      type="integer"  />
+	<property name="ramo"                           column="RAMO"                           type="integer"  />
+	<property name="polizza"                        column="POLIZZA"                        type="integer"  />
+	<property name="prodDival"                      column="PROD_DIVAL"                     type="integer"  />
+	<property name="contraente"                     column="CONTRAENTE"                     type="string" length="40"  />
+	<property name="prodVend"                       column="PROD_VEND"                      type="string" length="10"  />
+	<property name="versProd"                       column="VERS_PROD"                      type="integer"  />
+	<property name="codIspettore"                   column="COD_ISPETTORE"                  type="string" length="4"  />
+	<property name="chkIspettore"                   column="CHK_ISPETTORE"                  type="string" length="1"  />
+	<property name="codIspettore2"                  column="COD_ISPETTORE2"                 type="string" length="4"  />
+	<property name="chkIspettore2"                  column="CHK_ISPETTORE2"                 type="string" length="1"  />
+	<property name="titolo"                         column="TITOLO"                         type="string" length="1"  />
+	<property name="annualita"                      column="ANNUALITA"                      type="integer"  />
+	<property name="frazionamento"                  column="FRAZIONAMENTO"                  type="integer"  />
+	<property name="divisaIso"                      column="DIVISA_ISO"                     type="string" length="3"  />
+	<property name="dtScadTit"                      column="DT_SCAD_TIT"                    type="date"  />
+	<property name="premioLordo"                    column="PREMIO_LORDO"                   type="double"  />
+	<property name="provvigioni"                    column="PROVVIGIONI"                    type="double"  />
+	<property name="premioNetto"                    column="PREMIO_NETTO"                   type="double"  />
+	<property name="tipoPremio"                     column="TIPO_PREMIO"                    type="string" length="1"  />
+	<property name="ag0041"                         column="AG0041"                         type="string" length="1"  />
+	<property name="statoElab" type="java.lang.String"
+	 column="STATO_ELAB_B" length="2"/>
+	<property name="istanza" type="java.lang.String" column="ISTANZA_S" length="1"/>
+	<property name="dataCaricamento" type="date" column="DATA_CARICAMENTO_S"/>
+	
+ </class>
+ <query name="RBVITAT60_ELENCO_SQL">from it.ras.arco.batch.bean.FlxRBVitaT60 </query>
+</hibernate-mapping>

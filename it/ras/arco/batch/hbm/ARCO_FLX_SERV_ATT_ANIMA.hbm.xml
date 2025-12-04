@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA SY_MIG_INDIRIZZI -->
+ <class name="it.ras.arco.batch.bean.FlxServAttAnima" rowid="rowid" table="FLX_SERV_ATT_ANIMA">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SERV_ATT_ANIMA_SEQ</param>
+   </generator>
+  </id>
+<property name="dataRiferimento"                column="DATA_RIFERIMENTO"               type="date"  />
+<property name="tipoRichiesta"                  column="TIPO_RICHIESTA"                 type="string" length="2"  />
+<property name="codiceFondo"                    column="CODICE_FONDO"                   type="string" length="2"  />
+<property name="numeroRifSocieta"                  column="N_DI_RIF_SOCIETA"               type="integer"  />
+<property name="numeroContratto"                column="NUMERO_CONTRATTO"               type="string" length="16"  />
+<property name="tipoContratto"                  column="TIPO_CONTRATTO"                 type="string" length="3"  />
+<property name="frequenza"                      column="FREQUENZA"                      type="string" length="2"  />
+<property name="dataInizio"                     column="DATA_INIZIO"                    type="date"  />
+<property name="dataFineRevoca"                 column="DATA_FINE_REVOCA"               type="date"  />
+<property name="giornoDiRiferimento"            column="GIORNO_DI_RIFERIMENTO"          type="date"  />
+<property name="importo"                        column="IMPORTO"                        type="double"  />
+<property name="numeroQuote"                    column="NUMERO_QUOTE"                   type="double"  />
+<property name="rataUnitaria"                   column="RATA_UNITARIA"                  type="double"  />
+<property name="numeroRateInPagamento"          column="NUMERO_RATE_IN_PAGAMENTO"       type="integer"  />
+<property name="codiceFondoSr"                  column="CODICE_FONDO_SR"                type="string" length="2"  />
+<property name="numeroRifSocietaSr"                column="N_DI_RIF_SOCIETA_SR"            type="string" length="7"  />
+<property name="numeroContrattoSr"              column="NUMERO_CONTRATTO_SR"            type="string" length="16"  />
+<property name="tipoContrattoSr"                column="TIPO_CONTRATTO_SR"              type="string" length="3"  />
+<property name="scontoCommissioni"              column="SCONTO_COMMISSIONI"             type="integer"  />
+<property name="codiceRete"                     column="CODICE_RETE"                    type="string" length="7"  />
+<property name="codicePromotore"                column="CODICE_PROMOTORE"               type="string" length="7"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="descrizioneErrore"              column="DESCRIZIONE_ERRORE_S"           type="string" length="100"  />
+<property name="dataErrore"                     column="DATA_ERRORE"                    type="date" />
+                                                                               					
+
+ </class>
+ <query name="FLX_SERV_ATT_ANIMA_CUR">from  
+ it.ras.arco.batch.bean.FlxServAttAnima p where p.statoElab in ('D','KO')</query>
+
+</hibernate-mapping>

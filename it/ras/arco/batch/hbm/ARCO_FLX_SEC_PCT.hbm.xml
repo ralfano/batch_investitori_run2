@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA PCT -->
+ <class name="it.ras.arco.batch.bean.FlxSecPct" table="FLX_SEC_PCT" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SEC_PCT_SEQ</param>
+   </generator>
+  </id>
+  <property name="filialeRapporto"                column="FILIALE_RAPPORTO"               type="string" length="5"  />
+<property name="categoriaRapporto"              column="CATEGORIA_RAPPORTO"             type="string" length="5"  />
+<property name="numeroRapporto"                 column="NUMERO_RAPPORTO"                type="string" length="7"  />
+<property name="cfil"                           column="CFIL"                           type="string" length="5"  />
+<property name="cage"                           column="CAGE"                           type="string" length="5"  />
+<property name="cprg"                           column="CPRG"                           type="string" length="11"  />
+<property name="csdp"                           column="CSDP"                           type="string" length="5"  />
+<property name="ndgIntestatario"                column="NDG_INTESTATARIO"               type="string" length="20"  />
+<property name="codiceIsin"                     column="CODICE_ISIN"                    type="string" length="12"  />
+<property name="codiceTitoloSec"                column="CODICE_TITOLO_SEC"              type="integer"  />
+<property name="denominazione"                  column="DENOMINAZIONE"                  type="string" length="30"  />
+<property name="quantita"                       column="QUANTITA"                       type="double"  />
+<property name="prezzoPronti"                   column="PREZZO_PRONTI"                  type="double"  />
+<property name="dataPronti"                     column="DATA_PRONTI"                    type="date"  />
+<property name="cambioPronti"                   column="CAMBIO_PRONTI"                  type="double"  />
+<property name="controvalorePronti"             column="CONTROVALORE_PRONTI"            type="double"  />
+<property name="prezzoTermine"                  column="PREZZO_TERMINE"                 type="double"  />
+<property name="dataTermine"                    column="DATA_TERMINE"                   type="date"  />
+<property name="cambioTermine"                  column="CAMBIO_TERMINE"                 type="double"  />
+<property name="controvaloreTermine"            column="CONTROVALORE_TERMINE"                 type="double"  />
+<property name="divisa"                         column="DIVISA"                         type="string" length="3"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+<property name="descrizioneErrore"              column="DESCRIZIONE_ERRORE_S"           type="string" length="100"  />
+<property name="dataElab"                       column="DATA_ELAB_D"                    type="date"  />
+<property name="numOperazione"                  column="NUMERO_OPERAZIONE"              type="string" length="24"  />
+
+</class>
+ <query name="SEC_PCT_SQL">from  
+ it.ras.arco.batch.bean.FlxSecPct e  order by e.flxId </query>
+</hibernate-mapping>

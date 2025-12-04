@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DEI CONTRATTI TERZI -->
+ <class name="@CONTRATTO_TERZI.class@" table="WP_CONTRATTO_TERZI" where="GSTD_ESIST_B='S'">
+  <id name="contrattoTerziId" column="CONTRATTO_TERZI_ID" type="integer">
+  </id>
+
+  <property name="cliGenId"    	                  column="CLI_GEN_ID"                     type="integer" />
+  <property name="intermediarioId"                column="INTERMEDIARIO_ID"               type="integer" />
+  <property name="prodottoId"                     column="PRODOTTO_ID"                    type="integer" />
+
+  <!-- Relazione con la tabella WP_CONTRATTO_TERZI_CC -->	
+	<one-to-one name="contrattoterzicc" 
+	lazy="@CONTRATTO_TERZI-contrattoterzicc.lazy@" 
+	class="@CONTRATTO_TERZI_CC.class@" 
+	cascade="@CONTRATTO_TERZI-contrattoterzicc.cascade@" 
+	fetch="@CONTRATTO_TERZI-contrattoterzicc.fetch@"
+	constrained="@CONTRATTO_TERZI-contrattoterzicc.constrained@"
+	/>
+	
+	<!-- Relazione con la tabella WP_CLIENTE_GEN -->	
+	<many-to-one name="clientegen" 
+	    lazy="@CONTRATTO_TERZI-clientegen.lazy@"
+		class="@CLIENTE_GEN.class@" 
+		column="CLI_GEN_ID"
+		update="@CONTRATTO_TERZI-clientegen.update@" 
+		insert="@CONTRATTO_TERZI-clientegen.insert@" 
+		cascade="@CONTRATTO_TERZI-clientegen.cascade@" 
+		not-found="@CONTRATTO_TERZI-clientegen.not-found@" 
+		fetch="@CONTRATTO_TERZI-clientegen.fetch@"
+		/>
+		
+	<!-- Relazione con la tabella WP_INTERMEDIARIO -->	
+	<many-to-one name="intermediario" 
+	    lazy="@CONTRATTO_TERZI-intermediario.lazy@"
+		class="@INTERMEDIARI.class@" 
+		column="INTERMEDIARIO_ID"
+		update="@CONTRATTO_TERZI-intermediario.update@" 
+		insert="@CONTRATTO_TERZI-intermediario.insert@" 
+		cascade="@CONTRATTO_TERZI-intermediario.cascade@" 
+		not-found="@CONTRATTO_TERZI-intermediario.not-found@" 
+		fetch="@CONTRATTO_TERZI-intermediario.fetch@"
+		/>
+		
+	<!-- Relazione con la tabella FIN_PRODOTTO -->	
+	<many-to-one name="prodotto" 
+	    lazy="@CONTRATTO_TERZI-finprodotto.lazy@"
+		class="it.ras.arco.bean.FinProdotto" 
+		column="PRODOTTO_ID"
+		update="@CONTRATTO_TERZI-finprodotto.update@" 
+		insert="@CONTRATTO_TERZI-finprodotto.insert@" 
+		not-found="@CONTRATTO_TERZI-finprodotto.not-found@" 
+		fetch="@CONTRATTO_TERZI-finprodotto.fetch@"
+		/>	
+		
+  <!--
+	***********************
+	  CAMPI STANDARD
+	***********************
+	-->
+	<property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="40"/>
+	<property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="40"/>
+	<property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+	<property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+	<property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+	<property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="40"/>
+	<property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+	
+	<!-- Duplicazione campi standard x Update (SLAVE) -->	
+	<property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+	<property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+	<property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+	<property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  
+ </class>
+ 
+</hibernate-mapping>

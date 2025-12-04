@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+
+ <class name="it.ras.arco.batch.bean.FlxPrezziGenerale" rowid="rowid" table="FLX_MAF_PREZZI_GENERALE">
+	
+	<id name="flxId" column="FLX_ID" type="integer">
+		<generator class="sequence">
+			<param name="sequence">FLX_MAF_PREZZI_GENERALE_SEQ</param>
+		</generator>
+	</id>
+
+
+	<!--	*******	CAMPI PROPRI *******		-->
+	<property name="codiceMAF" 			column="CODICE_MAF"	type="string" length="50"  />
+	<property name="data" 				column="DATA"		type="timestamp" />
+	<property name="prezzo" 			column="PREZZO"		type="double" />
+	<property name="prezzoAdjusted" 		column="PREZZO_ADJ"	type="double" />
+
+
+
+	<!--	*******	CAMPI STANDARD	*******		-->
+	<property name="statoElaborazione" 		column="STATO_ELAB_B" 		type="string" length="2"  />
+	<property name="istanza" 	   		column="ISTANZA_S" 	 	type="string" length="1"  />
+	<property name="dataCaricamento"   		column="DATA_CARICAMENTO_D" 	type="timestamp"  />
+
+
+ </class>
+ 
+ 
+ <!--	*******		CURSORE		********	-->
+ <query name="MAF_PREZZI_AZIONI_SQL">
+ 	from it.ras.arco.batch.bean.FlxPrezziGenerale flusso 
+ 	where flusso.codiceMAF NOT LIKE 'EXR%'
+ 	and flusso.statoElaborazione = 'D'
+ 	order by flusso.codiceMAF
+ </query>
+
+ <!--	*******		CURSORE		********	-->
+ <query name="MAF_PREZZI_CAMBI_SQL">
+ 	from it.ras.arco.batch.bean.FlxPrezziGenerale flusso 
+ 	where flusso.codiceMAF LIKE 'EXR%'
+ 	and flusso.statoElaborazione = 'D'
+ 	order by flusso.codiceMAF
+ </query>
+
+
+
+</hibernate-mapping>

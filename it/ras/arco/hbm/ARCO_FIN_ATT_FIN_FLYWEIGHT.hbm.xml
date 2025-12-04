@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+ <!-- TABELLA ATT_FIN -->
+ <class name="it.ras.arco.bean.FinAttivitaFinanziariaFlyweight"
+  	table="FIN_ATT_FIN" where="GSTD_ESIST_B='S' and VISIBILITA_CP='S'" 
+  	select-before-update="false">
+  
+  <id name="attivitaFinId" column="ATTIVITA_FIN_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_ATT_FIN_SEQ</param>
+   </generator>
+  </id>
+  
+  <property name="descrizione" type="string" column="DESCRIZIONE_S" length="100" insert="false" update="false"/>
+  <property name="isin" type="string" column="ISIN_S" length="12" insert="false" update="false"/>
+  <property name="classe" type="string" column="CLASSE_T" length="1" insert="false" update="false"/>
+  <property name="visibilitaCP" type="string" column="VISIBILITA_CP" length="1" insert="false" update="false"/>
+  <property name="divisaComp" type="string" column="DIVISA_COMP" length="3"/>
+  <property name="codMarket" type="string" column="COD_MARKET" length="4"/>
+
+
+   
+  <!-- RELAZIONE CON LA FIN_PRODOTTO -->
+  <set name="prodotto" table="FIN_PRODOTTO_LINEA" inverse="true" lazy="false"
+   cascade="none" where="GSTD_ESIST_B='S'" outer-join="false"
+   >
+   
+   <key column="ATTIVITA_FIN_ID"/>
+   
+   <composite-element class="it.ras.arco.bean.FinProdottoLineaFlyweight">
+   
+    <parent name="attFin"/>
+    
+    <many-to-one name="prodotto" lazy="false"
+     class="it.ras.arco.bean.FinProdottoFlyweight"
+     column="PRODOTTO_ID" outer-join="false"
+     insert="false" update="false"
+     not-found="ignore" fetch="join"
+     />
+     
+     
+   </composite-element>
+  </set> 
+  
+  
+ </class>
+ 
+ 
+ 
+</hibernate-mapping>
+

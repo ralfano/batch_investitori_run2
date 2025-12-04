@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA SY_MIG_INDIRIZZI -->
+ <class name="it.ras.arco.batch.bean.FlxSyMigIndirizzi" rowid="rowid" table="FLX_SY_MIG_INDIRIZZI">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SY_MIG_INDIRIZZI_SEQ</param>
+   </generator>
+  </id>
+<property name="tipoProdotto"                   column="TIPO_PRODOTTO"                  type="integer"  />
+<property name="codiceClienteSec"               column="CODICE_CLIENTE_SEC"             type="string" length="9"  />
+<property name="csott"                          column="C_SOTT"                         type="string" length="11"  />
+<property name="numeroContrattoSec"             column="NUMERO_CONTRATTO_SEC"           type="string" length="25"  />
+<property name="codiceCompartoSec"              column="CODICE_COMPARTO_SEC"            type="integer"  />
+<property name="indirizzoPostale"               column="INDIRIZZO_POSTALE"              type="string" length="32"  />
+<property name="localitaIndirizzoPostale"       column="LOCALITA_INDIRIZZO_POSTALE"     type="string" length="32"  />
+<property name="provinciaIndirizzoPostale"      column="PROVINCIA_INDIRIZZO_POSTALE"    type="string" length="2"  />
+<property name="cap"                            column="CAP"                            type="integer"  />
+<property name="nazioneIndirizzoPostale"        column="NAZIONE_INDIRIZZO_POSTALE"      type="string" length="3"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="descrizioneErrore"              column="DESCRIZIONE_ERRORE_S"           type="string" length="100"  />
+<property name="dataErrore"                     column="DATA_ERRORE"                    type="date" />                                                                					
+
+ </class>
+ <query name="CURSOR_SY_MIG_INDIRIZZI">from  
+ it.ras.arco.batch.bean.FlxSyMigIndirizzi p where p.statoElab in ('D','KO')</query>
+
+</hibernate-mapping>

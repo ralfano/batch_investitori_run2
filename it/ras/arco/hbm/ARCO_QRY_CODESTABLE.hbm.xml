@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<!--
+	QUESTO FILE CONTIENE ALCUNE QUERY DI UTILITA' PER LA GESTIONE
+	DELL'AGGIORNAMENTO DELLE CODES TABLE. NON E' INSERITO NEI MAPPING
+	DELLE CODES TABLE PERCHE' ARCHITETTURALI.
+-->
+<hibernate-mapping>
+
+	
+  <!--   	INDIVIDUA IL MASSIMO INCREMENTALE PER LA CODESTABLE , TblDecodifiche tbl  -->
+  <query name="QRY_CODESTABLE_MAX_RECORD_ID">
+  		select		max( leg.recordId )
+	  	from 		TblLegameDecodifiche leg
+	  				join leg.tabella t
+	  	where		t.nomeTabella = :nome_tabella_decodifica
+  </query>
+  
+  
+
+  <!--   	Individua, se presente, l'eventuale decodifica per un certo codice su una determinata tabella di decodifica 	-->
+  <query name="QRY_CODESTABLE_VALORE_DECODIFICA">
+  	<![CDATA[
+		select 		leg.colonna
+	  	from  		TblLegameDecodifiche leg
+	  				join leg.tabella t
+	  	where		t.nomeTabella = :nome_tabella_decodifica
+	  	and			leg.recordId in
+	  	(
+			select		leg1.recordId
+			from  		TblLegameDecodifiche leg1
+						join leg1.tabella t1
+						join leg1.colonna c1
+			where		t1.nomeTabella = :nome_tabella_decodifica
+			and			c1.nomeColonna = :nome_colonna_decodifica
+			and			c1.valoreColonna = :valore_colonna_decodifica
+	  	)
+	]]>
+  </query>
+  
+  
+  <!--   	Individua, se presente, l'eventuale decodifica per un certo codice su una determinata tabella di decodifica 	-->
+  <query name="QRY_CODESTABLE_LEGAME_DECODIFICA">
+  	<![CDATA[
+  		select		leg
+	  	from  		TblLegameDecodifiche leg
+	  				join leg.tabella t
+	  	where		t.nomeTabella = :nome_tabella_decodifica
+	  	and			leg.recordId in
+	  	(
+			select		leg1.recordId
+			from  		TblLegameDecodifiche leg1
+						join leg1.tabella t1
+						join leg1.colonna c1
+			where		t1.nomeTabella = :nome_tabella_decodifica
+			and			c1.nomeColonna = :nome_colonna_decodifica
+			and			c1.valoreColonna = :valore_colonna_decodifica
+	  	)
+	]]>
+  </query>
+  
+  
+  <!--   	Individua, se presente, l'eventuale filtro 	-->
+  <query name="QRY_CODESTABLE_FILTRO_DECODIFICA">
+  	<![CDATA[
+	  	from  		TblFiltroDecodifiche filtro
+	  	where		filtro.flagEsistenza = 'S'
+	  	and 		filtro.tabellaId = :id_tabella_decodifica
+	  	and			filtro.recordId = :record_id_decodifica
+	  	and			filtro.valore = :valore_filtro_decodifica
+	]]>
+  </query>
+  
+	<!--
+		E' fondamentale che tutte le query per la gestione del workFlow stiano tra QUERY_WORKFLOW.start e
+		QUERY_WORKFLOW.end	
+	-->
+
+<!--	
+	
+	<query name="CARICAMENTO_LOG_WORKFLOW_PER_SOTTOSCRIZIONE">
+	  	<![CDATA[
+			select 	log
+			from	org.jbpm.logging.log.ProcessLog log,
+					org.jbpm.context.exe.variableinstance.LongInstance vi
+						join vi.tokenVariableMap tvm
+						join tvm.token t
+			where	log.token = t
+			and 	vi.value = ?
+			order by t.start asc
+		]]>
+	</query>
+	
+-->
+
+
+</hibernate-mapping>

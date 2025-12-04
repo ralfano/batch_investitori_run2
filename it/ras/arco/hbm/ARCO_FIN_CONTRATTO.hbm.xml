@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+ <!-- TABELLA DEI CONTRATTI -->
+ <class name="it.ras.arco.bean.FinContratto" 
+		batch-size="1"
+ 		table="FIN_CONTRATTO" where="GSTD_ESIST_B='S'"
+ 		>
+ 
+  <id name="contrattoId" column="CONTRATTO_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_CONTRATTO_SEQ</param>
+   </generator>
+  </id>
+ 
+ 
+  <property name="numContratto" type="string" column="NUM_CONTRATTO_S" length="25"/>
+  <property name="dossierTecnico" type="string"
+   column="DOSSIER_TECNICO_S" length="24"/>
+  <property name="dataApertura" type="date" column="DATA_APERTURA_D"/> 
+  <property name="dataChiusura" type="date" column="DATA_CHIUSURA_D"/>
+  <property name="dataSottoscrizione" type="date" column="DATA_SOTTOSCRIZIONE"/>
+  <property name="dataUltimoMovimento" type="date" column="DATA_ULT_MOVIMENTO"/>
+  <property name="codiceSconto" type="string" column="CODICE_SCONTO" length="8"/>
+ 
+  <property name="flagProvenienza" type="string" column="FLG_PROVE_S" length="1"/>  
+  <property name="codiceEvidenza" type="integer" column="COD_EVIDENZA_N"/>
+  <property name="dataInsConEvidenza" type="timestamp" column="DATA_INS_COD_EVI_D"/>
+
+  <property name="tipoProdotto" type="string" column="TIPO_PRODOTTO_T" length="3"/>
+  <property name="statoContratto" type="string"
+   column="STATO_CONTRATTO_T" length="3"/>
+  <property name="codConvenzione" type="string"
+   column="COD_CONVENZIONE_S" length="10"/>
+  <property name="userUltimaModifica" type="string"
+   column="GSTD_ULT_USER_S" length="20"/>
+  <property name="proceduraUltimaModifica" type="string"
+   column="GSTD_ULT_PROC_S" length="20"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string"
+   column="GSTD_USER_INS_S" length="20"/>
+  <property name="tipoUltimaModifica" type="string"
+   column="GSTD_TIPO_MOD_B" length="1"/>
+  <property name="flagMulti" type="string" column="FLAG_MULTI" length="1"/>
+ <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+   <property name="dataPrimoMov" type="date" column="DATA_PRIMO_MOVIMENTO"/>
+
+  <property name="note" type="string" column="NOTE_S" length="255"/>
+  
+  <set name="contrattoDecod" lazy="true" where ="GSTD_ESIST_B='S'" cascade="lock"  >
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinContrattoDecod" not-found="ignore" />
+  </set>
+  
+  <set name="movimenti"  lazy="true" where ="GSTD_ESIST_B='S'" cascade="lock"  >
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinMovimento" not-found="ignore" />
+  </set>
+  
+  
+ <!-- RELAZIONE CON FIN_COINTESTAZIONE -->
+  <many-to-one name="cointestazione" class="it.ras.arco.bean.FinCointestazione" 
+   			column="COINTESTAZIONE_ID" update="true" insert="true" 
+   			lazy="proxy" not-found="ignore" 
+   			fetch="select"
+   			cascade="save-update,lock"/>
+  
+  
+  
+  <!-- RELAZIONE CON FIN_CONTR_BLOCCHI-->
+  <set name="contrBlocchi"  inverse="true" lazy="true" cascade="lock" where ="GSTD_ESIST_B='S'" >
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinContrBlocchi" not-found="ignore" />
+  </set>
+  
+  
+  
+  <!--
+  	V: L'ho tolta perchÃƒÆ’Ã‚Â¨ dava il solito problema di doppia istanza nella modifica di una sottoscrizione per cui si fÃƒÆ’Ã‚Â  un secondo aggiuntivo.
+  -->
+  <!-- RELAZIONE CON FIN_SOGGETTO-->
+   <many-to-one name="soggetto" class="it.ras.arco.bean.FinSoggetto" 
+   			column="SOGGETTO_PRIMO_INT_ID" update="true" 
+   			fetch="select"   			
+   			insert="true" not-found="ignore" cascade="lock" lazy="proxy" />
+  
+  <!--
+  		V: Ho levato save-update per non dover risolvere i problemi di doppia instanza del bean quando modifico
+  			la sottoscrizione in certi casi. Se si rende necessario aggiungerlo, aggiornare il metodo in ModificaSottoscrizione
+  			per la risoluzione di tutti i problemi relativi a diverse istanze che puntano alla stessa tupla.
+  			Qui si dovrebbe ciclare sui Set delle Posizioni.
+  -->
+  <!-- RELAZIONE CON FIN_POSIZIONE-->
+  <set name="posizione" lazy="true" where ="GSTD_ESIST_B='S'" cascade="lock" inverse="true">
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinPosizione" not-found="ignore" />
+  </set>
+  
+  
+  <!-- RELAZIONE CON FIN_FONDO_SICAV
+  <set name="fondo_sicav" lazy="true" where ="GSTD_ESIST_B='S'" cascade="lock" >
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinFondiSicav" not-found="ignore" />
+  </set>
+  -->
+  
+  
+  <!-- RELAZIONE CON FIN_RUOLO-->
+  <set name="ruolo" lazy="true" inverse="true" where ="GSTD_ESIST_B='S'" cascade="save-update,lock" >
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinRuolo" not-found="ignore" />
+  </set>
+    
+    
+  <!-- RELAZIONE CON FIN_SOTTOSCRIZIONE_CONTRATTO-->
+  <set name="sottoscrizione" inverse="true" lazy="true" cascade="save-update,lock" where ="GSTD_ESIST_B='S'">
+    <key column="CONTRATTO_ID"/>
+    <one-to-many class="it.ras.arco.bean.FinSottoscrizioneCont" not-found="ignore" />
+  </set>
+  
+  
+  <!-- RELAZIONE CON LA FIN_PRODOTTO -->
+  <many-to-one name="prodotto"
+			class="it.ras.arco.bean.FinProdotto" column="PRODOTTO_ID"  cascade="lock"
+   			fetch="select"   			
+			update="false" insert="true" not-found="ignore" lazy="proxy" />
+   
+   
+   <!-- RELAZIONE CON FIN_CONTRATTO_INDIR -->
+  <set name="indirizzo" inverse="true" cascade="lock,none" lazy="true" where ="GSTD_ESIST_B='S' and DATA_FINE_D>sysdate">
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinContrattoIndir" not-found="ignore" />
+  </set>
+  
+  <!-- RELAZIONE CON FIN_CONTRATTO_PROMOTORE-->
+  <set name="assegnazione" inverse="true" lazy="true" cascade="save-update,lock" where ="GSTD_ESIST_B='S' and  (DATA_FINE_D > sysdate or DATA_FINE_D is null) ">
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinContrattoPromotore" not-found="ignore" />
+  </set>
+  
+  <!-- RELAZIONE CON ALTRI PRODOTTI-->
+  <set name="altriProdotti" inverse="true" lazy="true"
+  	where ="GSTD_ESIST_B='S'" cascade="lock" >
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinAltriProdotti" not-found="ignore" />
+  </set>
+  
+  <!-- RELAZIONE CON FIN_BONIFICO_PF, per bonifici eseguiti -->
+  <set name="bonificiEseguiti" inverse="true" lazy="true" cascade="lock" where ="GSTD_ESIST_B='S'">
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinBonificoAdapterBase" not-found="ignore" />
+  </set>
+
+  <!-- RELAZIONE CON FIN_BONIFICO_PF, per bonifci beneficiati -->
+  <set name="bonificiBeneficiati" inverse="true" lazy="true" cascade="save-update,lock" where ="GSTD_ESIST_B='S'">
+   <key column="CONTRATTO_BENEFICIARIO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinBonificoAdapterBase" not-found="ignore" />
+  </set>
+
+  <!-- RELAZIONE CON ORDINE_TITOLO_PF, per ordini dei titoli eseguiti -->
+  <set name="titoliOrdinati" inverse="true" lazy="true" cascade="save-update,lock" where ="GSTD_ESIST_B='S'">
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinOrdineTitolo" not-found="ignore" />
+  </set>
+
+ <!-- 24/11/2005 RELAZIONE DI JOIN CON LA FIN_FONDI_SICAV -->
+ <joined-subclass name="it.ras.arco.bean.FinFondiSicav"  table="FIN_FONDO_SICAV" >
+
+  <key column= "CONTRATTO_ID"/>
+  <property name="dataDecorrenza" type="date" column="DATA_DECORRENZA_D"/>
+  <!--property name="dataChiusura" type="date" column="DATA_CHIUSURA_D"/-->
+  <property name="tipoInv" type="string" column="TIPO_INV_T" length="3"/>
+  <property name="codTipoPiano" type="string" column="COD_TIPO_PIANO_T" length="3"/>
+  <property name="durataPiano" type="integer" column="DURATA_PIANO_C"/>
+  <property name="frequenza" type="integer" column="FREQUENZA_T"/>
+  <property name="impRata" type="double" column="IMP_RATA_C"/>
+  <property name="impTotPiano" type="double" column="IMP_TOT_PIANO_C"/>
+  <property name="rendInvestLordo" type="double" column="REND_INVEST_LORDO"/>
+  <property name="rendInvestNetto" type="double" column="REND_INVEST_NETTO"/>
+  <property name="numRate" type="integer" column="NUM_RATE_C"/>
+  <property name="numRatePagate" type="integer" column="NUM_RATE_PAGATE_C"/>
+  <property name="numPrelieviEffet" type="integer" column="NUM_PRELIEVI_EFFET_C"/>
+  <property name="flgReinvCedola" type="string"
+   column="FLG_REINV_CEDOLA_B" length="1"/>
+  <property name="flgFirmeContig" type="string"
+   column="FLG_FIRME_CONTIG_B" length="1"/>
+   
+  <property name="abi" type="string" column="ABI_T" length="5"/>
+  <property name="cab" type="string" column="CAB_T" length="5"/>
+  <property name="numeroCC" type="string" column="NUM_CC_T" length="20"/>
+  <property name="mezzoPagamentoPac" type="string" column="MEZZO_PAGAMENTO_PAC" length="5"/>
+  <property name="dataInizioPagamento" type="date" column="DATA_INIZIO_PAG"/>
+  <property name="codiceFirmatario" type="integer" column="COD_FIRMATARIO" />
+   
+   
+  <property name="dataScadUltRata" type="timestamp" column="DATA_SCD_ULT_RATA_D"/>   
+  <property name="dataQuote" type="date" column="DATA_QUOTE_D"/>   
+  <property name="coefCalcSpese" type="double" column="COEF_CALC_SPESE_C"/>     
+  <property name="fattCorrettivo" type="integer" column="FATTORE_CORR_N"/>       
+  <property name="dataCopertura" type="timestamp" column="DATA_COPERTURA_D"/>         
+  <!--property name="codiceEvidenza" type="integer" column="COD_EVIDENZA_N"/>           
+  <property name="dataInsConEvidenza" type="timestamp" column="DATA_INS_COD_EVI_D"/-->             
+  <property name="impEccRata" type="double" column="IMP_ECC_RATA_C"/>               
+  <property name="numMandato" type="string" column="MANDATO_COLLEGATO_S"/>     
+   
+  <property name="flagRid" type="string" column="FLAG_RID" length="1"/>
+  <property name="flagEasyPlan" type="string" column="FLAG_EASYPLAN" length="1"/>
+  <property name="depositoSgr" type="string" column="DEPOSITO_SGR_S" length="20"/>
+  <property name="mezzoPagCedola" type="string" column="MEZZO_PAG_CEDOLA_T" length="5"/>
+  <property name="codSocietaBeneficiaria" type="integer" column="COD_SOCIETA_N"/>
+  <property name="percDaDevolvere" type="integer" column="PERC_DA_DEVOLVERE_N"/>
+  <property name="importoDaDevolvere" type="integer" column="IMPORTO_DA_DEVOLVERE_N"/>
+  <property name="numRipetizioniBonifico" type="integer" column="NUMERO_RIPETIZIONI_BONIFICO_N"/>
+  <property name="dataDecorrenzaBonifico" type="string" column="DATA_DECOR_BONIFICO_T" length="6"/>
+  <property name="mezzoPagEccedenza" type="string" column="MEZZO_PAG_ECCEDENZA_T" length="5"/>
+  <property name="abiCedola" type="string" column="CEDOLA_ABI_T" length="5"/>
+  <property name="cabCedola" type="string" column="CEDOLA_CAB_T" length="5"/>
+  <property name="numeroCCedola" type="string" column="CEDOLA_NUM_CC_T" length="20"/>
+  
+  <many-to-one name="intestatarioReinvestimento"
+			class="it.ras.arco.bean.FinSoggetto" column="INTEST_REINV_PAG_CEDOLA_N" cascade="lock"
+			update="true" insert="true" not-found="ignore" lazy="proxy" />
+  
+</joined-subclass>
+ 
+  <!-- 24/11/2005 RELAZIONE DI JOIN CON LA FIN_GP -->
+
+ <joined-subclass name="it.ras.arco.bean.FinGP" table="FIN_GP"  >
+ 
+   <key column= "CONTRATTO_ID"/>
+ <!--property name="contrattoId" type="integer" column="CONTRATTO_ID"/-->
+  <property name="tipo" type="string" column="TIPO_T" length="3"/>
+  <property name="dataVal" type="date" column="DATA_VAL_D"/>
+  <!-- commento fatto il 30-11-06 si farÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â  riferimento ai campi della FinContratto -->
+  
+  <property name="ctvTot" type="double" column="CTV_TOT_C"/>
+  <property name="liquidita" type="double" column="LIQUIDITA_C"/>
+  <property name="titoli" type="double" column="TITOLI_C"/>
+  <property name="perfNetta" type="double" column="PERF_NETTA_C"/>
+  <property name="perfNettaTri" type="double" column="PERF_NETTA_TRI_C"/>
+  <property name="perfNettaAnn" type="double" column="PERF_NETTA_ANN_C"/>
+  <property name="perfLordaTri" type="double" column="PERF_LORDA_TRI_C"/>
+  <property name="perfLordaAnn" type="double" column="PERF_LORDA_ANN_C"/>
+  <property name="perfBcmk" type="double" column="PERF_BCMK_C"/>
+  <property name="perfBcmkTri" type="double" column="PERF_BCMK_TRI_C"/>
+  <property name="perfBcmkAnn" type="double" column="PERF_BCMK_ANN_C"/>
+  <property name="prenotateDare" type="double" column="PRENOTATE_DARE_C"/>
+  <property name="prenotateAvere" type="double" column="PRENOTATE_AVERE_C"/>
+  <property name="dataPerf" type="date" column="DATA_PERF_D"/>
+  <property name="navPerf" type="double" column="NAV_PERF_C"/>
+  <property name="saldoSottoDossier" type="double" column="SALDO_DOSSIER_C" />
+  <property name="regimeFiscale" type="string" column="REGIME_FISCALE" length="1"/>
+  <property name="schedaFinanziaria" type="string" column="SCHEDA_FINANZIARIA" length="1"/>
+    
+  <!-- federico.sfreddo [GP_INVESTITORI] 10/08/2011
+  aggiunta mappatura campi per salvataggi contratti ombrelli -->
+  <property name="contrattoOmbrello" column="CONTRATTO_OMBRELLO" type="string" length="11" />
+  <property name="multimandProdottoId" column="MULTIMAND_PRODOTTO_ID" type="integer" />
+  
+  <!-- giuseppe.rigano [GP_INVESTITORI_FASE_2] 29/12/2011 -->
+   <property name="perfGlobInizioMandLor" type="double" column="PERF_INIZIO_MAND_LOR_C"/>
+   <property name="perfGlobInizioMandNet" type="double" column="PERF_INIZIO_MAND_NET_C"/>
+   <property name="perfBenchInizioGestione" type="double" column="PERF_BENCH_INIZIO_GEST_C"/>
+   <property name="totaleInvestito" type="double" column="TOTALE_INVESTITO_C"/>
+   <property name="totaleVersato" type="double" column="TOTALE_VERSATO_C"/>
+   <property name="totalePrelevato" type="double" column="TOTALE_PRELEVATO_C"/>
+   <property name="bloccoOperativo" type="string" column="BLOCCO_OPERATIVO" length="1" />  
+  
+  <!-- RELAZIONE CON FIN_PORTAFOGLIO_GP-->
+  <set name="portafoglioGP"  inverse="true" lazy="true" cascade="lock" where ="GSTD_ESIST_B='S'" >
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinPortafoglioGP" not-found="ignore" />
+  </set> 
+
+ </joined-subclass>
+ 
+ <!-- 24/11/2005 RELAZIONE DI JOIN CON LA FIN_POLIZZA -->
+ 
+  <joined-subclass name="it.ras.arco.bean.FinPolizza" table="FIN_POLIZZA" >
+   <key column= "CONTRATTO_ID"/>
+
+	<!--property name="contrattoId" type="integer" column="CONTRATTO_ID"/-->	
+  <property name="numProposta" type="string" column="NUM_PROPOSTA_S" length="20"/>
+  <property name="dataIns" type="date" column="DATA_INS_D"/>
+  <property name="dataConferma" type="date" column="DATA_CONFERMA_D"/>
+  <property name="dataEmissione" type="date" column="DATA_EMISSIONE_D"/>
+  <property name="dataDecorrenza" type="date" column="DATA_DECORRENZA_D"/>
+  <property name="dataScadenza" type="date" column="DATA_SCADENZA_D"/>
+  <property name="dataStorno" type="date" column="DATA_STORNO_D"/>
+  <property name="dtIniPagPremi" type="date" column="DT_INI_PAG_PREMI_D"/>
+  <property name="dtFinPagPremi" type="date" column="DT_FIN_PAG_PREMI_D"/>
+  <property name="durata" type="integer" column="DURATA_C"/>
+  <property name="flgLiquidata" type="string" column="FLG_LIQUIDATA_B" length="1"/>
+  <property name="flgRidotta" type="string" column="FLG_RIDOTTA_B" length="1"/>
+  <property name="flgTrasformata" type="string"
+   column="FLG_TRASFORMATA_B" length="1"/>
+  <property name="codLiberata" type="string" column="COD_LIBERATA" length="1"/>
+  <property name="premio" type="double" column="PREMIO_C"/>
+  <property name="frazionamento" type="integer" column="FRAZIONAMENTO_T"/>
+  <property name="costoFraz" type="double" column="COSTO_FRAZ_C"/>
+  <property name="mezzoPagPremi" type="string" column="MEZZO_PAG_PREMI_T"/>
+  <property name="flgPrestito" type="string" column="FLG_PRESTITO_B" length="1"/>
+  <property name="polSost1" type="string" column="POL_SOST_1_S" length="11"/>
+  <property name="polSost2" type="string" column="POL_SOST_2_S" length="11"/>
+  <property name="polSost3" type="string" column="POL_SOST_3_S" length="11"/>
+  <property name="polSost4" type="string" column="POL_SOST_4_S" length="11"/>
+  <property name="tassoFrazionamento" type="double" column="TASSO_FRAZIONAMENTO"/>
+  <property name="codStorno" type="string" column="COD_STORNO" length="2"/>
+  
+  <property name="ramo" type="integer" column="RAMO"/>
+  <property name="codTarif" type="string" column="COD_TARIF" length="9"/>
+  <property name="descTarif" type="string" column="DESC_TARIF" length="30"/>
+  <property name="tipoTarif" type="string" column="TIPO_TARIF" length="2"/>
+  <property name="codRete" type="string" column="COD_RETE" length="1"/>
+  <property name="codAgenzia" type="integer" column="COD_AGENZIA"/>
+  <property name="percRivalutazione" type="string" column="PERC_RIVALUTAZIONE" length="9"/>
+  <property name="flagDas" type="string" column="FLAG_DAS" length="1"/>
+    
+  <!-- RELAZIONE CON FIN_PREMIO_POLIZZA-->
+  <set name="premioPolizza"  inverse="true" lazy="true" cascade="lock" where ="GSTD_ESIST_B='S'" >
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinPremioPolizza" not-found="ignore" />
+  </set> 
+  <!-- RELAZIONE CON FIN_ANAG_POLIZZA-->
+  <set name="anagPolizza" inverse="true" lazy="true" cascade="save-update,lock" where ="GSTD_ESIST_B='S'"  >
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinAnagPolizza" not-found="ignore" />
+  </set>
+  
+</joined-subclass> 
+   
+   
+   <!-- 24/11/2005 RELAZIONE DI JOIN CON LA FIN_CONTRATTO_CC -->
+ <joined-subclass name="it.ras.arco.bean.FinContrattoCC" table="FIN_CONTRATTO_CC" >
+   <key column= "CONTRATTO_ID"/>  
+   
+    <property name="filialeRapporto"                column="FILIALE_RAPPORTO"               type="string" length="5"/>
+    <property name="categoriaRapporto"              column="CATEGORIA_RAPPORTO"             type="string" length="5"/>
+    <property name="numeroRapporto"                 column="NUMERO_RAPPORTO"                type="string" length="8" />
+    <property name="deroga"                         column="DEROGA"                         type="string" length="2"  />
+	<property name="bancomat"                       column="BANCOMAT"                       type="integer" />
+	<property name="carteCredito"                   column="CARTE_CREDITO"                  type="integer" />
+	<property name="assegni"                        column="ASSEGNI"                        type="integer" />
+	<property name="convenzione"                    column="CONVENZIONE"                    type="string" length="10"  />
+	<property name="infoConto"                      column="INFO_CONTO"                     type="string" length="30"  />
+	<property name="ror98Conto"                     column="ROR_98_CONTO"                   type="string" length="2"  />
+	<property name="ror98Dt10"                      column="ROR_98_DT10"                    type="string" length="2"  />
+	<property name="ror98Dt50"                      column="ROR_98_DT50"                    type="string" length="2"  />
+	<property name="numeroDossier"                  column="NUMERO_DOSSIER"                 type="integer" />
+	<property name="divisa"                         column="DIVISA"                         type="string" length="3"  />
+	<property name="bban"                           column="BBAN"                           type="string" length="23"  />
+	<property name="iban"                           column="IBAN"                           type="string" length="27"  />
+	<property name="cin"                           	column="CIN"                           	type="string" length="2"  />
+	<property name="convenzioneMc"                  column="CONVENZIONE_MC"                 type="string" length="1"  />
+	<property name="statoRapportoMc"                column="STATO_RAPPORTO_MC"              type="string" length="8"  />
+	<property name="codUserMc"                      column="COD_USER_MC"                    type="string" length="20"  />
+	<property name="dataSaldo"                      column="DATA_SALDO"						type="date" />
+	<property name="saldoContabile"                 column="SALDO_CONTABILE"				type="double" />
+	<property name="saldoDisponibile"               column="SALDO_DISPONIBILE"				type="double" />
+	<property name="saldoLiquido"                   column="SALDO_LIQUIDO"					type="double" />
+	<property name="fidoDisponibile"               	column="FIDO_DISPONIBILE"				type="double" />
+	<property name="disponibilita"                	column="DISPONIBILITA" 					type="double" />
+	<property name="parPrenotDare"                	column="PAR_PRENOT_DARE"				type="double" />
+	<property name="parPrenotAvere"               	column="PAR_PRENOT_AVERE"				type="double" />
+    <property name="saldoDossier"                  	column="SALDO_DOSSIER"					type="double" />	
+	<!--property name="anagraficaBancaID"              column="ANAGRAFICA_BANCA_ID"			type="integer" /-->
+	<property name="sottocodiceRapporto"            column="SOTTOCODICE_RAPPORTO"     		type="string" length="2"/>
+	<property name="contoEstero"              		column="CC_ESTERO_B"                    type="string" length="1"/>
+	
+	
+	<!-- RELAZIONE CON LA FIN_ANAGRAFICA_BANCA -->
+	<many-to-one name="anagraficaBanca"
+			class="it.ras.arco.bean.FinAnagraficaBanca" column="ANAGRAFICA_BANCA_ID"  cascade="lock"
+   			fetch="select"   			
+			update="false" insert="true" not-found="ignore" lazy="proxy" />
+   
+   
+   <!-- RELAZIONE CON FIN_ASSEGNO-->
+  <set name="assegno"  inverse="true" lazy="true" cascade="lock"   where ="GSTD_ESIST_B='S'" order-by="true" >
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinAssegno" not-found="ignore" />
+  </set>  
+  
+  
+  
+  <!-- RELAZIONE CON FIN_CONVENZIONE -->
+   <many-to-one name="finConvenzione"
+			class="it.ras.arco.bean.FinConvenzione" column="CONVENZIONE_ID"  
+   			fetch="select"   			
+			cascade="lock,none" update="true" insert="false" 
+			not-found="ignore" lazy="proxy"  />
+ 
+   
+   
+   
+   
+  
+</joined-subclass>
+  
+  <!-- 24/11/2005 RELAZIONE DI JOIN CON LA FIN_CONTRATTO_DT -->
+ 
+ <joined-subclass name="it.ras.arco.bean.FinContrattoDt" table="FIN_CONTRATTO_DT" >
+   	<key column= "CONTRATTO_ID"/> 
+   	 
+   	<property name="numContratto"                    column="NUM_CONTRATTO_S"                 type="string" length="20"  />
+	<property name="prodottoDt"                        column="PRODOTTO_DT"                      type="string"  />
+	
+	<property name="filiale"                        column="FILIALE_S"                      type="string"  />
+	<property name="derogaSegrBanc"                 column="DEROGA_SEGR_BANC_B"             type="string" length="1"  />
+	<!--property name="userUltimaModifica"             column="GSTD_ULT_USER_S"                type="string" length="40"  />
+	<property name="proceduraUltimaModifica"        column="GSTD_ULT_PROC_S"                type="string" length="40"  />
+	<property name="dataUltimaModifica"             column="GSTD_ULT_MOD_D"                 type="date"  />
+	<property name="dataInserimento"                column="GSTD_INSE_D"                    type="date"  />
+	<property name="flagEsistenza"                  column="GSTD_ESIST_B"                   type="string" length="1"  />
+	<property name="utenteInserimento"              column="GSTD_USER_INS_S"                type="string" length="40"  />
+	<property name="tipoUltimaModifica"             column="GSTD_TIPO_MOD_B"                type="string" length="1"  /-->
+	<property name="rapportoCcAssociato"            column="RAPPORTO_CC_ASSOCIATO_S"             type="string" length="20"  />                     
+	<property name="filialeD"                       column="FILIALE_D_S"                        type="string"   />
+	<property name="categoriaD"                     column="CATEGORIA_D_S"                        type="string"   />
+	<property name="categoria"                      column="CATEGORIA_s"                        type="string"   />
+	<property name="numeroPratica"                  column="NUMERO_PRATICA_s"                        type="string"   />
+	<property name="dossierD"                       column="DOSSIER_D_S"                        type="string"   />
+    <property name="dataCtvl"                       type="date"                               column="DATA_CTVL"/>
+	<property name="ctvlMercato"                    type="double"                            column="CTVL_MERCATO"/>
+	<property name="divisa"                         column="DIVISA"                      type="integer"  />
+	
+ </joined-subclass>
+
+  <!-- 02/02/2006 RELAZIONE DI JOIN CON LA FIN_ALTRI_PROD_DET -->
+  <joined-subclass name="it.ras.arco.bean.FinAltriProdDet"  table="FIN_ALTRI_PROD_DET" > 
+
+  <key column= "CONTRATTO_ID"/>
+  <property name="dataInserimento" type="date" column="DATA_INSERIMENTO_D"/>
+  <property name="dataSottoscrizione" type="date" column="DATA_SOTTOSCRIZIONE_D"/>
+  <property name="dataScadenza" type="date" column="DATA_SCADENZA_D"/>
+  <property name="importoTot" type="double" column="IMPORTO_TOT_C"/>
+  <property name="importoRichiesto" type="double" column="IMPORTO_RICHIESTO_C"/>
+  <property name="tipo" type="string" column="TIPO_T" length="3"/>
+
+  
+  
+</joined-subclass>
+
+ </class>
+ 
+ <query name="GetContrattoByContrattoId">select c from it.ras.arco.bean.FinContratto c where c.contrattoId = ?</query>
+ <query name="GetContrattoByNumContratto">select c from it.ras.arco.bean.FinContratto c where c.numContratto = ?</query>
+ <query name="GetContrattoByNumRapporto">select c from it.ras.arco.bean.FinContrattoCC c where c.numeroRapporto = ? and c.contoEstero is null   </query>
+ <query name="GetContrattoByDossier">select c from it.ras.arco.bean.FinContrattoDt c where c.dossierD = ?</query>
+ <query name="GetContrattoByNumPratica">select c from it.ras.arco.bean.FinContrattoDt c where c.numeroPratica = ?</query>
+ 
+ <query name="GetContrattoCCByNumeroContoCorrente">
+ 	from it.ras.arco.bean.FinContrattoCC c where c.numeroRapporto = :numeroContoCorrente 
+ </query>
+ 
+ <!-- <query name="GetContrattoByNumContrattoProdottoIdSoggCoin">select c from it.ras.arco.bean.FinContratto c where c.numContratto = ? and c.prodottoId = ? and c.soggCoin = ?</query> -->
+ <query name="GetContrattoByNumContrattoTipo">select c from it.ras.arco.bean.FinContratto c where c.numContratto = ? and c.tipoProdotto=? </query>
+ 
+ <!--ql-query name="GetContrattoByNumContrattoProdottoId">
+<return alias="contratto" class="it.ras.arco.bean.FinContratto"/>
+select {contratto.*} from FIN_CONTRATTO contratto    
+where
+ contratto.NUM_CONTRATTO_S = :numContratto
+ and contratto.PRODOTTO_ID = :prodottoId
+</sql-query-->
+
+
+<sql-query name="GetContrattoBySoggPrimoIntProdottoId">
+<return alias="contratto" class="it.ras.arco.bean.FinContratto"/>
+select {contratto.*} from FIN_CONTRATTO contratto    
+where
+ contratto.SOGGETTO_PRIMO_INT_ID = :soggettoPrimoInt
+ and contratto.PRODOTTO_ID = :prodottoId
+</sql-query>
+
+
+
+ 
+ 
+ <query name="GetContrattoByNumContrattoProdottoId">select c from it.ras.arco.bean.FinContratto c join c.prodotto p  where c.numContratto =:numContratto and p.prodottoID =:prodottoId</query>
+ 
+ <query name="GetContrattoByNumContrattoCodEmittente">select c from it.ras.arco.bean.FinContratto c 
+ join c.prodotto p join p.emittente e where c.numContratto = ? and e.codEmittExt = ?</query>
+
+ <query name="GetContrattoByNumContrattoCodEmittenteCodInterfaccia">select c from it.ras.arco.bean.FinContratto c 
+ join c.prodotto p join p.emittente e join e.interfaccia i where c.numContratto = ? and e.codEmittExt = ? and i.interfaccia = ?</query>
+ 
+ <query name="GetContrattoByNumContrattoCodEmittenteProdId">select c from it.ras.arco.bean.FinContratto c 
+ join c.prodotto p join p.emittente e where c.numContratto = ? and e.codEmittExt = ? and p.prodottoID = ?</query>
+
+ <query name="GetContrattoByNumContrattoCodInterfaccia">select c from it.ras.arco.bean.FinContratto c 
+ join c.prodotto p join p.emittente e join e.interfaccia i where c.numContratto = ? and i.interfaccia = ?</query>
+
+ <query name="GetIndirizzoByContrattoId">select i from it.ras.arco.bean.FinContratto c  
+  	join c.indirizzo cin join cin.indirizzo i 
+  	where c.contrattoId= ?
+	and cin.tipoIndirizzo = ?
+	and cin.dataFine > ? 
+ </query>
+ 
+ <query name="GetContrattoByNumContrattoAttFin">select c from it.ras.arco.bean.FinContratto c
+      join c.posizione p join p.attivitaFin a
+      where c.numContratto = :contratto 
+      and a.attivitaFinId = :attFin
+ </query>
+ 
+ <query name="getPosizioneByNumContrattoAttFinanziaria">select p from it.ras.arco.bean.FinContratto c
+      join c.posizione p join p.attivitaFin a
+      where a.attivitaFinId = :attFin  
+      and c.numContratto = :contratto
+ </query>
+ 
+<query name="GetFondiSicavByContrattoId">from it.ras.arco.bean.FinFondiSicav s where s.contrattoId=?</query>
+<query name="GetDtByNumDt">select c from it.ras.arco.bean.FinContrattoDt c where c.dossierD = ?</query>
+
+<query name="GetContrByNumContrProdIdDoss">select c from it.ras.arco.bean.FinContratto c join c.prodotto p  where c.numContratto = ? and p.prodottoID = ? and c.dossierTecnico= ?</query>
+
+
+
+<query name="GetPolizzaByNumProposta">select p from it.ras.arco.bean.FinPolizza p where p.numProposta =:numProposta
+ </query> 
+
+  <query name="GetContrattoByCointestazioneIdProdottoId">
+    select 	c 
+    from 	it.ras.arco.bean.FinContratto c 
+    where 	c.cointestazione.cointestazioneId = :cointestazioneId
+    and 	c.prodotto.prodottoID = :prodottoId   
+  </query>
+  
+<query name="GetContrattoByNumContrattoEProdottoId">
+   select c from it.ras.arco.bean.FinContratto c 
+ join c.prodotto p where c.numContratto= :numContratto and p.prodottoID = :prodottoId 
+ </query>
+  
+<query name="GetCountContrattoAltriPromBySoggettoId">
+
+	<![CDATA[
+	select 	count(c) 
+    from 	it.ras.arco.bean.FinContratto c 
+    		join c.assegnazione a
+    		join c.cointestazione coin
+    		join a.promotore p
+    		join coin.cointestazioni coin2
+	where 	coin2.soggetto = :soggetto
+	and 	p.promotoreId <> :promotore
+    and 	c.statoContratto in ('A','a')
+	]]>
+  </query>
+
+
+<query name="OutboundContratto">from it.ras.arco.bean.FinContratto c where c.dataUltimoMovimento between sysdate-40 and sysdate</query> 
+
+<!--  
+			c.posizione.attivitaFin.prodotto.prodotto.emittente.emittenteId = :emittenteId
+			or c.prodotto.emittente.emittenteId = :emittenteId 
+-->
+	<query name="GetContrattoByNumContrattoEmittente">
+		select distinct c
+		from it.ras.arco.bean.FinContratto c 
+			join c.posizione pos
+			join pos.attivitaFin af
+			join af.prodotto pl
+			join pl.prodotto p
+			join p.emittente e
+			join c.prodotto proC
+			join proC.emittente eC
+		where c.numContratto = :numContratto
+		and ( 
+				e.emittenteId = :emittenteId
+			or	eC.emittenteId = :emittenteId 
+		)
+	</query>
+	
+	<query name="GetContrattoByNumContrattoTipoEmittente">
+		select distinct c
+		from it.ras.arco.bean.FinContratto c 
+			join c.posizione pos
+			join pos.attivitaFin af
+			join af.prodotto pl
+			join pl.prodotto p
+			join p.emittente e
+			join c.prodotto proC
+			join proC.emittente eC
+		where c.numContratto = :numContratto
+		and ( 
+				e.emittenteId = :emittenteId
+			or	eC.emittenteId = :emittenteId 
+		)
+		and p.tipo = :tipo
+	</query>
+
+<query name="getPosizioneByDossierProdIdAttFinanziaria">
+		select p from it.ras.arco.bean.FinContratto c
+			join c.posizione p 
+			join p.attivitaFin a 
+			join c.prodotto pr
+		where a.attivitaFinId = :attFin 
+			and c.dossierTecnico = :dossier
+			and pr.prodottoID = :prodotto
+</query>
+
+<query name="GetContrattoByNumContrattoCodInterfacciaTipo">select c from it.ras.arco.bean.FinContratto c 
+ join c.prodotto p join p.emittente e join e.interfaccia i where c.numContratto = ? and i.interfaccia = ?  </query>
+
+
+<!-- 
+	where ap.altriProdottiDet.prodotto.emittente.emittenteId = ? 
+-->
+<query name="GetAltriProdottiByEmittenteIdNumContrattoEsterno">
+	select ap.altriProdottiDet.contrattoId
+	from it.ras.arco.bean.FinAltriProdotti ap 
+		join ap.altriProdottiDet apd
+		join apd.prodotto p
+		join p.emittente e
+	where e.emittenteId = ? 
+	and ap.numContrattoEsterno = ?
+	and ap.stato = ?
+</query>
+
+
+<query name="GetContrattoByCointestazioneIdProdottoIdNumContr">
+   select c from it.ras.arco.bean.FinContratto c 
+ join c.prodotto p join c.cointestazione s where c.numContratto= :numContr and p.prodottoID = :prodottoId and s.cointestazioneId= :cointestazioneId 
+   </query>
+
+
+<query name="GetContrattoBySoggPrimoIntProdottoIdNumContr">
+select c from it.ras.arco.bean.FinContratto c 
+ join c.prodotto p join c.soggetto s where c.numContratto= :numContr and p.prodottoID = :prodottoId and s.soggettoId= :soggettoPrimoInt 
+ </query>
+ 
+<!-- 
+			and c.prodotto.emittente.emittenteId = :emittenteId
+ -->
+<query name="GetContrattoByCointestazioneIdEmittenteIdAttFinId">
+		select c from it.ras.arco.bean.FinContratto c
+			join c.posizione p 
+			join p.attivitaFin a 
+			join c.prodotto pro
+			join pro.emittente e
+			join c.cointestazione s 
+			join p.ordini o		
+		where s.cointestazioneId = :cointestazioneId
+			and a.attivitaFinId = :attivitaFinId
+			and e.emittenteId = :emittenteId
+			and o.tipo != '500'
+</query>
+
+<query name="GetContrattiByCointestazioneIdEmittenteIdTipoProdotto">
+		select c from it.ras.arco.bean.FinContratto c
+			join c.prodotto pro
+			join pro.emittente e
+			join c.cointestazione s 				
+		where s.cointestazioneId = :cointestazioneId
+			and e.emittenteId = :emittenteId			
+			and c.contrattoId != :contrattoId 
+			and pro.tipo = :tipoProdotto
+</query>
+
+
+<!--
+
+  <query name="GetSottoscrizioneContratto">select c from it.ras.arco.bean.FinContratto c  
+  	join c.sottoscrizione scr join scr.sottoscrizione scrCont 
+  	where scrCont.numSottoscrizione= ? 
+    and c.prodottoId = ?
+		
+ </query>
+ -->
+ 
+ 
+<!-- 
+<query name="CheckGetPosizioneByContrattoIDMD">select p from it.ras.arco.bean.FinContratto c join c.posizione p where p.contrattoId = ?</query>
+-->
+
+
+</hibernate-mapping>

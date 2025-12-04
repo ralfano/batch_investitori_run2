@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DEI SOGGETTI ANAGRAFICI -->
+ <class name="it.ras.arco.bean.NormSoggettoMC" table="NORM_SOGGETTO_MC" where="GSTD_ESIST_B='S'">
+
+  <id name="soggettoId" column="SOGGETTO_ID" type="integer">
+        <generator class="foreign">
+            <param name="property">soggetto</param>
+        </generator>
+  </id>
+
+  
+  <property name="codMatchCodeNom1" type="string" column="COD_MATC_CODE_NOM1" length="8"/>
+  <property name="codMatchCodeNom2" type="string" column="COD_MATC_CODE_NOM2" length="4"/>
+  <property name="codMatchCodeDNas" type="string" column="COD_MATC_CODE_DNAS" length="8"/>
+  <property name="codMatchCodeCFis" type="string" column="COD_MATC_CODE_CFIS" length="10"/>
+  
+  <property name="tipoSogg" type="string" column="COD_TIPO_SOGG" length="1"/>
+  
+  <property name="codStriRic1" type="string" column="COD_STRI_RIC1" length="70"/>  
+  <property name="codStriRic2" type="string" column="COD_STRI_RIC2" length="70"/>
+  <property name="codStriRic3" type="string" column="COD_STRI_RIC3" length="70"/>
+  
+  <property name="flgInco" type="string" column="FLG_INCO" length="1"/>
+
+  
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="20"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="20"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="20"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+ <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  
+ 
+  <!-- RELAZIONE CON FIN_DOCUMENTO-->
+
+  <one-to-one 
+  		name="soggetto" 
+  		class="it.ras.arco.bean.FinSoggetto" 
+  		constrained="true" /> 
+
+</class> 
+ <!-- QUERY -->
+
+ <query name="GetSoggettoMCBySoggettoId">select s from it.ras.arco.bean.NormSoggettoMC s where s.soggettoId = :soggettoId</query>
+ <!-- 
+ <query name="GetSoggettoMCByMatchCodeFull">select s from it.ras.arco.bean.NormSoggettoMC s where s.codMatchCodeNom1 = :codMatchCodeNom1 and s.codMatchCodeNom2 = :codMatchCodeNom2 and codMatchCodeDNas = :codMatchCodeDNas and codMatchCodeCFis = :codMatchCodeCFis</query>
+-->
+ <query name="GetSoggettoMCByStringaRicerca1">select s from it.ras.arco.bean.NormSoggettoMC s where s.codStriRic1 = :codStriRic1</query>
+ <query name="GetSoggettoMCByStringaRicerca2">select s from it.ras.arco.bean.NormSoggettoMC s where s.codStriRic2 = :codStriRic2</query>
+ <query name="GetSoggettoMCByStringaRicerca3">select s from it.ras.arco.bean.NormSoggettoMC s where s.codStriRic3 = :codStriRic3</query>
+ <query name="GetSoggettoMCByStringaRicerca3Like">select s from it.ras.arco.bean.NormSoggettoMC s where s.codStriRic3 like :codStriRic3</query>
+ 
+</hibernate-mapping>
+

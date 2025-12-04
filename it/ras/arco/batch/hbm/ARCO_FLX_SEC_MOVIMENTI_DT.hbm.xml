@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxSecMovimentiDt" rowid="rowid" table="FLX_SEC_MOVIMENTI_DT">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SEC_MOVIMENTI_DT_SEQ</param>
+   </generator>
+  </id>
+ 
+<property name="codFilSec"                      column="COD_FIL_SEC"                    type="string"  />
+<property name="codCatSec"                      column="COD_CAT_SEC"                    type="string"  />
+<property name="numPratSec"                     column="NUM_PRAT_SEC"                   type="string"  />
+<property name="cfil"                           column="CFIL"                           type="string"  />
+<property name="cage"                           column="CAGE"                           type="string"  />
+<property name="cprg"                           column="CPRG"                           type="string"  />
+<property name="csdp"                           column="CSDP"                           type="string"  />
+<property name="ctit"                           column="CTIT"                           type="string" length="14"  />
+<property name="descrTitolo"                    column="DESCR_TITOLO"                   type="string" length="50"  />
+<property name="dataEseguito"                   column="DATA_ESEGUITO"                  type="date"  />
+<property name="dataRegolamento"                column="DATA_REGOLAMENTO"               type="date"  />
+<property name="dataStorno"                     column="DATA_STORNO"                    type="date"  />
+<property name="dataValuta"                     column="DATA_VALUTA"                    type="date"  />
+<property name="causaleMovimento"               column="CAUSALE_MOVIMENTO"              type="string" length="5"  />
+<property name="numQuoteEseguito"               column="NUM_QUOTE_ESEGUITO"             type="double"  />
+<property name="prezzoEseguito"                 column="PREZZO_ESEGUITO"                type="double"  />
+<property name="controvalore"                   column="CONTROVALORE"                   type="double"  />
+<property name="progressivo"                    column="PROGRESSIVO"                    type="integer"  />
+<property name="codiceIsin"                     column="CODICE_ISIN"                    type="string" length="12"  />
+<property name="mercato"                        column="MERCATO"                        type="string" length="5"  />
+<property name="codDivisa"                      column="COD_DIVISA"                     type="string" length="3"  />
+<property name="cambioEseguito"                 column="CAMBIO_ESEGUITO"                type="double" length="17"  />
+<property name="numOperRif"                     column="NUM_OPER_RIF"                   type="string"  />
+<property name="numOperStornata"                column="NUM_OPER_STORNATA"              type="string"  />
+<property name="impCommiss"                     column="IMP_COMMISS"                    type="double"  />
+<property name="importoSpese"                   column="IMPORTO_SPESE"                  type="double"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+<property name="rapporto"              			column="RAPPORTO_S"                     type="string"  />
+ <property name="descrizioneErrore"  column="DESCRIZIONE_ERRORE_S" type="string" length="100"  />
+<property name="statoObb"  column="STATO_OBB_T" type="string"   />
+<property name="flagObbBanca"  column="FLAG_OBB_BANCA_B" type="string"   />
+<property name="comparto"  column="COMPARTO" type="string"   />
+ <property name="divisaEmissione"  column="DIVISA_EMISSIONE" type="string"   />
+
+ </class>
+ <query name="SEC_MOVIMENTO_DT">from
+it.ras.arco.batch.bean.FlxSecMovimentiDt pc where pc.statoElab='D' order by pc.rapporto,pc.csdp
+</query>
+
+
+</hibernate-mapping>

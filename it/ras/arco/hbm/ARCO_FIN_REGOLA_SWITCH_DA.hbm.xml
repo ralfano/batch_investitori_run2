@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+ <!-- TABELLA REGOLA_SWITCH_DA  -->
+ <class name="it.ras.arco.cp.adapter.FinRegolaSwitchDaAdapter" table="FIN_REGOLA_SWITCH_DA" 
+ 	where="GSTD_ESIST_B='S'" select-before-update="true"
+ 	>
+  
+  
+  <!-- 	ID	-->
+  <id name="id" column="REGOLA_DA_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_REGOLA_SWITCH_DA_SEQ</param>
+   </generator>
+  </id>
+  
+
+
+  <!-- PROPRIETA' "GENERICHE"	-->
+  <property name="classe" 		type="string" 		column="CLASSE_T" 	length="1" />
+  <property name="tipoContratto" 	type="string" 		column="TIPO_CONTRATTO"	length="10" />
+  <property name="dataInizio" 		type="timestamp" 	column="DATA_INIZIO"/>
+  <property name="dataFine" 		type="timestamp" 	column="DATA_FINE"/>
+  
+
+
+
+  <!-- EMITTENTE ASSOCIATA -->
+  <many-to-one name="emittente" lazy="false"
+   class="it.ras.arco.bean.FinEmittenteFlyweight" column="EMITTENTE_ID"
+   update="true" insert="true"
+   cascade="lock" not-found="ignore" fetch="join"
+   />
+
+  <!-- PRODOTTO ASSOCIATO -->
+  <many-to-one name="prodotto" lazy="false"
+   class="it.ras.arco.bean.FinProdottoFlyweight" column="PRODOTTO_ID"
+   update="true" insert="true"
+   cascade="lock" not-found="ignore" fetch="join"
+   />
+   
+  <!-- AF ASSOCIATA -->
+  <many-to-one name="attivitaFinanziaria" lazy="false"
+   class="it.ras.arco.bean.FinAttivitaFinanziariaFlyweight" column="ATTIVITA_FIN_ID"
+   update="true" insert="true"
+   cascade="lock" not-found="ignore" fetch="join"
+   />
+   
+   
+   
+   
+   
+  <!-- RELAZIONE CON FIN_REGOLA_SWITCH_A	-->
+  <set 	name="listaRegoleA"
+  	cascade="all" 
+  	where ="GSTD_ESIST_B='S'"
+  	inverse="true"
+  	lazy="false"
+  	>
+   <key column="REGOLA_DA_ID" /> 
+   <one-to-many class="it.ras.arco.cp.adapter.FinRegolaSwitchAAdapter" not-found="ignore" />
+  </set>
+
+
+   
+   
+  <!--
+  	***********************
+  	  CAMPI STANDARD
+  	***********************
+  -->
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="40"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="40"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="40"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+
+  <!-- Duplicazione campi standard x Update (SLAVE) -->	
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+   
+   
+   
+  
+ </class>
+
+<query name="TS_CARICA_REGOLEDA_PER_MANDATO">
+	select rs
+	from it.ras.arco.cp.adapter.FinRegolaSwitchDaAdapter rs
+		left outer join rs.attivitaFinanziaria af
+		left outer join rs.prodotto p
+		left outer join rs.emittente e
+	where
+	(
+		af.attivitaFinId = :attivitaFinId
+	)
+	or
+	(
+		rs.attivitaFinanziaria IS NULL and
+		p.prodottoID = :prodottoId
+	)
+	or
+	(
+		rs.attivitaFinanziaria IS NULL and
+		rs.prodotto IS NULL and
+		e.emittenteId = :emittenteId
+	)
+	order by 	af.attivitaFinId, 
+				p.prodottoID, 	
+				e.emittenteId
+</query>
+
+</hibernate-mapping>
+

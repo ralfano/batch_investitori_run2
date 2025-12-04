@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.bean.FinDistintaAssegni" table="FIN_DISTINTA_ASSEGNI">
+  <id name="distintaId" column="DISTINTA_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_DISTINTA_ASSEGNI_SEQ</param>
+   </generator>
+  </id>
+  
+    <property name="numeroDistinta" type="integer"   	column="NUMERO_DISTINTA" length="5"/>
+    <property name="dataValuta" type="date" 		column="DATA_VALUTA_D"/>
+    <property name="dataStampa" type="date" 		column="DATA_STAMPA_D"/>
+  	<property name="userUltimaModifica"             	column="GSTD_ULT_USER_S"                type="string" length="40"  />
+  	<property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="40"/>
+  	<property name="dataUltimaModifica" type="date" 	column="GSTD_ULT_MOD_D"/>
+  	<property name="dataInserimentoRecord" type="date" 	column="GSTD_INSE_D"/>
+  	<property name="flagEsistenza" type="string" 		column="GSTD_ESIST_B" length="1"/>
+  	<property name="utenteInserimento" type="string" 	column="GSTD_USER_INS_S" length="40"/>
+  	<property name="tipoUltimaModifica" type="string"     column="GSTD_TIPO_MOD_B" length="1"/>
+    <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+    <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+    <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+    <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  
+  <!--  Paolo Scattino: Associazione con dispPAgamento -->
+  <set 	name="disposizioniPagamento" 
+  		where ="GSTD_ESIST_B='S'" 
+  		cascade="save-update,lock" 
+  		lazy="true" 
+  		inverse="true">
+   	<key column="DISTINTA_ID"/>
+   	<one-to-many class="it.ras.arco.bean.FinDispPagamento" not-found="ignore" />
+  </set>
+  
+ </class>
+ 
+</hibernate-mapping>
+

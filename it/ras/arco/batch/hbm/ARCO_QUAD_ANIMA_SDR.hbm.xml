@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA INDIRIZZI SY -->
+ <class name="it.ras.arco.batch.bean.QuadAnimaSdr" rowid="rowid"
+  table="QUAD_ANIMA_SDR"
+	dynamic-update="true" dynamic-insert="true" batch-size="100" lazy="true" >
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">QUAD_ANIMA_SDR_SEQ</param>
+   </generator>
+  </id>
+  <property name="codComparto" type="string" column="COD_COMPARTO" length="2"/>
+  <property name="contrattoId" type="integer" column="CONTRATTO_ID"/>
+  <property name="posizioneId" type="integer" column="POSIZIONE_ID" />
+  <property name="attivitaFinId" type="integer" column="ATTIVITA_FIN_ID" />
+  <property name="codPromotore" type="string" column="COD_PROMOTORE" length="7"/>
+  <property name="posizioneQuantitaC" type="double" column="POSIZIONE_QUANTITA_C"/>
+  <property name="flxSaldoQuoteFis" type="integer" column="FLX_SALDO_QUOTE_FIS" length="3"/>
+  <property name="statoRecord" type="string" column="STATO_RECORD" length="2"/>
+  <property name="differenzaQuote" type="integer" column="DIFFERENZA_QUOTE"/>
+
+   <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="20"/>
+   <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="20"/>
+   <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+   <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+   <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+   <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="20"/>
+   <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+
+  </class>
+ <query name="QUAD_ANIMA_SDR">from it.ras.arco.batch.bean.QuadAnimaSdr a </query>
+</hibernate-mapping>

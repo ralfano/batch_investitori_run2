@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.bean.FinCodificaConvenzione" table="FIN_CODIFICA_CONVENZIONE">
+  <id name="recordId" column="RECORD_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_CODIFICA_CONVENZIONE_SEQ</param>
+   </generator>
+  </id>
+<property name="tipoRecord"                     column="TIPO_RECORD"                   type="integer"  />
+<property name="tipoTabella"                    column="TIPO_TABELLA"                  type="string" length="3"  />
+<property name="codice"                         column="CODICE"                        type="string" length="2"  />
+<property name="descrizione"                    column="DESCRIZIONE"                   type="string" length="10"  />
+<property name="flagAmm"                        column="FLAG_AMM"                      type="string" length="1"  />
+<property name="percentuale"                    column="PERCENTUALE_SCONTO"            type="double"  />
+
+ </class>
+ 
+ <query name="GetPercentualeByCodice">from it.ras.arco.bean.FinCodificaConvenzione c where c.codice = ?    </query> 
+ 
+</hibernate-mapping>
+

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+ <!-- TABELLA SOGGETTO XP -->
+ <class name="it.ras.arco.batch.bean.FlxSoggettoXP" rowid="rowid" table="FIN_SOGGETTO_XP" where="STATO_ELAB_B='D'" lazy="true">
+  <id name="soggettoXpId" column="SOGGETTO_XP_ID" type="integer"/>
+  <property name="ndgArco" type="integer" column="NDG_ARCO_N"/>
+  <property name="cognome" type="string" column="COGNOME_S" length="35"/>
+  <property name="nome" type="string" column="NOME_S" length="30"/>
+  <property name="tipoSogg" type="string" column="TIPO_SOGG_B" length="1"/>
+  <property name="condPartSogg" type="string" column="COND_PART_SOGG_B" length="1"/>
+  <property name="sesso" type="string" column="SESSO_B" length="1"/>
+  <property name="codiceFiscale" type="string" column="CODICE_FISCALE_S" length="16"/>
+  <property name="partitaIva" type="string" column="PARTITA_IVA_S" length="11"/>
+  <property name="dataNascita" type="date" column="DATA_NASCITA_D"/>
+  <property name="comuneNascita" type="string" column="COMUNE_NASCITA_S" length="40"/>
+  <property name="provNascita" type="string" column="PROV_NASCITA_T" length="3"/>
+  <property name="nazNascita" type="string" column="NAZ_NASCITA_T" length="3"/>
+  <property name="denominazione" type="string" column="DENOMINAZIONE_S" length="70"/>
+  <property name="cittadinanza" type="string" column="CITTADINANZA_T" length="3"/>
+  <property name="statoCivile" type="string" column="STATO_CIVILE_T" length="3"/>
+  <property name="tipoSocieta" type="string" column="TIPO_SOCIETA_T" length="6"/>
+  <property name="attivita" type="string" column="ATTIVITA_T" length="3"/>
+  <property name="noteAttivita" type="string" column="NOTE_ATTIVITA_B" length="1"/>
+  <property name="settore" type="string" column="SETTORE_T" length="3"/>
+  <property name="statoCensim" type="string" column="STATO_CENSIM_B" length="1"/>
+  <property name="provDatiAnag" type="string" column="PROV_DATI_ANAG_T" length="3"/>
+  <property name="datiSupl" type="string" column="DATI_SUPL_S" length="20"/>
+  <property name="statoCliente"                   column="STATO_CLIENTE_T"                type="string" length="1"  />
+	<property name="regoleProm"                     column="REGOLE_PROM_B"                  type="string" length="1"  />
+	<property name="soggMinore"                     column="SOGG_MINORE_B"                  type="string" length="1"  />
+	<property name="soggInterd"                     column="SOGG_INTERD_B"                  type="string" length="1"  />
+	<property name="borsa"                          column="BORSA_B"                        type="string" length="1"  />
+	<property name="attoCostit"                     column="ATTO_COSTIT_B"                  type="string" length="1"  />
+	<property name="statoOper"                      column="STATO_OPER_T"                   type="string" length="1"  />
+	<property name="cciaa"                          column="CCIAA_B"                        type="string" length="1"  />
+	<property name="dataFondaz"                     column="DATA_FONDAZ_D"                  type="date"  />
+	<property name="dataSciogli"                    column="DATA_SCIOGLI_D"                 type="date"  />
+	<property name="numCciaa"                       column="NUM_CCIAA_S"                    type="string" length="9"  />
+	<property name="numRea"                         column="NUM_REA_S"                      type="string" length="9"  />
+	<property name="pattiChiari"                    column="PATTI_CHIARI_B"                 type="string" length="1"  />
+	<property name="provRea"                        column="PROV_REA_T"                     type="string" length="3"  />
+	<property name="socEstera"                      column="SOC_ESTERA_B"                   type="string" length="1"  />
+	<property name="statuto"                        column="STATUTO_B"                      type="string" length="1"  />
+	<property name="sedeTribunale"                  column="SEDE_TRIBUNALE_S"               type="string" length="40"  />
+	<property name="verbaleNomina"                  column="VERBALE_NOMINA_B"               type="string" length="1"  />
+	<property name="certifVigenza"                  column="CERTIF_VIGENZA_B"               type="string" length="1"  />
+	<property name="citta"                          column="CITTA_S"                        type="string" length="40"  />
+	<property name="copiaCodFisc"                   column="COPIA_COD_FISC_B"               type="string" length="1"  />
+	<property name="copiaDocLeg"                    column="COPIA_DOC_LEG_B"                type="string" length="1"  />
+	<property name="copiaRegTrib"                   column="COPIA_REG_TRIB_B"               type="string" length="1"  />
+	<property name="note"                           column="NOTE_S"                         type="string" length="200"  />
+	<property name="patrimonioTot"                  column="PATRIMONIO_TOT_S"               type="string" length="18"  />
+	<property name="fasciaCli"                      column="FASCIA_CLI_S"                   type="string" length="2"  />
+	<property name="capNascita"                     column="CAP_NASCITA_S"                  type="string" length="7"  />
+	<property name="capitaleSoc"                    column="CAPITALE_SOC_S"                 type="string" length="12"  />
+	<property name="capitaleVer"                    column="CAPITALE_VER_S"                 type="string" length="12"  />
+	<property name="dataIscrRea"                    column="DATA_ISCR_REA_D"                type="date"  />
+	<property name="fotocopiaDoc"                   column="FOTOCOPIA_DOC_B"                type="string" length="1"  />
+	<property name="verbalePoteri"                  column="VERBALE_POTERI_B"               type="string" length="1"  />
+  
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="20"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="20"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="20"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/> 
+  <property name="statoElab" type="string" column="STATO_ELAB_B" length="2"/>
+ </class>
+<query name="CURSOR_SOGGETTO_XP">from it.ras.arco.batch.bean.FlxSoggettoXP p</query>
+</hibernate-mapping>

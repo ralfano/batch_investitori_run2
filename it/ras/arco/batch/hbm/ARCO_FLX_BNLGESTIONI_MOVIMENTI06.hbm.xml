@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DECODIFICA SOGGETTI SEC -->
+ <class name="it.ras.arco.batch.bean.FlxBnlGestioniMovimenti" rowid="rowid"
+  table="FLX_BNLGESTIONI_MOVIMENTI06" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_BNLGESTIONIMOVIMENTI06_SEQ</param>
+   </generator>
+  </id>
+<property name="numAccordo"                     column="NUM_ACCORDO"                    type="integer"  />
+<property name="codProd"                        column="COD_PROD"                       type="string" length="4"  />
+<property name="numProgope"                     column="NUM_PROGOPE"                    type="integer"  />
+<property name="numMovisgr"                     column="NUM_MOVISGR"                    type="integer"  />
+<property name="codMovimmen"                    column="COD_MOVIMMEN"                   type="integer"  />
+<property name="codSportel"                     column="COD_SPORTEL"                    type="integer"  />
+<property name="dataOperaz"                     column="DATA_OPERAZ"                    type="date"  />
+<property name="dataValuta"                     column="DATA_VALUTA"                    type="date"  />
+<property name="dataRegolam"                    column="DATA_REGOLAM"                   type="date"  />
+<property name="codParteci"                     column="COD_PARTECI"                    type="integer"  />
+<property name="codOperatore"                   column="COD_OPERATORE"                  type="string" length="8"  />
+<property name="canale"                         column="CANALE"                         type="string" length="6"  />
+<property name="modPagamento"                   column="MOD_PAGAMENTO"                  type="string" length="2"  />
+<property name="codDivisa"                      column="COD_DIVISA"                     type="string" length="3"  />
+<property name="segnoImp"                       column="SEGNO_IMP"                      type="string" length="1"  />
+<property name="importo"                        column="IMPORTO"                        type="double"  />
+<property name="importoComm"                    column="IMPORTO_COMM"                   type="double"  />
+<property name="importoSpese"                   column="IMPORTO_SPESE"                  type="double"  />
+<property name="valoreQuote"                    column="VALORE_QUOTE"                   type="double"  />
+<property name="segnoQuote"                     column="SEGNO_QUOTE"                    type="string" length="1"  />
+<property name="numeroQuote"                    column="NUMERO_QUOTE"                   type="double"  />
+<property name="flagCertif"                     column="FLAG_CERTIF"                    type="string" length="1"  />
+<property name="numCertifBnl"                   column="NUM_CERTIF_BNL"                 type="integer"  />
+<property name="numCertifSgr"                   column="NUM_CERTIF_SGR"                 type="integer"  />
+<property name="codAccorsw"                     column="COD_ACCORSW"                    type="integer"  />
+<property name="numProopsw"                     column="NUM_PROOPSW"                    type="integer"  />
+<property name="codProdSwi"                     column="COD_PROD_SWI"                   type="string" length="4"  />
+<property name="abi"                            column="ABI"                            type="integer"  />
+<property name="cab"                            column="CAB"                            type="integer"  />
+<property name="codSporBnl"                     column="COD_SPOR_BNL"                   type="integer"  />
+<property name="flagChConto"                    column="FLAG_CH_CONTO"                  type="string" length="1"  />
+<property name="numContoCo"                     column="NUM_CONTO_CO"                   type="string" length="12"  />
+<property name="numQuoteTo"                     column="NUM_QUOTE_TO"                   type="double"  />
+<property name="numQuoteVi"                     column="NUM_QUOTE_VI"                   type="double"  />
+<property name="numAssegno"                     column="NUM_ASSEGNO"                    type="string" length="15"  />
+<property name="prezMedio"                      column="PREZ_MEDIO"                     type="double"  />
+<property name="flgEsenzione"                   column="FLG_ESENZIONE"                  type="string" length="2"  />
+<property name="codFiscale"                     column="COD_FISCALE"                    type="string" length="16"  />
+<property name="flgRiassegnato"                 column="FLG_RIASSEGNATO"                type="string" length="1"  />
+<property name="descCausale"                    column="DESC_CAUSALE"                   type="string" length="120"  />
+<property name="codLinea"                       column="COD_LINEA"                      type="string" length="2"  />
+<property name="numMoviInv"                     column="NUM_MOVI_INV"                   type="integer"  />
+<property name="filler"                         column="FILLER"                         type="string" length="33"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+<property name="tipoRecord"                     column="TIPO_RECORD"                    type="integer"  />
+<property name="descrizioneErrore"              column="DESCRIZIONE_ERRORE_S"           type="string" length="100"  />
+<property name="dataErrore"                     column="DATA_ERRORE"                    type="date" />
+
+ </class>
+<query name="CURSOR_BNLGESTIONI_MOVIMENTI">from it.ras.arco.batch.bean.FlxBnlGestioniMovimenti</query>
+</hibernate-mapping>

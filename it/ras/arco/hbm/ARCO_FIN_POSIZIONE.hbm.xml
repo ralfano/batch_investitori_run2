@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+ <!-- TABELLA DELLE POSIZIONI  --> 
+ <class name="it.ras.arco.bean.FinPosizione" table="FIN_POSIZIONE" where="GSTD_ESIST_B='S'"
+		batch-size="1"
+	>
+ 
+  <id name="posizioneId" column="POSIZIONE_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_POSIZIONE_SEQ</param>
+   </generator>
+  </id>
+   <discriminator type="string" not-null="false" insert="false"
+   	formula="case when TIPO_T in ('DT') then 'DT' else 'OTH' end" /> 
+ 
+ 
+  <!--property name="contrattoId" type="integer" column="CONTRATTO_ID"/-->
+  <property name="tipo" type="string" column="TIPO_T" length="3"/>
+  <property name="sottoDossier" type="string" column="SOTTODOSSIER_S"/>
+  <property name="dataVal" type="date" column="DATA_VAL_D"/>
+  <property name="dataCreazione" type="date" column="DATA_CREAZIONE_D"/>
+  <property name="quantita" type="double" column="QUANTITA_C"/>
+  <property name="quantitaDisp" type="double" column="QUANTITA_DISP_C"/>
+  <property name="qtBloccata" type="double" column="QT_BLOCCATA_C"/>
+  <property name="qtPrenotata" type="double" column="QT_PRENOTATA_C"/>
+  <property name="qtTunnel1" type="double" column="QT_TUNNEL_1_C"/>
+  <property name="qtTunnel2" type="double" column="QT_TUNNEL_2_C"/>
+  <property name="qtTunnel3" type="double" column="QT_TUNNEL_3_C"/>
+  <property name="qtTunnel4" type="double" column="QT_TUNNEL_4_C"/>
+  <property name="ctv" type="double" column="CTV"/>
+  <property name="rateo" type="double" column="RATEO"/>
+  <property name="pmc" type="double" column="PMC_C"/>
+  <property name="cambioMedio" type="double" column="CAMBIO_MEDIO_C"/>
+  <property name="valQuota" type="double" column="VAL_QUOTA"/>
+  <property name="giacenzaMedia" type="double" column="GIACENZA_MEDIA"/>
+  <property name="ggDaApert" type="integer" column="GG_DA_APERT"/>
+  <property name="commissioni" type="double" column="COMMISSIONI_C"/>
+  <property name="spese" type="double" column="SPESE_C"/>
+  <property name="impVersatoLordo" type="double" column="IMP_VERSATO_LORDO_C"/>
+  <property name="impPrelevLordo" type="double" column="IMP_PRELEV_LORDO_C"/>
+  <property name="impGiroconLordo" type="double" column="IMP_GIROCON_LORDO_C"/>
+  <property name="impPlusvalLordo" type="double" column="IMP_PLUSVAL_LORDO_C"/>
+  <property name="impVersatoNetto" type="double" column="IMP_VERSATO_NETTO_C"/>
+  <property name="impPrelevNetto" type="double" column="IMP_PRELEV_NETTO_C"/>
+  <property name="impGiroconNetto" type="double" column="IMP_GIROCON_NETTO_C"/>
+  <property name="impPlusvalNetto" type="double" column="IMP_PLUSVAL_NETTO_C"/>
+  <property name="rendInvestLordo" type="double" column="REND_INVEST_LORDO"/>
+  <property name="rendInvestNetto" type="double" column="REND_INVEST_NETTO"/>
+  <property name="numQuoteCert" type="double" column="NUM_QUOTE_CERT"/>
+  <property name="percentuale" type="double" column="PERCENTUALE"/>
+  <property name="tipoProdotto" type="string" column="TIPO_PRODOTTO_T" length="3"/>
+  <property name="codiceSconto" type="string" column="CODICE_SCONTO" length="8"/>
+  <property name="codiceConvenzione" type="string" column="COD_CONVENZIONE" length="8"/>
+  <property name="flgNoPagAmministrative" type="string" column="FLG_NO_PAG_AMMINISTRATIVE" length="1"/>
+  <property name="statoPosizione" type="string" column="STATO_POSIZIONE_T" length="1"/>
+  
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="20"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="20"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="20"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  
+  <property name="dataPrimoMov" type="date" column="DATA_PRIMO_MOVIMENTO"/>
+  <property name="dataUltMov" type="date" column="DATA_ULT_MOVIMENTO"/>
+  
+  
+  <set name="estrazioni"  cascade="lock" lazy="true" where ="FL_INVIATO='N' AND TABLE_NAME='FIN_POSIZIONE' " >
+   <key column="ID"/>
+   <one-to-many class="it.ras.arco.bean.SnpEstrazioni" not-found="ignore" />
+  </set>
+   
+
+  
+ <!--
+ 	V: Per adesso sono costretto a impostare il lazy a false perchÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¨ altrimenti poi non posso navigare.
+ 		SarÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â  risolto quando si potrÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â  riconnettersi con la sessione.
+ 		
+ 	V: Io questo comunque lo lascerei cosÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬, perchÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¨ comunque una posizione ha solo un contratto e nel contratto tutti i lazy sono a true.
+ -->
+ 
+ <!-- RELAZIONE CON FIN_SERVIZIO_AGGIUNTIVO-->
+ <set name="servizioAgg"  where ="GSTD_ESIST_B='S'" cascade="lock" 
+     lazy="true"  inverse="true" >
+   <key column="POSIZIONE_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinServizioAggiuntivo"  not-found="ignore" />
+  </set>
+  
+  <!-- RELAZIONE CON FIN_CONTR_BLOCCHI-->
+  <set name="contrBlocchi" cascade="lock"
+  	 inverse="true" lazy="true"
+  	 where ="GSTD_ESIST_B='S' and FINE_VALIDITA_D >= SYSDATE">
+   <key column="POSIZIONE_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinContrBlocchi"/>
+  </set>
+  
+
+  <!--
+  		V: Ho levato save-update per non dover risolvere i problemi di doppia instanza del bean quando modifico
+  			la sottoscrizione in certi casi. Se si rende necessario aggiungerlo, aggiornare il metodo in ModificaSottoscrizione
+  			per la risoluzione di tutti i problemi relativi a diverse istanze che puntano alla stessa tupla.
+  			Qui si dovrebbe ciclare sui Set degli ordini.
+			Per aggiornare l'ordine puntare direttamente su Ordine. Il vincolo principale per levare il save-update qui ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¨
+			che nella modifica\inserimento della Sottoscrizione il percorso ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¨ Sottoscrizione-Ordini-Posizione-Contratto.
+  -->
+ <!-- RELAZIONE CON FIN_ORDINE -->
+ <set name="ordini"  where ="GSTD_ESIST_B='S'" cascade="lock" 
+     lazy="true"  inverse="true" >
+   <key column="POSIZIONE_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinOrdine"  not-found="ignore" />
+  </set>
+<!--	ERRATA
+  <many-to-one name="ordine"
+	 class="it.ras.arco.bean.FinOrdine" column="ORDINE_ID" not-found="ignore" cascade="lock" 
+	 insert="true" update="true"
+	 />
+ -->
+ 
+
+	<!--  RELAZIONE CON FIN_DETTAGLIO_PCT 
+	--> 
+	<!-- commentato  mutable="true"  non compatibile con hibernate 3.0.5-->
+	<set 	name="dettaglioPct" where="GSTD_ESIST_B='S'" cascade="lock" lazy="true" 
+			inverse="true" sort="unsorted" 
+			optimistic-lock="true" embed-xml="true"
+		>
+		<key column="POSIZIONE_ID" on-delete="noaction" /> 
+		<one-to-many class="it.ras.arco.bean.FinDettaglioPct" not-found="ignore" embed-xml="true" /> 
+	</set>
+
+ 
+	<many-to-one name="contratto" class="it.ras.arco.bean.FinContratto"  
+ 		column="CONTRATTO_ID" update="true" insert="true" 
+ 		lazy="proxy" 
+		fetch="select"
+ 		cascade="all, lock" not-found="ignore" />
+ 
+ 
+	<many-to-one name="attivitaFin" class="it.ras.arco.bean.FinAttivitaFinanziaria"  
+  		column="ATTIVITA_FIN_ID" update="true" insert="true" 
+  		lazy="proxy" 
+		fetch="select"
+  		not-found="ignore" cascade="lock"/>
+ 
+ 
+ <!-- RELAZIONE CON FIN_CERTIFICATO-->
+ <set name="certificato"  where ="GSTD_ESIST_B='S'" cascade="lock" 
+     lazy="true"  inverse="true" >
+   <key column="POSIZIONE_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinCertificato" not-found="ignore" />
+  </set>
+ 
+  <subclass name="it.ras.arco.bean.FinPosizioneDt" discriminator-value="DT" >
+   
+  
+    <!--  RELAZIONE CON FIN_SOGGETTO  --> 
+      <many-to-one name="soggetto" class="it.ras.arco.bean.FinSoggetto"
+   			column="SOGGETTO_ID" cascade="lock" not-null="false" lazy="proxy" not-found="ignore" />
+    </subclass>
+ <subclass name="it.ras.arco.bean.FinPosizioneGestito" discriminator-value="OTH" >
+  </subclass>
+ 
+  <!-- 2/01/2006 RELAZIONE DI JOIN CON LA FIN_POSIZIONE_DET 
+ 
+  <joined-subclass name="it.ras.arco.bean.FinPosizioneDet"  table="FIN_POSIZIONE_DET" >
+
+	<key column= "POSIZIONE_ID"/>
+	<property name="pctCodiceIsin"                  column="PCT_CODICE_ISIN"                type="string" length="14"  />
+	<property name="pctCodiceTitoloSec"             column="PCT_CODICE_TITOLO_SEC"          type="string" length="9"  />
+	<property name="pctDenominazione"               column="PCT_DENOMINAZIONE"              type="string" length="30"  />
+	<property name="pctPrezzoTermine"               column="PCT_PREZZO_TERMINE"             type="double"  />
+	<property name="pctDataTermine"                 column="PCT_DATA_TERMINE"               type="date"  />
+	<property name="pctCambioTermine"               column="PCT_CAMBIO_TERMINE"             type="double"  />
+	<property name="pctControvaloreTermine"         column="PCT_CONTROVALORE_TERMINE"             type="double"  />
+	<property name="divisa"             		    column="PCT_DIVISA"          type="string" length="3"  />
+	<property name="dataOrdine"                     column="DATA_ORDINE"                type="date"  />
+	<property name="obbDval "                       column="OBB_DVAL "                      type="date"  />
+	<property name="obbQuantitaAssegnata"           column="OBB_QUANTITA_ASSEGNATA"         type="double"  />
+	<property name="obbControvalore "               column="OBB_CONTROVALORE "              type="double"  />
+	<property name="obbPrezzo"                      column="OBB_PREZZO"                     type="double"  />
+
+ </joined-subclass>-->
+ 
+   </class>
+ 
+   <query name="GetPosizioneOnlyByPosizioneId">from it.ras.arco.bean.FinPosizione o where o.posizioneId= :posizioneId </query> 
+ 
+ 
+ <sql-query name="GetPosizioneByContrattoIdAttFinSottodossier">
+<return alias="posizione" class="it.ras.arco.bean.FinPosizione"/>
+select {posizione.*} from FIN_POSIZIONE posizione    
+where
+  posizione.CONTRATTO_ID = :contrattoId  
+ and posizione.ATTIVITA_FIN_ID = :attivitaFinId   
+  and posizione.SOTTODOSSIER_S = :sottodossier  
+    and posizione.GSTD_ESIST_B='S'
+</sql-query>
+
+
+
+ 
+
+ <sql-query name="GetPosizioneByEmittente">
+<return alias="posizione" class="it.ras.arco.bean.FinPosizione"/>
+		select 
+		distinct {posizione.*}
+		from
+		SNP_ESTRAZIONI a, 
+		FIN_POSIZIONE posizione
+		where 
+		a.ID = posizione.POSIZIONE_ID and
+		a.DEST = 'ANT' and
+		a.TABLE_NAME = 'FIN_POSIZIONE' and 
+		a.FL_INVIATO='N'
+</sql-query>
+
+<sql-query name="QueryVeloce">
+ <return alias="posizione" class="it.ras.arco.bean.FinPosizione"/> 
+select {posizione.*} from fin_posizione posizione where posizione.CONTRATTO_ID in(3835120) and posizione.GSTD_ESIST_B='S'
+</sql-query>
+  
+ 
+  <sql-query name="GetPosizioneByContrattoIdSoggIdSottodossier">
+<return alias="posizioneDt" class="it.ras.arco.bean.FinPosizioneDt"/>
+select {posizioneDt.*} from FIN_POSIZIONE posizioneDt    
+where
+  posizioneDt.CONTRATTO_ID = :contrattoId  
+ and posizioneDt.SOGGETTO_ID = :soggettoId   
+  and posizioneDt.SOTTODOSSIER_S = :sottodossier  
+  and posizioneDt.GSTD_ESIST_B='S'
+</sql-query>
+
+ 
+<sql-query name="OutboundPosizioneFondiBNL">
+ <return alias="posizione" class="it.ras.arco.bean.FinPosizione"/> 
+ select 
+ distinct {posizione.*}
+ from
+ SNP_ESTRAZIONI a, 
+ fin_posizione posizione
+ where 
+ a.ID = posizione.posizione_id and
+ a.DEST = 'PG_F' 
+ and a.TABLE_NAME = 'FIN_POSIZIONE_ALL'
+ and a.FL_INVIATO='N' and
+ posizione.TIPO_PRODOTTO_T in ('FN','FNF')
+</sql-query>
+
+<sql-query name="OutboundPosizioneFondiBNL_SQ">
+ <return alias="posizione" class="it.ras.arco.bean.FinPosizione"/> 
+ select 
+ distinct {posizione.*}
+ from
+ SNP_ESTRAZIONI a, 
+ fin_posizione posizione
+ where 
+ a.ID = posizione.posizione_id and
+ a.DEST = 'PG_F' 
+ and a.TABLE_NAME = 'FIN_POSIZIONE_CON'
+ and a.FL_INVIATO='N' and
+ posizione.TIPO_PRODOTTO_T in ('FN','FNF')
+</sql-query>
+
+<sql-query name="OutboundPosizioneFondiBNL_IND">
+ <return alias="posizione" class="it.ras.arco.bean.FinPosizione"/> 
+ select 
+ distinct {posizione.*}
+ from
+ SNP_ESTRAZIONI a, 
+ fin_posizione posizione
+ where 
+ a.ID = posizione.posizione_id and
+ a.DEST = 'PG_F' 
+ and a.TABLE_NAME = 'FIN_POSIZIONE_CON'
+ and a.FL_INVIATO='N' and
+ posizione.TIPO_PRODOTTO_T in ('FN','FNF')
+</sql-query>
+
+<sql-query name="OutboundMandatiPosizioneFondiBNL">
+ <return alias="posizione" class="it.ras.arco.bean.FinPosizione"/> 
+ select 
+ distinct {posizione.*}
+ from
+ SNP_ESTRAZIONI a, 
+ fin_posizione posizione
+ where 
+ a.ID = posizione.posizione_id and
+ a.DEST IN('PGFC')
+ and a.TABLE_NAME = 'FIN_POSIZIONE'
+ and a.FL_INVIATO='N'  and
+ posizione.TIPO_PRODOTTO_T in ('FN','FNF')
+</sql-query>
+
+
+<sql-query name="OutboundSquadrePosizioneFondiBNL">
+ <return alias="posizione" class="it.ras.arco.bean.FinPosizione"/> 
+ select     
+ distinct {posizione.*}
+ from
+ SNP_ESTRAZIONI a, 
+ fin_posizione posizione
+ where 
+ a.ID = posizione.posizione_id and
+ a.DEST IN('PGFS')
+ and a.TABLE_NAME = 'FIN_POSIZIONE'
+ and a.FL_INVIATO='N' and
+ posizione.TIPO_PRODOTTO_T in ('FN','FNF')
+</sql-query>
+
+
+
+<sql-query name="OutboundIndirizziPosizioneFondiBNL">
+ <return alias="posizione" class="it.ras.arco.bean.FinPosizione"/> 
+ select 
+ distinct {posizione.*}
+ from
+ SNP_ESTRAZIONI a, 
+ fin_posizione posizione
+ where 
+ a.ID = posizione.posizione_id and
+ a.DEST IN('PGFI')
+ and a.TABLE_NAME = 'FIN_POSIZIONE'
+ and a.FL_INVIATO='N' and
+ posizione.TIPO_PRODOTTO_T in ('FN','FNF')
+</sql-query>
+
+
+
+<sql-query name="OutboundPosizioneFondiSicav">
+ <return alias="posizione" class="it.ras.arco.bean.FinPosizione"/> 
+ select 
+ distinct {posizione.*}
+ from
+ SNP_ESTRAZIONI a, 
+ fin_posizione posizione
+ where 
+ a.ID = posizione.posizione_id and
+ a.DEST IN ('PGSC')
+ and a.TABLE_NAME = 'FIN_POSIZIONE'
+ and a.FL_INVIATO='N'  and
+ posizione.TIPO_PRODOTTO_T in ('CS')
+ </sql-query>
+
+
+
+<sql-query name="OutboundIndirizziFondiSicav">
+ <return alias="posizione" class="it.ras.arco.bean.FinPosizione"/> 
+ select 
+ distinct {posizione.*}
+ from
+ SNP_ESTRAZIONI a, 
+ fin_posizione posizione
+ where 
+ a.ID = posizione.posizione_id and
+ a.DEST IN ('PGSI')
+ and a.TABLE_NAME = 'FIN_POSIZIONE'
+ and a.FL_INVIATO='N' and
+ posizione.TIPO_PRODOTTO_T in ('CS')
+ </sql-query>
+
+
+
+<sql-query name="OutboundPosizioneFondiSicav_SQ">
+ <return alias="posizione" class="it.ras.arco.bean.FinPosizione"/> 
+ select 
+ distinct {posizione.*}
+ from
+ SNP_ESTRAZIONI a, 
+ fin_posizione posizione
+ where 
+ a.ID = posizione.posizione_id and
+ a.DEST IN ('PGSS')
+ and a.TABLE_NAME = 'FIN_POSIZIONE'
+ and a.FL_INVIATO='N' and
+ posizione.TIPO_PRODOTTO_T in ('CS')
+</sql-query>
+
+
+
+<sql-query name="OutboundPosizioneFondiSicav_IND">
+ <return alias="posizione" class="it.ras.arco.bean.FinPosizione"/> 
+ select 
+ distinct {posizione.*}
+ from
+ SNP_ESTRAZIONI a, 
+ fin_posizione posizione
+ where 
+ a.ID = posizione.posizione_id and
+ a.DEST = 'PG_S' 
+ and a.TABLE_NAME = 'FIN_POSIZIONE_CON'
+ and a.FL_INVIATO='N' and
+ posizione.TIPO_PRODOTTO_T in ('CS')
+</sql-query>
+
+</hibernate-mapping>
+

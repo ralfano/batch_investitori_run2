@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA EMITTENTE -->
+ <class name="it.ras.arco.bean.FinDispPagamento" table="FIN_DISP_PAGAMENTO" where="GSTD_ESIST_B='S'">
+  <id name="disposizioneId" column="DISPOSIZIONE_ID"  type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_DISP_PAGAMENTO_SEQ</param>  
+   </generator>
+  </id> 
+
+  <property name="flagImportoDaDefinire"          column="FLAG_IMPORTO_DA_DEF"            type="string" length="1"  />
+  <property name="dataVersamento"                 column="DATA_VERS"              		type="date"  />
+  <property name="dataValuta"                 	column="DATA_VALUTA"             		type="date"  />
+  <property name="datiBanca"                 		column="DATI_BANCA"              		type="string" length="40"  />
+  <property name="mezzoPagamento"                 column="MEZZO_PAGAMENTO_T"              type="string" length="5"  />
+  <property name="stato"                          column="STATO_T"                        type="string" length="3"  />
+  <property name="dataInserimentoD"               column="DATA_INSERIMENTO_D"             type="date"  />
+  <property name="numAssegno"                     column="NUM_ASSEGNO_S"                  type="string" length="20"  />
+  <property name="abi"                            column="ABI_T"                          type="string" length="5"  />
+  <property name="cab"                            column="CAB_T"                          type="string" length="5"  />
+  <property name="numCc"                          column="NUM_CC_T"                       type="string" length="20"  />
+  <property name="importo"                        column="IMPORTO_C"                      type="double"  />
+  <property name="codDispExt"                     column="COD_DISP_EXT_S"                 type="string" length="10"  />
+  <property name="descrizione"                    column="DESCRIZIONE_S"                  type="string" length="200"  />
+  <property name="filialeCc"                      column="FILIALE_CC"                     type="integer" length="5"  />
+  <!-- <property name="sottoscrizioneId"               column="SOTTOSCRIZIONE_ID"                   type="integer"  /> -->
+  <property name="userUltimaModifica"             column="GSTD_ULT_USER_S"                type="string" length="40"  />
+  <property name="proceduraUltimaModifica"        column="GSTD_ULT_PROC_S"                type="string" length="40"  />
+  <property name="dataUltimaModifica"             column="GSTD_ULT_MOD_D"                 type="date"  />
+  <property name="dataInserimento"                column="GSTD_INSE_D"                    type="date"  />
+  <property name="flagEsistenza"                  column="GSTD_ESIST_B"                   type="string" length="1"  />
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S"                             length="40"/>
+  <property name="tipoUltimaModifica"             column="GSTD_TIPO_MOD_B"                type="string" length="1"  />
+  
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+
+  <property name="tipoDestinatario" type="string" column="DEST_TIPO" length="3"/>
+  <property name="denominazione" type="string" column="DEST_DENOMINAZIONE" length="150"/>
+  <property name="percRipartizione" column="PERC_RIPARTIZIONE" type="double"  />
+  <property name="numContratto" type="string" column="NUM_CONTRATTO_S" length="25"/>
+
+  <property name="codSecOld" type="string" column="COD_SEC_OLD_S" length="12"/>
+  <property name="codPartAvvis" type="string" column="COD_PART_AVVIS_S" length="16"/>
+  <property name="disposizioneIdSec" type="string" column="DISPOSIZIONE_ID_SEC_S" length="26"/>
+  <property name="codiceSocieta" type="string" column="COD_SOCIETA_S" length="4"/>
+  <property name="dataValutaContoAfflussi" column="DATA_VALUTA_AFFLUSSI" type="date"  />
+
+  <many-to-one name="soggetto"
+   class="it.ras.arco.bean.FinSoggetto" column="ID_ESIBITORE"
+   cascade="lock" 
+   not-found="ignore"
+   lazy="proxy" 
+   />
+	
+
+
+                                                                                                                                                          
+  <set name="estrazioni"  cascade="lock" lazy="true" where ="FL_INVIATO='N' AND TABLE_NAME='FIN_DISP_PAGAMENTO' " >
+   <key column="ID"/>
+   <one-to-many class="it.ras.arco.bean.SnpEstrazioni" not-found="ignore" />
+  </set>
+  
+  
+  <many-to-one name="indirizzo" class="it.ras.arco.bean.FinIndirizzo" column="INDIRIZZO_ID" cascade="lock" not-found="ignore"/>
+  
+  <many-to-one name="emittente" class="it.ras.arco.bean.FinEmittente" column="EMITTENTE_ID" cascade="lock" not-found="ignore"/>
+  
+  <many-to-one name="contoCorrente" class="it.ras.arco.bean.FinContrattoCC" column="CONTRATTO_ID" cascade="lock" not-found="ignore"/>
+
+   <!-- RELAZIONE CON FIN_SOTTOSCRIZIONE -->
+  <many-to-one name="sottoscrizione"
+   class="it.ras.arco.bean.FinSottoscrizione" column="SOTTOSCRIZIONE_ID" not-null="false" 
+   lazy="proxy " 
+   cascade="save-update,lock " 
+   insert="true " 
+   update ="true"  not-found="ignore" />
+
+  <!--  Paolo Scattino -->
+   <many-to-one 
+   		name="distintaAssegni" 
+   		class="it.ras.arco.bean.FinDistintaAssegni"
+   		column="DISTINTA_ID" 
+   		cascade="save-update,lock" 
+   		not-found="ignore" lazy="false" />
+
+ </class>
+ 
+   	<sql-query name="OutboundSottoscrizioneDisposizioni">
+  	 <return alias="disposizioni" class="it.ras.arco.bean.FinDispPagamento"/> 
+		select 
+		distinct {disposizioni.*}
+		from
+		SNP_ESTRAZIONI a, 
+		FIN_DISP_PAGAMENTO disposizioni
+		where 
+		a.ID = disposizioni.DISPOSIZIONE_ID and
+		a.DEST = 'ANT' and
+		a.TABLE_NAME = 'FIN_DISP_PAGAMENTO' and
+		a.FL_INVIATO='N'
+  	 </sql-query>
+  	 
+  	 <query name="GetDispPagamentoByNumAssegno">
+  	 	<![CDATA[
+  	 	select distinct d from it.ras.arco.bean.FinDispPagamento d
+  	 	where d.numAssegno = ?
+  	 	and d.abi = ?
+  	 	and d.cab = ?
+  	 	and d.mezzoPagamento in ('AB', 'AC')
+  	 	and d.sottoscrizione.stato<>'K'
+  	 	]]>
+  	 </query>
+
+ 	 <query name="GetDispPagamentoByNumAssegnoCaricaAssegni">
+  	 	<![CDATA[
+  	 	select distinct d from it.ras.arco.bean.FinDispPagamento d
+  	 	where d.numAssegno = :numAssegno
+  	 	and d.abi = :abi
+  	 	and d.cab = :cab
+  	 	and d.mezzoPagamento in ('AB', 'AC')
+  	 	]]>
+  	 </query>
+ </hibernate-mapping>
+

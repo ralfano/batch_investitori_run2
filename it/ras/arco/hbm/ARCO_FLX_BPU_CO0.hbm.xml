@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA NOTE ANAGRAFICA PROMOTORE -->
+ <class name="it.ras.arco.bean.FlxBpuCo0" table="FLX_BPU_CO0" >
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_BPU_CO0_SEQ</param>
+   </generator>
+  </id>
+	<property name="nprgflu"                        column="NPRGFLU"                        type="integer"  />
+	<property name="nprgrec"                        column="NPRGREC"                        type="integer"  />
+	<property name="cscv"                           column="CSCV"                           type="integer"  />
+	<property name="cclc"                           column="CCLC"                           type="integer"  />
+	<property name="csot"                           column="CSOT"                           type="integer"  />
+	<property name="csotest"                        column="CSOTEST"                        type="string" length="25"  />
+	<property name="trec"                           column="TREC"                           type="string" length="3"  />
+	<property name="cmov"                           column="CMOV"                           type="string" length="11"  />
+	<property name="cmovest"                        column="CMOVEST"                        type="string" length="25"  />
+	<property name="ccomspe"                        column="CCOMSPE"                        type="string" length="8"  />
+	<property name="xcomspe"                        column="XCOMSPE"                        type="string" length="60"  />
+	<property name="sentcom"                        column="SENTCOM"                        type="string" length="1"  />
+	<property name="icomspe"                        column="ICOMSPE"                        type="double"  />
+	<property name="pcom"                           column="PCOM"                           type="double"  />
+	<property name="psco"                           column="PSCO"                           type="double"  />
+	<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+	<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+
+ </class>
+ 
+ <query name="GetCommissioniByProgInvioMovimento">select c from it.ras.arco.bean.FlxBpuCo0 c where c.nprgflu = ? and c.cmov = ?</query>
+ 
+</hibernate-mapping>
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA NOTE ANAGRAFICA PROMOTORE -->
+ <class name="it.ras.arco.bean.FlxBpuRfs" table="FLX_BPU_RFS" >
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_BPU_RFS_SEQ</param>
+   </generator>
+  </id>
+	<property name="nprgflu"                        column="NPRGFLU"                        type="integer"  />
+	<property name="nprgrec"                        column="NPRGREC"                        type="integer"  />
+	<property name="cscv"                           column="CSCV"                           type="integer"  />
+	<property name="cclc"                           column="CCLC"                           type="integer"  />
+	<property name="csot"                           column="CSOT"                           type="integer"  />
+	<property name="csotest"                        column="CSOTEST"                        type="string" length="25"  />
+	<property name="trec"                           column="TREC"                           type="string" length="3"  />
+	<property name="cmov"                           column="CMOV"                           type="string" length="11"  />
+	<property name="cmovest"                        column="CMOVEST"                        type="string" length="25"  />
+	<property name="drfs"                           column="DRFS"                           type="date"  />
+	<property name="cdivprz"                        column="CDIVPRZ"                        type="string" length="3"  />
+	<property name="iprz"                           column="IPRZ"                           type="double"  />
+	<property name="icam"                           column="ICAM"                           type="double"  />
+	<property name="idivrif"                        column="IDIVRIF"                        type="integer"  />
+	<property name="cdivcnv"                        column="CDIVCNV"                        type="string" length="3"  />
+	<property name="icamcnv"                        column="ICAMCNV"                        type="double"  />
+	<property name="idivcnv"                        column="IDIVCNV"                        type="integer"  />
+	<property name="cdivfis"                        column="CDIVFIS"                        type="string" length="3"  />
+    <property name="iprzfis"                        column="IPRZFIS"                        type="double"  />
+	<property name="iplsmin"                        column="IPLSMIN"                        type="double"  />
+	<property name="ssgnmin"                        column="SSGNMIN"                        type="string" length="1"  />
+	<property name="iplsril"                        column="IPLSRIL"                        type="double"  />
+	<property name="ssgnril"                        column="SSGNRIL"                        type="string" length="1"  />
+	<property name="palqfis"                        column="PALQFIS"                        type="double"  />
+	<property name="iintnet"                        column="IINTNET"                        type="double"  />
+	<property name="iplscap"                        column="IPLSCAP"                        type="double"  />
+	<property name="iimprfs"                        column="IIMPRFS"                        type="double"  />
+	<property name="iapprfs"                        column="IAPPRFS"                        type="double"  />
+	<property name="icomrfs"                        column="ICOMRFS"                        type="double"  />
+	<property name="ssgn"                           column="SSGN"                           type="string" length="1"  />
+	<property name="cpae"                           column="CPAE"                           type="string" length="3"  />
+	<property name="sconfis"                        column="SCONFIS"                        type="string" length="1"  />
+	<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+	<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+
+ </class>
+ 
+ <query name="GetRitFiscaliByProgInvioMovimento">select c from it.ras.arco.bean.FlxBpuRfs c where c.nprgflu = ? and c.cmov = ?</query>
+ 
+</hibernate-mapping>

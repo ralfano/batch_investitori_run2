@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DEI CONTRATTI -->
+ <class name="it.ras.arco.bean.FinContrattoCcDt" table="FIN_CONTRATTO_CC_DT" where="GSTD_ESIST_B='S'">
+  <id name="contrattoCcDtId" column="CONTRATTO_CC_DT_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_CONTRATTO_CC_DT_SEQ</param>
+   </generator>
+  </id>
+ 
+<!-- <property name="contrattoId"                    column="CONTRATTO_ID"                   type="integer"  />
+-->
+<property name="tipoRapporto"                   column="TIPO_RAPPORTO_T"                type="string" length="3"  />
+<property name="abi"                            column="ABI_T"                          type="string" length="5"  />
+<property name="cab"                            column="CAB_T"                          type="string" length="5"  />
+<property name="numRapporto"                    column="NUM_RAPPORTO_T"                 type="string" length="20"  />
+<property name="filiale"                        column="FILIALE_S"                      type="integer"  />
+<property name="descFiliale"                    column="DESC_FILIALE"                   type="string" length="50"  />
+<property name="divisa"                         column="DIVISA_T"                       type="string" length="3"  />
+<property name="derogaSegrBanc"                 column="DEROGA_SEGR_BANC_B"             type="string" length="1"  />
+<property name="userUltimaModifica"             column="GSTD_ULT_USER_S"                type="string" length="40"  />
+<property name="proceduraUltimaModifica"        column="GSTD_ULT_PROC_S"                type="string" length="40"  />
+<property name="dataUltimaModifica"             column="GSTD_ULT_MOD_D"                 type="date"  />
+<property name="dataInserimento"                column="GSTD_INSE_D"                    type="date"  />
+<property name="flagEsistenza"                  column="GSTD_ESIST_B"                   type="string" length="1"  />
+<property name="utenteInserimento"              column="GSTD_USER_INS_S"                type="string" length="40"  />
+<property name="tipoUltimaModifica"             column="GSTD_TIPO_MOD_B"                type="string" length="1"  />
+<property name="convenzione"                    column="CONVENZIONE"                    type="string" length="1"  />
+<property name="rapportoAssociato"              column="RAPPORTO_ASSOCIATO"             type="string" length="20"  />
+<property name="cin"                            column="CIN"                            type="string" length="2"  />
+<property name="bban"                           column="BBAN"                           type="string" length="30"  />
+<property name="iban"                           column="IBAN"                           type="string" length="30"  />
+<property name="userMc"                         column="USER_MC"                        type="string" length="20"  />
+<property name="filialeD"                         column="FILIALE_D"                        type="string"   />
+<property name="categoriaD"                         column="CATEGORIA_D"                        type="string"   />
+<property name="categoria"                         column="CATEGORIA"                        type="string"   />
+<property name="dossier"                         column="DOSSIER"                        type="string"   />
+<property name="dossierD"                         column="DOSSIER_D"                        type="string"   />
+ 
+  
+ <!--<one-to-one 
+  		name="contratto" 
+  		class="it.ras.arco.bean.FinContratto" 
+  		constrained="true" /> 
+ -->
+ <many-to-one name="contratto" class="it.ras.arco.bean.FinContratto" 
+   column="CONTRATTO_ID" update="true" insert="true" unique="true" not-null="true" cascade="lock" not-found="ignore" />
+   
+  
+ 
+ </class>
+ 
+ </hibernate-mapping>
+ 

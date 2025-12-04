@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO GENERICO PROMOTORE_MANAGER -->
+    
+    <bean id="GetPromotoreByCodicePromotore"
+    	class="it.ras.arco.service.PromotoreManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_PROMOTORE_BY_CODICE_PROMOTORE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetPromotoreByCodicePromotoreCodiceRete"
+    	class="it.ras.arco.service.PromotoreManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_PROMOTORE_BY_CODICE_PROMOTORE_CODICE_RETE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetPromotoreByCodicePromotoreCodiceReteCodiceCompagnia"
+    	class="it.ras.arco.service.PromotoreManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_PROMOTORE_BY_CODICE_PROMOTORE_CODICE_RETE_CODICE_COMPAGNIA</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertPromotore"
+    	class="it.ras.arco.service.PromotoreManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_PROMOTORE</value>
+    	</property>
+    </bean>
+    
+    <bean id="UpdatePromotore"
+    	class="it.ras.arco.service.PromotoreManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UPDATE_PROMOTORE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetPromotoreAgenziaByPromotoreCP"
+		class="it.ras.arco.service.PromotoreManagerSRV"
+		singleton="false">
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_PROMOTORE_AGENZIA_BY_PROMOTORE_CP</value>
+		</property>
+	</bean>
+
+	<bean id="InsertPromotoreAgenzia"
+		class="it.ras.arco.service.PromotoreManagerSRV"
+		singleton="false">
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>INSERT_PROMOTORE_AGENZIA</value>
+		</property>
+	</bean>
+
+	<bean id="UpdatePromotoreAgenzia"
+		class="it.ras.arco.service.PromotoreManagerSRV"
+		singleton="false">
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>UPDATE_PROMOTORE_AGENZIA</value>
+		</property>
+	</bean>
+	
+	<bean id="GetPromotoreCoordinata"
+    	class="it.ras.arco.service.PromotoreManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_PROMOTORE_COORDINATA</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetPromotoreStruttura"
+    	class="it.ras.arco.service.PromotoreManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_PROMOTORE_STRUTTURA</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertPromotoreCoordinata"
+    	class="it.ras.arco.service.PromotoreManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_PROMOTORE_COORDINATA</value>
+    	</property>
+    </bean>
+    
+    <bean id="UpdatePromotoreCoordinata"
+    	class="it.ras.arco.service.PromotoreManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UPDATE_PROMOTORE_COORDINATA</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetPromotoreDistrettoByPromotoreCP"
+		class="it.ras.arco.service.PromotoreManagerSRV"
+		singleton="false">
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_PROMOTORE_DISTRETTO_BY_PROMOTORE_CP</value>
+		</property>
+	</bean>
+
+	<bean id="InsertPromotoreDistretto"
+		class="it.ras.arco.service.PromotoreManagerSRV"
+		singleton="false">
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>INSERT_PROMOTORE_DISTRETTO</value>
+		</property>
+	</bean>
+	
+	<bean id="UpdatePromotoreDistretto"
+		class="it.ras.arco.service.PromotoreManagerSRV"
+		singleton="false">
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>UPDATE</value>
+		</property>
+	</bean>
+    
+	<bean id="InsertPromotoreStruttura"
+    	class="it.ras.arco.service.PromotoreManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_PROMOTORE_STRUTTURA</value>
+    	</property>
+    </bean>
+    
+    <bean id="UpdatePromotoreStruttura"
+    	class="it.ras.arco.service.PromotoreManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UPDATE_PROMOTORE_STRUTTURA</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertSoggSchedaPromotoreDefault"
+    	class="it.ras.arco.service.PromotoreManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_SOGG_SCHEDA_PROMOTORE_DEFAULT</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsSoggettoScheda"
+    	class="it.ras.arco.service.PromotoreManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_SOGG_SCHEDA</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetPromotoreByCodicePromotoreMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetPromotoreByCodicePromotore</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CODICE_PROMOTORE</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>PROMOTORE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetPromotoreByCodicePromotoreCodiceReteMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetPromotoreByCodicePromotoreCodiceRete</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CODICE_PROMOTORE</value>
+    			<value>CODICE_RETE</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>PROMOTORE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetPromotoreByCodicePromotoreCodiceReteCodiceCompagniaMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetPromotoreByCodicePromotoreCodiceReteCodiceCompagnia</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CODICE_PROMOTORE</value>
+    			<value>CODICE_RETE</value>
+    			<value>CODICE_COMPAGNIA</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>PROMOTORE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetPromotoreStrutturaMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetPromotoreStruttura</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>PROMOTORE_PADRE</value>
+    			<value>PROMOTORE_FIGLIO</value>
+    			<value>DATA_INIZIO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>PROMOTORE_STRUTTURA</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertPromotoreMD"    
+   		class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+      		<ref bean="RasBatchDao" />
+     	</property>
+     	<property name="query">
+      		<value>5</value>
+     	</property>
+     	<property name="queryName">
+      		<value>censimentoPromotore</value>
+     	</property>
+     	<property name="parameters">
+      	<list>
+       		<value>PROMOTORE</value>
+     	</list>
+     	</property>
+     	<property name="output">
+     		<value>PROMOTORE</value>
+    	</property>
+     </bean>
+     
+     <bean id="UpdatePromotoreMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>PROMOTORE</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>PROMOTORE</value>
+		</property>
+	</bean>
+	
+	<bean id="GetPromotoreAgenziaByPromotoreCPMD"
+		class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>0</value>
+		</property>
+		<property name="queryName">
+			<value>GetPromotoreAgenziaByPromotoreCP</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>CODICE_PROMOTORE</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>PROMOTORE_AGENZIA</value>
+		</property>
+	</bean>
+
+	<bean id="InsertPromotoreAgenziaMD"
+		class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		<property name="queryName">
+			<value>InsertPromotoreAgenzia</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>PROMOTORE_AGENZIA</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>PROMOTORE_AGENZIA</value>
+		</property>
+	</bean>
+
+	<bean id="UpdatePromotoreAgenziaMD"
+		class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+		<property name="queryName">
+			<value>UpdatePromotoreAgenzia</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>PROMOTORE_AGENZIA</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>PROMOTORE_AGENZIA</value>
+		</property>
+	</bean>
+	
+	<bean id="GetPromotoreCoordinataMD"    
+   		class="it.ras.flag.module.DefaultDbModule">
+   		<property name="dao">
+      		<ref bean="RasBatchDao" />
+     	</property>
+     	<property name="query">
+      		<value>0</value>
+     	</property>
+     	<property name="queryName">
+      		<value>GetPromotoreCoordinataByCoordinata</value>
+     	</property>
+     	<property name="parameters">
+      	<list>
+       		<value>ABI</value>
+       		<value>CAB</value>
+       		<value>C/C</value>
+     	</list>
+     	</property>
+     	<property name="output">
+     		<value>PROMOTORE_COORDINATA</value>
+    	</property>
+     </bean>
+     
+     <bean id="InsertPromotoreCoordinataMD" class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+      		<ref bean="RasBatchDao" />
+     	</property>
+     	<property name="query">
+      		<value>5</value>
+     	</property>
+     	<property name="queryName">
+      		<value>censimentoPromotoreCoordinata</value>
+     	</property>
+     	<property name="parameters">
+      		<list>
+        		<value>PROMOTORE_COORDINATA</value>
+      		</list>
+     	</property>
+     	<property name="output">
+        	<value>PROMOTORE_COORDINATA</value>
+     	</property>
+     </bean>
+     
+     <bean id="UpdatePromotoreCoordinataMD" class="it.ras.flag.module.DefaultDbModule">
+     	<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+     	<property name="parameters">
+      		<list>
+       			<value>PROMOTORE_COORDINATA</value>
+      		</list>
+     	</property>
+     	<property name="output">
+        	<value>PROMOTORE_COORDINATA</value>
+        </property>
+     </bean>
+     
+     <bean id="UpdatePromotoreStrutturaMD" class="it.ras.flag.module.DefaultDbModule">
+     	<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+     	<property name="parameters">
+      		<list>
+       			<value>PROMOTORE_STRUTTURA</value>
+      		</list>
+     	</property>
+     	<property name="output">
+        	<value>PROMOTORE_STRUTTURA</value>
+        </property>
+     </bean>
+     
+     <bean id="GetPromotoreDistrettoByPromotoreCPMD"
+		class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>0</value>
+		</property>
+		<property name="queryName">
+			<value>GetPromotoreDistrettoByPromotoreCPMD</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>CODICE_PROMOTORE</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>PROMOTORE_DISTRETTO</value>
+		</property>
+	</bean>
+	
+	<bean id="GetSchedaBySoggIdPromotIdMD"
+		class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>0</value>
+		</property>
+		<property name="queryName">
+			<value>GetSchedaBySoggIdPromotId</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>SOGGETTO</value>
+				<value>PROMOTORE</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>SOGGETTO_SCHEDA</value>
+		</property>
+	</bean>
+
+	<bean id="InsertPromotoreDistrettoMD"
+		class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		<property name="queryName">
+			<value>InsertPromotoreDistretto</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>PROMOTORE_DISTRETTO</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>PROMOTORE_DISTRETTO</value>
+		</property>
+	</bean>
+
+	<bean id="UpdatePromotoreDistrettoMD"
+		class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+		<property name="queryName">
+			<value>UpdatePromotoreDistretto</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>PROMOTORE_DISTRETTO</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>PROMOTORE_DISTRETTO</value>
+		</property>
+	</bean>
+	
+     <bean id="InsertPromotoreStrutturaMD"    
+   		class="it.ras.flag.module.DefaultDbModule">
+   		<property name="dao">
+      		<ref bean="RasBatchDao" />
+     	</property>
+     	<property name="query">
+      		<value>5</value>
+     	</property>
+     	<property name="queryName">
+      		<value>censimentoPromotoreStruttura</value>
+     	</property>
+     	<property name="parameters">
+      	<list>
+       		<value>PROMOTORE_STRUTTURA</value>
+     	</list>
+     	</property>
+     	<property name="output">
+     		<value>PROMOTORE_STRUTTURA</value>
+    	</property>
+     </bean>
+     
+     <bean id="InsSoggettoSchedaMD"    
+   class="it.ras.flag.module.DefaultDbModule">
+    <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>5</value>
+     </property>
+     <property name="queryName">
+      <value></value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>SOGGETTO_SCHEDA</value>
+      </list>
+     </property>
+     <property name="output">
+       <value>SOGGETTO_SCHEDA</value>
+     </property>
+     </bean>
+     
+     <bean id="UpdSoggettoSchedaMD"    
+   class="it.ras.flag.module.DefaultDbModule">
+    <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>9</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>SOGGETTO_SCHEDA</value>
+      </list>
+     </property>
+     <property name="output">
+       <value>SOGGETTO_SCHEDA</value>
+     </property>
+     </bean>
+ 
+
+</beans> 
+
+	
+    
+    
+    
+    

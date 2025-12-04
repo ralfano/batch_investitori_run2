@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+  
+   <bean id="GetNazioneByCodIsoSRV"      class="it.ras.arco.service.CodificaManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GetNazioneByCodIso</value>
+		</property>
+	 </bean>
+  
+  <bean id="CheckCodeUicNazioniSRV"      class="it.ras.arco.service.CodificaManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>CHECK_CODE_UIC_NAZIONI</value>
+		</property>
+	 </bean>
+	 
+ <bean id="GetValutaByCodIsoSRV"      class="it.ras.arco.service.CodificaManagerSRV"   	   singleton="false" >
+	<property name="moduleManager">
+		<ref bean="RasModuleManager" />
+	</property>
+	<property name="action">
+		<value>GetValutaByCodIso</value>
+	</property>
+ </bean>
+ 
+ <bean id="CheckCodeUicValutaSRV"      class="it.ras.arco.service.CodificaManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>CHECK_CODE_UIC_VALUTA</value>
+		</property>
+	 </bean>
+	 
+	 
+  <bean id="GetNazioneByCodIso"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetNazioneByCodIso</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CODICE_ISO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>NAZIONE</value>
+    	</property>
+    </bean>
+    
+  <bean id="CHECK_CODE_UIC_NAZIONI"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetNazioneByCodUic</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CODICE_UIC</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>NAZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetValutaByCodIso"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetValutaByCodIso</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CODICE_ISO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>VALUTA</value>
+    	</property>
+    </bean>
+    
+    <bean id="CHECK_CODE_UIC_VALUTA"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetValutaByCodUic</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CODICE_UIC</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>VALUTA</value>
+    	</property>
+    </bean>
+  
+</beans> 
+
+

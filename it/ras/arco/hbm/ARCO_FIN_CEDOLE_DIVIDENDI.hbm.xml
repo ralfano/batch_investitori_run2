@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+
+ <class name="it.ras.arco.bean.FinCedoleDividendi" rowid="rowid" table="FIN_CEDOLE_DIVIDENDI">
+	
+	<id name="cedoleDividendiId" column="CED_DIV_ID" type="integer">
+		<generator class="sequence">
+			<param name="sequence">FIN_CEDOLE_DIVIDENDI_SEQ</param>
+		</generator>
+	</id>
+	
+	
+
+	<!--	AZIONI E FONDI	-->
+	<property name="dataStacco" 		column="DATA_STACCO_D"		type="timestamp" />
+	<property name="dataPagamento" 		column="DATA_PAGAMENTO_D"	type="timestamp" />
+	<property name="valore" 		column="VALORE_C"		type="double" />
+
+	<!-- 	AZIONI		-->
+	<property name="tipo" 			column="TIPO_DIVIDENDO_T"	type="string" 	length="100"  />
+	<property name="divisa" 		column="DIVISA_T"		type="string" 	length="3"  />
+
+	<!-- 	OBBLIGAZIONI	-->
+	<property name="data" 			column="DATA_CEDOLA_D"		type="timestamp" />
+	<property name="rendimentoCedola" 	column="RENDIMENTO_CEDOLA_C"	type="double" />
+
+
+
+	<!-- RELAZIONE CON LA FIN_ATT_FIN -->
+	<many-to-one name="attivitaFinanziaria" lazy="proxy"
+		class="it.ras.arco.bean.FinAttivitaFinanziaria" column="ATTIVITA_FIN_ID"
+		update="true" insert="true" cascade="lock" 
+		not-found="ignore" fetch="join"
+		/>
+
+
+
+
+
+	<!--
+	***********************
+	  CAMPI STANDARD
+	***********************
+	-->
+	<property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="40"/>
+	<property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="40"/>
+	<property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+	<property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+	<property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+	<property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="40"/>
+	<property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+	
+	<!-- Duplicazione campi standard x Update (SLAVE) -->	
+	<property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+	<property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+	<property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+	<property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+
+
+ </class>
+ 
+ 
+
+</hibernate-mapping>
+

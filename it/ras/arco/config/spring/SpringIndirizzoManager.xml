@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO GENERICO INDIRIZZO_MANAGER -->
+    
+    <bean id="InsertResidenza"
+    	class="it.ras.arco.service.IndirizzoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="normalizer">
+    		<ref bean="RasNormalizer"/> 
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT_RESIDENZA</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertFiscale"
+    	class="it.ras.arco.service.IndirizzoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="normalizer">
+    		<ref bean="RasNormalizer"/> 
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT_FISCALE</value>
+    	</property>
+    </bean>
+    
+      <bean id="InsertIndirizzo"
+    	class="it.ras.arco.service.IndirizzoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT_INDIRIZZO</value>
+    	</property>
+    </bean>
+    
+    
+    
+    <bean id="InsertResidenzaSenzaNormalizzazione"
+    	class="it.ras.arco.service.IndirizzoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_RESIDENZA_SENZA_NORMALIZZAZIONE</value>
+    	</property>
+    </bean>
+    
+        
+    <bean id="InsertFiscaleSenzaNormalizzazione"
+    	class="it.ras.arco.service.IndirizzoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_FISCALE_SENZA_NORMALIZZAZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertDomicilio"
+    	class="it.ras.arco.service.IndirizzoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="normalizer">
+    		<ref bean="RasNormalizer"/> 
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT_DOMICILIO</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertDomicilioSenzaNormalizzazione"
+    	class="it.ras.arco.service.IndirizzoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_DOMICILIO_SENZA_NORMALIZZAZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertCorrispondenza"
+    	class="it.ras.arco.service.IndirizzoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="normalizer">
+    		<ref bean="RasNormalizer"/> 
+    	</property>
+    	<property name="codesTableManager">
+    		<ref bean="codesTableManager"/> 
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT_CORRISP</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertCorrispondenzaSenzaNormalizzazione"
+    	class="it.ras.arco.service.IndirizzoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="codesTableManager">
+    		<ref bean="codesTableManager"/> 
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT_CORRISP_SENZA_NORMALIZZAZIONE</value>
+    	</property>
+    </bean>
+    
+     <bean id="InsertSottodossier"
+    	class="it.ras.arco.service.IndirizzoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="normalizer">
+    		<ref bean="RasNormalizer"/> 
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT_INDIRIZZO_SOTTODOSSIER</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertSottodossierSenzaNormalizzazione"
+    	class="it.ras.arco.service.IndirizzoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT_INDIRIZZO_SOTTODOSSIER_SENZA_NORMALIZZAZIONE</value>
+    	</property>
+    </bean>
+    
+    
+    
+    <bean id="InsertCorrispondenzaRamSenzaNormalizzazione"
+    	class="it.ras.arco.service.IndirizzoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="codesTableManager">
+    		<ref bean="codesTableManager"/> 
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT_CORRISP_SENZA_NORMALIZZAZIONE_RAM</value>
+    	</property>
+    </bean>
+
+    <bean id="InsertCorrispondenzaRam"
+    	class="it.ras.arco.service.IndirizzoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="normalizer">
+    		<ref bean="RasNormalizer"/> 
+    	</property>
+    	<property name="codesTableManager">
+    		<ref bean="codesTableManager"/> 
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT_CORRISP_RAM</value>
+    	</property>
+    </bean>
+    
+    <bean id="UpdateIndirizzo"
+    	class="it.ras.arco.service.IndirizzoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UPDATE_INDIRIZZO</value>
+    	</property>
+    </bean>
+    
+   
+    <bean id="GetIndirizzoSoggMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetIndirizzoBySoggettoId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>SOGGETTO</value>
+    			<value>TIPO_INDIRIZZO</value>
+    			<value>DATA_CORRENTE</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>INDIRIZZO</value>
+    	</property>
+    </bean>
+   
+   
+   
+   <bean id="GetMsoBySoggettoDataPostContrattoMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetMsoBySoggettoDataPostContratto</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>SOGGETTO</value>
+    			<value>TIPO_SOTTOSCRIZIONE</value>
+    			<value>DATA_INIZIO_DIP</value>
+    			<value>DATA_INSERIMENTO_CONTRATTO</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>soggetto</value>
+    			<value>tipoSottoscrizione</value>
+    			<value>dataInizioDip</value>
+    			<value>dataInserimentoContratto</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>MSO</value>
+    	</property>
+    </bean>
+   
+   <bean id="GetMccByContrattoDataMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetMccByContrattoData</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>TIPO_SOTTOSCRIZIONE</value>
+    			<value>DATA_INIZIO_DIP</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>contratto</value>
+    			<value>tipoSottoscrizione</value>
+    			<value>dataInizioDip</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>MCC</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetMccByContrattoSoggettoDataMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetMccByContrattoSoggettoData</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>SOGGETTO</value>
+    			<value>TIPO_SOTTOSCRIZIONE</value>
+    			<value>DATA_INIZIO_DIP</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>contratto</value>
+    			<value>soggetto</value>
+    			<value>tipoSottoscrizione</value>
+    			<value>dataInizioDip</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>MCC</value>
+    	</property>
+    </bean>
+    
+   <bean id="GetIndirizzoContrMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetIndirizzoByContrattoId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>TIPO_INDIRIZZO</value>
+    			<value>DATA_CORRENTE</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>INDIRIZZO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetNazionalitaByUicMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetNazioneByCodUic</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>NAZIONALITA</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>NAZIONALITA</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetNazionalitaByIsoMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetNazioneByCodIso</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>NAZIONALITA</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>NAZIONALITA</value>
+    	</property>
+    </bean>
+    
+   <bean id="StoricizzaIndirizzoMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+		
+		<property name="parameters">
+			<list>
+				<value>INDIRIZZO</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>INDIRIZZO</value>
+		</property>
+	</bean>
+	
+	
+	<bean id="InsertIndirizzoMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>INDIRIZZO</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>INDIRIZZO</value>
+		</property>
+	</bean>
+
+</beans> 
+
+	

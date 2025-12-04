@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ULTERIORI INFORMAZIONI -->
+ <class name="it.ras.arco.bean.FinUltInfoSoggetto" 
+ 		table="FIN_ULT_INFO_SOGG" where="GSTD_ESIST_B='S'">
+
+  <id name="ultInfoSoggId" column="ULT_INFO_SOGG_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_ULT_INFO_SOGG_SEQ</param>
+   </generator>
+  </id>
+
+  <property name="domicilio" 		type="string" column="DOMICILIO_S" length="100"/>  
+  <property name="citta" 			type="string" column="CITTA_S" length="40"/>  
+  <property name="cap" 				type="string" column="CAP_S" length="5"/> 
+  <property name="prov" 			type="string" column="PROV_S" length="2"/>
+  <property name="fax" 				type="string" column="FAX_S" length="15"/>
+  <property name="altroRec" 		type="string" column="ALTRO_REC_S" length="15"/>
+  <property name="titoloStudio" 	type="string" column="TITOLO_STUDIO_S" length="40"/> 
+  <property name="copAssic" 		type="string" column="COP_ASSIC_S" length="40"/>
+  <property name="statoCivile" 		type="string" column="STATO_CIVILE_S" length="15"/>
+  <property name="flagRicezioneSrv" type="string" column="FLAG_RICEZIONE_SRV_B" length="1"/>
+  <property name="numeroFigli" 		type="integer" column="NUMERO_FIGLI_N"/>
+  <property name="personeACarico" 	type="integer" column="PERSONE_A_CARICO_N"/>
+  <property name="fontiInfo" 		type="string" column="FONTI_INFO_S" length="40"/>
+  <property name="interessi" 		type="string" column="INTERESSI_S" length="40"/>
+  <property name="note" 			type="string" column="NOTE_S" length="4000"/>
+  <property name="rating1" 			type="string" column="RATING1_T" length="3"/>
+  <property name="rating2" 			type="string" column="RATING2_T" length="3"/>
+  <property name="rating3" 			type="string" column="RATING3_T" length="3"/> 
+  
+  <property name="userUltimaModifica" 		type="string" column="GSTD_ULT_USER_S" length="40"/>
+  <property name="proceduraUltimaModifica" 	type="string" column="GSTD_ULT_PROC_S" length="40"/>
+  <property name="dataUltimaModifica" 		type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" 			type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" 			type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" 		type="string" column="GSTD_USER_INS_S" length="40"/>
+  <property name="tipoUltimaModifica" 		type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+  
+  <property name="userUltimaModificaSlave" 		type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" 		type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" 		type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+
+  <many-to-one name="soggetto"
+   		class="it.ras.arco.bean.FinSoggetto" lazy="proxy" column="SOGGETTO_ID" insert="true" update="true" not-null="false" cascade="lock"  
+   		not-found="ignore" 
+   />
+ 
+  <many-to-one name="promotore"
+    	class="it.ras.arco.bean.FinPromotore" lazy="proxy" column="PROMOTORE_ID" insert="true" update="true" not-null="false" cascade="lock"  
+    	not-found="ignore" 
+   />  
+
+</class>
+<!-- 
+<query name="GetInfoBySoggettoId">select sc from it.ras.arco.bean.FinUltInfoSoggettoAdapterBase sc join sc.soggetto s where s.soggettoId = ?</query>
+<query name="GetInfoBySoggIdPromotId">select sc from it.ras.arco.bean.FinUltInfoSoggettoAdapterBase sc join sc.soggetto s join sc.promotore p where s.soggettoId = ? and p.promotoreId = ?</query>
+-->
+
+
+</hibernate-mapping>

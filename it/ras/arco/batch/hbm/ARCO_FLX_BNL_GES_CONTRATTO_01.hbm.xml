@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA SY_MIG_INDIRIZZI -->
+ <class name="it.ras.arco.batch.bean.FlxBnlGesContratto01" rowid="rowid" table="FLX_BNL_GES_CONTRATTO_01">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_BNL_GES_CONTR_01_SEQ</param>
+   </generator>
+  </id>
+<property name="tipoRecord01"                   column="TIPO_RECORD_01"                 type="integer"  />
+<property name="numAccordo01"                   column="NUM_ACCORDO_01"                 type="integer"  />
+<property name="codiceProdotto01"               column="CODICE_PRODOTTO_01"             type="string" length="4"  />
+<property name="dataSottoscrizione01"           column="DATA_SOTTOSCRIZIONE_01"         type="date"  />
+<property name="dataChiusura01"                 column="DATA_CHIUSURA_01"               type="date"  />
+<property name="sportelloBnl01"                 column="SPORTELLO_BNL_01"               type="integer"  />
+<property name="statoContratto01"               column="STATO_CONTRATTO_01"             type="string" length="2"  />
+<property name="flagEsenzione01"                column="FLAG_ESENZIONE_01"              type="string" length="3"  />
+<property name="modSottoscrizione01"            column="MOD_SOTTOSCRIZIONE_01"          type="string" length="2"  />
+<property name="codLinea01"                     column="COD_LINEA_01"                   type="string" length="2"  />
+<property name="flagRegimeFisc01"               column="FLAG_REGIME_FISC_01"            type="string" length="2"  />
+<property name="schedaCliente01"                column="SCHEDA_CLIENTE_01"              type="string" length="2"  />
+<property name="matrDipBnl01"                   column="MATR_DIP_BNL_01"                type="string" length="6"  />
+<property name="tipoVariazione01"               column="TIPO_VARIAZIONE_01"             type="string" length="1"  />
+<property name="causaleBlocco01"                column="CAUSALE_BLOCCO_01"              type="string" length="2"  />
+<property name="flagRiassegnazione"             column="FLAG_RIASSEGNAZIONE"            type="string" length="1"  />
+<property name="flagRmborso01"                  column="FLAG_RMBORSO_01"                type="string" length="1"  />
+<property name="abi01"                          column="ABI_01"                         type="integer"  />
+<property name="cab01"                          column="CAB_01"                         type="integer"  />
+<property name="cc01"                           column="CC_01"                          type="string" length="15"  />
+<property name="modPagamen01"                   column="MOD_PAGAMEN_01"                 type="string" length="2"  />
+<property name="dataRiassegnazione01"           column="DATA_RIASSEGNAZIONE_01"         type="date"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="descrizioneErrore"              column="DESCRIZIONE_ERRORE_S"           type="string" length="100"  />
+<property name="dataErrore"                     column="DATA_ERRORE"                    type="timestamp" />
+
+ </class>
+ <query name="FLX_BNL_GES_CONTR_01_CUR">from  
+ it.ras.arco.batch.bean.FlxBnlGesContratto01 p where p.statoElab in ('D','KO')</query>
+
+</hibernate-mapping>

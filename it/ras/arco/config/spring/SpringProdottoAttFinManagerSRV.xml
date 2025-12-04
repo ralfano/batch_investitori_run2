@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    <bean id="GetProdottoSRV" class="it.ras.arco.service.ProdottoAttFinManagerSRV"	singleton ="false"> 
+	    <property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetProdotto</value>
+    	</property>    	
+    	<property name="onLine">
+			<value>false</value>
+		</property>    	
+    </bean>	  
+    
+	<bean id="GetAttFinProdottoByCodiceCompartoEsterno" class="it.ras.arco.service.ProdottoAttFinManagerSRV" singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GetAttFinProdottoByCodiceCompartoEsterno</value>
+		</property>
+		<property name="codesTableManager">
+    		<ref bean="codesTableManager"/> 
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>   
+	 </bean>
+	 
+	 <bean id="GetAttFinProdottoByCodiceProdottoEsterno" class="it.ras.arco.service.ProdottoAttFinManagerSRV" singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GetAttFinProdottoByCodiceProdottoEsterno</value>
+		</property>
+		<property name="codesTableManager">
+    		<ref bean="codesTableManager"/> 
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>
+	 </bean>
+    
+    
+     <bean id="GetAttFinByIsinCodMarketDivisaSRV" class="it.ras.arco.service.ProdottoAttFinManagerSRV" singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GetAttFinByIsinCodMarketDivisa</value>
+		</property>
+		
+    	<property name="onLine">
+			<value>false</value>
+		</property>
+	 </bean>
+	 
+	  <bean id="GetAttFinByCtitSRV" class="it.ras.arco.service.ProdottoAttFinManagerSRV" singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GetAttFinByCtitSRV</value>
+		</property>
+		
+    	<property name="onLine">
+			<value>false</value>
+		</property>
+	 </bean>
+	 
+	 
+	 <bean id="GetAttFinByIsinCodMarketListDivisaSRV" class="it.ras.arco.service.ProdottoAttFinManagerSRV" singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GetAttFinByIsinCodMarketListDivisaSRV</value>
+		</property>
+		
+    	<property name="onLine">
+			<value>false</value>
+		</property>
+	 </bean>
+    
+    <bean id="GetAttFinByIsinSRV" class="it.ras.arco.service.ProdottoAttFinManagerSRV" singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GetAttFinByIsin</value>
+		</property>
+		
+    	<property name="onLine">
+			<value>false</value>
+		</property>
+	 </bean>
+    
+    
+   
+    <bean id="InsertProdottoSRV"
+    	class="it.ras.arco.service.ProdottoAttFinManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>
+    </bean>
+    
+    <bean id="InsertAttFinSRV"
+    	class="it.ras.arco.service.ProdottoAttFinManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>InsertAttFin</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>
+    </bean>   
+       
+    <bean id="GetEmittenteByDescrizioneSRV"
+    	class="it.ras.arco.service.ProdottoAttFinManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetEmittenteByDescrizione</value>
+    	</property>
+    </bean>
+     <bean id="GetAttFinByDescDtSRV"
+    	class="it.ras.arco.service.ProdottoAttFinManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetAttFinByDescDt</value>
+    	</property>
+    	<property name="onLine">
+			<value>false</value>
+		</property>
+    </bean>
+       
+     <!-- Inizio Moduli generici per l'insert -->
+     <bean id="GetProdottoMD" class="it.ras.arco.module.GetProdottoMD"	singleton ="false">
+    	<property name="dao">
+    		<ref bean="RasBatchDao"/>
+     	</property>
+     </bean> 
+     
+     <bean id="InsertProdottoMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		
+		<property name="parameters">
+			<list>
+				<value>PRODOTTO</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>PRODOTTO</value>
+		</property>
+	</bean>
+   
+   
+   
+	<bean id="InsertAttFinMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		
+		<property name="parameters">
+			<list>
+				<value>ROW_ATT_FIN</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>ATT_FIN</value>
+		</property>
+	</bean>
+	
+	<bean id="UpdateFlxProdottiRamMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>PRODOTTI_RAM</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>PRODOTTI_RAM</value>
+		</property>
+	</bean>
+	
+    <bean id="GetEmittenteByDescrizione"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetEmittenteByDescrizione</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>EMITTENTE</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>EMITTENTE</value>
+    	</property>
+    </bean>
+    	
+    	<bean id="GetAttFinByIsinCodMarketDivisaMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetAttFinByIsinCodMarketDivisaQuot</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>DIVISA</value>
+    			<value>ISIN</value>
+    			<value>MARKET</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>ROW_ATT_FIN</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetAttFinByCtitMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetAttFinByCtit</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CTIT</value>		
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>ROW_ATT_FIN</value>
+    	</property>
+    </bean>
+    
+    
+    
+    <bean id="GetAttFinByIsinCodMarketListDivisaMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetAttFinByIsinCodMarketListDivisa</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>DIVISA</value>
+    			<value>ISIN</value>
+    			<value>MARKET</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>divisa</value>
+    			<value>isin</value>
+    			<value>market</value>
+    		</list>
+    	</property>
+    	
+    	<property name="output">
+    		<value>ROW_ATT_FIN</value>
+    	</property>
+    </bean>
+    
+    
+    <bean id="GetAttFinByIsinMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetAttFinByIsin</value>
+    	</property>
+    	<property name="parameters">
+    		<list>    			
+    			<value>ISIN</value>    			
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>ROW_ATT_FIN</value>
+    	</property>
+    </bean>
+    	
+    	
+    	<bean id="GetAttFinByDescDtMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetAttFinByDescDt</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>DESCRIZIONE</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>ROW_ATT_FIN</value>
+    	</property>
+    </bean>
+    	
+
+</beans> 
+
+

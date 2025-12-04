@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DATI EVIDENZA -->
+ <class name="it.ras.arco.bean.FinWarningForzati"
+  table="FIN_WARNING_FORZATI" where="GSTD_ESIST_B='S'">
+  <id name="warningId" column="WARNING_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_WARNING_FORZATI_SEQ</param>
+   </generator>
+  </id>
+ 
+  <property name="codiceErrore" type="string" column="COD_ERRORE_ARCO" length="200"/>
+  <property name="descrizione" type="string" column="DESCRIZIONE_S" length="200"/>
+  <property name="dataForzatura" type="date" column="DATA_FORZATURA_D"/>
+  <property name="utenteForzatura" type="string" column="UTENTE_FORZATURA_S" length="40"/>
+  <property name="sottoscrizioneId" type="integer" column="SOTTOSCRIZIONE_ID" length="18"/>
+
+   <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="40"/>
+   <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="40"/>
+   <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+   <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+   <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+   <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="40"/>
+   <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+ 
+</class>
+</hibernate-mapping>
+

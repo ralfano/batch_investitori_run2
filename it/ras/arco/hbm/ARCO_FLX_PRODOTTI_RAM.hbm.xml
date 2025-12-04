@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.bean.FlxProdottiRam" table="FLX_PRODOTTI_RAM" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="java.lang.Integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_PRODOTTI_RAM_SEQUENCE</param>
+   </generator>
+  </id>
+	<property name="dtulm"                          column="DTULM"                          type="timestamp"  />
+	<property name="utent"                          column="UTENT"                          type="string" length="4"  />
+	<property name="gesti"                          column="GESTI"                          type="string"  />
+	<property name="deges"                          column="DEGES"                          type="string" length="50"  />
+	<property name="omint"                          column="OMINT"                          type="string" length="3"  />
+	<property name="tpfam"                          column="TPFAM"                          type="string"  />
+	<property name="fbase"                          column="FBASE"                          type="integer"  />
+	<property name="cdsgr"                          column="CDSGR"                          type="integer"  />
+	<property name="dtumf"                          column="DTUMF"                          type="timestamp"  />
+	<property name="dtpmf"                          column="DTPMF"                          type="timestamp"  />
+	<property name="mafme"                          column="MAFME"                          type="integer"  />
+	<property name="derid"                          column="DERID"                          type="string" length="15"  />
+	<property name="ragff"                          column="RAGFF"                          type="integer"  />
+	<property name="classe"                         column="CLASS"                          type="integer"  />
+	<property name="tabcl"                          column="TABCL"                          type="string" length="20"  />
+	<property name="prefd"                          column="PREFD"                          type="string" length="2"  />
+	<property name="prdval"                         column="PRDVAL"                         type="integer"  />
+	<property name="prdtip"                         column="PRDTIP"                         type="string" length="1"  />
+	<property name="flgunt"                         column="FLGUNT"                         type="string" length="1"  />		
+	<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+	<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+	<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="timestamp"  />
+
+  <!-- RELAZIONE CON FIN_PRODOTTO-->
+   <many-to-one name="prodotto" class="it.ras.arco.bean.FinProdotto" 
+   column="PRODOTTO_ID" update="true" insert="true" not-found="ignore" />
+  <!-- RELAZIONE CON FIN_ATT_FIN-->
+   <many-to-one name="attivitaFin" class="it.ras.arco.bean.FinAttivitaFinanziaria" 
+   column="ATTIVITA_FIN_ID" update="true" insert="true" not-found="ignore" />
+  	
+ </class>
+ <query name="PRODOTTI_RAM_ELENCO_SQL">from it.ras.arco.bean.FlxProdottiRam </query>
+</hibernate-mapping>
+	

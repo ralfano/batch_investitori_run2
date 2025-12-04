@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+	
+<bean id="codesTableSessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="mappingResources">
+			<value>
+				/it/ras/flag/resources/ras-arch-logging-mapping.hbm.xml,
+				/it/ras/flag/resources/ras-arch-mappings.hbm.xml
+			</value>
+		</property>
+	</bean>
+
+<!--
+	<bean id="codesTableBatchDao"
+		class="it.ras.flag.batch.skeleton.RasBatchReadOnlyDao"
+		singleton="false">
+		<property name="sessionFactory">
+			<ref bean="codesTableSessionFactory" />
+		</property>
+	</bean>
+-->
+
+	<bean id="codesTableBatchDao"
+			class="it.ras.flag.dao.RasDao"
+			singleton="false">
+			<property name="sessionFactory">
+				<ref bean="codesTableSessionFactory" />
+			</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="codesTableSessionFactory" />
+		</property>
+	</bean>
+
+	<!-- MANTENERE UGUALE  -->
+	<bean id="txInterceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+<!--
+		<property name="transactionAttributeSource">
+			<value>
+				it.ras.flag.transaction.IRasRequiredTransaction.transaction=PROPAGATION_REQUIRED,-it.ras.flag.exception.RasTransactionException
+				it.ras.flag.transaction.IRasSupportedTransaction.transaction=PROPAGATION_SUPPORTS
+			</value>
+		</property>
+-->
+		
+		<property name="transactionAttributes">
+					<props>
+						<prop key="transaction">PROPAGATION_REQUIRED,-it.ras.flag.exception.RasTransactionException</prop>
+					</props>
+		</property>
+		
+	</bean>
+	<!-- MANTENERE UGUALE  -->
+	<bean id="codesTableModule"
+		class="it.ras.flag.config.CodesTableModule">
+		<property name="dao">
+			<ref bean="codesTableBatchDao" />
+		</property>
+	</bean>
+	<!-- MANTENERE UGUALE  -->
+	<bean id="codesTableService"
+		class="it.ras.flag.config.CodesTableService">
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+	</bean>
+	<!-- MANTENERE UGUALE  -->
+	<bean id="codesTableTxTarget"
+		class="it.ras.flag.transaction.RasSingleServiceRequiredTx">
+		<property name="service">
+			<ref bean="codesTableService" />
+		</property>
+	</bean>
+	<!-- MANTENERE UGUALE  -->
+	<bean id="codesTableTx"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>
+				it.ras.flag.transaction.IRasRequiredTransaction
+			</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>txInterceptor</value>
+				<value>codesTableTxTarget</value>
+			</list>
+		</property>
+	</bean>
+	<!-- MANTENERE UGUALE  
+	<bean id="codesTableManager"
+		class="it.ras.flag.config.CodesTableManager" init-method="init"
+		destroy-method="destroy">
+		<property name="mode">
+			<value>DB</value>
+		</property>
+		<property name="configTransaction">
+			<ref bean="codesTableTx" />
+		</property>
+	</bean>-->
+
+	<bean id="codesTableManager" 
+		class="it.ras.arco.common.bean.CodesTableManager" init-method="init" 
+		destroy-method="destroy">
+			<property name="mode">
+			  <value>DB</value>
+			</property>
+			<property name="forceNoFilterIfNull">
+			  <value>true</value>
+			</property>
+			<property name="forcedNoFilterFetchTables">
+			  <list>
+			    <value>ATTIVITA_FINANZIARIA</value>
+			    <value>CAUSALE_MOVIMENTO</value>
+			    <value>TIPO_DOC</value>
+			    <value>STATO_CIVILE</value>
+		     	<value>REGIME_PATR</value>
+		     	<value>TIPO_SERVIZIO_AGG</value>
+		     	<value>PERIODICITA</value>
+		     	<value>MEZZO_PAGAMENTO</value>
+		     	<value>TIPO_ORDINE</value>
+		     	<value>NAZIONI_UE</value>
+		     	<value>TIPO_SOGGETTO</value>
+			  </list>
+			</property>
+			<property name="configTransaction">
+			  <ref bean="codesTableTx" />
+			</property>
+			<property name="timeout">
+			  <value>1800000</value>
+			</property>
+			<property name="lazyInit">
+			  <value>true</value>
+			</property>
+			<property name="lazyInitWholeTables">
+			  <value>true</value>
+			</property>
+	</bean>
+</beans>

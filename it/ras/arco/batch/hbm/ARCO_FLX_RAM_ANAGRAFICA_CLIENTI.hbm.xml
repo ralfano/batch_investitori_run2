@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxRamAnagraficaClienti" table="FLX_RAM_ANAGRAFICA_CLIENTI">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_CLIENCLN_SEQ</param>
+   </generator>
+  </id> 
+<property name="gruppo"              type="integer" column="GRUPPO"/>              
+<property name="settore"              type="integer" column="SETTORE"/>              
+<property name="attEconPrisma"              type="integer" column="ATT_ECON_PRISMA"/>            
+<property name="untUltManut"            type="string"  column="UTN_ULT_MANUT"                length="4"/>  
+<property name="codCli"            type="string"  column="COD_CLI"                length="7"/>  
+<property name="denominazione"            type="string"  column="DENOMINAZIONE"                length="50"/>  
+<property name="codFisc"            type="string"  column="CODICE_FISCALE"                length="16"/>  
+<property name="Piva"            type="string"  column="PARTITA_IVA"                length="11"/> 
+<property name="locNasc"            type="string"  column="LOCALITA_NASCITA"                length="30"/> 
+<property name="provNasc"            type="string"  column="PROV_NASCITA"                length="2"/> 
+<property name="statoNasc"            type="string"  column="STATO_NASCITA"                length="3"/> 
+<property name="sesso"            type="string"  column="SESSO"                length="1"/> 
+<property name="locRes"            type="string"  column="LOCALITA_RES"                length="40"/>  
+<property name="provRes"            type="string"  column="PROV_RES"                length="2"/>  
+<property name="capRes"            type="string"  column="CAP_RES "                length="5"/>  
+<property name="statoRes"            type="string"  column="STATO_RES"                length="3"/>  
+<property name="tipoDoc"            type="string"  column="TIPO_DOCUMENTO"                length="1"/>  
+<property name="numDoc"            type="string"  column="NUM_DOCUMENTO"                length="15"/>
+ <property name="enteRilasc"            type="string"  column="ENTE_RILASCIO"                length="25"/>  
+<property name="codSgr"            type="string"  column="COD_SGR"                    length="1"/> 
+<property name="compDocRisc"            type="string"  column="COMP_DOC_RISC"              length="1"/>
+<property name="concAut"            type="string"  column="CONC_AUT"                   length="1"/>
+<property name="regisConflAge"            type="string"  column="REGIS_CONFL_INTERES"        length="1"/>
+<property name="flgSpedAge"            type="string"  column="FLG_SPED_AGE"                length="1"/>
+<property name="tbret"            type="string"  column="TBRET"                       length="5"/>
+<property name="nome"            type="string"  column="NOME"                length="30"/>
+<property name="cognome"            type="string"  column="COGNOME"                length="3"/>
+<property name="Nazionalita"            type="string"  column="NAZIONALITA"                length="15"/>
+<property name="cabRes"            type="string"  column="CAB_RES"                length="6"/>
+<property name="comRes"            type="string"  column="COMUNE_RES"                length="25"/>
+<property name="flagForzCf"            type="string"  column="FLAG_FORZ_CF"                length="1"/>
+<property name="indirizzoRes"            type="string"  column="INDIRIZZO_RES"                length="40"/>
+<property name="dataAutMarket"        type="date"    column="DT_AUT_DAT_MARKET"/>
+<property name="dataUltManut"        type="date"    column="DT_ULT_MANUT"/>     
+<property name="dataConflInt"        type="date"    column="DT_CONFL_INTERES"/> 
+<property name="dataComplDocRisc"        type="date"    column="DT_COMPL_DOC_RISC"/>
+<property name="dataAutPriv"        type="date"    column="DT_AUT_PRIVACY"/>   
+<property name="dataIns"        type="date"    column="DT_INS"/>           
+<property name="dataNasc"        type="date"    column="DT_NASCITA"/>       
+<property name="dataRil"        type="date"    column="DATA_RILASCIO"/>    
+<property name="statoElab"              type="string"  column="STATO_ELAB_B"               length="2"/>           
+<property name="descrizioneErrore"      type="string"  column="DESCRIZIONE_ERRORE_S"       length="130"/> 
+<property name="dataElab"               type="timestamp"    column="DATA_ELAB_D"/>                        
+  
+ </class>
+ <query name="ANAGRAFICA_RAM_CURS">from it.ras.arco.batch.bean.FlxRamAnagraficaClienti pc where pc.statoElab='D' </query>
+</hibernate-mapping>

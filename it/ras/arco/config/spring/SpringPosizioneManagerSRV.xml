@@ -1,0 +1,1388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+<!-- Definizione delle action -->  
+
+	      <bean id="insertPosizioneDettaglioSRV"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>INS_POSIZIONE_DETTAGLIO</value>
+		</property>
+	 </bean>
+	 
+	   <bean id="insertQuadPosizioneSRV"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>INS_QUAD_SEC_POSIZIONE_DT</value>
+		</property>
+	 </bean>
+	 
+	 <bean id="updatePosizioneDettaglioSRV"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>UPD_POSIZIONE_DETTAGLIO</value>
+		</property>
+	 </bean>
+ <bean id="SetPosizione"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>SET_POSIZIONE</value>
+		</property>
+		<property name="movimentoPosMin">
+			<value>100</value>
+		</property>
+		<property name="movimentoPosMax">
+			<value>480</value>
+		</property>
+		<property name="movimentoNegMin">
+			<value>600</value>
+		</property>
+		<property name="movimentoNegMax">
+			<value>911</value>
+		</property>
+		<property name="movimentoDaVerMin">
+			<value>500</value>
+		</property>
+		<property name="movimentoDaVerMax">
+			<value>599</value>
+		</property>
+		
+		<property name="sottoscrMin">
+			<value>100</value>
+		</property>
+		<property name="sottoscrMax">
+			<value>199</value>
+		</property>
+		<property name="aggMin">
+			<value>200</value>
+		</property>
+		<property name="aggMax">
+			<value>305</value>
+		</property>
+		<property name="aggMin1">
+			<value>953</value>
+		</property>
+		<property name="aggMax1">
+			<value>955</value>
+		</property>
+		<property name="rimbParzMin">
+			<value>600</value>
+		</property>
+		<property name="rimbParzMax">
+			<value>699</value>
+		</property>
+		<property name="rimbParzMin1">
+			<value>956</value>
+		</property>
+		<property name="rimbParzMax1">
+			<value>959</value>
+		</property>
+		<property name="rimbParz">
+			<value>911</value>
+		</property>
+		<property name="rimbTotMin">
+			<value>700</value>
+		</property>
+		<property name="rimbTotMax">
+			<value>749</value>
+		</property>
+		<property name="swInMin">
+			<value>470</value>
+		</property>
+		<property name="swInMax">
+			<value>505</value>
+		</property>
+		<property name="swInMin1">
+			<value>350</value>
+		</property>
+		<property name="swInMax1">
+			<value>353</value>
+		</property>
+		<property name="swInMin2">
+			<value>400</value>
+		</property>
+		<property name="swInMax2">
+			<value>408</value>
+		</property>
+		<property name="swOutMin">
+			<value>800</value>
+		</property>
+		<property name="swOutMax">
+			<value>849</value>
+		</property>
+		<property name="passTotMin">
+			<value>850</value>
+		</property>
+		<property name="passTotMax">
+			<value>900</value>
+		</property>
+		
+		<property name="sottdscr1">
+			<value>450</value>
+		</property>
+		<property name="rimbTotMin1">
+			<value>750</value>
+		</property>
+		<property name="rimbTotMax1">
+			<value>760</value>
+		</property>
+		<property name="revRid">
+			<value>773</value>
+		</property>
+		<property name="rimbParz3">
+			<value>790</value>
+		</property>
+		
+		
+	
+	 </bean>
+	         
+ 
+	 <bean id="GetPosizioneByNumContrattoAttFinId"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_BY_NUM_CONTRATTO_ATT_FIN</value>
+		</property>
+	 </bean>
+	 
+	 <bean id="GetPosizioneByDossierProdIdAttFinanziariaSRV"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_BY_DOSSIER_PROD_ATT_FIN</value>
+		</property>
+	 </bean>
+	 	 
+	 
+	 <bean id="GetPosizioneByContrattoIdSoggIdSottoDossierSRV"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_POS_BY_CONTRATTOID_SOGGID_SOTTODOSSIER</value>
+		</property>
+	 </bean>
+	 <bean id="GetPosizioneByContrattoIdSoggIdSottoDossierNumOpeSRV"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_POS_BY_CONTRATTOID_SOGGID_SOTTODOSSIER_NUM_OPE</value>
+		</property>
+	 </bean>	
+	 <bean id="GetPosizioneByContrattoIdSRV"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_POS_BY_CONTRATTOID</value>
+		</property>
+	 </bean>
+	 
+	
+	 
+	 <bean id="UpdPosizione"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>UPD</value>
+		</property>
+	 </bean>
+	
+	<bean id="GetMovimentoByNumMovimentoContrattoIdPosizioneIdAttFinId"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_MOV_BY_NUM_MOVIMENTO_CONTRATTOID_POSIZIONEID_ATTFINID</value>
+		</property>
+	 </bean>
+	 
+	 
+	 
+	 <bean id="GetMovimentoByContrattoIdDataAttFinSRV"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_MOV_BY_CONTRATTOID_DATA_VAL_ATTFINID</value>
+		</property>
+	 </bean>
+	 
+	 <bean id="GetMovimentoByNumMovimentoContrattoIdSRV"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_MOV_BY_NUM_MOVIMENTO_CONTRATTOID</value>
+		</property>
+	 </bean>
+	 
+	 <bean id="GetMovimentoByContrattoIdPosizioneIdAttFinIdSRV"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_MOV_BY_CONTRATTOID_POSIZIONEID_ATTFINID</value>
+		</property>
+	 </bean>
+	 
+	 <bean id="InsMovimento"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>INS_MOVIMENTO</value>
+		</property>
+		<property name="creaPosizione">
+			<value>1</value>
+		</property>
+		<property name="creaOrdine">
+			<value>1</value>
+		</property>
+		<property name="movimentoPosMin">
+			<value>100</value>
+		</property>
+		<property name="movimentoPosMax">
+			<value>480</value>
+		</property>
+		<property name="movimentoNegMin">
+			<value>600</value>
+		</property>
+		<property name="movimentoNegMax">
+			<value>911</value>
+		</property>
+		<property name="movimentoDaVerMin">
+			<value>500</value>
+		</property>
+		<property name="movimentoDaVerMax">
+			<value>599</value>
+		</property>
+		<property name="sottoscrMin">
+			<value>100</value>
+		</property>
+		<property name="sottoscrMax">
+			<value>199</value>
+		</property>
+		<property name="aggMin">
+			<value>200</value>
+		</property>
+		<property name="aggMax">
+			<value>305</value>
+		</property>
+		<property name="aggMin1">
+			<value>953</value>
+		</property>
+		<property name="aggMax1">
+			<value>955</value>
+		</property>
+		<property name="rimbParzMin">
+			<value>600</value>
+		</property>
+		<property name="rimbParzMax">
+			<value>699</value>
+		</property>
+		<property name="rimbParzMin1">
+			<value>956</value>
+		</property>
+		<property name="rimbParzMax1">
+			<value>959</value>
+		</property>
+		<property name="rimbParz">
+			<value>911</value>
+		</property>
+		<property name="rimbTotMin">
+			<value>700</value>
+		</property>
+		<property name="rimbTotMax">
+			<value>749</value>
+		</property>
+		<property name="swInMin">
+			<value>470</value>
+		</property>
+		<property name="swInMax">
+			<value>505</value>
+		</property>
+		<property name="swInMin1">
+			<value>350</value>
+		</property>
+		<property name="swInMax1">
+			<value>353</value>
+		</property>
+		<property name="swInMin2">
+			<value>400</value>
+		</property>
+		<property name="swInMax2">
+			<value>408</value>
+		</property>
+		<property name="swOutMin">
+			<value>800</value>
+		</property>
+		<property name="swOutMax">
+			<value>849</value>
+		</property>
+		<property name="passTotMin">
+			<value>850</value>
+		</property>
+		<property name="passTotMax">
+			<value>900</value>
+		</property>
+		<property name="sottdscr1">
+			<value>450</value>
+		</property>
+		<property name="rimbTotMin1">
+			<value>750</value>
+		</property>
+		<property name="rimbTotMax1">
+			<value>760</value>
+		</property>
+		<property name="revRid">
+			<value>773</value>
+		</property>
+		<property name="rimbParz3">
+			<value>790</value>
+		</property>
+		
+		<property name="codesTableManager">
+    		<ref bean="codesTableManager"/> 
+    	</property>
+		
+	 </bean>
+	 
+	 
+	  <bean id="InsPosizione"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>INS_POSIZIONE</value>
+		</property>
+	 </bean>
+	 
+	 <bean id="InsMovimentoNoOrdineSiPosizione"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>INS_MOVIMENTO</value>
+		</property>
+		<property name="creaPosizione">
+			<value>1</value>
+		</property>
+		<property name="creaOrdine">
+			<value>0</value>
+		</property>
+		<property name="movimentoPosMin">
+			<value>100</value>
+		</property>
+		<property name="movimentoPosMax">
+			<value>480</value>
+		</property>
+		<property name="movimentoNegMin">
+			<value>600</value>
+		</property>
+		<property name="movimentoNegMax">
+			<value>911</value>
+		</property>
+		<property name="movimentoDaVerMin">
+			<value>500</value>
+		</property>
+		<property name="movimentoDaVerMax">
+			<value>599</value>
+		</property>
+		<property name="codesTableManager">
+    		<ref bean="codesTableManager"/> 
+    	</property>
+    	<property name="sottoscrMin">
+			<value>100</value>
+		</property>
+		<property name="sottoscrMax">
+			<value>199</value>
+		</property>
+		<property name="aggMin">
+			<value>200</value>
+		</property>
+		<property name="aggMax">
+			<value>305</value>
+		</property>
+		<property name="aggMin1">
+			<value>953</value>
+		</property>
+		<property name="aggMax1">
+			<value>955</value>
+		</property>
+		<property name="rimbParzMin">
+			<value>600</value>
+		</property>
+		<property name="rimbParzMax">
+			<value>699</value>
+		</property>
+		<property name="rimbParzMin1">
+			<value>956</value>
+		</property>
+		<property name="rimbParzMax1">
+			<value>959</value>
+		</property>
+		<property name="rimbParz">
+			<value>911</value>
+		</property>
+		<property name="rimbTotMin">
+			<value>700</value>
+		</property>
+		<property name="rimbTotMax">
+			<value>749</value>
+		</property>
+		<property name="swInMin">
+			<value>470</value>
+		</property>
+		<property name="swInMax">
+			<value>505</value>
+		</property>
+		<property name="swInMin1">
+			<value>350</value>
+		</property>
+		<property name="swInMax1">
+			<value>353</value>
+		</property>
+		<property name="swInMin2">
+			<value>400</value>
+		</property>
+		<property name="swInMax2">
+			<value>408</value>
+		</property>
+		<property name="swOutMin">
+			<value>800</value>
+		</property>
+		<property name="swOutMax">
+			<value>849</value>
+		</property>
+		<property name="passTotMin">
+			<value>850</value>
+		</property>
+		<property name="passTotMax">
+			<value>900</value>
+		</property>
+		<property name="sottdscr1">
+			<value>450</value>
+		</property>
+		<property name="rimbTotMin1">
+			<value>750</value>
+		</property>
+		<property name="rimbTotMax1">
+			<value>760</value>
+		</property>
+		<property name="revRid">
+			<value>773</value>
+		</property>
+		<property name="rimbParz3">
+			<value>790</value>
+		</property>
+	 </bean>
+	 
+	 <bean id="InsMovimentoNoOrdineNoPosizione"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>INS_MOVIMENTO</value>
+		</property>
+		<property name="creaPosizione">
+			<value>0</value>
+		</property>
+		<property name="creaOrdine">
+			<value>0</value>
+		</property>
+		<property name="movimentoPosMin">
+			<value>100</value>
+		</property>
+		<property name="movimentoPosMax">
+			<value>480</value>
+		</property>
+		<property name="movimentoNegMin">
+			<value>600</value>
+		</property>
+		<property name="movimentoNegMax">
+			<value>911</value>
+		</property>
+		<property name="movimentoDaVerMin">
+			<value>500</value>
+		</property>
+		<property name="movimentoDaVerMax">
+			<value>599</value>
+		</property>
+		<property name="codesTableManager">
+    		<ref bean="codesTableManager"/> 
+    	</property>
+    	<property name="sottoscrMin">
+			<value>100</value>
+		</property>
+		<property name="sottoscrMax">
+			<value>199</value>
+		</property>
+		<property name="aggMin">
+			<value>200</value>
+		</property>
+		<property name="aggMax">
+			<value>305</value>
+		</property>
+		<property name="aggMin1">
+			<value>953</value>
+		</property>
+		<property name="aggMax1">
+			<value>955</value>
+		</property>
+		<property name="rimbParzMin">
+			<value>600</value>
+		</property>
+		<property name="rimbParzMax">
+			<value>699</value>
+		</property>
+		<property name="rimbParzMin1">
+			<value>956</value>
+		</property>
+		<property name="rimbParzMax1">
+			<value>959</value>
+		</property>
+		<property name="rimbParz">
+			<value>911</value>
+		</property>
+		<property name="rimbTotMin">
+			<value>700</value>
+		</property>
+		<property name="rimbTotMax">
+			<value>749</value>
+		</property>
+		<property name="swInMin">
+			<value>470</value>
+		</property>
+		<property name="swInMax">
+			<value>505</value>
+		</property>
+		<property name="swInMin1">
+			<value>350</value>
+		</property>
+		<property name="swInMax1">
+			<value>353</value>
+		</property>
+		<property name="swInMin2">
+			<value>400</value>
+		</property>
+		<property name="swInMax2">
+			<value>408</value>
+		</property>
+		<property name="swOutMin">
+			<value>800</value>
+		</property>
+		<property name="swOutMax">
+			<value>849</value>
+		</property>
+		<property name="passTotMin">
+			<value>850</value>
+		</property>
+		<property name="passTotMax">
+			<value>900</value>
+		</property>
+		<property name="sottdscr1">
+			<value>450</value>
+		</property>
+		<property name="rimbTotMin1">
+			<value>750</value>
+		</property>
+		<property name="rimbTotMax1">
+			<value>760</value>
+		</property>
+		<property name="revRid">
+			<value>773</value>
+		</property>
+		<property name="rimbParz3">
+			<value>790</value>
+		</property>
+	 </bean>
+	 
+	 
+	 <bean id="InsMovimentoSiOrdineNoPosizione"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>INS_MOVIMENTO</value>
+		</property>
+		<property name="creaPosizione">
+			<value>0</value>
+		</property>
+		<property name="creaOrdine">
+			<value>1</value>
+		</property>
+		<property name="movimentoPosMin">
+			<value>100</value>
+		</property>
+		<property name="movimentoPosMax">
+			<value>480</value>
+		</property>
+		<property name="movimentoNegMin">
+			<value>600</value>
+		</property>
+		<property name="movimentoNegMax">
+			<value>911</value>
+		</property>
+		<property name="movimentoDaVerMin">
+			<value>500</value>
+		</property>
+		<property name="movimentoDaVerMax">
+			<value>599</value>
+		</property>
+		<property name="sottoscrMin">
+			<value>100</value>
+		</property>
+		<property name="sottoscrMax">
+			<value>199</value>
+		</property>
+		<property name="aggMin">
+			<value>200</value>
+		</property>
+		<property name="aggMax">
+			<value>305</value>
+		</property>
+		<property name="aggMin1">
+			<value>953</value>
+		</property>
+		<property name="aggMax1">
+			<value>955</value>
+		</property>
+		<property name="rimbParzMin">
+			<value>600</value>
+		</property>
+		<property name="rimbParzMax">
+			<value>699</value>
+		</property>
+		<property name="rimbParzMin1">
+			<value>956</value>
+		</property>
+		<property name="rimbParzMax1">
+			<value>959</value>
+		</property>
+		<property name="rimbParz">
+			<value>911</value>
+		</property>
+		<property name="rimbTotMin">
+			<value>700</value>
+		</property>
+		<property name="rimbTotMax">
+			<value>749</value>
+		</property>
+		<property name="swInMin">
+			<value>470</value>
+		</property>
+		<property name="swInMax">
+			<value>505</value>
+		</property>
+		<property name="swInMin1">
+			<value>350</value>
+		</property>
+		<property name="swInMax1">
+			<value>353</value>
+		</property>
+		<property name="swInMin2">
+			<value>400</value>
+		</property>
+		<property name="swInMax2">
+			<value>408</value>
+		</property>
+		<property name="swOutMin">
+			<value>800</value>
+		</property>
+		<property name="swOutMax">
+			<value>849</value>
+		</property>
+		<property name="passTotMin">
+			<value>850</value>
+		</property>
+		<property name="passTotMax">
+			<value>900</value>
+		</property>
+		<property name="sottdscr1">
+			<value>450</value>
+		</property>
+		<property name="rimbTotMin1">
+			<value>750</value>
+		</property>
+		<property name="rimbTotMax1">
+			<value>760</value>
+		</property>
+		<property name="revRid">
+			<value>773</value>
+		</property>
+		<property name="rimbParz3">
+			<value>790</value>
+		</property>
+		<property name="codesTableManager">
+    		<ref bean="codesTableManager"/> 
+    	</property>
+	 </bean>
+	 
+	  <bean id="updateMovimentoRollBack"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>UPD_MOVIMENTO_ROLL</value>
+		</property>
+		<property name="movimentoPosMin">
+			<value>100</value>
+		</property>
+		<property name="movimentoPosMax">
+			<value>480</value>
+		</property>
+		<property name="movimentoNegMin">
+			<value>600</value>
+		</property>
+		<property name="movimentoNegMax">
+			<value>911</value>
+		</property>
+		<property name="movimentoDaVerMin">
+			<value>500</value>
+		</property>
+		<property name="movimentoDaVerMax">
+			<value>599</value>
+		</property>
+		
+	 </bean>
+	 
+	 
+	 <bean id="GetPosizioneByContrattoIdAttFinIdSottodossierSRV" class="it.ras.arco.service.PosizioneManagerSRV" singleton="false" >
+<property name="moduleManager">
+<ref bean="RasModuleManager" />
+</property>
+<property name="action">
+<value>GET_POS_BY_CONTRATTOID_ATTFINID_SOTTODOSSIER</value>
+</property>
+</bean>
+
+	 
+	 
+	 
+	 <bean id="UpdMovimento"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>UPD_MOVIMENTO</value>
+		</property>
+	 </bean>
+	 
+	 <bean id="GetOrdine"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_ORDINE_BY_ORDINEID</value>
+		</property>
+	 </bean>
+	 
+	 
+	 <bean id="GetOrdiniBySottId"      class="it.ras.arco.service.PosizioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_ORDINI_BY_SOTTID</value>
+		</property>
+	 </bean>
+	 
+	 
+	 
+	 
+	 
+	 
+<!-- Definizione dei moduli generici di accesso al DB -->
+		
+				<bean id="InserimentoDettaglio" class="it.ras.flag.module.DefaultDbModule">
+			<property name="dao">
+				<ref bean="RasBatchDao" />
+			</property>
+			<property name="query">
+				<value>5</value>
+			</property>			
+			<property name="parameters">
+				<list>
+					<value>DETTAGLIO</value>
+				</list>
+			</property>
+			<property name="output">
+				<value>DETTAGLIO</value>
+			</property>
+		</bean>
+		
+		
+		<bean id="InsQuadSecPosizioneDtMD" class="it.ras.flag.module.DefaultDbModule">
+			<property name="dao">
+				<ref bean="RasBatchDao" />
+			</property>
+			<property name="query">
+				<value>5</value>
+			</property>			
+			<property name="parameters">
+				<list>
+					<value>QUAD_POSIZIONE</value>
+				</list>
+			</property>
+			<property name="output">
+				<value>QUAD_POSIZIONE</value>
+			</property>
+		</bean>
+		
+		
+		<bean id="UpdateDettaglio"
+	    	class="it.ras.flag.module.DefaultDbModule">
+	    	<property name="dao">
+	    		<ref bean="RasBatchDao" />
+	    	</property>
+	    	<property name="query">
+	    		<value>9</value>
+	    	</property>
+	    	<property name="parameters">
+	    		<list>
+	    			<value>DETTAGLIO</value>
+	    		</list>
+	    	</property>
+	   		<property name="output">
+	    		<value>POSIZIONE</value>
+	    	</property>
+    	</bean>
+		
+		
+		<bean id="GetMovimentoByNumMovimentoContrattoIdMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetMovimentoByNumMovimentoContrattoId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>NUM_MOV_EXT</value>
+    			<value>CONTRATTO</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>numMov</value>
+    			<value>contrattoId</value>
+    		</list>
+    	</property>
+    	
+    	<property name="output">
+    		<value>POSIZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetMovimentoByContrattoIdDataAttFinMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetMovimentoByContrattoIdDataAttFin</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>DATA</value>
+    			<value>CONTRATTO</value>
+    			<value>ATT_FIN</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>data</value>
+    			<value>contrattoId</value>
+    			<value>attFinId</value>
+    		</list>
+    	</property>
+    	
+    	<property name="output">
+    		<value>POSIZIONE</value>
+    	</property>
+    </bean>
+    
+    
+    
+	<bean id="GetPosizioneByNumContrattoAttFinIdMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>getPosizioneByNumContrattoAttFinanziaria</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>ATTIVITA_FINANZIARIA</value>
+    			<value>CONTRATTO</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>attFin</value>
+    			<value>contratto</value>
+    		</list>
+    	</property>
+    	
+    	<property name="output">
+    		<value>POSIZIONE</value>
+    	</property>
+    </bean>
+    
+    
+    <bean id="GetPosizioneByDossierProdIdAttFinanziariaMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>getPosizioneByDossierProdIdAttFinanziaria</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>ATTIVITA_FINANZIARIA</value>
+    			<value>DOSSIER</value>
+    			<value>PRODOTTO</value>
+    			
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>attFin</value>
+    			<value>dossier</value>
+    			<value>prodotto</value>
+    			
+    		</list>
+    	</property>
+    	
+    	<property name="output">
+    		<value>POSIZIONE</value>
+    	</property>
+    </bean>
+    
+    
+    
+    <bean id="GetPosizioneByContrattoIdSoggIdSottodossierMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetPosizioneByContrattoIdSoggIdSottodossier</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>SOGGETTO</value>
+    			<value>SOTTODOSSIER</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>contrattoId</value>
+    			<value>soggettoId</value>
+    			<value>sottodossier</value>
+    		</list>
+    	</property>
+    	
+    	<property name="output">
+    		<value>POSIZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetPosizioneByContrattoIdSoggIdSottodossierNumOpeMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetPosizioneByContrattoIdSoggIdSottodossierNumOpe</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>SOGGETTO</value>
+    			<value>SOTTODOSSIER</value>
+    			<value>NUMERO_OPERAZIONE</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>contrattoId</value>
+    			<value>soggettoId</value>
+    			<value>sottodossier</value>
+    			<value>numeroOperazione</value>
+    		</list>
+    	</property>
+    	
+    	<property name="output">
+    		<value>DETTAGLIO</value>
+    	</property>
+    </bean>
+    
+    
+      <bean id="GetPosizioneByContrattoIdMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetPosizioneByContrattoId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>contrattoId</value>
+    			
+    		</list>
+    	</property>
+    	
+    	<property name="output">
+    		<value>POSIZIONE</value>
+    	</property>
+    </bean>
+    
+    
+    
+    
+    
+    
+
+    <bean id="GetOrdineByOrdineIDMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetOrdineByOrdineIDMD</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>ORDINE_ID</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>ordineId</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>POSIZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetOrdiniBySottIDMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetOrdiniBySottoscrizioneId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>SOTTOSCRIZIONE_ID</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>sottoscrizioneId</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>ORDINE</value>
+    	</property>
+    </bean>
+    
+    
+    
+    
+    
+	<bean id="GetMovimentoByNumMovimentoContrattoIdPosizioneIdAttFinMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>1</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetMovimentoByNumMovimentoContrattoIdPosizioneIdAttFinId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>NUM_MOV_EXT</value>
+    			<value>POSIZIONE</value>
+    			<value>CONTRATTO</value>
+    			<value>ATT_FIN</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>numMovExt</value>
+    			<value>posizioneId</value>
+    			<value>contrattoId</value>
+    			<value>attivitaFinId</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>POSIZIONE</value>
+    	</property>
+    </bean>     
+    
+    
+    	<bean id="GetMovimentoByNumMovimentoContrattoIdAttFinMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>1</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetMovimentoByNumMovimentoContrattoIdAttFinId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>NUM_MOV_EXT</value>
+    			<value>CONTRATTO</value>
+    			<value>ATT_FIN</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>numMovExt</value>
+    			<value>contrattoId</value>
+    			<value>attivitaFinId</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>POSIZIONE</value>
+    	</property>
+    </bean>     
+    
+    
+    
+   
+    <bean id="GetMovimentoByContrattoIdPosizioneIdAttFinMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>1</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetMovimentoByContrattoIdPosizioneIdAttFinId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			
+    			<value>POSIZIONE</value>
+    			<value>CONTRATTO</value>
+    			<value>ATT_FIN</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>posizioneId</value>
+    			<value>contrattoId</value>
+    			<value>attivitaFinId</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>POSIZIONE</value>
+    	</property>
+    </bean>     
+   
+    <bean id="UpdPosizioneMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>9</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>POSIZIONE</value>
+    		</list>
+    	</property>
+   		<property name="output">
+    		<value>POSIZIONE</value>
+    	</property>
+    </bean>
+    
+     <bean id="UpdOrdineMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>9</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>ORDINE</value>
+    		</list>
+    	</property>
+   		<property name="output">
+    		<value>ORDINE</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertMovimentoMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>MOVIMENTO</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>MOVIMENTO</value>
+		</property>
+	</bean>
+	
+	<bean id="InsPosizioneMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>POSIZIONE</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>POSIZIONE</value>
+		</property>
+	</bean>
+	
+	 <bean id="InsertOrdineMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>ORDINE</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>ORDINE</value>
+		</property>
+	</bean>
+	
+	
+	<bean id="UpdateMovimentoMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>9</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>MOVIMENTO</value>
+    		</list>
+    	</property>
+   		<property name="output">
+    		<value>MOVIMENTO</value>
+    	</property>
+    </bean>
+    
+    
+    
+<bean id="GetPosizioneByContrattoIdAttFinSottodossierMD"
+class="it.ras.flag.module.DefaultDbModule">
+<property name="dao">
+<ref bean="RasBatchDao" />
+</property>
+<property name="query">
+<value>0</value>
+</property>
+<property name="queryName">
+<value>GetPosizioneByContrattoIdAttFinSottodossier</value>
+</property>
+<property name="parameters">
+<list>
+<value>CONTRATTO</value>
+<value>ATTIVITA_FINANZIARIA</value>
+<value>SOTTODOSSIER</value>
+</list>
+</property>
+<property name="paramNames">
+<list>
+<value>contrattoId</value>
+<value>attivitaFinId</value>
+<value>sottodossier</value>
+</list>
+</property>
+<property name="output">
+<value>POSIZIONE</value>
+</property>
+</bean>
+
+    
+    
+</beans>

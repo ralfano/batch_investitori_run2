@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxRBVitaPortPol" table="FLX_RBVITA_PORTPOL" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="java.lang.Integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_RBVITA_PORTPOL_SEQUENCE</param>
+   </generator>
+  </id>
+
+  <property name="tipoRecord" type="string" column="TIPO_RECORD" length="3"/>
+  <property name="provPortRas" type="integer" column="PROV_PORT_RAS"/>
+  <property name="dataElab" type="date" column="DATA_ELAB"/>
+  <property name="compagnia" type="java.lang.Integer" column="COMPAGNIA"/>
+  <property name="ramo" type="integer" column="RAMO"/>
+  <property name="numPolizza" type="java.lang.Integer" column="NUM_POLIZZA"/>
+  <property name="codLiberata" type="java.lang.Integer" column="COD_LIBERATA"/>
+  <property name="numProposta" type="java.lang.Integer" column="NUM_PROPOSTA"/>
+  <property name="codDivisa" type="java.lang.String" column="COD_DIVISA" length="3"/>
+  <property name="durataContratto" type="java.lang.Integer" column="DURATA_CONTRATTO"/>
+  <property name="pfia" type="java.lang.String" column="PFIA" length="2"/>
+  <property name="frazionamento" type="java.lang.Integer" column="FRAZIONAMENTO"/>
+  <property name="tassoFrazionamento" type="string"
+   column="TASSO_FRAZIONAMENTO" length="9"/>
+  <property name="codTrasformata" type="integer" column="COD_TRASFORMATA"/>
+  <property name="polizzaSost1" type="java.lang.Integer" column="POLIZZA_SOST1"/>
+  <property name="polizzaSost2" type="java.lang.Integer" column="POLIZZA_SOST2"/>
+  <property name="polizzaSost3" type="java.lang.Integer" column="POLIZZA_SOST3"/>
+  <property name="polizzaSost4" type="java.lang.Integer" column="POLIZZA_SOST4"/>
+  <property name="dataEmisContr" type="date" column="DATA_EMIS_CONTR"/>
+  <property name="dataDecorContr" type="date" column="DATA_DECOR_CONTR"/>
+  <property name="dataScadContr" type="date" column="DATA_SCAD_CONTR"/>
+  <property name="dataUltRataPag" type="date" column="DATA_ULT_RATA_PAG"/>
+  <property name="dataUltRataIncas" type="date" column="DATA_ULT_RATA_INCAS"/>
+  <property name="dataDecorRataSucc" type="date" column="DATA_DECOR_RATA_SUCC"/>
+  <property name="codProd" type="string" column="COD_PROD" length="10"/>
+  <property name="descProd" type="string" column="DESC_PROD" length="40"/>
+  <property name="codTarif" type="integer" column="COD_TARIF"/>
+  <property name="descTarif" type="string" column="DESC_TARIF" length="30"/>
+  <property name="tipoTarif" type="integer" column="TIPO_TARIF"/>
+  <property name="descCompl" type="string" column="DESC_COMPL" length="30"/>
+  <property name="dataInizPagPremi" type="date" column="DATA_INIZ_PAG_PREMI"/>
+  <property name="dataFinPagPremi" type="date" column="DATA_FIN_PAG_PREMI"/>
+  <property name="codStorno" type="string" column="COD_STORNO"/>
+  <property name="dataStorno" type="date" column="DATA_STORNO"/>
+  <property name="flagLiquidita" type="string"
+   column="FLAG_LIQUIDITA" length="1"/>
+  <property name="codTassoVita" type="java.lang.Integer" column="COD_TASSO_VITA"/>
+  <property name="codTassoCi" type="java.lang.Integer" column="COD_TASSO_CI"/>
+  <property name="tipoInvalidita" type="java.lang.String"
+   column="TIPO_INVALIDITA" length="5"/>
+  <property name="percInvalidita" type="java.lang.String"
+   column="PERC_INVALIDITA" length="9"/>
+  <property name="baseTecnica" type="java.lang.String"
+   column="BASE_TECNICA" length="5"/>
+  <property name="tassoTariffa" type="java.lang.String"
+   column="TASSO_TARIFFA" length="17"/>
+  <property name="impSovrapprezzoProf" type="java.lang.String"
+   column="IMP_SOVRAPPREZZO_PROF" length="17"/>
+  <property name="impSovrapprezzoSport" type="java.lang.String"
+   column="IMP_SOVRAPPREZZO_SPORT" length="17"/>
+  <property name="impSovrapprezzoSanit" type="java.lang.String"
+   column="IMP_SOVRAPPREZZO_SANIT" length="17"/>
+  <property name="impSovrapprezzoGener" type="java.lang.String"
+   column="IMP_SOVRAPPREZZO_GENER" length="17"/>
+  <property name="ultPremioPagLordo" type="java.lang.String"
+   column="ULT_PREMIO_PAG_LORDO" length="17"/>
+  <property name="ultPremioPagNetto" type="java.lang.String"
+   column="ULT_PREMIO_PAG_NETTO" length="17"/>
+  <property name="ultPremioPagLordoCi" type="java.lang.String"
+   column="ULT_PREMIO_PAG_LORDO_CI" length="17"/>
+  <property name="ultPremioPagNettoCi" type="java.lang.String"
+   column="ULT_PREMIO_PAG_NETTO_CI" length="17"/>
+  <property name="ultRataEmessLorda" type="java.lang.String" column="ULT_RATA_EMESS_LORDA"/>
+  <property name="ultRataEmessNetta" type="java.lang.String" column="ULT_RATA_EMESS_NETTA"/>
+  <property name="ultRataEmessLordaCi" type="java.lang.String" column="ULT_RATA_EMESS_LORDA_CI"/>
+  <property name="ultRataEmessNettaCi" type="java.lang.String" column="ULT_RATA_EMESS_NETTA_CI"/>
+  <property name="cumuloPremiPagLordi" type="java.lang.String"
+   column="CUMULO_PREMI_PAG_LORDI" length="17"/>
+  <property name="cumuloPremiPagLordiCi" type="java.lang.String"
+   column="CUMULO_PREMI_PAG_LORDI_CI" length="17"/>
+  <property name="cumuloPremiPagNetti" type="java.lang.String"
+   column="CUMULO_PREMI_PAG_NETTI" length="17"/>
+  <property name="cumuloPremiPagNettiCi" type="java.lang.String"
+   column="CUMULO_PREMI_PAG_NETTI_CI" length="17"/>
+  <property name="dirittiPerfez" type="java.lang.String"
+   column="DIRITTI_PERFEZ" length="17"/>
+  <property name="dirittiQuietanza" type="java.lang.String"
+   column="DIRITTI_QUIETANZA" length="17"/>
+  <property name="primoPremioPag" type="java.lang.String"
+   column="PRIMO_PREMIO_PAG" length="17"/>
+  <property name="primoPremioPagCi" type="java.lang.String"
+   column="PRIMO_PREMIO_PAG_CI" length="17"/>
+  <property name="prestitoEsist" type="java.lang.String"
+   column="PRESTITO_ESIST" length="17"/>
+  <property name="capitaleMaturatoCa" type="java.lang.String"
+   column="CAPITALE_MATURATO_CA" length="17"/>
+  <property name="capitaleMaturatoCu" type="java.lang.String"
+   column="CAPITALE_MATURATO_CU" length="17"/>
+  <property name="capitaleMaturatoCi" type="java.lang.String"
+   column="CAPITALE_MATURATO_CI" length="17"/>
+  <property name="capitaleDifferito" type="java.lang.String"
+   column="CAPITALE_DIFFERITO" length="17"/>
+  <property name="renditaMaturataCa" type="java.lang.String"
+   column="RENDITA_MATURATA_CA" length="17"/>
+  <property name="renditaMaturataCu" type="java.lang.String"
+   column="RENDITA_MATURATA_CU" length="17"/>
+  <property name="renditaDifferita" type="java.lang.String"
+   column="RENDITA_DIFFERITA" length="17"/>
+  <property name="partiValuta" type="java.lang.String"
+   column="PARTI_VALUTA" length="17"/>
+  <property name="prestazIniziale" type="java.lang.String"
+   column="PRESTAZ_INIZIALE" length="17"/>
+  <property name="indiceInizValuta" type="java.lang.String"
+   column="INDICE_INIZ_VALUTA" length="17"/>
+  <property name="unitLinked" type="java.lang.String"
+   column="UNIT_LINKED" length="1"/>
+  <property name="descrProd" type="string" column="DESCR_PROD" length="30"/>
+  <property name="indirizCorrispContr" type="java.lang.String"
+   column="INDIRIZ_CORRISP_CONTR" length="30"/>
+  <property name="locCorrispContr" type="java.lang.String"
+   column="LOC_CORRISP_CONTR" length="30"/>
+  <property name="capCorrispContr" type="java.lang.String"
+   column="CAP_CORRISP_CONTR" length="5"/>
+  <property name="provCorrispContr" type="java.lang.String"
+   column="PROV_CORRISP_CONTR" length="3"/>
+  <property name="nazCorrispContr" type="java.lang.String"
+   column="NAZ_CORRISP_CONTR" length="3"/>
+  <property name="cfContr" type="java.lang.String" column="CF_CONTR" length="16"/>
+  <property name="nomeAssicurato" type="java.lang.String"
+   column="NOME_ASSICURATO" length="40"/>
+  <property name="dataNascitaAssic" type="date" column="DATA_NASCITA_ASSIC"/>
+  <property name="etaCompAssic" type="java.lang.Integer" column="ETA_COMP_ASSIC"/>
+  <property name="sessoAssic" type="java.lang.String"
+   column="SESSO_ASSIC" length="1"/>
+  <property name="codAgente" type="string" column="COD_AGENTE" length="5"/>
+  <property name="codRete" type="string" column="COD_RETE" length="1"/>
+  <property name="riassegn" type="string" column="RIASSEGN" length="1"/>
+  <property name="codAgSplit" type="string" column="COD_AG_SPLIT" length="5"/>
+  <property name="codAgenzia" type="integer" column="COD_AGENZIA"/>
+  <property name="numMandato" type="integer" column="NUM_MANDATO"/>
+  <property name="sgict" type="integer" column="SGICT"/>
+  <property name="compSiag" type="integer" column="COMP_SIAG"/>
+  <property name="polSiag" type="integer" column="POL_SIAG"/>
+  <property name="ramoSiag" type="integer" column="RAMO_SIAG"/>
+  <property name="agSiag" type="integer" column="AG_SIAG"/>
+  <property name="dataRifRivalut" type="date" column="DATA_RIF_RIVALUT"/>
+  <property name="cambUltRataEmes" type="java.lang.String"
+   column="CAMB_ULT_RATA_EMES" length="10"/>
+  <property name="cambUltRataPag" type="java.lang.String"
+   column="CAMB_ULT_RATA_PAG" length="10"/>
+  <property name="dataUltRataEmes" type="date" column="DATA_ULT_RATA_EMES"/>
+  <property name="percRivalutazione" type="java.lang.String"
+   column="PERC_RIVALUTAZIONE" length="9"/>
+  <property name="numVersProd" type="integer" column="NUM_VERS_PROD"/>
+  <property name="statoElab" type="java.lang.String"
+   column="STATO_ELAB_B" length="2"/>
+  <property name="istanza" type="java.lang.String" column="ISTANZA_S" length="1"/>
+  <property name="dataCaricamento" type="date" column="DATA_CARICAMENTO_S"/>
+  <property name="descError" type="java.lang.String" column="DESCRIZIONE_ERRORE_S" length="100"/>
+  <property name="dataElabD" type="timestamp" column="DATA_ELAB_D"/>
+  
+    <property name="impAnnuPremVita"                column="IMP_ANNU_PREM_VITA"             type="double"  />
+	<property name="impPremVitaUnic"                column="IMP_PREM_VITA_UNIC"             type="double"  />
+	<property name="impPreVitaAnnCr"                column="IMP_PRE_VITA_ANN_CR"            type="double"  />
+	<property name="impPrvVitAnnCr"                 column="IMP_PRV_VIT_ANN_CR"             type="double"  />
+	<property name="impRiseMate"                    column="IMP_RISE_MATE"                  type="double"  />
+	<property name="impCaptLiqu"                    column="IMP_CAPT_LIQU"                  type="double"  />
+	<property name="impCaptScad"                    column="IMP_CAPT_SCAD"                  type="double"  />
+	<property name="impRend"                        column="IMP_REND"                       type="double"  />
+	<property name="impPremAggn"                    column="IMP_PREM_AGGN"                  type="double"  />
+	<property name="impPres"                        column="IMP_PRES"                       type="double"  />
+	<property name="impRataIniz"                    column="IMP_RATA_INIZ"                  type="double"  />
+	<property name="impRataAtt"                     column="IMP_RATA_ATT"                   type="double"  />
+	<property name="fabbricaProvv"                  column="FABBRICA_PROV"                  type="string" length="8"  />
+	
+	 
+  
+ </class>
+ <query name="RBVITAPORTPOL_ELENCO_SQL">from it.ras.arco.batch.bean.FlxRBVitaPortPol</query>
+</hibernate-mapping>

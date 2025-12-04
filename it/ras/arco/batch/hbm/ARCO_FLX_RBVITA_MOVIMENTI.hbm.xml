@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxRBVitaMovimenti"  rowid="rowid" table="FLX_RBVITA_MOVIMENTI">
+  <id name="flxId" column="FLX_ID" type="java.lang.Integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_RBVITA_MOVIMENTI_SEQ</param>
+   </generator>
+  </id>
+	<property name="tipoRecord"                     column="TIPO_RECORD"                    type="string" length="10"  />
+	<property name="emittente"                      column="EMITTENTE"                      type="integer"  />
+	<property name="prodotto"                       column="PRODOTTO"                       type="string" length="40"  />
+	<property name="polizza"                        column="POLIZZA"                        type="integer"  />
+	<property name="causale"                        column="CAUSALE_T"                      type="string"  />
+	<property name="dataInserimento"                column="DATA_INSERIMENTO_D"             type="date"  />
+	<property name="dataCompetenza"                 column="DATA_COMPETENZA_D"              type="date"  />
+	<property name="dataValuta"                     column="DATA_VALUTA_D"                  type="date"  />
+	<property name="dataRegistraz"                  column="DATA_REGISTRAZ_D"               type="date"  />
+	<property name="divisa"                         column="DIVISA_T"                       type="string" length="3"  />
+	<property name="importoNetto"                 	column="IMPORTO_NETTO_C"             	type="double"  />
+	<property name="importo"                        column="IMPORTO_C"                      type="double"  />
+	<property name="quantita"                       column="QUANTITA_C"                     type="integer"  />
+	<property name="prezzo"                         column="PREZZO_C"                       type="double"  />
+	<property name="cambio"                         column="CAMBIO_C"                       type="double"  />
+	<property name="commissioni"                    column="COMMISSIONI_C"                  type="double"  />
+	<property name="spese"                          column="SPESE_C"                        type="double"  />
+	<property name="fndDestinazione"                column="FND_DESTINAZIONE_S"             type="string" length="50"  />
+	<property name="nomeBenef"                      column="NOME_BENEF_S"                   type="string" length="150"  />
+	<property name="codiceAgente"                   column="CODICE_AGENTE"                  type="string" length="4"  />
+	<property name="tipoProdotto"                   column="TIPO_PRODOTTO_T"                type="string" length="3"  />
+	<property name="mezzoPagamento"                 column="MEZZO_PAGAMENTO"                type="string" length="40"  />
+	<property name="abi"                            column="ABI"                            type="string" length="5"  />
+	<property name="cab"                            column="CAB"                            type="string" length="5"  />
+	<property name="numcc"                          column="NUMCC"                          type="string" length="12"  />
+	<property name="annualita"                      column="ANNUALITA"                      type="string" length="1"  />
+	<property name="statoContratto"					column="STATO_CONTRATTO_T"				type="string" length="2"  />
+	<property name="tipoMovimento"                  column="TIPO_MOVIMENTO"                 type="string" length="1"  />
+	<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+	<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+	<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="timestamp"  />
+	<property name="descError" type="java.lang.String" column="DESCRIZIONE_ERRORE_S" length="100"/>
+    <property name="dataElab" type="timestamp" column="DATA_ELAB_D"/>
+    <property name="codFondo"						column="COD_FONDO"						type="string" length="10" />
+    <property name="codLinea"						column="COD_LINEA"						type="string" length="8" />
+    <property name="versioneProdotto"				column="VERSIONE_PRODOTTO"				type="integer" />
+ </class>
+ <query name="RBVITAMOVIMENTI_ELENCO_SQL">from it.ras.arco.batch.bean.FlxRBVitaMovimenti p where p.statoElab = 'D'</query>
+</hibernate-mapping>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA INFORMAZIONI PROMOTORE -->
+ <class name="it.ras.arco.bean.FinInfoPromotore"
+  table="FIN_SOGG_INFO_PROMO" where="GSTD_ESIST_B='S'">
+  <id name="soggInfoPromoId" column="SOGG_INFO_PROMO_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_SOGG_INFO_PROMO_SEQ</param>
+   </generator>
+  </id>
+  <property name="promotoreId" type="integer" column="PROMOTORE_ID"/>
+  <property name="soggettoId" type="integer" column="SOGGETTO_ID"/>
+  <property name="promoPrinc" type="string" column="PROMO_PRINC_B" length="1"/>
+  <property name="denominazione" type="string" column="DENOMINAZIONE_S" length="70"/>
+  <property name="inizioNome" type="integer" column="INIZIO_NOME_I"/>
+  <property name="tipoSocieta" type="string" column="TIPO_SOCIETA_T" length="6"/>
+  <property name="statoCliPromo" type="string"
+   column="STATO_CLI_PROMO_T" length="3"/>
+  <property name="inizStatoCli" type="date" column="INIZ_STATO_CLI_D"/>
+  <property name="titolo" type="string" column="TITOLO_S" length="10"/>
+  <property name="progIndiPrefId" type="integer" column="PROG_INDI_PREF_ID"/>
+  <property name="mezzoComunPref" type="string"
+   column="MEZZO_COMUN_PREF_T" length="3"/>
+  <property name="infoViaSms" type="string" column="INFO_VIA_SMS_B" length="1"/>
+  <property name="ecViaEmail" type="string" column="EC_VIA_EMAIL_B" length="1"/>
+  <property name="classImpoPromo" type="string"
+   column="CLASS_IMPO_PROMO_T" length="3"/>
+  <property name="presNote" type="string" column="PRES_NOTE_B" length="1"/>
+  <property name="datiSupl" type="string" column="DATI_SUPL_S" length="20"/>
+  <property name="userUltimaModifica" type="string"
+   column="GSTD_ULT_USER_S" length="20"/>
+  <property name="proceduraUltimaModifica" type="string"
+   column="GSTD_ULT_PROC_S" length="20"/>
+  <property name="dataUltimaModifica" type="date" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="date" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string"
+   column="GSTD_USER_INS_S" length="20"/>
+  <property name="tipoUltimaModifica" type="string"
+   column="GSTD_TIPO_MOD_B" length="1"/>
+     <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  
+ </class>
+</hibernate-mapping>
+

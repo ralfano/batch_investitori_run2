@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO DOCUMENTO_MANAGER_SRV -->
+    
+    <bean id="insertRuoloSRV"
+    	class="it.ras.arco.service.RuoloManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT_RUOLO</value>
+    	</property>
+    </bean> 
+    <bean id="updateRuoloSRV"
+    	class="it.ras.arco.service.RuoloManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>ACTION_UPDATE_RUOLO</value>
+    	</property>
+    </bean>
+    
+    <bean id="getRuoloBySoggSCollLegameSRV"
+    	class="it.ras.arco.service.RuoloManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>ACTION_GET_RUOLO_BY_SOGG_SCOLL_LEGAME</value>
+    	</property>
+    </bean>
+    
+    <bean id="getRuoloBySoggContrLegameSRV"
+    	class="it.ras.arco.service.RuoloManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>ACTION_GET_RUOLO_BY_SOGG_CONTR_LEGAME</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertRuoloMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>5</value>
+    	</property>
+    	
+	    	<property name="parameters">
+	    		<list>
+	    			<value>RUOLO</value>
+	    		</list>
+	    	</property>
+	    	<property name="output">
+	    		<value>RUOLO</value>
+	    	</property>
+    	
+    </bean>
+    <bean id="UpdateRuoloMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>9</value>
+    	</property>
+    	
+	    	<property name="parameters">
+	    		<list>
+	    			<value>RUOLO</value>
+	    		</list>
+	    	</property>
+	    	<property name="output">
+	    		<value>RUOLO</value>
+	    	</property>
+    	
+    </bean>
+    
+    <bean id="getRuoloBySoggSCollLegameMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+      		<value>GetRuoloBySoggettoSoggettoCollegamentoLegame</value>
+     	</property>
+     	<property name="parameters">
+      		<list>
+       			<value>CLIENTE</value>
+       			<value>COLLEGATO</value>
+       			<value>RUOLO</value>
+      		</list>
+     	</property>
+     	<property name="paramNames">
+    		<list>
+    			<value>clienteId</value>
+    			<value>collegatoId</value>
+    			<value>tipoLegame</value>
+    		</list>
+    	</property>
+     	<property name="output">
+      		<value>RUOLO</value>
+     	</property>
+    </bean>
+    
+    <bean id="getRuoloBySoggSContrLegameMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+      		<value>GetRuoloBySoggettoContrattoLegame</value>
+     	</property>
+     	<property name="parameters">
+      		<list>
+       			<value>CLIENTE</value>
+       			<value>DETTAGLIO</value>
+       			<value>RUOLO</value>
+      		</list>
+     	</property>
+     	<property name="paramNames">
+    		<list>
+    			<value>clienteId</value>
+    			<value>contrattoID</value>
+    			<value>tipoLegame</value>
+    		</list>
+    	</property>
+     	<property name="output">
+      		<value>RUOLO</value>
+     	</property>
+    </bean>
+        
+</beans>

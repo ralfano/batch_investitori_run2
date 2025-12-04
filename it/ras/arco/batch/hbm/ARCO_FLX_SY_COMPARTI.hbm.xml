@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ANAGRAFICA SY00 -->
+ <class name="it.ras.arco.batch.bean.FlxSyComparti" rowid="rowid"
+  table="FLX_SY_COMPARTI" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_GENERIC_SEQ</param>
+   </generator>
+  </id>
+  <property name="tipoProd" type="string" column="TIPO_PROD" length="1"/>
+  <property name="codComparto" type="integer" column="COD_COMPARTO"/>
+  <property name="descComparto" type="string" column="DESC_COMPARTO" length="35"/>
+  <property name="descCompartoBrv" type="string"
+   column="DESC_COMPARTO_BRV" length="8"/>
+  <property name="dataRif" type="date" column="DATA_RIF"/>
+  <property name="valQuota" type="double" column="VAL_QUOTA"/>
+  <property name="codVal" type="string" column="COD_VAL" length="3"/>
+  <property name="codSycav" type="integer" column="COD_SYCAV"/>
+  <property name="descSycav" type="string" column="DESC_SYCAV" length="30"/>
+  <property name="statoElabB" type="string" column="STATO_ELAB_B" length="2"/>
+  <property name="istanzaS" type="string" column="ISTANZA_S" length="1"/>
+ </class>
+ <query name="FLX_SY_COMPARTI_SQL">from  
+ it.ras.arco.batch.bean.FlxSyComparti pc</query>
+</hibernate-mapping>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+<class name="it.ras.arco.bean.FinDettaglioPct"  table="FIN_DETTAGLIO_PCT" >
+
+  <id name="dettaglioPctId" column="DETTAGLIO_PCT_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_DETTAGLIO_PCT_SEQ</param>
+   </generator>
+  </id>
+  
+  <property name="pctDenominazione"               column="DENOMINAZIONE"              type="string" length="30"  />
+	<property name="pctPrezzoTermine"               column="PREZZO_TERMINE"             type="double"  />
+	<property name="pctDataTermine"                 column="DATA_TERMINE_D"               type="date"  />
+	<property name="pctCambioTermine"               column="CAMBIO_TERMINE"             type="double"  />
+	<property name="pctControvaloreTermine"         column="CONTROVALORE_TERMINE"             type="double"  />
+	<property name="divisa"             		    column="DIVISA"          type="string" length="3"  />
+	<property name="dataOrdine"                     column="DATA_ORDINE_D"                type="date"  />  
+  <property name="userUltimaModifica"             column="GSTD_ULT_USER_S"                type="string" length="40"  />
+	<property name="proceduraUltimaModifica"        column="GSTD_ULT_PROC_S"                type="string" length="40"  />
+	<property name="dataUltimaModifica"             column="GSTD_ULT_MOD_D"                 type="date"  />
+	<property name="dataInserimento"                column="GSTD_INSE_D"                    type="date"  />
+	<property name="flagEsistenza"                  column="GSTD_ESIST_B"                   type="string" length="1"  />
+	<property name="utenteInserimento"              column="GSTD_USER_INS_S"                type="string" length="40"  />
+	<property name="tipoUltimaModifica"             column="GSTD_TIPO_MOD_B"                type="string" length="1"  />
+   <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  <property name="prezzoPronti" type="double" column="PREZZO_PRONTI" />
+  <property name="dataPronti" type="date" column="DATA_PRONTI_D" />
+  <property name="cambioPronti" type="double" column="CAMBIO_PRONTI" />
+  <property name="controvalorePronti" type="double" column="CONTROVALORE_PRONTI" />
+   <property name="quantita" type="double" column="QUANTITA" />
+  <property name="isinSottostante" type="string" column="ISIN_SOTTOSTANTE_S" length="1" insert="true" update="true"/>
+<property name="numOperazione" type="string" column="NUMERO_OPERAZIONE" length="100" insert="true" update="true"/>
+
+  
+  <many-to-one name="posizione" class="it.ras.arco.bean.FinPosizione" 
+  		lazy="proxy" column="POSIZIONE_ID" insert="true" update="false" not-found="ignore" 
+  		not-null="false" cascade="save-update,lock"
+  		/>
+  
+  
+  </class>
+    
+    <sql-query name="GetPosizioneByContrattoIdSoggIdSottodossierNumOpe">
+		<return alias="pDet" class="it.ras.arco.bean.FinDettaglioPct"/>
+			   select {pDet.*} from FIN_DETTAGLIO_PCT pDet join FIN_POSIZIONE p
+			   on p.POSIZIONE_ID = pDet.POSIZIONE_ID
+			   where p.CONTRATTO_ID = :contrattoId  
+			  and p.SOGGETTO_ID= :soggettoId   
+			  and p.SOTTODOSSIER_S = :sottodossier 
+			  and pDet.NUMERO_OPERAZIONE = :numeroOperazione 
+			  and p.GSTD_ESIST_B='S'
+			  and pDet.GSTD_ESIST_B='S'
+	</sql-query>
+
+</hibernate-mapping> 
+

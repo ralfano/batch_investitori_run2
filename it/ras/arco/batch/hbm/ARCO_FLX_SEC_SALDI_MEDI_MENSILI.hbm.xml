@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA MOVIMENTI CC -->
+ <class name="it.ras.arco.batch.bean.FlxSecSaldiMediMensili" table="FLX_SEC_SALDI_MEDI_MENSILI" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SEC_SALDI_MEDI_MENSILI_SEQ</param>
+   </generator>
+  </id>
+  <property name="codpro"                         column="CODPRO"                         type="string" length="3"  />
+<property name="cc"                             column="CC"                             type="string" length="8"  />
+<property name="datmov"                         column="DATMOV"                         type="date"  />
+<property name="datval"                         column="DATVAL"                         type="date"  />
+<property name="codope"                         column="CODOPE"                         type="string" length="2"  />
+<property name="impmov"                         column="IMPMOV"                         type="double"  />
+<property name="gcmedComcli"                    column="GCMED_COMCLI"                   type="double"  />
+<property name="impspe"                         column="IMPSPE"                         type="double"  />
+<property name="proswi"                         column="PROSWI"                         type="string" length="2"  />
+<property name="pernav"                         column="PERNAV"                         type="double"  />
+<property name="datevi"                         column="DATEVI"                         type="date"  />
+<property name="filiale"                        column="FILIALE"                        type="string" length="8" />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+<property name="descrizioneErrore"                column="DESCRIZIONE_ERRORE_S"             type="string" length="100" />
+<property name="dataElaborazione"                column="DATA_ELAB_D"             type="date"  />
+
+</class>
+ <query name="SEC_SALDI_MEDI_MENSILI_SQL">from  
+ it.ras.arco.batch.bean.FlxSecSaldiMediMensili</query>
+</hibernate-mapping>

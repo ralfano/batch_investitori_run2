@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxBgproIncassiAss" rowid="rowid" table="FLX_BGPRO_INCASSI_ASS">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_BGPRO_INCASSI_ASS_SEQ</param>
+   </generator>
+  </id>
+ 
+<property name="codiceAgente"                   column="CODICE_AGENTE"                  type="string" length="5"  />
+<property name="codiceReteDiAppartenenza"       column="CODICE_RETE_DI_APPARTENENZA"    type="string" length="2"  />
+<property name="qualificaAgente"                column="QUALIFICA_AGENTE"               type="string" length="4"  />
+<property name="numeroPolizza"                  column="NUMERO_POLIZZA"                 type="string"  />
+<property name="codiceProdotto"                 column="CODICE_PRODOTTO"                type="string" length="3"  />
+<property name="descrizioneProdotto"            column="DESCRIZIONE_PRODOTTO"           type="string" length="40"  />
+<property name="codiceTariffa"                  column="CODICE_TARIFFA"                 type="integer"  />
+<property name="descrizioneTariffa"             column="DESCRIZIONE_TARIFFA"            type="string" length="12"  />
+<property name="dataInizioDecorrenza"           column="DATA_INIZIO_DECORRENZA"         type="date"  />
+<property name="dataScadenza"                   column="DATA_SCADENZA"                  type="date"  />
+<property name="flagPolizza"                    column="FLAG_POLIZZA"                   type="string" length="1"  />
+<property name="frazionamento"                  column="FRAZIONAMENTO"                  type="string"  />
+<property name="contraente"                     column="CONTRAENTE"                     type="string" length="40"  />
+<property name="assicurato"                     column="ASSICURATO"                     type="string" length="40"  />
+<property name="importoProduzione"              column="IMPORTO_PRODUZIONE"             type="double"  />
+<property name="dataRiferimento"                column="DATA_RIFERIMENTO"               type="date"  />
+<property name="dataEmissionePolizza"           column="DATA_EMISSIONE_POLIZZA"         type="date"  />
+<property name="dataRegistrazione"              column="DATA_REGISTRAZIONE"             type="date"  />
+<property name="dataTimbroPostaInterna"         column="DATA_TIMBRO_POSTA_INTERNA"      type="date"  />
+<property name="numeroProposta"                 column="NUMERO_PROPOSTA"                type="string"  />
+<property name="flagUnitLinked"                 column="FLAG_UNIT_LINKED"               type="string" length="1"  />
+<property name="divisaImporto"                  column="DIVISA_IMPORTO"                 type="string" length="3"  />
+<property name="codiceProdottoNuovo"            column="CODICE_PRODOTTO_NUOVO"          type="string" length="10"  />
+<property name="versioneProdotto"               column="VERSIONE_PRODOTTO"              type="integer"  />
+<property name="dataFinePagamentoPremi"         column="DATA_FINE_PAGAMENTO_PREMI"      type="date"  />
+<property name="flagTipoCompagnia"              column="FLAG_TIPO_COMPAGNIA"            type="string" length="1"  />
+<property name="flagVersamento"                 column="FLAG_VERSAMENTO"                type="string" length="1"  />
+<property name="premioDiComputo"                column="PREMIO_DI_COMPUTO"              type="double"  />
+<property name="premioProvvigionale"            column="PREMIO_PROVVIGIONALE"           type="double"  />
+<property name="dataUltimaRataPagata"           column="DATA_ULTIMA_RATA_PAGATA"        type="date"  />
+<property name="descrizioneFondo"               column="DESCRIZIONE_FONDO"              type="string" length="30"  />
+<property name="filler"                         column="FILLER"                         type="string" length="20"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="timestamp"  />
+
+
+ </class>
+ <query name="BGPRO_INCASSI_ASS">from
+it.ras.arco.batch.bean.FlxBgproIncassiAss pc where pc.statoElab='D' order by pc.flxId</query>
+
+
+</hibernate-mapping>

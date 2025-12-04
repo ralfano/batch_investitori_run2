@@ -1,0 +1,505 @@
+// Decompiled by DJ v3.6.6.79 Copyright 2004 Atanas Neshkov  Date: 10/4/2011 5:29:48 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   FlxInvestitoriContratto.java
+
+package it.ras.arco.batch.bean;
+
+import it.ras.flag.bean.RasORMBean;
+import java.io.Serializable;
+import java.util.Date;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
+public class FlxInvestitoriContratto extends RasORMBean
+    implements Serializable
+{
+
+    public Date getDataElab()
+    {
+        return dataElab;
+    }
+
+    public void setDataElab(Date dataElab)
+    {
+        this.dataElab = dataElab;
+    }
+
+    public String getDescrizioneErrore()
+    {
+        return descrizioneErrore;
+    }
+
+    public void setDescrizioneErrore(String descrizioneErrore)
+    {
+        this.descrizioneErrore = descrizioneErrore;
+    }
+
+    public FlxInvestitoriContratto(String tipoProd, String numeroRapporto, String codiceAgente, String codiceRete, String codiceCompagnia, Date dataAperturaGpf, String codiceLinea, 
+            String descrizioneLinea, Double controvaloreNav, Double prenotateDare, Double prenotateAvere, Double perfInizioTrimestre, Double perfInizioAnno, Double perfAnnualizzataDaInizioGe, 
+            Double perfLordaInizioAnno, Double perfLordaInizioTrimestre, Date dataElabPerf, Double navCalcoloPerf, Double perfBenchInizioTrim, Double perfBenchInizioAnno, Date dataCreazione, 
+            Date dataEstinzione, String indirizzoPostale, String capPostale, String localitaPostale, String provinciaPostale, Double saldoCc, Double saldoDossier, 
+            Date dataVal, String statoElaborazione, String istanza)
+    {
+        this.numeroRapporto = numeroRapporto;
+        this.codiceAgente = codiceAgente;
+        this.codiceRete = codiceRete;
+        this.codiceCompagnia = codiceCompagnia;
+        this.dataAperturaGpf = dataAperturaGpf;
+        this.codiceLinea = codiceLinea;
+        this.descrizioneLinea = descrizioneLinea;
+        this.controvaloreNav = controvaloreNav;
+        this.prenotateDare = prenotateDare;
+        this.prenotateAvere = prenotateAvere;
+        this.perfInizioTrimestre = perfInizioTrimestre;
+        this.perfInizioAnno = perfInizioAnno;
+        this.perfAnnualizzataDaInizioGe = perfAnnualizzataDaInizioGe;
+        this.perfLordaInizioAnno = perfLordaInizioAnno;
+        this.perfLordaInizioTrimestre = perfLordaInizioTrimestre;
+        this.dataElabPerf = dataElabPerf;
+        this.navCalcoloPerf = navCalcoloPerf;
+        this.perfBenchInizioTrim = perfBenchInizioTrim;
+        this.perfBenchInizioAnno = perfBenchInizioAnno;
+        this.dataCreazione = dataCreazione;
+        this.dataEstinzione = dataEstinzione;
+        this.indirizzoPostale = indirizzoPostale;
+        this.capPostale = capPostale;
+        this.localitaPostale = localitaPostale;
+        this.provinciaPostale = provinciaPostale;
+        this.saldoCc = saldoCc;
+        this.saldoDossier = saldoDossier;
+        this.dataVal = dataVal;
+        this.statoElaborazione = statoElaborazione;
+        this.istanza = istanza;
+        this.tipoProd = tipoProd;
+    }
+
+    public FlxInvestitoriContratto()
+    {
+    }
+
+    public Integer getFlxId()
+    {
+        return flxId;
+    }
+
+    public void setFlxId(Integer flxId)
+    {
+        this.flxId = flxId;
+    }
+
+    public String getNumeroRapporto()
+    {
+        return numeroRapporto;
+    }
+
+    public void setNumeroRapporto(String numeroRapporto)
+    {
+        this.numeroRapporto = numeroRapporto;
+    }
+
+    public String getCodiceAgente()
+    {
+        return codiceAgente;
+    }
+
+    public void setCodiceAgente(String codiceAgente)
+    {
+        this.codiceAgente = codiceAgente;
+    }
+
+    public String getCodiceRete()
+    {
+        return codiceRete;
+    }
+
+    public void setCodiceRete(String codiceRete)
+    {
+        this.codiceRete = codiceRete;
+    }
+
+    public String getCodiceCompagnia()
+    {
+        return codiceCompagnia;
+    }
+
+    public void setCodiceCompagnia(String codiceCompagnia)
+    {
+        this.codiceCompagnia = codiceCompagnia;
+    }
+
+    public Date getDataAperturaGpf()
+    {
+        return dataAperturaGpf;
+    }
+
+    public void setDataAperturaGpf(Date dataAperturaGpf)
+    {
+        this.dataAperturaGpf = dataAperturaGpf;
+    }
+
+    public String getCodiceLinea()
+    {
+        return codiceLinea;
+    }
+
+    public void setCodiceLinea(String codiceLinea)
+    {
+        this.codiceLinea = codiceLinea;
+    }
+
+    public String getDescrizioneLinea()
+    {
+        return descrizioneLinea;
+    }
+
+    public void setDescrizioneLinea(String descrizioneLinea)
+    {
+        this.descrizioneLinea = descrizioneLinea;
+    }
+
+    public Double getControvaloreNav()
+    {
+        return controvaloreNav;
+    }
+
+    public void setControvaloreNav(Double controvaloreNav)
+    {
+        this.controvaloreNav = controvaloreNav;
+    }
+
+    public Double getPrenotateDare()
+    {
+        return prenotateDare;
+    }
+
+    public void setPrenotateDare(Double prenotateDare)
+    {
+        this.prenotateDare = prenotateDare;
+    }
+
+    public Double getPrenotateAvere()
+    {
+        return prenotateAvere;
+    }
+
+    public void setPrenotateAvere(Double prenotateAvere)
+    {
+        this.prenotateAvere = prenotateAvere;
+    }
+
+    public Double getPerfInizioTrimestre()
+    {
+        return perfInizioTrimestre;
+    }
+
+    public void setPerfInizioTrimestre(Double perfInizioTrimestre)
+    {
+        this.perfInizioTrimestre = perfInizioTrimestre;
+    }
+
+    public Double getPerfInizioAnno()
+    {
+        return perfInizioAnno;
+    }
+
+    public void setPerfInizioAnno(Double perfInizioAnno)
+    {
+        this.perfInizioAnno = perfInizioAnno;
+    }
+
+    public Double getPerfAnnualizzataDaInizioGe()
+    {
+        return perfAnnualizzataDaInizioGe;
+    }
+
+    public void setPerfAnnualizzataDaInizioGe(Double perfAnnualizzataDaInizioGe)
+    {
+        this.perfAnnualizzataDaInizioGe = perfAnnualizzataDaInizioGe;
+    }
+
+    public Double getPerfLordaInizioAnno()
+    {
+        return perfLordaInizioAnno;
+    }
+
+    public void setPerfLordaInizioAnno(Double perfLordaInizioAnno)
+    {
+        this.perfLordaInizioAnno = perfLordaInizioAnno;
+    }
+
+    public Double getPerfLordaInizioTrimestre()
+    {
+        return perfLordaInizioTrimestre;
+    }
+
+    public void setPerfLordaInizioTrimestre(Double perfLordaInizioTrimestre)
+    {
+        this.perfLordaInizioTrimestre = perfLordaInizioTrimestre;
+    }
+
+    public Date getDataElabPerf()
+    {
+        return dataElabPerf;
+    }
+
+    public void setDataElabPerf(Date dataElabPerf)
+    {
+        this.dataElabPerf = dataElabPerf;
+    }
+
+    public Double getNavCalcoloPerf()
+    {
+        return navCalcoloPerf;
+    }
+
+    public void setNavCalcoloPerf(Double navCalcoloPerf)
+    {
+        this.navCalcoloPerf = navCalcoloPerf;
+    }
+
+    public Double getPerfBenchInizioTrim()
+    {
+        return perfBenchInizioTrim;
+    }
+
+    public void setPerfBenchInizioTrim(Double perfBenchInizioTrim)
+    {
+        this.perfBenchInizioTrim = perfBenchInizioTrim;
+    }
+
+    public Double getPerfBenchInizioAnno()
+    {
+        return perfBenchInizioAnno;
+    }
+
+    public void setPerfBenchInizioAnno(Double perfBenchInizioAnno)
+    {
+        this.perfBenchInizioAnno = perfBenchInizioAnno;
+    }
+
+    public Date getDataCreazione()
+    {
+        return dataCreazione;
+    }
+
+    public void setDataCreazione(Date dataCreazione)
+    {
+        this.dataCreazione = dataCreazione;
+    }
+
+    public Date getDataEstinzione()
+    {
+        return dataEstinzione;
+    }
+
+    public void setDataEstinzione(Date dataEstinzione)
+    {
+        this.dataEstinzione = dataEstinzione;
+    }
+
+    public String getIndirizzoPostale()
+    {
+        return indirizzoPostale;
+    }
+
+    public void setIndirizzoPostale(String indirizzoPostale)
+    {
+        this.indirizzoPostale = indirizzoPostale;
+    }
+
+    public String getCapPostale()
+    {
+        return capPostale;
+    }
+
+    public void setCapPostale(String capPostale)
+    {
+        this.capPostale = capPostale;
+    }
+
+    public String getLocalitaPostale()
+    {
+        return localitaPostale;
+    }
+
+    public void setLocalitaPostale(String localitaPostale)
+    {
+        this.localitaPostale = localitaPostale;
+    }
+
+    public String getProvinciaPostale()
+    {
+        return provinciaPostale;
+    }
+
+    public void setProvinciaPostale(String provinciaPostale)
+    {
+        this.provinciaPostale = provinciaPostale;
+    }
+
+    public Double getSaldoCc()
+    {
+        return saldoCc;
+    }
+
+    public void setSaldoCc(Double saldoCc)
+    {
+        this.saldoCc = saldoCc;
+    }
+
+    public Double getSaldoDossier()
+    {
+        return saldoDossier;
+    }
+
+    public void setSaldoDossier(Double saldoDossier)
+    {
+        this.saldoDossier = saldoDossier;
+    }
+
+    public Date getDataVal()
+    {
+        return dataVal;
+    }
+
+    public void setDataVal(Date dataVal)
+    {
+        this.dataVal = dataVal;
+    }
+
+    public String getStatoElaborazione()
+    {
+        return statoElaborazione;
+    }
+
+    public void setStatoElaborazione(String statoElaborazione)
+    {
+        this.statoElaborazione = statoElaborazione;
+    }
+
+    public String getIstanza()
+    {
+        return istanza;
+    }
+
+    public void setIstanza(String istanza)
+    {
+        this.istanza = istanza;
+    }
+
+    public String toString()
+    {
+        return (new ToStringBuilder(this)).append("flxId", getFlxId()).toString();
+    }
+
+    public String getTipoProd()
+    {
+        return tipoProd;
+    }
+
+    public void setTipoProd(String tipoProd)
+    {
+        this.tipoProd = tipoProd;
+    }
+
+    public String getTipoFabbrica()
+    {
+        return tipoFabbrica;
+    }
+
+    public void setTipoFabbrica(String tipoFabbrica)
+    {
+        this.tipoFabbrica = tipoFabbrica;
+    }
+
+    public String getNazione()
+    {
+        return nazione;
+    }
+
+    public void setNazione(String nazione)
+    {
+        this.nazione = nazione;
+    }
+
+    public Date getDataCaricamento()
+    {
+        return dataCaricamento;
+    }
+
+    public void setDataCaricamento(Date dataCaricamento)
+    {
+        this.dataCaricamento = dataCaricamento;
+    }
+
+    public String getFlagNuovoContratto()
+    {
+        return flagNuovoContratto;
+    }
+
+    public void setFlagNuovoContratto(String flagNuovoContratto)
+    {
+        this.flagNuovoContratto = flagNuovoContratto;
+    }
+
+    public String getContrattoOmbrello()
+    {
+        return contrattoOmbrello;
+    }
+
+    public void setContrattoOmbrello(String contrattoOmbrello)
+    {
+        this.contrattoOmbrello = contrattoOmbrello;
+    }
+
+    public Integer getMultimandProdottoId()
+    {
+        return multimandProdottoId;
+    }
+
+    public void setMultimandProdottoId(Integer multimandProdottoId)
+    {
+        this.multimandProdottoId = multimandProdottoId;
+    }
+
+    private Integer flxId;
+    private String numeroRapporto;
+    private String codiceAgente;
+    private String tipoProd;
+    private String tipoFabbrica;
+    private String codiceRete;
+    private String codiceCompagnia;
+    private Date dataAperturaGpf;
+    private String codiceLinea;
+    private String descrizioneLinea;
+    private Double controvaloreNav;
+    private Double prenotateDare;
+    private Double prenotateAvere;
+    private Double perfInizioTrimestre;
+    private Double perfInizioAnno;
+    private Double perfAnnualizzataDaInizioGe;
+    private Double perfLordaInizioAnno;
+    private Double perfLordaInizioTrimestre;
+    private Date dataElabPerf;
+    private Double navCalcoloPerf;
+    private Double perfBenchInizioTrim;
+    private Double perfBenchInizioAnno;
+    private Date dataCreazione;
+    private Date dataEstinzione;
+    private String indirizzoPostale;
+    private String capPostale;
+    private String localitaPostale;
+    private String provinciaPostale;
+    private Double saldoCc;
+    private Double saldoDossier;
+    private Date dataVal;
+    private String statoElaborazione;
+    private String istanza;
+    private String nazione;
+    private Date dataCaricamento;
+    private String flagNuovoContratto;
+    private String contrattoOmbrello;
+    private Integer multimandProdottoId;
+    private String descrizioneErrore;
+    private Date dataElab;
+}

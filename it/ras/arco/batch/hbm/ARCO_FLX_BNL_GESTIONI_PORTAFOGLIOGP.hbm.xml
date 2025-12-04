@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA INDIRIZZI SY -->
+ <class name="it.ras.arco.batch.bean.FlxBnlGestioniPortafoglioGp" rowid="rowid"
+  table="FLX_BNL_GESTIONI_PORTAFOGLIOGP" >
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_BNL_GEST_PORT_SEQ</param>
+   </generator>
+  </id>
+<property name="numCtaInt"                      column="NUM_CTA_INT"                    type="integer"  />
+<property name="codTitolo"                      column="COD_TITOLO"                     type="string" length="12"  />
+<property name="tipRecord"                      column="TIP_RECORD"                     type="string" length="2"  />
+<property name="datValorizzazione"              column="DAT_VALORIZZAZIONE"             type="date"  />
+<property name="impControvalore"                column="IMP_CONTROVALORE"               type="double"  />
+<property name="totImpConferito"                column="TOT_IMP_CONFERITO"              type="double"  />
+<property name="totImpDisinvesti"               column="TOT_IMP_DISINVESTI"             type="double"  />
+<property name="numQuote"                       column="NUM_QUOTE"                      type="double"  />
+<property name="impControvaloreD"               column="IMP_CONTROVALORE_D"             type="double"  />
+<property name="desTitolo"                      column="DES_TITOLO"                     type="string" length="30"  />
+<property name="codMoneda"                      column="COD_MONEDA"                     type="string" length="3"  />
+<property name="codUsuModif"                    column="COD_USU_MODIF"                  type="string" length="8"  />
+<property name="pipa"                           column="PIPA"                           type="double"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="descrizioneErrore"              column="DESCRIZIONE_ERRORE_S"           type="string" length="100"  />
+<property name="dataErrore"                     column="DATA_ERRORE"                    type="timestamp" />
+
+   </class>
+ <query name="CURSOR_BNL_GESTIONI_PORTAFOGLIOGP">from it.ras.arco.batch.bean.FlxBnlGestioniPortafoglioGp c where c.statoElab in ('D','KO')</query>
+</hibernate-mapping>

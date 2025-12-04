@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO DOCUMENTO_MANAGER_SRV -->
+    
+    <bean id="insertDocumento"
+    	class="it.ras.arco.service.DocumentoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_DOCUMENTO</value>
+    	</property>
+    </bean> 
+    
+    <bean id="UpdateDocumento"
+    	class="it.ras.arco.service.DocumentoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UPDATE_DOCUMENTO</value>
+    	</property>
+    </bean>    
+    
+    <bean id="InserimentoDocumento"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>5</value>
+    	</property>
+    	
+	    	<property name="parameters">
+	    		<list>
+	    			<value>DOCUMENTO</value>
+	    		</list>
+	    	</property>
+	    	<property name="output">
+	    		<value>DOCUMENTO</value>
+	    	</property>
+    	
+    </bean>
+    <bean id="UpdateDocumentoMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>9</value>
+    	</property>
+    	
+	    	<property name="parameters">
+	    		<list>
+	    			<value>DOCUMENTO</value>
+	    		</list>
+	    	</property>
+	    	<property name="output">
+	    		<value>DOCUMENTO</value>
+	    	</property>
+    	
+    </bean>
+    
+    <bean id="getDocumentoMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetDocumentoBySoggettoID</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>SOGGETTO</value>
+			<value>DATA_CORRENTE</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>DOCUMENTO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetNazionalitaByUicMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetNazioneByCodUic</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>NAZIONALITA</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>NAZIONALITA</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetNazionalitaByIsoMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetNazioneByCodIso</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>NAZIONALITA</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>NAZIONALITA</value>
+    	</property>
+    </bean>
+    
+        
+</beans>

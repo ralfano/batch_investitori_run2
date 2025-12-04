@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+
+ <class name="it.ras.arco.batch.bean.FlxBenchmarkFondi" rowid="rowid" table="FLX_MAF_BENCHMARK_FONDI">
+	
+	<id name="flxId" column="FLX_ID" type="integer">
+		<generator class="sequence">
+			<param name="sequence">FLX_MAF_BENCHMARK_FONDI_SEQ</param>
+		</generator>
+	</id>
+
+
+	<!--	*******	CAMPI PROPRI *******		-->
+	<property name="codiceMAF" 			column="CODICE_MAF"	type="string" length="50"  />
+	<property name="benchmarkId" 			column="BENCHMARK_ID"	type="string" length="50"  />
+	<property name="codiceIndice" 			column="CODICE_INDICE"	type="string" length="50"  />
+	<property name="percentuale" 			column="PERCENTUALE"	type="string" length="50"  />
+	<property name="codiceRuolo" 			column="CODICE_RUOLO"	type="string" length="50"  />
+	<property name="identificativoRuolo" 		column="ID_RUOLO"	type="string" length="50"  />
+	<property name="progressivoIndice" 		column="PROGRESSIVO_IDX" type="string" length="50"  />
+
+
+
+	<!--	*******	CAMPI STANDARD	*******		-->
+	<property name="statoElaborazione" 		column="STATO_ELAB_B" 		type="string" length="2"  />
+	<property name="istanza" 	   		column="ISTANZA_S" 	 	type="string" length="1"  />
+	<property name="dataCaricamento"   		column="DATA_CARICAMENTO_D" 	type="timestamp"  />
+
+
+ </class>
+ 
+ 
+ <!--	*******		CURSORE		********	-->
+ <query name="MAF_BENCHMARK_FONDI_SQL">
+ 	from it.ras.arco.batch.bean.FlxBenchmarkFondi flusso 
+ 	where flusso.statoElaborazione ='D'
+  	order by flusso.codiceMAF
+ </query>
+
+
+
+</hibernate-mapping>

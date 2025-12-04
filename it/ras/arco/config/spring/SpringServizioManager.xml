@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO GENERICO SOGGETTOMANAGER -->
+    
+  
+	
+	 <bean id="InsServizioAgg"      class="it.ras.arco.service.ServizioAggManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>INSERT</value>
+		</property>
+	</bean>
+
+	 <bean id="GetServizioAggByPosInOut"      class="it.ras.arco.service.ServizioAggManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_BY_POS_IN_OUT</value>
+		</property>
+	</bean>
+
+	 <bean id="GetServizioAgg"      class="it.ras.arco.service.ServizioAggManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET</value>
+		</property>
+	</bean>
+	
+	<bean id="GetServizioAggBySott"      class="it.ras.arco.service.ServizioAggManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_BY_SOTT</value>
+		</property>
+	</bean>
+	
+	
+	<bean id="GetServizioNumAgg"      class="it.ras.arco.service.ServizioAggManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_NUM_C</value>
+		</property>
+	</bean>
+	
+	
+	<bean id="UpdServizioAgg"      class="it.ras.arco.service.ServizioAggManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>UPDATE</value>
+		</property>
+	</bean>
+	
+	
+
+	<bean id="UpdSottoscizioneServizioAggMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>9</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>SOTTOSCRSERVAGG</value>
+      </list>
+     </property>
+    
+     </bean>   
+
+
+	<bean id="UpdServizioAggMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>9</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>SERVIZIO</value>
+      </list>
+     </property>
+    
+     </bean>   
+
+
+	<bean id="UpdateSottoscServizioAggMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>9</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>SOTTSERVIZIO</value>
+      </list>
+     </property>
+     </bean>   
+
+	<bean id="UpdateSottoscrizioneMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>9</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>SOTTOSCRIZIONE</value>
+      </list>
+     </property>
+     </bean>   
+
+
+	<bean id="UpdateServizioAggMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>9</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>SERVIZIOAGGIUNTIVO</value>
+      </list>
+     </property>
+     </bean>   
+
+
+
+
+	
+	<bean id="InsServizioAggMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>5</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>SERVIZIO</value>
+      </list>
+     </property>
+    
+     </bean>   
+
+	<bean id="InsSottServizioAggMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>5</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>SOTTSERVIZIO</value>
+      </list>
+     </property>
+     </bean>   
+
+
+	<bean id="InsSottoscrizioneMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>5</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>SOTTOSCRIZIONE</value>
+      </list>
+     </property>
+    
+     </bean>   
+
+
+
+	<bean id="GetServizioMD"    
+    class="it.ras.flag.module.DefaultDbModule" >
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetServizio</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>TIPO_FLUSSO</value>
+    			<value>POSIZIONE</value>	
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SERVIZIO</value>
+    	</property>
+    </bean>
+    
+	<bean id="GetServizioInOutMD"    
+    class="it.ras.flag.module.DefaultDbModule" >
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetServizioByPosizioneInOut</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>TIPO_FLUSSO</value>
+    			<value>POSIZIONE_IN</value>	
+    			<value>POSIZIONE_OUT</value>	    			
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SERVIZIO</value>
+    	</property>
+    </bean>
+
+    <bean id="GetServizioNumMD"    
+    class="it.ras.flag.module.DefaultDbModule" >
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetServizioNum</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>TIPO_FLUSSO</value>
+    			<value>POSIZIONE_ID</value>
+ 
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SERVIZIO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetServizioAggBySottMD"    
+    class="it.ras.flag.module.DefaultDbModule" >
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetServizioBySott</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>TIPO_FLUSSO</value>
+    			<value>SOTTOSCRIZIONE_ID</value>
+ 
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SERVIZIO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetServizioPolMD"    
+    class="it.ras.flag.module.DefaultDbModule" >
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetServizioPol</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>TIPO_FLUSSO</value>
+    			<value>POSIZIONE</value>
+    			<value>POLIZZA</value>		
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SERVIZIO</value>
+    	</property>
+    </bean>
+    
+	
+  
+   
+   
+</beans> 
+

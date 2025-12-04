@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ANAGRAFICA AGENZIA -->
+ <class name="it.ras.arco.batch.bean.FlxAntPromotoreAgenzia" rowid="rowid" table="FLX_ANT_AGENZIE_PF">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_ANT_AGENZIE_PF_SEQ</param>
+   </generator>
+  </id> 
+  <property name="codPromotorePrincipale" type="string" column="CODICE_PRINCIPALE_PF" />
+  <property name="codPromotore" type="string" column="CODICE_PF_OPERATIVITA_AGENZIA"/>  
+  <property name="codRete" type="string" column="CODICE_RETE"/>  
+  <property name="codCompagnia" type="string" column="CODICE_COMPAGNIA"/>  
+  <property name="codAgenzia" type="string" column="CODICE_AGENZIA"/>  
+  <property name="desAgenzia" type="string" column="DESCRIZIONE_AGENZIA"/>
+  <property name="tipologiaAgenzia" type="string" column="TIPOLOGIA_AGENZIA" />
+  <property name="dataInizioValidita" type="date" column="DATA_INIZIO_LEGAME_PF"/>
+  <property name="dataFineValidita" type="date" column="DATA_FINE_LEGAME_PF"/>  
+  <property name="operativita" type="string" column="INDICATORE_DI_OPERATIVITA" />
+  <property name="responsabilta" type="string" column="INDICATORE_DI_RESPONSABILITA" />
+  <property name="descrizioneErrore" type="string" column="DESCRIZIONE_ERRORE_S" length="100" />
+  <property name="dataErrore" type="date" column="DATA_ELAB_D" />
+  <property name="statoElaborazione" type="string" column="STATO_ELAB_B"/>
+  <property name="istanza" type="string" column="ISTANZA_S"/>
+  <property name="dataCaricamento" type="date" column="DATA_CARICAMENTO_S" />
+ </class>
+  <!-- QUERY -->
+ <query name="FLX_ANT_AGENZIE_PF">from it.ras.arco.batch.bean.FlxAntPromotoreAgenzia dp where dp.statoElaborazione='D'</query>
+</hibernate-mapping>

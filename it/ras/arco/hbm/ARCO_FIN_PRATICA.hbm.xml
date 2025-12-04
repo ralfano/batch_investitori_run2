@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!--  TABELLA PRATICA -->
+  <class name="it.ras.arco.bean.FinPratica" table="FIN_PRATICA" discriminator-value="null" lazy="true" where="GSTD_ESIST_B='S'" >
+  <id name="praticaId" column="PRATICA_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_PRATICA_SEQ</param>
+   </generator>
+  </id>  
+ 
+  <property name="numeroPratica" type="string" column="NUM_PRATICA_S" length="15"/>
+  <property name="fascia" type="string" column="FASCIA_T" length="3"/>
+  <property name="tipoconto" type="string" column="TIPO_CONTO_T" length="3"/>
+  <property name="motivoApertura" type="string" column="MOTIVO_APERTURA_T" length="3"/>
+  <property name="alimentazioneRapporto" type="string" column="ALIMENTAZIONE_RAPPORTO_T" length="3"/>
+  <property name="dirittoInfoPrec" type="string" column="DIRITTO_INFO_PREC_B" length="1"/>
+  
+  <property name="cap" type="string" column="CAP_S" length="7"/>
+  <property name="provincia" type="string" column="PROV_T" length="3"/>
+  <property name="comune" type="string" column="COMUNE_S" length="40"/>  
+  <property name="localita" type="string" column="LOCALITA_S" length="40"/>
+  <property name="nazione" type="string" column="NAZIONE_T" length="3"/>
+  
+  <property name="profiloTrade" type="string" column="PROFILO_TRADE_T" length="3"/>
+  <property name="operazioniADistanzaFondi" type="string" column="OPERAZIONI_DIST_FONDI_B" length="1"/>
+  <property name="regimeFiscalita" type="string" column="REGIME_FISCALITA_T" length="3"/>
+  <property name="numeroCC" type="string" column="NUM_CONTRATTO_S" length="8"/>
+  <property name="causa" type="string" column="CAUSA_S" length="40"/>
+  <property name="statoPratica" type="string" column="STATO_PRATICA_T" length="6"/>
+  <property name="codiceConvenzione" type="string" column="CODICE_CONVENZIONE_S" length="10"/>
+  <property name="codiceProdotto" type="string" column="CODICE_PRODOTTO_S" length="20"/>
+  <property name="dataApertura" type="date" column="DATA_APERTURA_D"/>
+  
+
+  <property name="flagAutorizzata" type="string" column="FLAG_AUTORIZZATA" length="1"/>
+  <property name="flagFax" type="string" column="FLAG_FAX" length="1"/>
+  <property name="flagContoCorrente" type="string" column="FLAG_CONTO_CORRENTE" length="1"/>
+  <property name="flagAnomalie" type="string" column="FLAG_ANOMALIE" length="1"/>
+  <property name="flagOriginale" type="string" column="FLAG_ORIGINALE" length="1"/>
+  <property name="flagLavorato" type="string" column="FLAG_LAVORATO" length="1"/>
+  <property name="flagStatoAnagrafe" type="string" column="FLAG_STATO_ANAGRAFE" length="1"/>
+
+   <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1" insert="true" update="true"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="20" insert="true" update="true"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="true" update="true"/>
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="true" update="true"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="true" update="true"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="true" update="true"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+
+
+  <!-- RELAZIONE CON FIN_PRATICA_BOZZA-->
+   
+	<set name="praticaBozza" inverse="true" cascade="lock,none" lazy="true" where="GSTD_ESIST_B='S'" >
+		<key column="PRATICA_ID"/>
+		<one-to-many class="it.ras.arco.bean.FinPraticaBozza"/>
+	</set>  
+	
+ <!-- RELAZIONE CON FIN_PROMOTORE -->
+ <many-to-one name="promotore" class="it.ras.arco.bean.FinPromotore" lazy="proxy" column="PROMOTORE_ID" insert="true" update="true" not-found="ignore" not-null="true" cascade="lock" />
+ 
+<!-- RELAZIONE CON SEGNALAZIONI_CC_DT -->
+  <set name="segnalazioni" table="FIN_SEGNALAZIONI_CC_DT" cascade ="save-update,lock" inverse ="true">
+    <key column="PRATICA_ID"/>
+    <one-to-many class="it.ras.arco.bean.FinSegnalazioniCCDTAdapterBase" not-found="ignore" />
+  </set>
+
+
+ </class>
+
+
+ <sql-query name="GetSoggettoByGSTD_ESIST_BAndPersonaFisica">
+ <return alias="pratica" class="it.ras.arco.bean.FinPratica" />
+            select 
+            distinct {pratica.*} from fin_pratica pratica
+            JOIN fin_pratica_bozza bozza ON pratica.pratica_id = bozza.pratica_id
+            JOIN FIN_SOGG_BOZZA s_bozza ON bozza.sogg_bozza_id = s_bozza.sogg_bozza_id
+            JOIN fin_soggetto sogg ON sogg.soggetto_id = s_bozza.soggetto_id
+            where sogg.stato_censim_b = 'B'  
+                  and sogg.tipo_sogg_b = 'F'
+                  and pratica.stato_pratica_t = 'BAT000'
+                 
+                  
+</sql-query>
+
+<query name="getPraticaByPromotoreIdNumCC">select s from it.ras.arco.bean.FinPratica s where s.numeroCC = :n_cc and s.promotore = :promotore_id</query>
+
+</hibernate-mapping>
+

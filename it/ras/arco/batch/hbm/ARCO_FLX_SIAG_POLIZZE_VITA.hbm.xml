@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DECODIFICA SOGGETTI SEC -->
+ <class name="it.ras.arco.batch.bean.FlxSiagPolizzeVita" rowid="rowid"
+  table="FLX_SIAG_POLIZZE_VITA" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_GENERIC_SEQ</param>
+   </generator>
+  </id>
+	<property name="flgElab"                        column="FLG_ELAB"                       type="string" length="1"  />
+	<property name="codSoggSiag"                    column="COD_SOGG_SIAG"                  type="integer"  />
+	<property name="codCliePorfCcor"                column="COD_CLIE_PORF_CCOR"             type="integer"  />
+	<property name="codFisc"                        column="COD_FISC"                       type="string" length="16"  />
+	<property name="codComp"                        column="COD_COMP"                       type="integer"  />
+	<property name="codNumeCntr"                    column="COD_NUME_CNTR"                  type="integer"  />
+	<property name="codArchProz"                    column="COD_ARCH_PROZ"                  type="integer"  />
+	<property name="codRamo"                        column="COD_RAMO"                       type="integer"  />
+	<property name="codCana"                        column="COD_CANA"                       type="integer"  />
+	<property name="codTipoCana"                    column="COD_TIPO_CANA"                  type="string" length="1"  />
+	<property name="codAgenCopt"                    column="COD_AGEN_COPT"                  type="integer"  />
+	<property name="codSuba"                        column="COD_SUBA"                       type="integer"  />
+	<property name="codAcqu"                        column="COD_ACQU"                       type="integer"  />
+	<property name="codProd"                        column="COD_PROD"                       type="string" length="10"  />
+	<property name="numVersProd"                    column="NUM_VERS_PROD"                  type="integer"  />
+	<property name="codProm"                        column="COD_PROM"                       type="string" length="4"  />
+	<property name="codCnvz"                        column="COD_CNVZ"                       type="integer"  />
+	<property name="codFraz"                        column="COD_FRAZ"                       type="integer"  />
+	<property name="codTipoOperVita"                column="COD_TIPO_OPER_VITA"             type="string" length="5"  />
+	<property name="codTipoOper"                    column="COD_TIPO_OPER"                  type="string" length="2"  />
+	<property name="codPromFina"                    column="COD_PROM_FINA"                  type="string" length="5"  />
+	<property name="flgTipoFondo"                   column="FLG_TIPO_FONDO"                 type="string" length="1"  />
+	<property name="flgTfondElab"                   column="FLG_TFOND_ELAB"                 type="string" length="1"  />
+	<property name="codLibe"                        column="COD_LIBE"                       type="integer"  />
+	<property name="datDecoPoli"                    column="DAT_DECO_POLI"                  type="date"  />
+	<property name="datTermAggr"                    column="DAT_TERM_AGGR"                  type="date"  />
+	<property name="datSolpCntr"                    column="DAT_SOLP_CNTR"                  type="date"  />
+	<property name="datContEmes"                    column="DAT_CONT_EMES"                  type="date"  />
+	<property name="flgPrem"                        column="FLG_PREM"                       type="string" length="1"  />
+	<property name="flgPres"                        column="FLG_PRES"                       type="string" length="1"  />
+	<property name="codCopePrmr"                    column="COD_COPE_PRMR"                  type="string" length="2"  />
+	<property name="codCopeSeco"                    column="COD_COPE_SECO"                  type="string" length="3"  />
+	<property name="impAnnuPremVita"                column="IMP_ANNU_PREM_VITA"             type="double"  />
+	<property name="impPremVitaUnic"                column="IMP_PREM_VITA_UNIC"             type="double"  />
+	<property name="impPreVitaAnnCr"                column="IMP_PRE_VITA_ANN_CR"            type="double"  />
+	<property name="impPrvVitAnnCr"                 column="IMP_PRV_VIT_ANN_CR"             type="double"  />
+	<property name="impRiseMate"                    column="IMP_RISE_MATE"                  type="double"  />
+	<property name="impCaptLiqu"                    column="IMP_CAPT_LIQU"                  type="double"  />
+	<property name="impCaptScad"                    column="IMP_CAPT_SCAD"                  type="double"  />
+	<property name="impRend"                        column="IMP_REND"                       type="double"  />
+	<property name="impPremAggn"                    column="IMP_PREM_AGGN"                  type="double"  />
+	<property name="impPres"                        column="IMP_PRES"                       type="double"  />
+	<property name="annRifeImpo"                    column="ANN_RIFE_IMPO"                  type="integer"  />
+	<property name="codFondo"                       column="COD_FONDO"                      type="string" length="4"  />
+	<property name="desFondo"                       column="DES_FONDO"                      type="string" length="40"  />
+	<property name="codPercorso"                    column="COD_PERCORSO"                   type="string" length="10"  />
+	<property name="desPercorso"                    column="DES_PERCORSO"                   type="string" length="40"  />
+	<property name="impRataIniz"                    column="IMP_RATA_INIZ"                  type="double"  />
+	<property name="impRataAtt"                     column="IMP_RATA_ATT"                   type="double"  />
+	<property name="impValattInv"                   column="IMP_VALATT_INV"                 type="double"  />
+	<property name="numQuoteFondo"                  column="NUM_QUOTE_FONDO"                type="double"  />
+	<property name="valQuotaFondo"                  column="VAL_QUOTA_FONDO"                type="double"  />
+	<property name="codCatProd1"                    column="COD_CAT_PROD1"                  type="string" length="3"  />
+	<property name="desCatProd1"                    column="DES_CAT_PROD1"                  type="string" length="20"  />
+	<property name="codCatProd2"                    column="COD_CAT_PROD2"                  type="string" length="2"  />
+	<property name="desCatProd2"                    column="DES_CAT_PROD2"                  type="string" length="20"  />
+	<property name="codCatProd3"                    column="COD_CAT_PROD3"                  type="string" length="3"  />
+	<property name="desCatProd3"                    column="DES_CAT_PROD3"                  type="string" length="20"  />
+	<property name="codCatProd4"                    column="COD_CAT_PROD4"                  type="string" length="6"  />
+	<property name="desCatProd4"                    column="DES_CAT_PROD4"                  type="string" length="30"  />
+	<property name="codUltiCntrCol"                 column="COD_ULTI_CNTR_COL"              type="integer"  />
+	<property name="datElab"                        column="DAT_ELAB"                       type="date"  />
+	<property name="codReteFina"                    column="COD_RETE_FINA"                  type="string" length="1"  />
+	<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+	<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+	<property name="dataElab"                        column="DATA_ELAB_D "                       type="timestamp"  />
+	<property name="descrErrore"                    column="DESCRIZIONE_ERRORE_S"                  type="string" length="100"  />
+            
+ </class>
+<query name="CURSOR_SIAG_POL_VITA">from it.ras.arco.batch.bean.FlxSiagPolizzeVita</query>
+</hibernate-mapping>

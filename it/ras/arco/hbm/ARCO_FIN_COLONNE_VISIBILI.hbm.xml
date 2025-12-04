@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="it.ras.arco.bean.FinColonneVisibiliAdapterBase"
+		table="FIN_COLONNE_VISIBILI" where="GSTD_ESIST_B = 'S'">
+		
+		<id name="idColonne" column="ID_COLONNE_N" type="integer">
+			<generator class="sequence">
+				<param name="sequence">FIN_COLONNE_VISIBILI_SEQ</param>
+			</generator>
+		</id>
+		
+		<property name="nomeList" type="string" 
+			column="NOME_LIST_S" length="40" not-null="true" />
+		<property name="indiceOrdinamento" type="integer"
+			column="INDICE_ORDINAM_N" length="3" not-null="true" />
+		
+		<property name="autoLink" type="string"
+			column="AUTOLINK_S" length="5" />
+		<property name="classHTML" type="string"
+			column="CLASSHTML_S" length="60" />
+		<property name="comparator" type="string"
+			column="COMPARATOR_S" length="60" />
+		<property name="decorator" type="string"
+			column="DECORATOR_S" length="60" />
+		<property name="defaultOrder" type="string"
+			column="DEFAULTORDER_S" length="15" />
+		<property name="escapeXML" type="string"
+			column="ESCAPEXML_S" length="5" />
+		<property name="format" type="string"
+			column="FORMAT_S" length="60" />
+		<property name="groupLevel" type="string"
+			column="GROUPLEVEL_S" length="6" />
+		<property name="headerClass" type="string"
+			column="HEADERCLASS_S" length="60" />
+		<property name="headerScope" type="string"
+			column="HEADERSCOPE_S" length="60" />
+		<property name="hypRef" type="string"
+			column="HREF_S" length="60" />
+		<property name="maxLength" type="string"
+			column="MAXLENGTH_S" length="6" />
+		<property name="maxWords" type="string"
+			column="MAXWORDS_S" length="6" />
+		<property name="media" type="string"
+			column="MEDIA_S" length="60" />
+		<property name="nulls" type="string"
+			column="NULLS_S" length="5" />
+		<property name="paramId" type="string"
+			column="PARAMID_S" length="60" />
+		<property name="paramName" type="string"
+			column="PARAMNAME_S" length="60" />
+		<property name="paramProperty" type="string"
+			column="PARAMPROPERTY_S" length="60" />
+		<property name="property" type="string"
+			column="PROPERTY_S" length="60" />
+		<property name="scope" type="string"
+			column="SCOPE_S" length="60" />
+		<property name="sortName" type="string"
+			column="SORTNAME_S" length="60" />
+		<property name="sortProperty" type="string"
+			column="SORTPROPERTY_S" length="60" />
+		<property name="sortable" type="string"
+			column="SORTABLE_S" length="5" />
+		<property name="style" type="string"
+			column="STYLE_S" length="60" />
+		<property name="title" type="string"
+			column="TITLE_S" length="60" />
+		<property name="titleKey" type="string"
+			column="TITLEKEY_S" length="60" />
+		<property name="total" type="string"
+			column="TOTAL_S" length="5" />
+		<property name="url" type="string"
+			column="URL_S" length="60" />
+		<property name="value" type="string"
+			column="VALUE_S" length="60" />
+		
+		<property name="align" type="string"
+			column="ALIGN_S" length="5" />
+		<property name="colSpan" type="integer"
+			column="COLSPAN_N" length="2" />
+		<property name="headerStyle" type="string"
+			column="HEADERSTYLE_S" length="200" />
+		<property name="metaDataProperty" type="string"
+			column="METADATAPROPERTY_S" length="50" />
+				
+					
+		<property name="flagEsistenza" type="string"
+			column="GSTD_ESIST_B" length="1" />
+		<property name="userUltimaModifica" type="string"
+			column="GSTD_ULT_USER_S" length="20" />
+		<property name="proceduraUltimaModifica" type="string"
+			column="GSTD_ULT_PROC_S" length="20" />
+		<property name="tipoUltimaModifica" type="string"
+			column="GSTD_TIPO_MOD_B" length="1" />
+		<property name="dataUltimaModifica" type="timestamp"
+			column="GSTD_ULT_MOD_D" />
+		<property name="userUltimaModificaSlave" type="string"
+			column="GSTD_ULT_USER_S" length="40" insert="false" update="false" />
+		<property name="proceduraUltimaModificaSlave" type="string"
+			column="GSTD_ULT_PROC_S" length="40" insert="false" update="false" />
+		<property name="dataUltimaModificaSlave" type="timestamp"
+			column="GSTD_ULT_MOD_D" insert="false" update="false" />
+		<property name="tipoUltimaModificaSlave" type="string"
+			column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false" />
+			
+		<property name="utenteInserimento" type="string"           
+			column="GSTD_USER_INS_S" length="40" />
+		<property name="dataInserimento" type="timestamp"
+			column="GSTD_INSE_D" />
+	</class>
+	 
+	<query name="QUERY_COLONNEVISIBILI">
+		from FinColonneVisibiliAdapterBase a 
+		order by a.nomeList asc, a.indiceOrdinamento asc
+	</query>
+	
+</hibernate-mapping>

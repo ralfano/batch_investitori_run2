@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+ <class name="it.ras.arco.batch.bean.FlxArchivioPreRam" rowid="rowid"
+  table="FLX_ARCHIVIO_PRE_RAM" where="GSTD_ESIST_B='S'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_ARCHIVIO_PRE_RAM_SEQ</param>
+   </generator>
+  </id>
+ 
+<property name="tipoOperazione"                 column="TIPO_OPERAZIONE"                type="string" length="1"  />
+<property name="codiceFondo"                    column="CODICE_FONDO"                   type="string" length="2"  />
+<property name="numeroMandato"                  column="NUMERO_MANDATO"                 type="string" length="11"  />
+<property name="codiceIntestatarioRam"          column="CODICE_INTESTATARIO_RAM"        type="string" length="7"  />
+<property name="importoPrelievo"                column="IMPORTO_PRELIEVO"               type="double"  />
+<property name="dataPrelievo"                   column="DATA_PRELIEVO"                  type="timestamp"  />
+<property name="tipoPagamento"                  column="TIPO_PAGAMENTO"                 type="string" length="1"  />
+<property name="periodicitaPrelievo"            column="PERIODICITA_PRELIEVO"           type="string" length="1"  />
+<property name="flagFineMese"                   column="FLAG_FINE_MESE"                 type="string" length="1"  />
+<property name="codiceAbi"                      column="CODICE_ABI"                     type="string" length="5"  />
+<property name="codiceCab"                      column="CODICE_CAB"                     type="string" length="5"  />
+<property name="numeroContoCorrente"            column="NUMERO_CONTO_CORRENTE"          type="string" length="12"  />
+<property name="intestatContoCorrenteCodice"    column="INTESTAT_CONTO_CORRENTE_CODICE" type="integer"  />
+<property name="codiceSocieta"                  column="CODICE_SOCIETA"                 type="integer"  />
+<property name="numeroPrelievi"                 column="NUMERO_PRELIEVI"                type="integer"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="timestamp"  />
+<property name="quotePrelievo"                column="QUOTE_PRELIEVO"             type="double"  />
+
+ </class>
+</hibernate-mapping>

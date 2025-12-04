@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+<!-- Definizione delle action -->
+             
+	 <bean id="InsCertificato"      class="it.ras.arco.service.CertificatoManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>INS</value>
+		</property>
+	 </bean>
+	 
+	 <bean id="UpdCertificato"      class="it.ras.arco.service.CertificatoManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>UPD</value>
+		</property>
+	 </bean>
+	 
+	 <bean id="GetCertificatoByNumPrestampato"      class="it.ras.arco.service.CertificatoManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_BY_NUM_PRESTAMPATO</value>
+		</property>
+	 </bean>
+
+	 <bean id="GetCertificatoByNumCertQuoteDtaCompSRV"      class="it.ras.arco.service.CertificatoManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GetCertificatoByNumCertQuoteDtaComp</value>
+		</property>
+	 </bean>
+
+<!-- Definizione dei moduli generici di accesso al DB -->
+		
+	<bean id="GetCertificatoByNumCertQuoteDtaComp"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetCertificatoByNumCertQuoteDtaComp</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>NUM_CERTIFICATO</value>
+    			<value>QUOTE</value>
+<!--    			<value>DATA_COMP</value>  -->
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CERTIFICATO</value>
+    	</property>
+    </bean>
+    
+	<bean id="GetCertificatoByNumPrestampatoMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetCertificatoByNumPrestampato</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>NUM_PRESTAMPATO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CERTIFICATO</value>
+    	</property>
+    </bean>
+
+    <bean id="InsCertificatoMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>5</value>
+    	</property> 	
+    	<property name="parameters">
+    		<list>
+    			<value>CERTIFICATO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CERTIFICATO</value>
+    	</property>
+    </bean>
+    
+    <bean id="UpdCertificatoMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>9</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CERTIFICATO</value>
+    		</list>
+    	</property>
+   		<property name="output">
+    		<value>CERTIFICATO</value>
+    	</property>
+    </bean>
+	
+</beans> 
+
+

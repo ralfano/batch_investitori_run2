@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+
+ <class name="it.ras.arco.batch.bean.FlxAnagraficaAzioni" rowid="rowid" table="FLX_MAF_ANAG_AZIONI">
+	
+	<id name="flxId" column="FLX_ID" type="integer">
+		<generator class="sequence">
+			<param name="sequence">FLX_MAF_ANAG_AZIONI_SEQ</param>
+		</generator>
+	</id>
+
+	<!--	*******	CAMPI STRUMENTO FINANZIARIO *******		-->
+	<property name="codiceMAF" 			column="CODICE_MAF"	type="string" length="64"  />
+	<property name="nome" 				column="NOME" 		type="string" length="64"  />
+	<property name="tipo" 				column="TIPO" 		type="string" length="64"  />
+	<property name="sottotipo" 			column="SOTTO_TIPO" 	type="string" length="64"  />
+	<property name="isin" 				column="ISIN" 		type="string" length="64"  />
+	<property name="divisa" 			column="DIVISA" 	type="string" length="64"  />
+	<property name="dataInizioValidita" 		column="DATA_INIZIO_VALIDITA" 	type="string" length="64"  />
+	<property name="dataFineValidita" 		column="DATA_FINE_VALIDITA" 	type="string" length="64"  />
+	<property name="attivo" 			column="ATTIVO" 	type="string" length="64"  />
+	<property name="societaGestione" 		column="SOCIETA_GESTIONE" 	type="string" length="64"  />
+	<property name="paese" 				column="PAESE" 		type="string" length="64"  />
+	<property name="codiceSettoreIndustriale"	column="COD_SETT_INDUSTR" 	type="string" length="64"  />
+
+
+	<!--	*******	CAMPI AZIONE *******		-->
+	<property name="codicePiazza" 			column="CODICE_PIAZZA" 		type="string" length="64"  />
+	<property name="simboloPiazza" 			column="SIMBOLO_PIAZZA" 	type="string" length="64"  />
+	<property name="descrizioneBreve" 		column="DESCRIZIONE_BREVE" 	type="string" length="64"  />
+	
+	<property name="trattatoSuMercatoPrimario" 	column="TRATTATO_SU_MERC_PRIM" 	type="string" length="64"  />
+	<property name="capitaleSociale" 		column="CAPITALE_SOCIALE" 	type="string" length="64"  />
+	<property name="numeroAzioniCircolanti" 	column="NUM_AZIONI_CIRCOL" 	type="string" length="64"  />
+	<property name="lottoMinimoAzioniTrattabili" 	column="LOTTO_MINIMO" 		type="string" length="64"  />
+	<property name="valoreNominale" 		column="VALORE_NOMINALE" 	type="string" length="64"  />
+	<property name="valutaDividendo" 		column="VALUTA_DIVIDENDO" 	type="string" length="64"  />
+	<property name="frequenzaDividendo" 		column="FREQ_DIVIDENDO" 	type="string" length="64"  />
+ 
+
+	<!--	*******	CAMPI STANDARD	*******		-->
+	<property name="statoElaborazione" 		column="STATO_ELAB_B" 		type="string" length="2"  />
+	<property name="istanza" 	   		column="ISTANZA_S" 	 	type="string" length="1"  />
+	<property name="dataCaricamento"   		column="DATA_CARICAMENTO_D" 	type="timestamp"  />
+
+
+
+	<!-- RELAZIONE CON FIN_ATT_FIN -->  
+	<many-to-one name="attivitaFinanziaria"
+	  	 class="it.ras.arco.bean.FinAttivitaFinanziaria" 
+	  	 column="ATTIVITA_FIN_ID"
+	  	 insert="true" update="true"
+	  	 cascade="none"
+	  	 lazy="proxy"
+	  	 />
+  
+ </class>
+ 
+ 
+ <!--	*******		CURSORE		********	-->
+ <query name="MAF_ANAG_AZIONI_SQL">
+ 	from it.ras.arco.batch.bean.FlxAnagraficaAzioni flusso where flusso.statoElaborazione ='D'
+ </query>
+
+ <!--	*******		CURSORE PER DECODIFICA		********	-->
+ <query name="MAF_ANAG_AZIONI_DECODIFICA_SQL">
+ 	from it.ras.arco.batch.bean.FlxAnagraficaAzioni flusso where flusso.statoElaborazione ='DD'
+ </query>
+
+
+</hibernate-mapping>

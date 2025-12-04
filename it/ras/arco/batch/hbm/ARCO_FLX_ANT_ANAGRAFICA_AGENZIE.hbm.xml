@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ANAGRAFICA AGENZIA -->
+ <class name="it.ras.arco.batch.bean.FlxAntAnagraficaAgenzie" rowid="rowid" table="FLX_ANT_ANAGRAFICA_AGENZIE" >
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_ANT_ANAGRAFICA_AGENZIE_SEQ</param>
+   </generator>
+  </id>  
+  <property name="codUnitaTerritoriale" type="string" column="CODICE_UNITA_TERRITORIALE"/>
+  <property name="tipologiaAgenzia" type="string" column="TIPOLOGIA_AGENZIA"/>
+  <property name="dataInizioValidita" type="date" column="DATA_INIZIO_VALIDITA"/>
+  <property name="dataFineValidita" type="date" column="DATA_FINE_VALIDITA"/>
+  <property name="indirizzo" type="string" column="INDIRIZZO"/>
+  <property name="cap" type="string" column="CAP"/>
+  <property name="citta" type="string" column="CITTA"/>
+  <property name="prefisso" type="string" column="PREFISSO"/>
+  <property name="telefono1" type="string" column="NUMERO_TELEFONO1"/>
+  <property name="telefono2" type="string" column="NUMERO_TELEFONO2"/>
+  <property name="telefono3" type="string" column="NUMERO_TELEFONO3"/>
+  <property name="fax" type="string" column="NUMERO_FAX"/>
+  <property name="codRete" type="string" column="RETE"/>
+  <property name="codCompagnia" type="string" column="COMPAGNIA"/>
+  <property name="regioneCommerciale" type="string" column="REGIONE_COMMERCIALE"/>
+  <property name="provincia" type="string" column="PROVINCIA"/>
+  <property name="desAgenzia" type="string" column="DESCRIZIONE_AGENZIA"/>
+  <property name="telefono1Ext" type="string" column="TELEFONO1_ESTESO"/>
+  <property name="telefono2Ext" type="string" column="TELEFONO2_ESTESO"/>
+  <property name="telefono3Ext" type="string" column="TELEFONO3_ESTESO"/>
+  <property name="faxExt" type="string" column="FAX_ESTESO"/>
+  <property name="descrizioneErrore" type="string" column="DESCRIZIONE_ERRORE_S" length="100" />
+  <property name="dataErrore" type="date" column="DATA_ELAB_D" />
+  <property name="statoElaborazione" type="string" column="STATO_ELAB_B"/>
+  <property name="istanza" type="string" column="ISTANZA_S"/>
+  <property name="dataCaricamento" type="date" column="DATA_CARICAMENTO_S"/>
+ </class>
+ <query name="ANT_ANAGRAFICA_AGENZIE">from it.ras.arco.batch.bean.FlxAntAnagraficaAgenzie a where a.statoElaborazione='D' order by a.codUnitaTerritoriale</query>
+</hibernate-mapping>
+

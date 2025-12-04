@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxAntStrutturaPromotori" rowid="rowid" table="FLX_ANT_STRUTTURA_PF_ESTESA">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_ANT_STRUT_PF_EST_SEQ</param>
+   </generator>
+  </id>
+  <property name="codiceIstituto" type="string" column="CODICE_ISTITUTO" length="5"/>
+  <property name="ndgPromotoreAgenziaFiglio" type="string" column="NDG_PROMOTORE_AGENZIA_FIGLIO" length="16"/>
+  <property name="codiceOperativoPfFiglio" type="string" column="CODICE_OPERATIVO_PF_FIGLIO" length="7"/>
+  <property name="flagPfFiglioFittizio" type="string" column="FLAG_PF_FIGLIO_FITTIZIO" length="1"/>
+  <property name="gradoGerarchicoFiglio" type="string" column="GRADO_GERARCHICO_FIGLIO" length="2"/>
+  <property name="livelloStrutturaFiglio" type="string" column="LIVELLO_STRUTTURA_FIGLIO" length="3"/>
+  <property name="ndgPromotoreAgenziaPadre" type="string" column="NDG_PROMOTORE_AGENZIA_PADRE" length="16"/>
+  <property name="codiceOperativoPfPadre" type="string" column="CODICE_OPERATIVO_PF_PADRE" length="7"/>
+  <property name="flagPfPadreFittizio" type="string" column="FLAG_PF_PADRE_FITTIZIO" length="1"/>
+  <property name="gradoGerarchicoPadre" type="string" column="GRADO_GERARCHICO_PADRE" length="2"/>
+  <property name="livelloStrutturaPadre" type="string" column="LIVELLO_STRUTTURA_PADRE" length="3"/>
+  <property name="dataInizioValiditaLegame" type="date" column="DATA_INIZIO_VALIDITA_LEGAME"/>
+  <property name="dataFineValiditaLegame" type="date" column="DATA_FINE_VALIDITA_LEGAME"/>
+  <property name="ragioneSocialeFiglio" type="string" column="RAGIONE_SOCIALE_FIGLIO" length="70"/>
+  <property name="ragioneSocialePadre" type="string" column="RAGIONE_SOCIALE_PADRE" length="70"/>
+  <property name="dataEstrazioneRecord" type="date" column="DATA_ESTRAZIONE_RECORD"/>
+  <property name="codiceReteFiglio" type="string" column="CODICE_RETE_FIGLIO" length="3"/>
+  <property name="codiceCompagniaFiglio" type="string" column="CODICE_COMPAGNIA_FIGLIO" length="3"/>
+  <property name="codiceRetePadre" type="string" column="CODICE_RETE_PADRE" length="3"/>
+  <property name="codiceCompagniaPadre" type="string" column="CODICE_COMPAGNIA_PADRE" length="3"/>
+  <property name="regioneCommerciale" type="string" column="REGIONE_COMMERCIALE" length="3"/>
+  <property name="distretto" type="string" column="DISTRETTO" length="10"/>
+  <property name="descrizioneErrore" type="string" column="DESCRIZIONE_ERRORE_S" length="100" />
+  <property name="dataErrore" type="date" column="DATA_ELAB_D" />
+  <property name="statoElaborazione" type="string" column="STATO_ELAB_B" length="2"/>
+  <property name="istanza" type="string" column="ISTANZA_S" length="1"/>
+  <property name="dataCaricamento" type="timestamp" column="DATA_CARICAMENTO_S"/>
+ </class>
+ <query name="STRUTTURA_PF_ANT">from it.ras.arco.batch.bean.FlxAntStrutturaPromotori a where a.statoElaborazione='D' order by a.dataCaricamento </query>
+</hibernate-mapping>

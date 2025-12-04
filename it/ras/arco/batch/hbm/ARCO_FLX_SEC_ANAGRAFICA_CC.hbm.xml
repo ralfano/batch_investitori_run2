@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ANAGRAFICA CC -->
+ <class name="it.ras.arco.batch.bean.FlxSecAnagraficaCC" rowid="rowid" table="FLX_SEC_ANAGRAFICA_CC" where="STATO_ELAB_B='D'">
+  <id name="flxID" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SEC_ANAGRAFICA_CC_SEQ</param>
+   </generator>
+  </id> 
+<property name="ndgIntestazione"                column="NDG_INTESTAZIONE"               type="string" length="20" />
+<property name="ndgPrimoIntestatario"           column="NDG_PRIMO_INTESTATARIO"         type="string" length="20" />
+<property name="filialeRapporto"                column="FILIALE_RAPPORTO"               type="string" length="5"/>
+<property name="categoriaRapporto"              column="CATEGORIA_RAPPORTO"             type="string" length="5"/>
+<property name="numeroRapporto"                 column="NUMERO_RAPPORTO"                type="string" length="8" />
+<property name="dataAperturaConto"              column="DATA_APERTURA_CONTO"            type="date"  />
+<property name="statoRapporto"                  column="STATO_RAPPORTO"                 type="string" length="8"  />
+<property name="deroga"                         column="DEROGA"                         type="string" length="2"  />
+<property name="bancomat"                       column="BANCOMAT"                       type="integer"  />
+<property name="carteCredito"                   column="CARTE_CREDITO"                  type="integer"  />
+<property name="assegni"                        column="ASSEGNI"                        type="integer"  />
+<property name="convenzione"                    column="CONVENZIONE"                    type="string" length="10"  />
+<property name="infoConto"                      column="INFO_CONTO"                     type="string" length="30"  />
+<property name="ror98Conto"                     column="ROR_98_CONTO"                   type="string" length="2"  />
+<property name="ror98Dt10"                      column="ROR_98_DT10"                    type="string" length="2"  />
+<property name="ror98Dt50"                      column="ROR_98_DT50"                    type="string" length="2"  />
+<property name="dataChiusura"                   column="DATA_CHIUSURA"                  type="date"  />
+<property name="divisa"                         column="DIVISA"                         type="string" length="3"  />
+<property name="viaIndirizzoPostale"            column="VIA_INDIRIZZO_POSTALE"          type="string" length="32"  />
+<property name="cap"                            column="CAP"                            type="string" length="5"  />
+<property name="localitaIndirPostale"           column="LOCALITA_INDIR_POSTALE"         type="string" length="32"  />
+<property name="provIndirPostale"               column="PROV_INDIR_POSTALE"             type="string" length="2"  />
+<property name="abi"                            column="ABI"                            type="string" length="5"  />
+<property name="cab"                            column="CAB"                            type="string" length="5"  />
+<property name="descrFiliale"                   column="DESCR_FILIALE"                  type="string" length="40"  />
+<property name="bban"                           column="BBAN"                           type="string" length="23"  />
+<property name="iban"                           column="IBAN"                           type="string" length="27"  />
+<property name="cin"                            column="CIN"                            type="string" length="2"  />
+<property name="convenzioneMc"                  column="CONVENZIONE_MC"                 type="string" length="1"  />
+<property name="statoRapportoMc"                column="STATO_RAPPORTO_MC"              type="string" length="8"  />
+<property name="codUserMc"                      column="COD_USER_MC"                    type="string" length="9"  />
+<property name="codProd"                        column="COD_PROD"                       type="string" length="4"  />
+<property name="codAgeProm"                     column="COD_AGE_PROM"                   type="string" length="5"  />
+<property name="codRete"                        column="COD_RETE"                       type="string" length="1"  />
+<property name="codCompagnia"                   column="COD_COMPAGNIA"                  type="string" length="2"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />  	
+<property name="dataCaricamento"                        column="DATA_CARICAMENTO_S"                      type="date" />  	
+<property name="descrizioneErrore"                column="DESCRIZIONE_ERRORE_S"             type="string" length="100" />
+<property name="dataElaborazione"                column="DATA_ELAB_D"             type="date"  />
+<property name="estero"                column="ESTERO_B"             type="string" length="1"/>
+<property name="sottocodiceRapporto"                column="SOTTOCODICE_RAPPORTO"             type="string" length="2" />
+<property name="nazione"                column="NAZIONE_S"             type="string"  />
+
+
+	</class>
+ <query name="SEC_ANAGRAFICA_CC_SQL">from
+ it.ras.arco.batch.bean.FlxSecAnagraficaCC  c  order by c.dataCaricamento</query>
+</hibernate-mapping>
+  

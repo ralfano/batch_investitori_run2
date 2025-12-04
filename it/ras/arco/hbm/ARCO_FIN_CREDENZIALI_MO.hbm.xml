@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class
+		name="it.ras.arco.bean.FinCredenzialiSecOperatoreMiddleOffice"
+		table="FIN_CREDENZIALI_SEC" where="GSTD_ESIST_B='S'">
+		<id name="credenzialeId" column="CREDENZIALE_ID"
+			type="integer">
+			<generator class="sequence">
+				<param name="sequence">FIN_CRED_SEC_SEQ</param>
+			</generator>
+		</id>
+		<property name="userNameArco" type="string" column="USER_NAME_S"
+			length="40" />
+		<property name="userNameSec" type="string"
+			column="USER_NAME_SEC_S" length="20" />
+		<property name="passwordSec" type="string"
+			column="PASSWORD_SEC_S" length="20" />
+		<property name="password2Sec" type="string"
+			column="PASSWORD2_SEC_S" length="20" />
+		<property name="userUltimaModifica" type="string"
+			column="GSTD_ULT_USER_S" length="40" />
+		<property name="proceduraUltimaModifica" type="string"
+			column="GSTD_ULT_PROC_S" length="40" />
+		<property name="dataUltimaModifica" type="timestamp"
+			column="GSTD_ULT_MOD_D" />
+		<property name="flagEsistenza" type="string"
+			column="GSTD_ESIST_B" length="1" />
+		<property name="tipoUltimaModifica" type="string"
+			column="GSTD_TIPO_MOD_B" length="1" />
+		<property name="userUltimaModificaSlave" type="string"
+			column="GSTD_ULT_USER_S" length="40" insert="false" update="false" />
+		<property name="proceduraUltimaModificaSlave" type="string"
+			column="GSTD_ULT_PROC_S" length="40" insert="false" update="false" />
+		<property name="dataUltimaModificaSlave" type="timestamp"
+			column="GSTD_ULT_MOD_D" insert="false" update="false" />
+		<property name="tipoUltimaModificaSlave" type="string"
+			column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false" />
+	</class>
+
+	<query name="GET_CREDENZIALI_BY_USER_NAME_ARCO">
+		from FinCredenzialiSecOperatoreMiddleOffice t
+	</query>
+	<query name="GetContoCorrenteByNumRapporto">
+	from it.ras.arco.bean.FinContrattoCC c where c.numeroRapporto = :numRapporto
+	</query>
+</hibernate-mapping>

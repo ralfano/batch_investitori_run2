@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxRasBankGpElencoProd" rowid="rowid" table="FLX_RASBANKGP_ELENCO_PROD">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_RASBANKGP_ELENCO_PROD_SEQ</param>
+   </generator>
+  </id>
+  <property name="codiceFiscale" type="string" column="CODICE_FISCALE" length="16"/>
+  <property name="filialeRapporto" type="integer" column="FILIALE_RAPPORTO"/>
+  <property name="categoriaRapporto" type="string" column="CATEGORIA_RAPPORTO"/>
+  <property name="numeroRapporto" type="string" column="NUMERO_RAPPORTO"/>
+  <property name="codiceAgente" type="string" column="CODICE_AGENTE"/>
+  <property name="codiceRete" type="string" column="CODICE_RETE" length="1"/>
+  <property name="codiceCompagnia" type="string" column="CODICE_COMPAGNIA"/>
+  <property name="tipoIntestatario" type="string"
+   column="TIPO_INTESTATARIO" length="1"/>
+  <property name="tipoProdotto" type="string" column="TIPO_PRODOTTO"/>
+  <property name="deroga" type="string" column="DEROGA" length="2"/>
+  <property name="dtDiBt" type="string" column="DT_DI_BT" length="1"/>
+  <property name="saldoProdotto" type="double" column="SALDO_PRODOTTO"/>
+  <property name="dataValorizzazione" type="date" column="DATA_VALORIZZAZIONE"/>
+  <property name="flagLiraEuro" type="string" column="FLAG_LIRA_EURO" length="1"/>
+  <property name="statoElaborazione" type="string" column="STATO_ELAB_B" length="2"/>
+  <property name="istanza" type="string" column="ISTANZA_S" length="1"/>
+   <property name="descrizioneErrore"  column="DESCRIZIONE_ERRORE_S" type="string" length="100"  />
+    <property name="dataElab" column="DATA_ELAB_D" type="timestamp"  />
+ </class>
+ <query name="RASBANKGP_ELENCO_SQL">from
+it.ras.arco.batch.bean.FlxRasBankGpElencoProd pc where pc.statoElaborazione='D' order by pc.numeroRapporto,pc.tipoIntestatario</query>
+
+
+</hibernate-mapping>

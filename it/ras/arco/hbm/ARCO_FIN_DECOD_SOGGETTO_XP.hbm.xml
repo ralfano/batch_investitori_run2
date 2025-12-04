@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.bean.FinDecodSoggettoXP" table="FIN_DECOD_SOGGETTO_XP">
+  <id name="soggettoXpId" type="integer" column="SOGGETTO_XP_ID"/>
+
+  
+  <!-- RELAZIONE CON FIN_DECOD_SOGGETTO_XP -->
+   
+   <many-to-one name="soggetto" class="it.ras.arco.bean.FinSoggetto" cascade="lock"
+  column="SOGGETTO_ID" not-null="false" lazy="false" not-found="ignore" />
+  
+ 
+  
+ </class>
+ 
+<query name="GetSoggettoIDBySoggettoXP">
+from it.ras.arco.bean.FinDecodSoggettoXP where soggettoXpId =:soggettoXp
+</query>
+</hibernate-mapping>
+

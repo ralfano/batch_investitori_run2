@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA SY_MIG_INDIRIZZI -->
+ <class name="it.ras.arco.batch.bean.FlxServiziAggAnima" rowid="rowid" table="FLX_SERV_AGG_ANIMA">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SERV_AGG_ANIMA_SEQ</param>
+   </generator>
+  </id>
+<property name="dataReg"                        column="DATA_REG"                       type="date"  />
+<property name="deposito"                       column="DEPOSITO"                       type="string" length="6"  />
+<property name="cognome"                        column="COGNOME"                        type="string" length="30"  />
+<property name="nome"                           column="NOME"                           type="string" length="30"  />
+<property name="fondo"                          column="FONDO"                          type="string" length="2"  />
+<property name="numContratto"                   column="NUM_CONTRATTO"                  type="string" length="15"  />
+<property name="tipoServizio"                   column="TIPO_SERVIZIO"                  type="string" length="1"  />
+<property name="frequenzaVersamento"            column="FREQUENZA_VERSAMENTO"           type="string" length="1"  />
+<property name="scadenzaRid"                    column="SCADENZA_RID"                   type="integer"  />
+<property name="banca"                          column="BANCA"                          type="string" length="50"  />
+<property name="importoSwitch"                  column="IMPORTO_SWITCH"                 type="integer"  />
+<property name="importoRid"                     column="IMPORTO_RID"                    type="integer"  />
+<property name="fondoEntrata"                   column="FONDO_ENTRATA"                  type="string" length="2"  />
+<property name="scontoComm"                     column="SCONTO_COMM"                    type="integer"  />
+<property name="dataRevoca"                     column="DATA_REVOCA"                    type="date"  />
+<property name="dataPartenza"                   column="DATA_PARTENZA"                  type="date"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+                                                                                					
+ </class>
+ <query name="CURSOR_SERV_AGG_ANIMA">from  
+ it.ras.arco.batch.bean.FlxServiziAggAnima p where p.statoElab in ('D','KO')</query>
+
+</hibernate-mapping>

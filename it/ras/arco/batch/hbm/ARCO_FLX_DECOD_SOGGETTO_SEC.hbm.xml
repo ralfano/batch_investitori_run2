@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DECODIFICA SOGGETTI SEC -->
+ <class name="it.ras.arco.batch.bean.FlxDecodSoggettoSec" rowid="rowid"
+  table="FLX_DECOD_SOGGETTO_SEC" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_GENERIC_SEQ</param>
+   </generator>
+  </id>
+    <property name="codNdg"                         column="COD_NDG"                        type="string" length="20" />
+	<property name="cointestazione"                 column="COINTESTAZIONE"                 type="string" length="1"  />
+	<property name="codCsot"                        column="COD_CSOT"                       type="string" length="11"  />
+	<property name="crap"                           column="CRAP"                           type="string" length="13"  />
+	<property name="codColloquioBanca"              column="COD_COLLOQUIO_BANCA"            type="string" length="25"  />
+	<property name="codiceFabbrica"                 column="CODICE_FABBRICA"                type="string" length="5"  />
+	<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+	<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+	<property name="descrizioneErrore"              column="DESCRIZIONE_ERRORE_S"           type="string" length="100"  />
+    <property name="dataErrore"                     column="DATA_ERRORE"                    type="date" />
+    
+ </class>
+<query name="CURSOR_SOGGETTI_SEC">from it.ras.arco.batch.bean.FlxDecodSoggettoSec</query>
+</hibernate-mapping>

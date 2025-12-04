@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ULT_PREZZO -->
+ <class name="it.ras.arco.bean.FinUltPrezzo"
+		batch-size="1"
+		table="FIN_ULT_PREZZO" where="GSTD_ESIST_B='S'" select-before-update="true"
+		>
+  
+  <id name="ultPrezzoId" column="ULT_PREZZO_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_ULT_PREZZO_SEQ</param>
+   </generator>
+  </id>
+  
+  <!-- 
+  <property name="attivitaFinId" column="ATTIVITA_FIN_ID" type="integer"/>
+  -->
+  
+  
+	<property name="ultPrezzo" type="double" column="ULT_PREZZO"/>
+	<property name="dataUltPrezzo" type="timestamp" column="DATA_ULT_PREZZO"/>
+	<property name="ultPrezzoEuro" type="double" column="ULT_PREZZO_EURO"/>
+	<property name="cambio" type="double" column="CAMBIO"/>
+
+	<property name="prezzoAdj" type="double" column="PREZZO_ADJ"/>
+	<property name="prezzoShareEuro" type="double" column="PREZZO_SHARE_EURO"/>
+	<property name="rateoMaturato" type="double" column="RATEO_MATURATO"/>
+	<property name="durataRateo" type="double" column="DURATA_RATEO"/>
+	<property name="durataMedia" type="double" column="DURATA_MEDIA"/>
+  
+   	<property name="flagInvioQuot" type="string" column="FLAG_INV_QUOT" length="1"/>
+
+
+
+  <!-- RELAZIONE CON LA FIN_ATT_FIN -->
+  <!-- 
+   <one-to-one name="attivitaFin" class="it.ras.arco.bean.FinAttivitaFinanziaria"/>
+	 update="true" insert="true"
+	save-update,lock
+  -->
+  <one-to-one name="attivitaFin" 
+  	 class="it.ras.arco.bean.FinAttivitaFinanziaria" 
+  	 property-ref="ultPrezzo"  
+  	 lazy="proxy"
+  	 cascade="lock"  
+  	 outer-join="true" 
+  	 />
+  	 
+  	 
+  	 
+
+  <!--
+  	***********************
+  	  CAMPI STANDARD
+  	***********************
+  -->
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="40"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="40"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="40"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+
+  <!-- Duplicazione campi standard x Update (SLAVE) -->	
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+
+  	 
+  
+</class>
+
+<sql-query name="OutboundQuotazioniUltPrezzoFondiSicav">
+ <return alias="fup" class="it.ras.arco.bean.FinUltPrezzo"/> 
+	select distinct {fup.*} 
+	from 
+	fin_ult_prezzo fup,
+	fin_prodotto_linea pl,
+	fin_prodotto p 
+	where 
+	p.GSTD_ESIST_B = 'S' and
+	pl.GSTD_ESIST_B = 'S' and
+	fup.GSTD_ESIST_B = 'S' and
+	(fup.FLAG_INV_QUOT = 'N' or fup.FLAG_INV_QUOT is null) and
+	pl.ATTIVITA_FIN_ID = fup.ATTIVITA_FIN_ID and
+	pl.PRODOTTO_ID = p.PRODOTTO_ID and
+	p.TIPO_T = 'CS' and 
+	p.EMITTENTE_ID in (6)
+	order by 1
+ </sql-query>
+
+<sql-query name="OutboundQuotazioniUltPrezzoBNL">
+ <return alias="fup" class="it.ras.arco.bean.FinUltPrezzo"/> 
+	select distinct {fup.*} 
+	from 
+	fin_ult_prezzo fup,
+	fin_prodotto_linea pl,
+	fin_prodotto p 
+	where 
+	p.GSTD_ESIST_B = 'S' and
+	pl.GSTD_ESIST_B = 'S' and
+	fup.GSTD_ESIST_B = 'S' and
+	(fup.FLAG_INV_QUOT = 'N' or fup.FLAG_INV_QUOT is null) 
+	and pl.ATTIVITA_FIN_ID = fup.ATTIVITA_FIN_ID and
+	pl.PRODOTTO_ID = p.PRODOTTO_ID and
+	p.Tipo_t IN( 'FN' ,'FNF','FNT') and
+	p.EMITTENTE_ID in (5)
+	order by 1
+ </sql-query>
+
+
+</hibernate-mapping>
+

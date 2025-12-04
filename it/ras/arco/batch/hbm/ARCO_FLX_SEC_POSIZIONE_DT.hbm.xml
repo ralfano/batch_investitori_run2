@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxSecPosDt" rowid="rowid" table="FLX_SEC_POSIZIONE_DT">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SEC_POSIZIONE_DT_SEQ</param>
+   </generator>
+  </id>
+ 
+<property name="cfil"                           column="CFIL"                           type="string"  />
+<property name="cage"                           column="CAGE"                           type="string"  />
+<property name="cprg"                           column="CPRG"                           type="string"  />
+<property name="cspd"                           column="CSPD"                           type="string"  />
+<property name="ctit"                           column="CTIT"                           type="string"  />
+<property name="descrTitolo"                    column="DESCR_TITOLO"                   type="string" length="50"  />
+<property name="rapporto"                       column="RAPPORTO"                       type="string" length="21"  />
+<property name="quantita"                       column="QUANTITA"                       type="double"  />
+<property name="quotazione"                     column="QUOTAZIONE"                     type="double"  />
+<property name="divisa"                         column="DIVISA"                         type="integer"  />
+<property name="divisaTrattazione"              column="DIVISA_TRATTAZIONE"             type="integer"  />
+<property name="cambio"                         column="CAMBIO"                         type="double"  />
+<property name="controvaloreAttuale"            column="CONTROVALORE_ATTUALE"           type="double"  />
+<property name="controvaloreAttualeInDivisa"    column="CONTROVALORE_ATTUALE_IN_DIVISA" type="double"  />
+<property name="prezzoMedioAcquisto"            column="PREZZO_MEDIO_ACQUISTO"          type="double"  />
+<property name="dataDiQuotazioneDellaPosiz"     column="DATA_DI_QUOTAZIONE_DELLA_POSIZ" type="date"  />
+<property name="codiceIsin"                     column="CODICE_ISIN"                    type="string" length="12"  />
+<property name="mercato"                        column="MERCATO"                        type="string" length="5"  />
+<property name="dataScadenza"                   column="DATA_SCADENZA"                  type="date"  />
+<property name="comparto"                       column="COMPARTO"                       type="string" length="20"  />
+<property name="rateo"                          column="RATEO"                          type="double"  />
+<property name="ndgIntestatario"                column="NDG_INTESTATARIO"               type="string"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+ <property name="descrizioneErrore"  column="DESCRIZIONE_ERRORE_S" type="string" length="100"  />
+  <property name="dataElab" column="DATA_ELAB_D" type="timestamp"  />
+ </class>
+<query name="SEC_POSIZIONE_DT">from
+it.ras.arco.batch.bean.FlxSecPosDt pc where pc.statoElab='D' order by pc.rapporto,pc.cspd,pc.dataDiQuotazioneDellaPosiz,pc.dataCaricamento
+</query>
+
+
+</hibernate-mapping>

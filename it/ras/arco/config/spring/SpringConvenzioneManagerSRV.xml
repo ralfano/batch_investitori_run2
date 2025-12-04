@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <bean id="InsertConvenzioneSRV"
+    	class="it.ras.arco.service.ConvenzioneManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_CONVENZIONE</value>
+    	</property>
+    
+    </bean>
+    
+    
+    <bean id="GetConvenzioneByAttFinIdCodiceConvenzioneSRV"
+    	class="it.ras.arco.service.ConvenzioneManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetConvenzioneByAttFinIdCodiceConvenzione</value>
+    	</property>
+    		<property name="onLine">
+			<value>false</value>
+		</property>  
+    </bean>
+    
+     <bean id="UpdateConvenzioneSRV"
+    	class="it.ras.arco.service.ConvenzioneManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UpdateConvenzione</value>
+    	</property>
+    </bean>
+ 
+    
+   
+    
+     <bean id="InserimentoConvenzione" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		
+		<property name="parameters">
+			<list>
+				<value>CONVENZIONE</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>CONVENZIONE</value>
+		</property>
+	</bean>
+   
+   
+   <bean id="GetConvenzioneByAttFinIdCodiceConvenzioneMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetConvenzioneByAttFinIdCodiceConvenzione</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>ATT_FIN</value>
+    			<value>COD_CONV</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONVENZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="UpdateConvenzioneMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>CONVENZIONE</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>CONVENZIONE</value>
+		</property>
+	</bean>
+    
+   
+</beans> 
+
+

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO GENERICO INDIRIZZO_MANAGER -->
+    
+    <bean id="InsertEmail"
+    	class="it.ras.arco.service.RecapitoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT_EMAIL</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertCellulare"
+    	class="it.ras.arco.service.RecapitoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT_CELLULARE</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertTelefonoRecapito"
+    	class="it.ras.arco.service.RecapitoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT_TELEFONO_RECAPITO</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertTelefonoResidenza"
+    	class="it.ras.arco.service.RecapitoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT_TELEFONO_RESIDENZA</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertFax"
+    	class="it.ras.arco.service.RecapitoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT_FAX</value>
+    	</property>
+    </bean>
+
+    <bean id="UpdateRecapito"
+    	class="it.ras.arco.service.RecapitoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UPDATE</value>
+    	</property>
+    </bean>    
+    
+	<bean id="GetRecapitoMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetRecapitoByTipoRecapito_SoggettoId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>TIPO_RECAPITO</value>
+    			<value>SOGGETTO</value>
+    			<value>DATA_CORRENTE</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>RECAPITO</value>
+    	</property>
+    </bean>
+	
+	<bean id="StoricizzaRecapitoMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+		
+		<property name="parameters">
+			<list>
+				<value>RECAPITO</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>RECAPITO</value>
+		</property>
+	</bean>
+	
+	<bean id="InsertRecapitoMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		
+		<property name="parameters">
+			<list>
+				<value>RECAPITO</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>RECAPITO</value>
+		</property>
+	</bean>
+
+</beans> 
+
+	

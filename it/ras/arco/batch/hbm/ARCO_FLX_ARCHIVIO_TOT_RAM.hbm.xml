@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+ <class name="it.ras.arco.batch.bean.FlxArchivioTotRam" rowid="rowid"
+  table="FLX_ARCHIVIO_TOT_RAM" >
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_ARCHIVIO_TOT_RAM_SEQ</param>
+   </generator>
+  </id>
+	<property name="tipoRecord"                     column="TIPO_RECORD"                    type="string"   />
+	<property name="numDispArco"                    column="NUM_DISP_ARCO"                  type="string"   />
+	<property name="codiceFondo"                    column="CODICE_FONDO"                   type="string"   />
+	<property name="numeroMandato"                  column="NUMERO_MANDATO"                 type="string"   />
+	<property name="codiceIntestatarioRam"          column="COD_INTEST_RAM"                 type="string"   />
+	<property name="codRamo"                        column="COD_RAMO"                    type="string"   />
+	<property name="codCompagnia"                   column="COD_COMPAGNIA"               type="string"   />
+	<property name="numPolizza"                     column="NUM_POLIZZA"                    type="string"   />
+	<property name="tipoOperazione"                 column="TIPO_OPERAZIONE"                type="string"   />
+	<property name="dataAttivazione"                column="DATA_ATTIVAZIONE"               type="date"     />
+	<property name="importoPrelievo"                column="IMP_PRELIEVO"                   type="double"   />
+	<property name="dataPrelievo"                   column="DATA_PRELIEVO"                  type="date"     />
+	<property name="tipoPagamento"                  column="TIPO_PAGAMENTO"                 type="string"   />
+	<property name="periodicitaPrelievo"            column="PERIOD_PREL"                    type="string"   />
+	<property name="flagFineMese"                   column="FLAG_FINE_MESE"                 type="string"   />
+	<property name="codiceAbi"                      column="COD_ABI"                        type="string"   />
+	<property name="codiceCab"                      column="COD_CAB"                        type="string"   />
+	<property name="codicePaeseIban"                column="IBPAE"                          type="string"   />
+	<property name="checkDigitIban"                 column="IBCKD"                          type="string"   />
+	<property name="cinIban"                        column="IBCIN"                          type="string"   />
+	<property name="numeroContoCorrente"            column="NUM_CC"                         type="string"   />
+	<property name="intestatContoCorrenteCodice"    column="INTEST_CC_RAM"                  type="string"  />
+	<property name="codiceSocieta"                  column="COD_SOC"                        type="string"  />
+	<property name="numeroPrelievi"                 column="NUM_PRELIEVI"                   type="string"  />
+	<property name="statoRid"  			            column="STATO_RID"  			        type="string"  />
+	<property name="dataPrelievoRid"                column="DATA_PREL_RID"                  type="date"     />
+	<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+	<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+	<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"     />
+	<property name="descrizioneErrore" 				column="DESCRIZIONE_ERRORE_S" 			type="string" length="300"/>
+	<property name="dataElaborazione" 				column="DATA_ELAB_D"					type="timestamp"/>  
+<property name="quotePrelievo"                column="QUOTE_PRELIEVO"             type="double"  />
+
+ </class> 
+ <query name="SERVIZIO_AGG">from it.ras.arco.batch.bean.FlxArchivioTotRam pc where pc.statoElab='D' order by decode (pc.tipoOperazione,'A','1','2')</query>
+</hibernate-mapping>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+ <!-- TABELLA PARAMETRO -->
+ <class name="it.ras.arco.bean.FinParametro" table="FIN_PARAMETRO" where="GSTD_ESIST_B='S'"  
+			 batch-size="50">
+
+  <id name="parametroID" column="PARAMETRO_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_PARAMETRO_SEQ</param>
+   </generator>
+  </id>
+
+  <property name="descrizione" type="string" column="DESCRIZIONE_S" length="100"/>
+  <property name="tipoParametro" type="string" column="TIPO_PARAMETRO" length="3"/>
+  <property name="tipoProdotto" type="string" column="TIPO_PRODOTTO" length="3"/>
+  <property name="tipoOggP" type="string" column="TIPO_OGG_P " length="40"/>
+  <property name="tipoValore" type="string" column="TIPO_VALORE" length="3"/>
+  <property name="nomeTabellaS" type="string" column="NOME_TABELLA_S" length="40"/>
+  <property name="dataInizio" type="date" column="DATA_INIZIO_D"/>
+  <property name="dataFine" type="date" column="DATA_FINE_D"/>
+  
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="40"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="40"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="40"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+
+  <property name="colonnaIn" type="string" column="COLONNA_IN" length="40"/>
+  <property name="colonnaOut" type="string" column="COLONNA_OUT" length="40"/>
+  <property name="valoreCheckSel" type="string" column="VALORE_CHECK_SEL" length="1"/>
+  <property name="valoreCheckNonSel" type="string" column="VALORE_CHECK_NON_SEL" length="1"/>
+  <property name="tipoEntitaAss" type="integer" column="TIPO_ENTITA_ASS" />
+
+  <property name="cdOrdina" type="integer" column="CD_ORDINA" />
+  <property name="numCifreIntere" type="integer" column="NUM_CIFRE_INTERE" />
+  <property name="numCifreDecimali" type="integer" column="NUM_CIFRE_DECIMALE" />
+  <property name="colonnaDivisa" type="integer" column="COLONNA_DIVISA" />
+  <property name="colonnaTargetId" type="integer" column="COLONNA_TARGET_ID" />
+  <property name="comboDecodificata" type="integer" column="COMBO_DECODIFICATA" />
+
+  <property name="flagElenco" type="string" column="FLAG_ELENCO" length="1" />
+  <property name="flagParametroObbl" type="string" column="PARAMETRO_OBBL" length="1" />
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+
+  <property name="codice" type="integer" column="CODICE_PARAMETRO" />
+  
+  <!-- RELAZIONE CON FIN_ENTITA_PARAMETRO -->
+  <set name="entitaParametro" lazy="true" cascade="lock"  batch-size="50">
+   <key column="PARAMETRO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinEntitaParametro" not-found="ignore" />
+  </set>
+ 
+ </class>
+ 
+
+
+
+ <!--
+ 	QUERY PER L'ESTRAZIONE DEI PARAMETRI OBBLIGATORI DI EMITTENTE
+
+ 	and 	
+ 		p.flagParametroObbl = '1'
+ -->
+ <query name="CP_CERCA_PARAMETRI_PER_EMITTENTE">
+ 	select	distinct
+ 		p
+ 	from 	
+ 		it.ras.arco.bean.FinParametro p
+ 	where 	
+ 		p.tipoEntitaAss = 0
+ 	and
+ 		p.flagEsistenza = 'S'
+ </query>
+
+ <!--
+ 	QUERY PER L'ESTRAZIONE DEI PARAMETRI OBBLIGATORI DI PRODOTTO (MACRO-PRODOTTO)
+
+ 	and 	
+ 		p.flagParametroObbl = '1'
+ 	and
+ 		p.tipoEntitaAss = 1
+ -->
+ <query name="CP_CERCA_PARAMETRI_PER_PRODOTTO">
+ 	select	distinct
+ 		p
+ 	from 	
+ 		it.ras.arco.bean.FinParametro p
+  	where 	
+ 		p.flagEsistenza = 'S'
+ 	and
+ 		p.tipoEntitaAss IN (1, 2)
+ 	and
+ 		p.tipoProdotto = :tipo_prodotto_per_parametro
+ </query>
+
+<!--
+ 	QUERY PER L'ESTRAZIONE DELL'EMITTENTE
+-->
+
+ <query name="CP_CERCA_EMITTENTE">
+ 	select	distinct
+ 		e
+ 	from 	
+ 		it.ras.arco.bean.FinProdotto e
+  	where 	
+ 		e.prodottoID = :tipo_emittente
+ </query>
+
+
+ <!--
+ 	QUERY PER L'ESTRAZIONE DEI PARAMETRI OBBLIGATORI DI ATTIVITA FINANZIARIA (PRODOTTO)
+
+ 	and 	
+ 		p.flagParametroObbl = '1'
+ -->
+ <query name="CP_CERCA_PARAMETRI_PER_ATT_FIN">
+ 	select	distinct
+ 		p
+ 	from 	
+ 		it.ras.arco.bean.FinParametro p
+  	where 	
+ 		p.flagEsistenza = 'S'
+ 	and
+ 		p.tipoEntitaAss = 2
+ 	and
+ 		p.tipoProdotto = :tipo_prodotto_per_parametro
+ </query>
+
+ <query name="GetParametroByCodiceParametroTipoProdotto">
+ 	select	distinct
+ 		p
+ 	from 	
+ 		it.ras.arco.bean.FinParametro p
+ 	where 	
+ 		p.codice = :codiceParametro
+ 	and
+ 		p.tipoProdotto = :tipoProdotto
+ 	and
+ 		p.flagEsistenza = 'S'
+ </query>
+
+</hibernate-mapping>
+

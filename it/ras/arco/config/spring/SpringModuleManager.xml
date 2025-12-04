@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+	<bean id="RasModuleManager"      class="it.ras.flag.batch.skeleton.RasBatchModuleManager" singleton="true">
+    	<property name="batchManager">
+    		<ref bean="RasThreadBatchManager" />
+    	</property>
+    </bean>
+    
+    <bean id="RasThreadBatchManager" class="it.ras.flag.batch.skeleton.RasThreadBatchManager" singleton="true"> 
+    	<property name="batchOk">
+			<value>0</value>
+		</property>
+		<property name="batchWarning">
+			<value>1</value>
+		</property>
+		<property name="batchKo">
+			<value>2</value>
+		</property>
+		<property name="sessionFactory">
+    		<ref bean="sessionFactory"/>
+    	</property>
+	</bean>
+</beans>
+
+

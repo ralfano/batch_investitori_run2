@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!--  TABELLA ESEGUITI -->
+  <class name="it.ras.arco.bean.FinOrdineTitoliEseguitiAdapterBase" table="FIN_ORDINE_TITOLI_ESEGUITI" where="GSTD_ESIST_B='S'">
+  <id name="eseguitiId" column="ESEGUITI_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_ORDINE_TITOLI_ESEGUITI_SEQ</param>
+   </generator>
+  </id>
+ 
+ 
+  <property name="parametro"						column="PARAMETRO"						type="string" length="1"  />
+  <property name="codiceFilialeDossier"				column="COD_FILIALE_DOSSIER_N"			type="integer" />
+  <property name="categoriaDossier"					column="CATEGORIA_DOSSIER_S"			type="string" length="4" />
+  <property name="numDossier"						column="NUM_DOSSIER_N"					type="integer" />
+  <property name="numSottoDossier"					column="NUM_SOTTODOSSIER_N"				type="integer" />
+  <property name="contatoreOrdine"					column="CONTATORE_ORDINE_N"				type="integer" />
+  <property name="numCC"							column="NUM_CC_N"						type="integer" />
+  <property name="codDivisaRegolamento"				column="COD_DIVISA_REGOLAMENTO_B"		type="string" length="1" />
+  <property name="statoOperazione"					column="STATO_OPERAZIONE_N"				type="integer" />
+  <property name="codiceBanca"						column="CODICE_BANCA_N"					type="integer" />
+  <property name="intestazioneDossier"				column="INTESTAZIONE_DOSSIER_S"			type="string" length="30" />
+  <property name="nroCodTerminale"					column="NRO_COD_TERMINALE_S"			type="string" length="8" />
+  <property name="nroAnnoRiferimento"				column="NRO_ANNO_RIFERIMENTO_N"			type="integer" />
+  <property name="nroNumOperazioniRiferimento"		column="NRO_NUM_OPERAZIONI_RIF_N"		type="integer" />
+  <property name="nroNumRegistrazioneRiferimento"	column="NRO_NUM_REGISTRAZ_RIF_N"		type="integer" />
+  <property name="codiceTitolo"						column="CODICE_TITOLO_N"				type="integer" />
+  <property name="descrizioneTitolo"				column="DESCRIZIONE_TITOLO_S"			type="string" length="30" />
+  <property name="segnoOperazione"					column="SEGNO_OPERAZIONE_B"				type="string" length="1" />
+  <property name="dataOperazione"					column="DATA_OPERAZIONE_D"				type="date"  />
+  <property name="quantitaOrdine"		 			column="QUANTITA_ORDINE_N"				type="integer" />
+  <property name="prezzoOrdine"		 				column="PREZZO_ORDINE_N"				type="integer" />
+  <property name="dataEseguito"						column="DATA_ESEGUITO_D"				type="date"  />
+  <property name="quantitaEseguito"		 			column="QUANTITA_ESEGUITO_N"			type="integer" />
+  <property name="prezzoEseguito"		 			column="PREZZO_ESEGUITO_N"				type="integer" />
+  <property name="dataRevoca"						column="DATA_REVOCA_D"					type="date"  />
+  <property name="dataStorno"						column="DATA_STORNO_D"					type="date"  />
+  <property name="dataValuta"						column="DATA_VALUTA_D"					type="date"  />
+  
+
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1" insert="true" update="true"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="20" insert="true" update="true"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="true" update="true"/>
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="true" update="true"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="true" update="true"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="true" update="true"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+
+
+ 
+	
+ <!-- RELAZIONE CON FIN_PROMOTORE -->
+ <many-to-one name="promotore" class="it.ras.arco.bean.FinPromotore" lazy="proxy" column="PROMOTORE_ID" insert="true" update="true" not-found="ignore" not-null="true" cascade="lock" />
+ 
+ </class>
+
+
+</hibernate-mapping>

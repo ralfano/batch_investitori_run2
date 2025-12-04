@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA MOVIMENTI CC -->
+ <class name="it.ras.arco.batch.bean.FlxSecRuolo" table="FLX_SEC_RUOLO" where="STATO_ELAB_B='D'">
+  <id name="flxID" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SEC_RUOLO_SEQ</param>
+   </generator>
+  </id>
+<property name="banca"                          column="BANCA"                          type="string" length="4"  />
+<property name="operazione"                     column="OPERAZIONE"                     type="string" length="1"  />
+<property name="ndg"                            column="NDG"                            type="string" length="20"  />
+<property name="ndgcoll"                        column="NDGCOLL"                        type="string" length="20"  />
+<property name="tipColl"                        column="TIP_COLL"                       type="string" length="2" />
+<property name="dtIniColl"                      column="DT_INI_COLL"                    type="date"  />
+<property name="dtEndColl"                      column="DT_END_COLL"                    type="date"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+<property name="descrizioneErrore"                column="DESCRIZIONE_ERRORE_S"             type="string" length="100" />
+<property name="dataElaborazione"                column="DATA_ELAB_D"             type="date"  />
+
+</class>
+ <query name="SEC_RUOLO_SQL">from  
+ it.ras.arco.batch.bean.FlxSecRuolo</query>
+</hibernate-mapping>

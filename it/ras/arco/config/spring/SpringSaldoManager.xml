@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans> 
+<!-- DEFINIZIONE SERVIZI -->
+<bean id="insertSaldoMedioSRV"
+    	class="it.ras.arco.service.SaldoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>ACTION_INSERT_SALDO_MEDIO</value>
+    	</property>
+    </bean>
+    
+<!-- DEFINIZIONE MODULI--> 
+ 
+<bean id="inserimentoSaldoMedioMD"
+	class="it.ras.flag.module.DefaultDbModule">
+	<property name="dao">
+		<ref bean="RasBatchDao" />
+	</property>
+	<property name="query">
+		<value>5</value>
+	</property>    	
+	<property name="parameters">
+		<list>
+			<value>SALDO_PERIODICO</value>
+		</list>
+	</property>
+	<property name="output">
+		<value>SALDO_PERIODICO</value>
+	</property>    	
+</bean> 
+</beans> 

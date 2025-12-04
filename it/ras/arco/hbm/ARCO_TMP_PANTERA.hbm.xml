@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DEI SOGGETTI ANAGRAFICI -->
+ <class name="it.ras.arco.bean.TmpPantera" table="TMP_PANTERA" where="GSTD_ESIST_B='S'">
+  
+  
+  <id name="recordId" column="RECORD_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">TMP_PANTERA_SEQ</param> <!--guardare mail-->
+   </generator>
+  </id>
+  
+  <property name="rapportoContinuativoId" type="string" column="RAPP_CONT_ID" length="25"/>  
+  <property name="tipoRecord" type="string" column="TIPO_RECORD" length="1"/>
+  <property name="versione" type="string" column="VERSIONE" length="1"/>
+  <property name="tipoOperazione" type="string" column="TIPO_OPERAZIONE" length="2"/>
+  <property name="flagInviato" type="string" column="FLAG_INVIATO" length="1"/>
+  <property name="dataInvio" type="date" column="DATA_INVIO" />
+  <property name="contatoreInvio" type="integer" column="CONTATORE_INVIO" />
+  <property name="progressivoInvio" type="integer" column="PROGRESSIVO_INVIO"/>
+  <property name="dataRapporto" type="date" column="DATA_RAPPORTO" />
+  <property name="attivitaFinanziaria" type="integer" column="PRD_ATTIVITA_FIN" />
+  <property name="prodottoMovimento" type="integer" column="PRD_PRODOTTO" />
+  <property name="emittenteMovimento" type="integer" column="PRD_EMITTENTE" />
+  <property name="tipoAnagrafica" type="string" column="TIPO_ANAGRAFICA" length="1"/>
+  <property name="codiceSottoscrizione" type="string" column="CODICE_SOTTOSCRIZIONE" length="23"/>
+  <property name="ndgArco" type="string" column="NDG_ARCO" length="16"/>
+  <property name="tipoEvento" type="string" column="TIPO_EVENTO" length="2"/>                     
+  <property name="tipoPersona" type="string" column="TIPO_PERSONA" length="1"/>
+  <property name="denominazione" type="string" column="DENOMINAZIONE" length="70"/>
+  <property name="residenzaNazione" type="string" column="RES_NAZIONE" length="5"/>
+  <property name="residenzaCodComune" type="string" column="RES_COD_COMUNE" length="6"/>
+  <property name="residenzaDescrizioneComune" type="string" column="RES_DES_COMUNE" length="30"/>
+  <property name="residenzaIndirizzo" type="string" column="RES_INDIRIZZO" length="35"/>
+  <property name="residenzaCap" type="string" column="RES_CAP" length="5"/>
+  <property name="codiceFiscale" type="string" column="COD_FISCALE" length="16"/>
+  <property name="dataNascita" type="date" column="NAS_DATA" />
+  <property name="comuneNascita" type="string" column="NAS_COMUNE" length="30"/>
+  <property name="rae" type="string" column="RAE" length="3"/>
+  <property name="sae" type="string" column="SAE" length="3"/>
+  <property name="tipoDocumento" type="string" column="DOC_TIPO" length="5"/>
+  <property name="numeroDocumento" type="string" column="DOC_NUM" length="15"/>
+  <property name="dataRilascioDocumento" type="date" column="DOC_DATA_RILASCIO" />
+  <property name="autoritaRilascioDocumento" type="string" column="DOC_AUTORITA_RIL" length="30"/>
+  <property name="sesso" type="string" column="SESSO" length="1"/>
+  <property name="movimentoCausaleUIC" type="string" column="MOV_CAUSALE_UIC" length="4"/>
+  <property name="movimentoSegno" type="string" column="MOV_SEGNO" length="1"/>
+  <property name="movimentoImporto" type="double" column="MOV_IMPORTO"/>
+  <property name="movimentoConnessione" type="string" column="MOV_CONNESSIONE" length="12"/>
+                                   
+                   
+                                           
+  </class>
+   
+  
+  
+  
+  
+  
+
+
+
+</hibernate-mapping>
+

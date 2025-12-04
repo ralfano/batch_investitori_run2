@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxSecLegCoint" rowid="rowid" table="FLX_SEC_LEG_COINT">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SEC_LEG_COINT_SEQ</param>
+   </generator>
+  </id>
+  <property name="codiceSocieta"                  column="CODICE_SOCIETA"                 type="integer"  />
+<property name="codiceAttivita"                 column="CODICE_ATTIVITA"                type="string" length="1"  />
+<property name="ndgSec"                         column="NDG_SEC"                        type="string"  />
+<property name="ndgDelCliente"                  column="NDG_DEL_CLIENTE"                type="string"  />
+<property name="numeroSequenza"                 column="NUMERO_SEQUENZA"                type="integer"  />
+<property name="dataInizioValiditaLegame"       column="DATA_INIZIO_VALIDITA_LEGAME"    type="date"  />
+<property name="dataFineValiditaLegame"         column="DATA_FINE_VALIDITA_LEGAME"      type="date"  />
+<property name="filler"                         column="FILLER"                         type="string" length="644"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="timestamp"  />
+ <property name="descrizioneErrore"  column="DESCRIZIONE_ERRORE_S" type="string" length="100"  />
+ </class>
+ <query name="SEC_LEGAMI_COINTESTAZIONE">from
+it.ras.arco.batch.bean.FlxSecLegCoint pc where pc.statoElab='D' order by pc.ndgSec,pc.numeroSequenza
+</query>
+
+
+</hibernate-mapping>

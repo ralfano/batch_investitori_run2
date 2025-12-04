@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<!--
+	QUESTO FILE CONTIENE ALCUNE QUERY DI UTILITA' PER LA GESTIONE
+	DELL'AGGIORNAMENTO DELLE CODES TABLE. NON E' INSERITO NEI MAPPING
+	DELLE CODES TABLE PERCHE' ARCHITETTURALI.
+-->
+<hibernate-mapping>
+
+	 <sql-query name="GetSoggettoByCodiceFiscaleCognomeNomeDataNascitaNdgfabbr">
+ 	<return alias="s" class="it.ras.arco.bean.FinSoggetto"/>
+		select {s.*} 
+		from Fin_Soggetto s 
+		where s.GSTD_ESIST_B = 'S' 
+		and s.CODICE_FISCALE_S =:codiceFiscale
+		and s.COGNOME_S =:cognome
+		and s.NOME_S =:nome         
+		and s.DATA_NASCITA_D =:dataNascita 
+		and s.TIPO_SOGG_B = :tipoSogg
+		and s.soggetto_id not in
+		(
+		 select s.soggetto_id from 
+		 FIN_DECOD_NDG_FABBR a,Fin_Soggetto s  
+		 where a.GSTD_ESIST_B ='S' 
+		 and a.TIPO_T='M' 
+		 and a.FABBRICA_T = :fabbrica
+		 and s.GSTD_ESIST_B = 'S' 
+		 and s.CODICE_FISCALE_S = :codiceFiscale
+		 and s.COGNOME_S =:cognome
+		 and s.NOME_S = :nome
+		 and s.DATA_NASCITA_D =:dataNascita 
+		 and s.TIPO_SOGG_B = :tipoSogg
+		 and a.SOGGETTO_ID =s.SOGGETTO_ID 
+		)
+		order by s.SOGGETTO_ID asc
+ </sql-query>
+ <sql-query name="GetSoggettoByPartitaIvaDenominazioneNdgfabbr">
+ 	<return alias="s" class="it.ras.arco.bean.FinSoggetto"/>
+		select {s.*} 
+		from Fin_Soggetto s 
+		where s.GSTD_ESIST_B = 'S' 
+		and s.PARTITA_IVA_S = :partitaIva
+		and s.DENOMINAZIONE_S = :denominazione 
+		and s.TIPO_SOGG_B = :tipoSogg
+		and soggetto_id not in
+		(
+		 select s.soggetto_id from 
+		 FIN_DECOD_NDG_FABBR a,Fin_Soggetto s  
+		 where a.GSTD_ESIST_B ='S' 
+		 and a.TIPO_T= 'M' 
+		 and a.FABBRICA_T = :fabbrica
+		 and s.GSTD_ESIST_B = 'S' 
+		 and s.PARTITA_IVA_S = :partitaIva
+		 and s.DENOMINAZIONE_S = :denominazione 
+		 and s.TIPO_SOGG_B = :tipoSogg
+		 and a.SOGGETTO_ID =s.SOGGETTO_ID 
+		)
+		order by s.SOGGETTO_ID asc
+ </sql-query>
+ <sql-query name="GetSoggettoMCByMatchCodeFull">
+ 	<return alias="soggetto" class="it.ras.arco.bean.FinSoggetto"/>
+	SELECT   {soggetto.*}
+    FROM fin_soggetto soggetto JOIN (SELECT soggetto_id, 1 AS COUNT
+                                FROM norm_soggetto_mc d
+                               WHERE d.cod_matc_code_nom1 =:codMatchCodeNom1
+                                 AND d.cod_matc_code_nom2 =:codMatchCodeNom2
+                                 AND d.cod_matc_code_dnas =:codMatchCodeDNas
+                                 AND d.cod_matc_code_cfis =:codMatchCodeCFis
+                                 AND d.cod_tipo_sogg =:tipoSogg
+                                 AND d.gstd_esist_b = 'S'
+                              UNION
+                              SELECT soggetto_id, 2 AS COUNT
+                                FROM norm_soggetto_mc d
+                               WHERE d.cod_stri_ric1 =:codStriRic1
+                                 AND d.gstd_esist_b = 'S'
+                              UNION
+                              SELECT soggetto_id, 3 AS COUNT
+                                FROM norm_soggetto_mc d
+                               WHERE d.cod_stri_ric2 =:codStriRic2 
+                                 AND d.gstd_esist_b = 'S') dd ON soggetto.soggetto_id =
+                                                                   dd.soggetto_id
+                                                            AND soggetto.gstd_esist_b =
+                                                                           'S'
+     ORDER BY dd.COUNT, dd.soggetto_id
+ </sql-query>
+ <sql-query name="GetSoggettoMCByMatchCodeFullNdgFabbr">
+ 	<return alias="soggetto" class="it.ras.arco.bean.FinSoggetto"/>
+		 	SELECT {soggetto.*}
+			FROM fin_soggetto soggetto 
+			JOIN (
+		  	SELECT soggetto_id, 1 AS COUNT
+		  	FROM norm_soggetto_mc d
+		  	WHERE d.cod_matc_code_nom1 	= :codMatchCodeNom1
+		  	AND d.cod_matc_code_nom2  	= :codMatchCodeNom2
+		  	AND d.cod_matc_code_dnas  	= :codMatchCodeDNas
+		  	AND d.cod_matc_code_cfis  	= :codMatchCodeCFis
+		  	AND d.cod_tipo_sogg     = :tipoSogg
+		  	AND d.gstd_esist_b = 'S'
+		  	UNION
+		  	SELECT soggetto_id, 2 AS COUNT
+		  	FROM norm_soggetto_mc d
+		  	WHERE d.cod_stri_ric1 = :codStriRic1
+		  	AND d.gstd_esist_b = 'S'
+		  	UNION
+		  	SELECT soggetto_id, 3 AS COUNT
+		  	FROM norm_soggetto_mc d
+		  	WHERE d.cod_stri_ric2 = :codStriRic2
+		  	AND d.gstd_esist_b = 'S'
+			) dd 
+			ON soggetto.soggetto_id = dd.soggetto_id
+			AND soggetto.gstd_esist_b ='S'
+			and soggetto.soggetto_id not in
+			(
+		  	SELECT d.soggetto_id
+		  FROM FIN_DECOD_NDG_FABBR a,norm_soggetto_mc d
+		   where a.GSTD_ESIST_B ='S' 
+		  and a.TIPO_T= 'M' 
+		  and a.FABBRICA_T = :fabbrica
+		  and a.SOGGETTO_ID =d.SOGGETTO_ID 
+		  AND d.gstd_esist_b = 'S' 
+		  AND( 
+		  (   d.cod_matc_code_nom1  = :codMatchCodeNom1
+		  AND d.cod_matc_code_nom2  = :codMatchCodeNom2
+		  AND d.cod_matc_code_dnas  = :codMatchCodeDNas
+		  AND d.cod_matc_code_cfis  = :codMatchCodeCFis
+		  AND d.cod_tipo_sogg     = :tipoSogg
+		  ) 
+		  OR 
+		  d.cod_stri_ric1 = :codStriRic1
+		  OR
+		  d.cod_stri_ric2 = :codStriRic2
+		  )
+		)
+		ORDER BY dd.COUNT asc, dd.soggetto_id asc
+ </sql-query>
+ <sql-query name="GetSoggettoByMCWithoutCF">
+ 	<return alias="soggetto" class="it.ras.arco.bean.FinSoggetto"/>
+SELECT {soggetto.*} FROM fin_soggetto soggetto JOIN (SELECT soggetto_id, 1 AS COUNT
+FROM norm_soggetto_mc d
+WHERE d.cod_matc_code_nom1 =:codMatchCodeNom1
+AND d.cod_matc_code_nom2 =:codMatchCodeNom2
+AND d.cod_matc_code_dnas =:codMatchCodeDNas
+                                 AND d.cod_tipo_sogg =:tipoSogg
+                                 AND d.gstd_esist_b = 'S'
+                              UNION
+                              SELECT soggetto_id, 2 AS COUNT
+                                FROM norm_soggetto_mc d
+                               WHERE d.cod_stri_ric1 =:codStriRic1
+                                 AND d.gstd_esist_b = 'S'
+                              UNION
+                              SELECT soggetto_id, 3 AS COUNT
+                                FROM norm_soggetto_mc d
+                               WHERE d.cod_stri_ric2 =:codStriRic2 
+                                 AND d.gstd_esist_b = 'S') dd ON soggetto.soggetto_id =
+                                                                   dd.soggetto_id
+                                                            AND soggetto.gstd_esist_b =
+                                                                           'S'
+     ORDER BY dd.COUNT, dd.soggetto_id
+ </sql-query>
+ <sql-query name="GetSoggettoByMCWithoutCFNdgFabbr">
+ 	<return alias="soggetto" class="it.ras.arco.bean.FinSoggetto"/>
+	 	SELECT {soggetto.*}
+		FROM fin_soggetto soggetto 
+		JOIN (
+	  	SELECT soggetto_id, 1 AS COUNT
+	 	FROM norm_soggetto_mc d
+	  	WHERE d.cod_matc_code_nom1 = :codMatchCodeNom1
+	  	AND d.cod_matc_code_nom2  = :codMatchCodeNom2
+	  	AND d.cod_matc_code_dnas  = :codMatchCodeDNas
+	  	AND d.cod_tipo_sogg     = :tipoSogg
+	  	AND d.gstd_esist_b = 'S'
+	  	UNION
+	  	SELECT soggetto_id, 2 AS COUNT
+	  	FROM norm_soggetto_mc d
+	  	WHERE d.cod_stri_ric1 = :codStriRic1
+	  	AND d.gstd_esist_b = 'S'
+	  	UNION
+	  	SELECT soggetto_id, 3 AS COUNT
+	  	FROM norm_soggetto_mc d
+	  	WHERE d.cod_stri_ric2 = :codStriRic2
+	  	AND d.gstd_esist_b = 'S'
+		) dd 
+		ON soggetto.soggetto_id = dd.soggetto_id
+		AND soggetto.gstd_esist_b ='S'
+		and soggetto.soggetto_id not in
+		(
+	  	SELECT d.soggetto_id
+	  	FROM FIN_DECOD_NDG_FABBR a,norm_soggetto_mc d
+	   	where a.GSTD_ESIST_B ='S' 
+	  	and a.TIPO_T= 'M' 
+	  	and a.FABBRICA_T = :fabbrica
+	  	and a.SOGGETTO_ID =d.SOGGETTO_ID 
+	  	AND d.gstd_esist_b = 'S' 
+	  	AND( 
+	  	(   d.cod_matc_code_nom1  = :codMatchCodeNom1
+	  	AND d.cod_matc_code_nom2  = :codMatchCodeNom2
+	  	AND d.cod_matc_code_dnas  = :codMatchCodeDNas
+	  	AND d.cod_tipo_sogg       = :tipoSogg
+	  	) 
+	  	OR 
+	  	d.cod_stri_ric1 = :codStriRic1
+	  	OR
+	  	d.cod_stri_ric2 = :codStriRic2
+	 	 )
+		)
+		ORDER BY dd.COUNT asc, dd.soggetto_id asc
+ </sql-query>
+ <sql-query name="GetSoggettoByMCNullCFNdgFabbr">
+ 	<return alias="soggetto" class="it.ras.arco.bean.FinSoggetto"/>
+		SELECT {soggetto.*}
+		FROM fin_soggetto soggetto 
+		JOIN (
+		  SELECT soggetto_id
+		  FROM norm_soggetto_mc d
+		  WHERE d.cod_matc_code_nom1 = :codMatchCodeNom1
+		  AND d.cod_matc_code_nom2  = :codMatchCodeNom2
+		  AND d.cod_matc_code_dnas  = :codMatchCodeDNas
+		  AND d.cod_matc_code_cfis  = :codMatchCodeCFis
+		  AND d.cod_tipo_sogg     = :tipoSogg
+		  AND d.gstd_esist_b = 'S'
+		) dd 
+		ON soggetto.soggetto_id = dd.soggetto_id
+		AND soggetto.gstd_esist_b ='S'
+		and soggetto.soggetto_id not in
+		(
+		  SELECT d.soggetto_id
+		  FROM FIN_DECOD_NDG_FABBR a,norm_soggetto_mc d
+		  where a.GSTD_ESIST_B ='S' 
+		  and a.TIPO_T= 'M' 
+		  and a.FABBRICA_T = :fabbrica
+		  and a.SOGGETTO_ID =d.SOGGETTO_ID 
+		  AND d.gstd_esist_b = 'S' 
+		  AND d.cod_matc_code_nom1   = :codMatchCodeNom1
+		  AND d.cod_matc_code_nom2  = :codMatchCodeNom2
+		  AND d.cod_matc_code_dnas  = :codMatchCodeDNas
+		  AND d.cod_matc_code_cfis  = :codMatchCodeCFis
+		  AND d.cod_tipo_sogg     = :tipoSogg
+		)
+		ORDER BY dd.soggetto_id asc
+ </sql-query>
+ <query name="GetSoggettoByMCNullCF">select s from it.ras.arco.bean.FinSoggetto s join s.soggettoMC d where d.codMatchCodeNom1 = :codMatchCodeNom1 and d.codMatchCodeNom2 = :codMatchCodeNom2 and d.codMatchCodeDNas = :codMatchCodeDNas and d.codMatchCodeCFis = :codMatchCodeCFis and d.tipoSogg = :tipoSogg and d.flagEsistenza ='S'</query>
+	
+
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!--  TABELLA NORM_EXCEPTION -->
+  <class name="@NORM_EXCEPTION.class@" table="FIN_NORM_EXCEPTION" discriminator-value="null" lazy="true" where="GSTD_ESIST_B='S'" >
+  		<id name="normExceptionId" column="NORM_EXCEPTION_ID" type="integer">
+  </id>  
+ 
+  <property name="errornumber" type="string" column="ERROR_NUMBER_S" length="4"/>
+  <property name="application" type="string" column="APPLICATION_S" length="4"/>
+  <property name="livelloDiWarning" type="string" column="LIVELLO_WARNING_T" length="4"/>
+  <property name="errorKey" type="string" column="ERROR_KEY_S" length="40"/>
+  
+   <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1" insert="true" update="true"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="20" insert="true" update="true"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="true" update="true"/>
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="true" update="true"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="true" update="true"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="true" update="true"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  
+  </class>
+  
+  <query name="getExceptionByapplicationerror">select s from @NORM_EXCEPTION.class@ s where s.application = :applicazione and s.errornumber = :errore</query>
+  
+</hibernate-mapping>
+

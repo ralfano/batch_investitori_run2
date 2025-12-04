@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    <!-- MODIFICARE -->
+    <bean id="BusinessLogicObject"   class="it.ras.arco.batch.anima.businesslogic.AnimaSdrBL" singleton="false">
+     	<property name="batchManager">
+    		<ref bean="RasThreadBatchManager"/>
+    	</property>
+    	<property name="codesTableManager">
+    		<ref bean="codesTableManager"/> 
+    	</property>
+    </bean>
+  	<bean id="RasBatchMain"          class="it.ras.flag.batch.skeleton.RasBatchMain" singleton="true" >
+    	<property name="batchManager">
+    		<ref bean="RasThreadBatchManager"/>
+    	</property>
+    	<property name="sessionFactory">
+    		<ref bean="sessionFactory"/>
+    	</property>
+    </bean>
+   <bean id="RasThread"              class="it.ras.flag.batch.skeleton.RasThread" singleton="false" >
+    	<property name="batchManager">
+    		<ref bean="RasThreadBatchManager"/>
+    	</property>
+    	<property name="blObject">
+    		<ref bean="BusinessLogicObject"/>
+    	</property>
+    	<property name="exeLogger">
+    		<ref bean="ExecutionLogger"/>
+    	</property>
+    	<property name="sessionFactory">
+    		<ref bean="sessionFactory"/>
+    	</property>
+    </bean> 
+    
+    <bean id="BatchSession" 		 class="it.ras.flag.batch.skeleton.BatchSession" 		   singleton="false" >
+    </bean>
+    
+	
+    <bean id="RasMain"               class="it.ras.flag.batch.RasMain"                        singleton="false" />
+    
+    <bean id="RasModuleManager"      class="it.ras.flag.batch.skeleton.RasBatchModuleManager" singleton="true">
+    	<property name="batchManager">
+    		<ref bean="RasThreadBatchManager" />
+    	</property>
+    </bean>
+    
+    <bean id="RasThreadBatchManager" class="it.ras.flag.batch.skeleton.RasThreadBatchManager" singleton="true"> 
+    	<property name="batchOk">
+			<value>0</value>
+		</property>
+		<property name="batchWarning">
+			<value>1</value>
+		</property>
+		<property name="batchKo">
+			<value>2</value>
+		</property>
+		<property name="sessionFactory">
+    		<ref bean="sessionFactory"/>
+    	</property>
+	</bean>
+	
+    <bean id="RasBatchDao"			 class="it.ras.flag.batch.skeleton.RasBatchDao" 		   singleton="false">
+	    <property name="sessionFactory">
+    		<ref bean="sessionFactory"/>
+    	</property>
+    </bean>
+    <bean id="OutputFile"            class="it.ras.flag.batch.utils.OutputFile"               singleton="false" />
+    <bean id="PreProcessor"			 class="it.ras.flag.batch.file.PreProcessor"			   singleton="true" >
+		<property name="rasDao">
+    		<ref bean="RasBatchDao"/>
+    	</property>
+    </bean>
+    <bean id="PostProcessor"		 class="it.ras.flag.batch.file.PostProcessor"			   singleton="true" >
+		<property name="rasDao">
+    		<ref bean="RasBatchDao"/>
+    	</property>
+    </bean>
+    
+    <!--  LOG Architetturale ed applicativo -->
+    <bean id="ExecutionLogger"   	 class="it.ras.flag.batch.logging.ExecutionLog"           singleton="true"  />
+    <bean id="LogConstants"   		 class="it.ras.flag.batch.logging.LogConstants"           singleton="false" />
+    <bean id="TblCommit"      		 class="it.ras.flag.batch.logging.TblCommit"              singleton="false" />
+    <bean id="TblExeLog"      		 class="it.ras.flag.batch.logging.TblExeLog"              singleton="false" />
+ 
+ 	<!--  Cursore da DB  -->
+    <bean id="RasDBCursor"         class="it.ras.flag.batch.cursors.RasDBCursor"          singleton="true">
+    	<property name="batchManager">
+    		<ref bean="RasThreadBatchManager" />
+    	</property>
+    	<property name="rasDao">
+    		<ref local="RasBatchDao"/>
+    	</property>
+    	<property name="maxRows">  
+			<value>10000</value>
+		</property> 
+		<property name="initRow">  
+			<value>0</value>
+		</property> 
+    </bean>
+    
+    <bean id="RasDBSubCursor"        class="it.ras.arco.batch.inbound.cursor.Movimento"          singleton="false">
+    	 <property name="rasDao">
+    		<ref bean="RasBatchDao"/>
+    	</property>
+    </bean>	
+		
+	<bean id="VerificaAttFin" class="it.ras.arco.service.GetProdottoSRV"	singleton ="false"> 
+	    <property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    </bean>	
+	
+	<bean id="GetAttFinProdottoByCodiceFondoEsterno" class="it.ras.arco.service.GetAttFinProdottoSRV" singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GetAttFinProdottoByCodiceFondoEsterno</value>
+		</property>
+		<property name="codesTableManager">
+    		<ref bean="codesTableManager"/> 
+    	</property>
+	 </bean>
+	 
+	 <bean id="GetAttFinProdottoByCodiceProdottoEsterno" class="it.ras.arco.service.GetAttFinProdottoSRV" singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GetAttFinProdottoByCodiceProdottoEsterno</value>
+		</property>
+		<property name="codesTableManager">
+    		<ref bean="codesTableManager"/> 
+    	</property>
+	 </bean>
+	 
+    <bean id="GetProdottoMD" class="it.ras.arco.module.GetProdottoMD"	singleton ="false" >
+    	<property name="dao">
+    		<ref bean="RasBatchDao"/>
+    	</property>
+   	</bean>
+    
+	<bean id="sessionFactory"
+		class="it.ras.flag.batch.skeleton.BatchSessionFactory">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="mappingResources">
+			<value>
+				/it/ras/arco/hbm/ARCO_FIN_MOVIMENTO.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_ORDINE.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_MOVIMENTO_INBOUND.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_FONDO_SICAV.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_POSIZIONE.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_GP.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_CONTRATTO.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_PRODOTTO.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_ATT_FIN.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_PRODOTTO_LINEA.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_RUOLO.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_POLIZZA.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_QUOTAZIONE.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_PREMIO_POLIZZA.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_SOGGETTO.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_INDIRIZZO.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_DOCUMENTO.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_SOTTOSCRIZIONE.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_SOTTOSCR_CONT.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_RECAPITO.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_COINTESTAZIONE.hbm.xml, 
+				/it/ras/arco/hbm/ARCO_FIN_DECOD_NDG_FABBR.hbm.xml,
+   				/it/ras/arco/hbm/ARCO_FIN_EMITTENTE.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_INTERFACCIA.hbm.xml,
+				/it/ras/arco/hbm/ARCO_DEC_REGOLE_INBOUND_MOVIMENTO.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_ASSEGNAZ_CTR_PF.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_PROMOTORE.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_AGENZIA.hbm.xml,
+				/it/ras/arco/hbm/ARCO_FIN_DISTRETTO.hbm.xml,
+				/it/ras/flag/resources/ras-arch-logging-mapping.hbm.xml,
+				/it/ras/flag/resources/ras-arch-mappings.hbm.xml
+			</value>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle9Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.cglib.use_reflection_optimizer">false</prop>
+			</props>
+		</property>
+	</bean>
+<bean id="codesTableSessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="mappingResources">
+			<value>
+				/it/ras/flag/resources/ras-arch-logging-mapping.hbm.xml,
+				/it/ras/flag/resources/ras-arch-mappings.hbm.xml
+			</value>
+		</property>
+	</bean>
+
+	<bean id="codesTableBatchDao"
+		class="it.ras.flag.batch.skeleton.RasBatchReadOnlyDao"
+		singleton="false">
+		<property name="sessionFactory">
+			<ref bean="codesTableSessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="codesTableSessionFactory" />
+		</property>
+	</bean>
+
+	<!-- MANTENERE UGUALE  -->
+	<bean id="txInterceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="transactionAttributeSource">
+			<value>
+				it.ras.flag.transaction.IRasRequiredTransaction.transaction=PROPAGATION_REQUIRED,-it.ras.flag.exception.RasTransactionException
+				it.ras.flag.transaction.IRasSupportedTransaction.transaction=PROPAGATION_SUPPORTS
+			</value>
+		</property>
+	</bean>
+	<!-- MANTENERE UGUALE  -->
+	<bean id="codesTableModule"
+		class="it.ras.flag.config.CodesTableModule">
+		<property name="dao">
+			<ref bean="codesTableBatchDao" />
+		</property>
+	</bean>
+	<!-- MANTENERE UGUALE  -->
+	<bean id="codesTableService"
+		class="it.ras.flag.config.CodesTableService">
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+	</bean>
+	<!-- MANTENERE UGUALE  -->
+	<bean id="codesTableTxTarget"
+		class="it.ras.flag.transaction.RasSingleServiceRequiredTx">
+		<property name="service">
+			<ref bean="codesTableService" />
+		</property>
+	</bean>
+	<!-- MANTENERE UGUALE  -->
+	<bean id="codesTableTx"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>
+				it.ras.flag.transaction.IRasRequiredTransaction
+			</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>txInterceptor</value>
+				<value>codesTableTxTarget</value>
+			</list>
+		</property>
+	</bean>
+	<!-- MANTENERE UGUALE  -->
+	<bean id="codesTableManager"
+		class="it.ras.flag.config.CodesTableManager" init-method="init"
+		destroy-method="destroy">
+		<property name="mode">
+			<value>DB</value>
+		</property>
+		<property name="configTransaction">
+			<ref bean="codesTableTx" />
+		</property>
+	</bean>
+</beans>

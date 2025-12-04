@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA MOVIMENTI GP -->
+ <class name="it.ras.arco.batch.bean.FlxGpMovimenti" rowid="rowid" table="FLX_GP_MOVIMENTI">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_GP_MOVIMENTI_SEQ</param>
+   </generator>
+  </id>
+  <property name="numeroRapporto" type="string" column="NUMERO_RAPPORTO" length="8"/>
+  <property name="codiceAgente" type="string" column="CODICE_AGENTE" length="5"/>
+  <property name="codiceRete" type="string" column="CODICE_RETE" length="1"/>
+  <property name="codiceCompagnia" type="string"
+   column="CODICE_COMPAGNIA" length="2"/>
+  <property name="causaleMovimento" type="string"
+   column="CAUSALE_MOVIMENTO" length="20"/>
+  <property name="importoMovimento" type="double" column="IMPORTO_MOVIMENTO"/>
+  <property name="descrizioneTitolo" type="string"
+   column="DESCRIZIONE_TITOLO" length="27"/>
+  <property name="quantitaTitolo" type="double" column="QUANTITA_TITOLO"/>
+  <property name="codiceIsin" type="string" column="CODICE_ISIN" length="12"/>
+  <property name="prezzo" type="double" column="PREZZO"/>
+  <property name="cambio" type="double" column="CAMBIO"/>
+  <property name="dataMovimento" type="date" column="DATA_MOVIMENTO"/>
+  <property name="numeroRiferimento" type="string"
+   column="NUMERO_RIFERIMENTO" length="7"/>
+  <property name="flagLiraEuro" type="string" column="FLAG_LIRA_EURO" length="1"/>
+  <property name="statoElaborazione" type="string" column="STATO_ELAB_B" length="2"/>
+  <property name="istanza" type="string" column="ISTANZA_S" length="1"/>
+  <property name="rifOrdine" type="string" column="RIF_ORDINE" />
+  <property name="commissioneRete" type="double" column="COMMISSIONE_RETE" />
+  <property name="segnoMov" type="string" column="SEGNO_MOV" />
+  <property name="segnoCommRete" type="string" column="SEGNO_COMM_RETE" />
+  <property name="commissioneCliente" type="double" column="COMMISSIONE_CLIENTE" />
+  <property name="segnoCommCli" type="string" column="SEGNO_COMM_CLI" />
+  <property name="codiceCausaleMov" type="string" column="CODICE_CAUSALE_MOV" />
+  <property name="codiceTipoMov" type="string" column="CODICE_TIPO_MOV" />
+  <property name="dataContabile" type="date" column="DATA_CONTABILE" />
+  <property name="dataValuta" type="date" column="DATA_VALUTA" />
+  <property name="percentualeNav" type="double" column="PERCENTUALE_NAV" />
+  <property name="dataCaricamento" type="timestamp" column="DATA_CARICAMENTO_D" />
+  <property name="dataElab" column="DATA_ELAB_D" type="timestamp"  />
+  <property name="descrizioneErrore"  column="DESCRIZIONE_ERRORE_S" type="string" length="100"  />
+  <property name="tipoProd" type="string" column="TIPO_PROD" />
+  <property name="tipoFabbrica" type="string" column="TIPO_FABBRICA" />
+ <!-- <property name="numeroRifEsterno" type="string" column="NUMERO_RIF_ESTERNO" /> 
+ -->
+ </class>
+ <query name="CURSOR_GP_MOVIM_GEN">from it.ras.arco.batch.bean.FlxGpMovimenti m where m.statoElaborazione='D'</query>
+</hibernate-mapping>

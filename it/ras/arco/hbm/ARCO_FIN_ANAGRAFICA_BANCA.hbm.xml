@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ANAGRAFICA BANCA -->
+ <class name="it.ras.arco.bean.FinAnagraficaBanca" table="FIN_ANAGRAFICA_BANCA" lazy="true" where="GSTD_ESIST_B='S'">
+  <id name="anagraficaBancaId" column="ANAGRAFICA_BANCA_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_ANAGRAFICA_BANCA_SEQ</param>
+   </generator>
+  </id> 
+<property name="abi"                            column="ABI"                            type="string" length="5" />
+<property name="cab"                            column="CAB"                            type="string" length="5"  />
+<property name="swift"                          column="SWIFT"                          type="string" length="11"  />
+<property name="bic"                            column="BIC"                            type="string" length="11"  />
+<property name="filialeAgenzia"                 column="FILIALE_AGENZIA"                        type="string" length="4"  />
+<property name="descrizioneAgenzia"             column="DESCRIZIONE_AGENZIA"            type="string" length="40"  />
+<property name="tipoVia"                        column="TIPO_VIA"                       type="string" length="20"  />
+<property name="indirizzoAgenzia"               column="INDIRIZZO_AGENZIA"              type="string" length="40"  />
+<property name="capAgenzia"                     column="CAP_AGENZIA"                    type="string" length="5"  />
+<property name="cittaAgenzia"                   column="CITTA_AGENZIA"                  type="string" length="40"  />
+<property name="provinciaAgenzia"               column="PROVINCIA_AGENZIA"              type="string" length="2"  />
+<property name="nazioneAgenzia"                 column="NAZIONE_AGENZIA"                type="string" length="40"  />
+<property name="userUltimaModifica"             column="GSTD_ULT_USER_S"                type="string" length="40"  />
+<property name="proceduraUltimaModifica"        column="GSTD_ULT_PROC_S"                type="string" length="40"  />
+<property name="dataUltimaModifica"             column="GSTD_ULT_MOD_D"                 type="date"  />
+<property name="dataInserimento"                column="GSTD_INSE_D"                    type="date"  />
+<property name="flagEsistenza"                  column="GSTD_ESIST_B"                   type="string" length="1"  />
+<property name="utenteInserimento"              column="GSTD_USER_INS_S"                type="string" length="40"  />
+<property name="tipoUltimaModifica"             column="GSTD_TIPO_MOD_B"                type="string" length="1"  />
+
+
+ <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  
+  <property name="codiceComune" type="string" column="COD_COMUNE" length="7" insert="false" update="false"/>  
+  <property name="tipoBanca" type="string" column="FLAG_TIPO_BANCA" length="7" insert="false" update="false"/>    
+  
+    
+</class>
+<query name="GetBancaByABICAB">select c from it.ras.arco.bean.FinAnagraficaBanca c where c.abi = ? and c.cab = ?</query>
+<query name="GetBancaByABI">select c from it.ras.arco.bean.FinAnagraficaBanca c where c.abi = ? and c.tipoBanca = 'BANCA'</query>
+
+</hibernate-mapping>

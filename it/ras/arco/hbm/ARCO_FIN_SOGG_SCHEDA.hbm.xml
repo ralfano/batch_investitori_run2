@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA SOGG_SCHEDA -->
+ <class name="it.ras.arco.bean.FinSoggScheda" table="FIN_SOGG_SCHEDA" where="GSTD_ESIST_B='S'">
+  
+  <id name="schedaId" column="SCHEDA_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_SOGG_SCHEDA_SEQ</param>
+   </generator>
+  </id>  
+  
+  <!--property name="soggettoId" 							type="integer" 	column="SOGGETTO_ID " 				length="18"/-->
+  <!--property name="promotoreId" 							type="integer" 	column="PROMOTORE_ID" 				length="18"/-->
+  <property name="docRischiFinB" 							type="string" 	column="DOC_RISCHI_FIN_B" 		length="1"/>
+  <property name="profiloRiscB" 							type="string" 	column="PROFILO_RISC_B" 			length="1"/>
+  <property name="esperienzaFinT" 							type="string" 	column="ESPERIENZA_FIN_T" 		length="2"/>
+  <property name="situazioneFinT" 							type="string" 	column="SITUAZIONE_FIN_T" 		length="2"/>
+  <property name="obiettivoInvestT" 						type="string" 	column="OBIETTIVO_INVEST_T" 	length="2"/>
+  <property name="propenRiscT" 								type="string" 	column="PROPEN_RISC_T" 				length="2"/>
+  <property name="propenRiscCalcT" 							type="string" 	column="PROPEN_RISC_CALC_T" 	length="2"/>
+  <property name="classeRischioS"							type="string" 	column="CLASSE_RISCHIO_S" 		length="2"/>
+  <property name="dataSottRisD" 							type="date" 		column="DATA_SOTT_RIS_D" 								/>
+  <property name="banca1S" 									type="string" 	column="BANCA1_S" 						length="20"/>
+  <property name="banca2S" 									type="string" 	column="BANCA2_S" 						length="20"/>
+  <property name="filiale1S" 								type="string" 	column="FILIALE1_S" 					length="20"/>
+  <property name="filiale2S" 								type="string" 	column="FILIALE2_S" 					length="20"/>
+  <property name="indicEvolutFinT" 							type="string" 	column="INDIC_EVOLUT_FIN_T" 	length="3"/>
+  <property name="infoSituazEcoS" 							type="string" 	column="INFO_SITUAZ_ECO_S" 		length="70"/>
+  <property name="codSiaB" 									type="string" 	column="COD_SIA_B" 						length="1"/>
+  <property name="numSiaS" 									type="string" 	column="NUM_SIA_S" 						length="9"/>
+  <property name="numDipendS" 								type="string" 	column="NUM_DIPEND_S" 				length="6"/>
+  <property name="servCbiB" 								type="string" 	column="SERV_CBI_B" 					length="1"/>
+  <property name="ridCbiB" 									type="string" 	column="RID_CBI_B" 						length="1"/>
+  <property name="statoPpB" 								type="string" 	column="STATO_PP_B" 					length="1"/>
+  <property name="settoreAttivitaT" 						type="string" 	column="SETTORE_ATTIVITA_T" 	length="3"/>
+  <property name="dimensioneAziendaT" 						type="string" 	column="DIMENSIONE_AZIENDA_T" 	length="3"/>
+  <property name="luogoS" 									type="string" 	column="LUOGO_S" 							length="40"/>
+  <property name="pressoS" 									type="string" 	column="PRESSO_S" 	length="40"/>
+  <property name="infoAggS" 								type="string" 	column="INFO_AGG_S" 	length="70"/>
+  <property name="infoAggAttivS" 							type="string" 	column="INFO_AGG_ATTIV_S" 	length="70"/>
+  <property name="mezziPagS" 								type="string" 	column="MEZZI_PAG_S" 	length="20"/>
+  <property name="tipoProdS" 								type="string" 	column="TIPO_PROD_S" 	length="20"/>
+  <property name="tipoServS"							 	type="string" 	column="TIPO_SERV_S" 	length="20"/>
+  <property name="proprietaT" 								type="string" 	column="PROPRIETA_T" 	length="3"/>
+  <property name="altriInvestS" 							type="string" 	column="ALTRI_INVEST_S" 	length="40"/>
+  <property name="indicFinanziariT" 						type="string" 	column="INDIC_FINANZIARI_T" 	length="3"/>
+  <property name="situazPatrimT" 							type="string" 	column="SITUAZ_PATRIM_T" 	length="3"/>
+  <property name="coerenzaProfiloT" 						type="string" 	column="COERENZA_PROFILO_T" length="3"/>
+  <property name="tipoContattoT" 							type="string" 	column="TIPO_CONTATTO_T" 	length="3"/>
+  <property name="affidabilitaContT" 						type="string" 	column="AFFIDABILITA_CONT_T" 	length="3"/>
+  <property name="contattoT"					 			type="string" 	column="CONTATTO_T" 		length="3"/>
+  <property name="dipendenteGruppoB" 						type="string" 	column="DIPENDENTE_GRUPPO_B" 	length="1"/>
+  <property name="anzianitaGruppoS"				 			type="string" 	column="ANZIANITA_GRUPPO_S" length="2"/>
+  <property name="titoloStudioS" 							type="string" 	column="TITOLO_STUDIO_S" 	length="20"/>
+  <property name="professioneS"						 		type="string" 	column="PROFESSIONE_S" 		length="40"/>
+  <property name="statoCivileT"						 		type="string" 	column="STATO_CIVILE_T" 	length="3"/>
+  <property name="regimePatrimT" 							type="string" 	column="REGIME_PATRIM_T" 	length="3"/>
+  <property name="nfigliS" 									type="string" 	column="N_FIGLI_S" 			length="2"/>
+  <property name="npersCaricoS"						 		type="string" 	column="N_PERS_CARICO_S" 	length="2"/>
+  <property name="nredditiS" 								type="string" 	column="N_REDDITI_S" 		length="2"/>
+  <property name="redditoS"								 	type="string" 	column="REDDITO_S" 			length="12"/>
+  <property name="noteS"									type="string" 	column="NOTE_S" 			length="160"/>
+  <property name="segmentoT" 								type="string" 	column="SEGMENTO_T" 		length="3"/>
+  <property name="fasciaPatrimS"					 		type="string" 	column="FASCIA_PATRIM_S" 	length="15"/>
+  <property name="interessiT"							 	type="string" 	column="INTERESSI_T" 		length="12"/>
+  <property name="tecnologieT"						 		type="string" 	column="TECNOLOGIE_T" 		length="6"/>
+  <property name="fontiInfoT"							 	type="string" 	column="FONTI_INFO_T" 		length="12"/>
+  <property name="flagLastB" 								type="string" 	column="FLAG_LAST_B" 		length="1"/>
+  <property name="attivaB"								 	type="string" 	column="ATTIVA_B" 			length="1"/>
+  <property name="infoProfiloRiscB"						 	type="string" 	column="INFO_PROF_RISC_B" 	length="1"/>
+  <property name="investimentiGruppo"						type="string" 	column="INVEST_GRUPPO_S" 	length="3"/>
+  <property name="tipoRapporto"								type="string" 	column="RAPPORTO_T" 		length="3"/>
+  <property name="capacitaRisparmioAnnuo"					type="string" 	column="RISP_ANNUO_T" 		length="3"/>
+  
+  <property name="consegnaRegole"							type="string" 	column="CONSEGNA_REGOLE_B" 	length="1"/>
+  
+  <property name="flagPromotoreRiferimento"					type="string" 	column="FLAG_PROM_RIF_B" 	length="1"/>
+  <property name="dataInizioValidita"						type="date" 	column="INIZIO_VALIDITA_D" 	/>
+  <property name="dataFineValidita"							type="date" 	column="FINE_VALIDITA_D" 	/>
+  <property name="dataRegistrazione"						type="date" 	column="REGISTRAZIONE_D" 	/>
+  <property name="codiceUtente"								type="string" 	column="CODICE_UTENTE_S" 	length="8"/>
+  <property name="codiceSocieta"							type="string" 	column="CODICE_SOCIETA_S" 	length="8"/>
+  
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="40"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="40"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="40"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+ 
+<!-- RELAZIONE CON FIN_PROMOTORE -->
+
+<!-- V: L'ho corretta io perchè se in Fin_SOGGETTO c'è una relation con questa one-to-many qui ci deve essere
+		una relation many-to-one senza definire la property in alto 
+-->
+<many-to-one name="soggetto" class="it.ras.arco.bean.FinSoggetto" lazy="proxy" column="SOGGETTO_ID" insert="true" update="true" not-found="ignore" not-null="false" cascade="lock"/>
+
+<many-to-one name="promotore" class="it.ras.arco.bean.FinPromotore" lazy="proxy" column="PROMOTORE_ID" insert="true" update="true" not-found="ignore" not-null="false" cascade="lock"/>
+
+<!-- 
+<set name="finPromotore" lazy="false" inverse="true" where ="GSTD_ESIST_B='S'" outer-join="false" cascade="lock">
+  		<key column="PROMOTORE_ID"/>
+   		<one-to-many class="it.ras.arco.bean.FinPromotore" />
+ </set>	
+-->
+
+	<!-- RELAZIONE CON LA FIN_SOGG_SCHEDA_INDIRIZZO -->
+	
+		<!-- V: 20/01/2006 Per ora non và.... -->
+  	<set name="indirizzo" inverse="true" cascade="lock" lazy="true" where="GSTD_ESIST_B='S'">
+		<key column="SCHEDA_ID"/>
+		<one-to-many class="it.ras.arco.bean.FinSoggSchedaIndir"/>
+	</set>  
+	
+ </class>
+ 
+ <!-- Le query a DB non sono da farsi così ma utilizzando il modulo generico -->
+<query name="GetSchedaBySoggettoId">select sc from it.ras.arco.bean.FinSoggScheda sc join sc.soggetto s where s.soggettoId = ?</query>
+<query name="GetSchedaBySoggIdPromotId">select sc from it.ras.arco.bean.FinSoggScheda sc join sc.soggetto s join sc.promotore p where s.soggettoId = ? and p.promotoreId = ?</query>
+<query name="GetInfoProfRischBySchedaSoggId">select sc.infoProfiloRiscB from it.ras.arco.bean.FinSoggScheda sc where sc.schedaId = ?</query>
+
+</hibernate-mapping>
+

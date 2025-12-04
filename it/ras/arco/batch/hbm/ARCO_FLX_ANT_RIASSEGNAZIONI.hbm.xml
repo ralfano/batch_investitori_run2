@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxAntRiassegnazioni" rowid="rowid" table="FLX_ANT_RIASSEGNAZIONI">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_ANT_RIASSEGNAZIONI_SEQ</param>
+   </generator>
+  </id>
+  <property name="codiceIstituto" type="string" column="CODICE_ISTITUTO" length="5"/>
+  <property name="codiceProdottoAnt" type="string" column="CODICE_PRODOTTO_ANT" length="3"/>
+  <property name="codiceProdottoEsterno" type="string" column="CODICE_PRODOTTO_ESTERNO" length="10"/>
+  <property name="numeroContratto" type="string" column="NUMERO_CONTRATTO" length="15"/>
+  <property name="codiceAttualePromotore" type="string" column="CODICE_ATTUALE_PROMOTORE" length="7"/>
+  <property name="codiceAttualePromotoreSplit" type="string" column="CODICE_ATTUALE_PROMOTORE_SPLIT" length="7"/>
+  <property name="reteAttualePromotore" type="string" column="RETE_ATTUALE_PROMOTORE" length="3"/>
+  <property name="compagniaAttualePromotore" type="string" column="COMPAGNIA_ATTUALE_PROMOTORE" length="3"/>
+  <property name="dataDecorrAssegnContratto" type="date" column="DATA_DECORR_ASSEGN_CONTRATTO"/>
+  <property name="dataDecorrAssegnSplit" type="date" column="DATA_DECORR_ASSEGN_SPLIT"/>
+  <property name="dataInserRiassegnazione" type="date" column="DATA_INSER_RIASSEGNAZIONE"/>
+  <property name="codicePrecPromotore" type="string" column="CODICE_PREC_PROMOTORE" length="7"/>
+  <property name="codicePrecPromotoreSplit" type="string" column="CODICE_PREC_PROMOTORE_SPLIT" length="7"/>
+  <property name="retePrecedentePromotore" type="string" column="RETE_PRECEDENTE_PROMOTORE" length="3"/>
+  <property name="compagniaPrecedentePromotore" type="string" column="COMPAGNIA_PRECEDENTE_PROMOTORE" length="3"/>
+  <property name="tipoAttivita" type="string" column="TIPO_ATTIVITA" length="1"/>
+  <property name="societaProdotto" type="string" column="SOCIETA_PRODOTTO" length="50"/>
+  <property name="tipoProdotto" type="string" column="TIPO_PRODOTTO" length="3"/>
+  <property name="descrizioneErrore" type="string" column="DESCRIZIONE_ERRORE_S" length="100" />
+  <property name="dataErrore" type="date" column="DATA_ELAB_D" />
+  <property name="statoElaborazione" type="string" column="STATO_ELAB_B" length="2"/>
+  <property name="istanza" type="string" column="ISTANZA_S" length="1"/>
+  <property name="dataCaricamento" type="timestamp" column="DATA_CARICAMENTO_S"/>
+ </class>
+ <query name="RIASSEGNAZIONI_PF_ANT">from it.ras.arco.batch.bean.FlxAntRiassegnazioni r where r.statoElaborazione='D' order by r.dataDecorrAssegnContratto</query>
+</hibernate-mapping>

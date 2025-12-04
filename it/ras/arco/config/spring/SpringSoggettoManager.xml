@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO GENERICO SOGGETTOMANAGER -->
+    
+    <bean id="GetSoggettoCF"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_BY_CODICE_FISCALE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetSoggettoCFStatoCensim"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_BY_CODICE_FISCALE_STATO_CENSIMENTO</value>
+    	</property>
+    </bean>
+   
+    <bean id="GetSoggettoCFDenominazione"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_BY_CODICE_FISCALE_DENOMINAZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetSoggettoPIVA"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_BY_PARTITA_IVA</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetSoggettoPIVADenominazione"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_BY_PARTITA_IVA_DENOMINAZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetSoggettoCEF"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_BY_CODICE_ESTERNO_FABBRICA</value>
+    	</property>
+    </bean>
+    
+    
+    <bean id="GetSoggettoCefTipo"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_BY_CODICE_ESTERNO_FABBRICA_TIPO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetSquadraCEF"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_SQUADRA_BY_CODICE_ESTERNO_FABBRICA</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetSoggettoByCodiceSquadra_CodiceCliente"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_BY_COD_CLIENTE_COD_SQUADRA</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetPromotoreCP"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_PROMOTORE_BY_CODICE_PROMOTORE</value>
+    	</property>
+    </bean>
+  
+  	<bean id="GetNdgArcoMD"    class="it.ras.arco.module.GetNdgArcoMD"   	   singleton="false" >
+	 <property name="dao">
+    	<ref bean="RasBatchDao" />
+     </property>
+	</bean>
+	
+	
+    <bean id="NormalizzaSoggetto"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="normalizer">
+    		<ref bean="RasNormalizer"/> 
+    	</property>
+    	<property name="action">
+    		<value>NORMALIZZA_SOGGETTO</value>
+    	</property>
+    </bean>
+
+    <bean id="ControlloCF"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="normalizer">
+    		<ref bean="RasNormalizer"/> 
+    	</property>
+    	<property name="action">
+    		<value>CONTROLLO_CF</value>
+    	</property>
+    </bean>
+    
+    <bean id="NormalizzaIndirizzo"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="normalizer">
+    		<ref bean="RasNormalizer"/> 
+    	</property>
+    	<property name="action">
+    		<value>NORMALIZZA_INDIRIZZO</value>
+    	</property>
+    </bean>
+    
+    <bean id="NormalizzaDeduplica"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="normalizer">
+    		<ref bean="RasNormalizer"/> 
+    	</property>
+    	<property name="deduplicator">
+    		<ref bean="RasDeduplicator"/> 
+    	</property>
+    	<property name="action">
+    		<value>NORMALIZZA_DEDUPLICA</value>
+    	</property>
+    </bean>
+    
+    <bean id="CensimentoSoggetto"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>CENSIMENTO</value>
+    	</property>
+    	<property name="normalizer">
+    		<ref bean="RasNormalizer"/> 
+    	</property>
+    	<property name="deduplicator">
+    		<ref bean="RasDeduplicator"/> 
+    	</property>
+    </bean>
+    <bean id="DeduplicaSoggetto"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>DEDUPLICA</value>
+    	</property>
+    	<property name="normalizer">
+    		<ref bean="RasNormalizer"/> 
+    	</property>
+    	<property name="deduplicator">
+    		<ref bean="RasDeduplicator"/> 
+    	</property>
+    </bean>
+    
+    <bean id="InsSoggetto"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT</value>
+    	</property>
+    </bean>
+    
+     <bean id="InsDecodNdgFabbrSRV"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_DECOD_NDG_FABB</value>
+    	</property>
+    </bean>
+    
+    <bean id="UpdateSoggetto"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UPDATE</value>
+    	</property>
+    </bean>
+    
+    <bean id="UpdateDecod"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UPDATE_DECOD</value>
+    	</property>
+    </bean>
+    
+	<bean id="InsSoggettoDecodSecSRV"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_SOGG_DECOD_SEC</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsSoggettoScheda"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_SOGG_SCHEDA</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetSoggettoSecSRV"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_SOGG_DECOD_SEC</value>
+    	</property>
+    </bean>
+    
+     <bean id="GetDecodByFabbrNdgFabSRV"
+    	class="it.ras.arco.service.SoggettoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetDecodByFabbrNdgFab</value>
+    	</property>
+    </bean>
+    
+     <bean id="GetSoggettoCFStatoCensimMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoCFStatoCensimento</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CODICE_FISCALE</value>
+    			<value>STATO_CENSIMENTO</value>    			
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>codiceFiscale</value>
+    			<value>statoCensimento</value>    			
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+    
+     <bean id="GetSoggettoByCodiceFiscaleCognomeNome"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoByCodiceFiscaleCognomeNome</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CODICE_FISCALE</value>
+    			<value>COGNOME</value>
+    			<value>NOME</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>codiceFiscale</value>
+    			<value>cognome</value>
+    			<value>nome</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+    
+     <bean id="GetSoggettoByCodiceFiscaleCognomeNomeDataNascita"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoByCodiceFiscaleCognomeNomeDataNascita</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CODICE_FISCALE</value>
+    			<value>COGNOME</value>
+    			<value>NOME</value>
+    			<value>DATA_NASCITA</value>
+    			<value>TIPO_SOGGETTO</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>codiceFiscale</value>
+    			<value>cognome</value>
+    			<value>nome</value>
+    			<value>dataNascita</value>
+    			<value>tipoSogg</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+     <bean id="GetSoggettoByCodiceFiscale"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoByCodiceFiscale</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CODICE_FISCALE</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>codiceFiscale</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetSoggettoByCodiceFiscaleDenominazione"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoByCodiceFiscaleDenominazione</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CODICE_FISCALE</value>
+    			<value>DENOMINAZIONE</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>codiceFiscale</value>
+    			<value>denominazione</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetSoggettoByPartitaIva"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoByPartitaIva</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>PARTITA_IVA</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>partitaIva</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetSoggettoByPartitaIvaDenominazione"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoByPartitaIvaDenominazione</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>PARTITA_IVA</value>
+    			<value>DENOMINAZIONE</value>
+    			<value>TIPO_SOGGETTO</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>partitaIva</value>
+    			<value>denominazione</value>
+    			<value>tipoSogg</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+    
+     <bean id="GetSoggettoByCodiceEsterno_Fabbrica"
+     class="it.ras.flag.module.DefaultDbModule">
+     <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>0</value>
+     </property>
+     <property name="queryName">
+      <value>GetSoggettoByCodiceEsterno_Fabbrica</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>CODICE_ESTERNO</value>
+       <value>FABBRICA</value>
+      </list>
+     </property>
+     <property name="output">
+      <value>SOGGETTO</value>
+     </property>
+    </bean>
+    
+    <bean id="GetSoggettoByCodiceEsterno_Fabbrica_Tipo"
+     class="it.ras.flag.module.DefaultDbModule">
+     <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>0</value>
+     </property>
+     <property name="queryName">
+      <value>GetSoggettoByCodiceEsterno_Fabbrica_Tipo</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>CODICE_ESTERNO</value>
+       <value>FABBRICA</value>
+       <value>TIPO</value>
+      </list>
+     </property>
+     <property name="output">
+      <value>SOGGETTO</value>
+     </property>
+    </bean>
+    
+    <bean id="GetSquadraByCodiceEsterno_Fabbrica"
+     class="it.ras.flag.module.DefaultDbModule">
+     <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>0</value>
+     </property>
+     <property name="queryName">
+      <value>GetSquadraByCodiceEsterno_Fabbrica</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>CODICE_ESTERNO</value>
+       <value>FABBRICA</value>
+       <value>TIPO</value>
+      </list>
+     </property>
+     <property name="output">
+      <value>SOGGETTO</value>
+     </property>
+    </bean>
+
+    <bean id="GetSoggettoByCodiceSquadra_CodiceClienteMD"
+     class="it.ras.flag.module.DefaultDbModule">
+     <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>0</value>
+     </property>
+     <property name="queryName">
+      <value>GetSoggettoByCodiceSquadra_CodiceCliente</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>CODICE_SQUADRA</value>
+       <value>CODICE_CLIENTE</value>
+      </list>
+     </property>
+     <property name="output">
+      <value>SOGGETTO</value>
+     </property>
+    </bean>
+    
+      <bean id="InsertDecodNdgFabbrMD"    
+   class="it.ras.flag.module.DefaultDbModule">
+	    <property name="dao">
+	      <ref bean="RasBatchDao" />
+	     </property>
+	     <property name="query">
+	      <value>5</value>
+	     </property>
+	     <property name="parameters">
+	      <list>
+	       <value>DECOD_NDG_FABBR</value>
+	      </list>
+	     </property>
+	     <property name="output">
+	       <value>DECOD_NDG_FABBR</value>
+	     </property>
+     </bean>
+    
+    <bean id="InsertSoggettoMD"    
+   class="it.ras.flag.module.DefaultDbModule">
+    <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>5</value>
+     </property>
+     <property name="queryName">
+      <value>censimentoSoggetto</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>SOGGETTO</value>
+      </list>
+     </property>
+     <property name="output">
+     
+       <value>SOGGETTO</value>
+    
+     </property>
+     </bean>
+     
+     <bean id="UpdateSoggettoMD"    
+   class="it.ras.flag.module.DefaultDbModule">
+    <property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+     <property name="parameters">
+      <list>
+       <value>SOGGETTO</value>
+      </list>
+     </property>
+     <property name="output">
+     
+       <value>SOGGETTO</value>
+    
+     </property>
+     </bean>
+     
+     <bean id="UpdateDecodMD"    
+  	 class="it.ras.flag.module.DefaultDbModule">
+    <property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+     <property name="parameters">
+      <list>
+       <value>DECOD_NDG_FABBR</value>
+      </list>
+     </property>
+     <property name="output">
+     
+       <value>DECOD_NDG_FABBR</value>
+    
+     </property>
+     </bean>     
+     
+     <bean id="InsertSoggettoMCMD" class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+	    	<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>SOGGETTO_MC</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>SOGGETTO_MC</value>
+		</property>
+     </bean>
+
+	
+    
+     <bean id="UpdateSoggettoMCMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>SOGGETTO_MC</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>SOGGETTO_MC</value>
+		</property>
+	</bean>
+     
+ 	<bean id="InsertSoggettoDecodSecMD"    
+   	class="it.ras.flag.module.DefaultDbModule">
+    <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>5</value>
+     </property>
+     <property name="queryName">
+      <value>censimentoSoggettoDecodSec</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>SOGGETTO_DECOD_SEC</value>
+      </list>
+     </property>
+     <property name="output">
+       <value>SOGGETTO_DECOD_SEC</value>
+     </property>
+     </bean>
+     
+    <bean id="InsSoggettoSchedaMD"    
+   class="it.ras.flag.module.DefaultDbModule">
+    <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>5</value>
+     </property>
+     <property name="queryName">
+      <value></value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>SOGGETTO_SCHEDA</value>
+      </list>
+     </property>
+     <property name="output">
+       <value>SOGGETTO_SCHEDA</value>
+     </property>
+     </bean>
+     
+ 	
+ 	<bean id="GetSoggettoSecBySoggettoId"
+     class="it.ras.flag.module.DefaultDbModule">
+     <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>0</value>
+     </property>
+     <property name="queryName">
+      <value>GetSoggettoSecBySoggettoId</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>SOGGETTO_ID</value>
+       <value>CODICE_FABBRICA</value>
+       <value>NDG_FABBRICA</value>
+      </list>
+     </property>
+     <property name="output">
+      <value>SOGGETTO</value>
+     </property>
+    </bean>
+    
+    <bean id="GetDecodBySoggettoIdFabbrica"
+     class="it.ras.flag.module.DefaultDbModule">
+     <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>0</value>
+     </property>
+     <property name="queryName">
+      <value>GetDecodBySoggettoIdFabbrica</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>SOGGETTO_ID</value>
+       <value>FABBRICA</value>
+      </list>
+     </property>
+     <property name="paramNames">
+    		<list>
+    			<value>soggettoId</value>
+    			<value>fabbrica</value>
+    		</list>
+    	</property>
+     <property name="output">
+      <value>SOGGETTO</value>
+     </property>
+    </bean>
+ 	
+ 	<bean id="GetDecodByFabbricaNdgFabMD"
+     class="it.ras.flag.module.DefaultDbModule">
+     <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>0</value>
+     </property>
+     <property name="queryName">
+      <value>GetDecodFabbricaNdgFab</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>NDGFABBR</value>
+       <value>FABBRICA</value>
+      </list>
+     </property>
+     <property name="paramNames">
+    		<list>
+    			<value>ndgFab</value>
+    			<value>fabbrica</value>
+    		</list>
+    	</property>
+     <property name="output">
+      <value>SOGGETTO</value>
+     </property>
+    </bean>
+ 	
+ 	
+ 	
+ 	
+ 	
+ </beans> 
+
+

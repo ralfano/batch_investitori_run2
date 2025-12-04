@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!--  TABELLA INDIRIZZI -->
+ <class name="it.ras.arco.bean.FinIndirizzo" table="FIN_INDIRIZZO" discriminator-value="COR" where="GSTD_ESIST_B='S'">
+  <id name="indirizzoId" column="INDIRIZZO_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_INDIRIZZO_SEQ</param>
+   </generator>
+  </id>
+  
+  <discriminator type="string" not-null="false" insert="false"
+   	formula="(select ci.TIPO_INDIRIZZO_T FROM FIN_CONTRATTO_INDIR ci,	FIN_CONTRATTO c   
+  			WHERE ci.CONTRATTO_ID = c.CONTRATTO_ID
+  			AND INDIRIZZO_ID = ci.INDIRIZZO_ID)" />
+  <property name="codToponimo" type="string" column="COD_TOPONIMO_T" length="5"/>
+  <property name="desToponimo" type="string" column="DES_TOPONIMO_S" length="15"/>
+  <property name="indirizzo" type="string" column="INDIRIZZO_S" length="50"/>
+  <property name="cap" type="string" column="CAP_S" length="7"/>
+  <property name="prov" type="string" column="PROV_T" length="3"/>
+  <property name="comune" type="string" column="COMUNE_S" length="40"/>
+  <property name="localita" type="string" column="LOCALITA_S" length="40"/>
+  <property name="nazione" type="string" column="NAZIONE_T" length="3"/>   
+  <property name="presso" type="string" column="PRESSO_S" length="50"/>
+  <property name="presNote" type="string" column="PRES_NOTE_B" length="1"/>
+  <property name="indiSeparato" type="string" column="INDI_SEPARATO_B" length="1"/>
+  <property name="datiSupl" type="string" column="DATI_SUPL_S" length="20"/>
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="20"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="20"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="20"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  
+</class>
+ 
+</hibernate-mapping>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ANAGRAFICA CC -->
+ <class name="it.ras.arco.batch.bean.FlxInvestitoriAnagCliente" rowid="rowid" table="FLX_INVESTITORI_ANAG_CLIENTE">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_INVESTITORI_ANAG_CLI_SEQ</param>
+   </generator>
+  </id>
+
+<property name="cognome"                        column="COGNOME"                        type="string" length="35"  />
+<property name="nome"                           column="NOME"                           type="string" length="35"  />
+<property name="codiceFiscale"                  column="CODICE_FISCALE"                 type="string" length="16"  />
+<property name="partitaIva"                     column="PARTITA_IVA"                    type="string" length="14"  />
+<property name="dataDiNascita"                  column="DATA_DI_NASCITA_D"              type="date"  />
+<property name="indirizzoDiResidenza"           column="INDIRIZZO_DI_RESIDENZA"         type="string" length="105"  />
+<property name="cap"                            column="CAP"                            type="string"  />
+<property name="comuneDiResidenza"              column="COMUNE_DI_RESIDENZA"            type="string" length="35"  />
+<property name="provinciaDiResidenza"           column="PROVINCIA_DI_RESIDENZA"         type="string" length="2"  />
+<property name="telefonoAbitazione"             column="TELEFONO_ABITAZIONE"            type="string" length="15"  />
+<property name="telefonoUfficio"                column="TELEFONO_UFFICIO"               type="string" length="15"  />
+<property name="telefonoCellulare"              column="TELEFONO_CELLULARE"             type="string" length="15"  />
+<property name="tipo"                           column="TIPO"                           type="string" length="1"  />
+<property name="dataDiNascita1"                  column="DATA_DI_NASCITA"                type="date"  />
+<property name="sesso"                          column="SESSO"                          type="string" length="1"  />
+<property name="luogoDiNascita"                 column="LUOGO_DI_NASCITA"               type="string" length="35"  />
+<property name="statoDiNascita"                 column="STATO_DI_NASCITA"               type="string" length="3"  />
+<property name="provinciaDiNascita"             column="PROVINCIA_DI_NASCITA"           type="string" length="2"  />
+<property name="capDiNascita"                   column="CAP_DI_NASCITA"                 type="string"  />
+<property name="nazioneDiResidenza"             column="NAZIONE_DI_RESIDENZA"           type="string" length="3"  />
+<property name="fax"                            column="FAX"                            type="string" length="15"  />
+<property name="eMail"                          column="E_MAIL"                         type="string" length="70"  />
+<property name="indirizzoFiscale"               column="INDIRIZZO_FISCALE"              type="string" length="105"  />
+<property name="localitaIndirizzoFiscale"         column="LOCALITA_INDIRIZZO_FISCAL"      type="string"  />
+<property name="capIndirizzoFiscale"            column="CAP_INDIRIZZO_FISCALE"          type="string"  />
+<property name="provinciaIndirizzoFisca"        column="PROVINCIA_INDIRIZZO_FISCA"      type="string" length="2"  />
+<property name="nazioneIndirizzoFiscale"        column="NAZIONE_INDIRIZZO_FISCALE"      type="string" length="3"  />
+<property name="sedeTribunale"                  column="SEDE_TRIBUNALE"                 type="string" length="35"  />
+<property name="dataFondazioneSoc"              column="DATA_FONDAZIONE_SOC"            type="date"  />
+<property name="socEstera"                      column="SOC_ESTERA"                     type="string" length="1"  />
+<property name="borsa"                          column="BORSA"                          type="string" length="1"  />
+<property name="capitaleSociale"                column="CAPITALE_SOCIALE"               type="string" length="20"  />
+<property name="capitaleVersato"                column="CAPITALE_VERSATO"               type="string" length="20"  />
+<property name="dataScioglimento"               column="DATA_SCIOGLIMENTO"              type="date"  />
+<property name="scontoConvenzione"              column="SCONTO_CONVENZIONE"             type="string" length="1"  />
+<property name="sae"                            column="SAE"                            type="string" length="3"  />
+<property name="rae"                            column="RAE"                            type="string" length="3"  />
+<property name="informazioniAggiuntiveSettor"   column="INFORMAZIONI_AGGIUNTIVE_SETTOR" type="string" length="1"  />
+<property name="dataIscrizioneRea"              column="DATA_ISCRIZIONE_REA"            type="date"  />
+<property name="numeroDiRea"                    column="NUMERO_DI_REA"                  type="string" length="20"  />
+<property name="provinciaRea"                   column="PROVINCIA_REA"                  type="string" length="2"  />
+<property name="tipoDocumentoIdentita"          column="TIPO_DOCUMENTO_IDENTITA"        type="string" length="1"  />
+<property name="numeroDocumento"                column="NUMERO_DOCUMENTO"               type="string" length="15"  />
+<property name="enteRilascio"                   column="ENTE_RILASCIO"                  type="string" length="30"  />
+<property name="dataRilascio"                   column="DATA_RILASCIO"                  type="date"  />
+<property name="luogoRilascio"                  column="LUOGO_RILASCIO"                 type="string" length="35"  />
+<property name="provinciaRilascio"              column="PROVINCIA_RILASCIO"             type="string" length="2"  />
+<property name="nazioneRilascio"                column="NAZIONE_RILASCIO"               type="string" length="3"  />
+<property name="dataScadenza"                   column="DATA_SCADENZA"                  type="date"  />
+<property name="fotocopiaDocum"                 column="FOTOCOPIA_DOCUM"                type="string" length="1"  />
+<property name="cittadinanza"                   column="CITTADINANZA"                   type="string" length="3"  />
+<property name="statoCivile"                    column="STATO_CIVILE"                   type="string" length="1"  />
+<property name="titoloDiStudio"                 column="TITOLO_DI_STUDIO"               type="string" length="5"  />
+<property name="regimePatrimoniale"             column="REGIME_PATRIMONIALE"            type="string" length="1"  />
+<property name="statuto"                        column="STATUTO"                        type="string" length="1"  />
+<property name="attoCostitutivo"                column="ATTO_COSTITUTIVO"               type="string" length="1"  />
+<property name="iscrizioneCameraDiCommercio"    column="ISCRIZIONE_CAMERA_DI_COMMERCIO" type="string" length="19"  />
+<property name="documentoRischiFinanziari"      column="DOCUMENTO_RISCHI_FINANZIARI"    type="string" length="1"  />
+<property name="informativaRelativaAlProfil"    column="INFORMATIVA_RELATIVA_AL_PROFIL" type="string" length="1"  />
+<property name="esperienzaFinanziaria"          column="ESPERIENZA_FINANZIARIA"         type="string" length="1"  />
+<property name="situazioneFinanziaria"          column="SITUAZIONE_FINANZIARIA"         type="string" length="1"  />
+<property name="obiettivoInvestimento"          column="OBIETTIVO_INVESTIMENTO"         type="string" length="1"  />
+<property name="propensioneAlRischio"           column="PROPENSIONE_AL_RISCHIO"         type="string" length="1"  />
+<property name="rischioVal"                     column="RISCHIO_VAL"                    type="string" length="1"  />
+<property name="classeDiRischio"                column="CLASSE_DI_RISCHIO"              type="string" length="1"  />
+<property name="regoleDiComportamento"          column="REGOLE_DI_COMPORTAMENTO"        type="string" length="1"  />
+<property name="pattiChiari"                    column="PATTI_CHIARI"                   type="string" length="1"  />
+<property name="consensoBase"                   column="CONSENSO_BASE"                  type="string" length="1"  />
+<property name="consensoComunicazioni"          column="CONSENSO_COMUNICAZIONI"         type="string" length="1"  />
+<property name="consensoUtilizzoDatiBanca"      column="CONSENSO_UTILIZZO_DATI_BANCA"   type="string" length="1"  />
+<property name="consensoUtilizzoDatiGruppo"     column="CONSENSO_UTILIZZO_DATI_GRUPPO"  type="string" length="1"  />
+<property name="consensoUtilizzoDatiSensibi"    column="CONSENSO_UTILIZZO_DATI_SENSIBI" type="string" length="1"  />
+<property name="conservazioneInformazioni"      column="CONSERVAZIONE_INFORMAZIONI"     type="string" length="1"  />
+<property name="dataPrivacy"                    column="DATA_PRIVACY"                   type="date"  />
+<property name="tipoModuloPrivacy"              column="TIPO_MODULO_PRIVACY"            type="string" length="1"  />
+<property name="nIscrizioneCciaa"               column="N_ISCRIZIONE_CCIAA"             type="string" length="19"  />
+<property name="citta"                          column="CITTA"                          type="string" length="35"  />
+<property name="attivita"                       column="ATTIVITA"                       type="string" length="35"  />
+<property name="statuto1"                       column="STATUTO1"                       type="string" length="1"  />
+<property name="attoCostitutivo1"               column="ATTO_COSTITUTIVO1"              type="string" length="1"  />
+<property name="dataRilascioCciaa"              column="DATA_RILASCIO_CCIAA"            type="date" length="1"  />
+<property name="copiaDellaRegistrazione"        column="COPIA_DELLA_REGISTRAZIONE"      type="string" length="1"  />
+<property name="certificatoDiVigenza"           column="CERTIFICATO_DI_VIGENZA"         type="string" length="1"  />
+<property name="verbaleDiNominaDeiLegali"       column="VERBALE_DI_NOMINA_DEI_LEGALI_R" type="string" length="1"  />
+<property name="verbaleDiNominaDeiPoteri"       column="VERBALE_DI_NOMINA_DEI_POTERI_D" type="string" length="1"  />
+<property name="copiaDeiDocIden"                column="COPIA_DEI_DOC_IDEN"             type="string" length="1"  />
+<property name="copiaDelC"                      column="COPIA_DEL_C_F"                  type="string" length="1"  />
+<property name="professione"                    column="PROFESSIONE"                    type="string" length="1"  />
+<property name="numeroDipendenti"               column="NUMERO_DIPENDENTI"              type="string" length="1"  />
+<property name="numeroCodiceSia"                column="NUMERO_CODICE_SIA"              type="string" length="1"  />
+<property name="societaAssegnatariaDiCodice"    column="SOCIETA_ASSEGNATARIA_DI_CODICE" type="string" length="1"  />
+<property name="operaServizioCbi"               column="OPERA_SERVIZIO_CBI"             type="string" length="1"  />
+<property name="operServizioCbi"                column="OPER_SERVIZIO_CBI"              type="string" length="1"  />
+<property name="informazioniSullaSituazione"    column="INFORMAZIONI_SULLA_SITUAZIONE"  type="string" length="1"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="timestamp"  />
+ <property name="dataElab" column="DATA_ELAB_D" type="timestamp"  />
+ <property name="descrizioneErrore"  column="DESCRIZIONE_ERRORE_S" type="string" length="100"  />
+  
+ </class>
+ <query name="ANAG_CLIENTE_SQL">from  
+ it.ras.arco.batch.bean.FlxInvestitoriAnagCliente p where p.statoElab = 'D' order by p.dataCaricamento </query>
+</hibernate-mapping>

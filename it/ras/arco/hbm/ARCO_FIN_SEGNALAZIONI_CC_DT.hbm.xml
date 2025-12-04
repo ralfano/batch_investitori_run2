@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!--  TABELLA SOGGETTI-BOZZA -->
+  <class name="it.ras.arco.bean.FinSegnalazioniCCDTAdapterBase" table="FIN_SEGNALAZIONI_CC_DT" discriminator-value="null" lazy="true" where="GSTD_ESIST_B='S'" >
+  <id name="SegnalazioniCCDTId" column="SEGNALAZIONI_CC_DT_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_SEGNALAZIONI_CC_DT_SEQ</param>
+   </generator>
+  </id>
+
+  
+	<property name="tiposegnalazione" type="string" column="TIPO_SEGNALAZIONE_T" length="3"/>
+	<property name="importo" type="integer" column="IMPORTO" />
+	<property name="versatoPresso" type="string" column="VERSATO_PRESSO_S" length="20"/>
+    <property name="assegno" type="string" column="ASSEGNO_CONTANTE_B" length="1"/>
+  	<property name="serieeNumero" type="string" column="SERIE_NUMERO_ASSEGNO" length="20"/>
+  	<property name="numeroConto" type="string" column="N_CONTO_S" length="20"/>
+  	<property name="numeroContoOrd" type="string" column="N_CONTO_ORD_S" length="20"/>
+  	<property name="descrizioneBonifico" type="string" column="DESCRIZIONE_BONIFICO_S" length="30"/>
+  	<property name="soggettoEffettuante" type="string" column="SOGGETTO_EFFETTUANTE" length="20"/>
+  	<property name="dispAllegatacontr" type="string" column="DISP_ALLEGATA_CONTR_B" length="1"/>
+  	<property name="regime" type="string" column="REGIME_T" length="3"/>
+  	<property name="indirizzoBanca" type="string" column="INDIRIZZO_BANCA" length="50"/>
+  	<property name="tuttiITitoli" type="string" column="TUTTI_TITOLI_B" length="1"/>
+  	<property name="BonusTitoli" type="string" column="BONUS_TITOLI" length="1"/>
+  	<property name="SoggettoAFavoreNome" type="string" column="SOGGETTO_AFAVORE_NOME" length="20"/>
+  	<property name="bancaOrd" type="string" column="BANCA_ORD_S" length="20"/>
+  	<property name="dataeOraInserimento" column="DATA_ORA_INSER" type="timestamp"/>
+  	
+  
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="20"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="20" />
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="20" />
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" />
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+ 
+  
+ 
+ <!-- RELAZIONE CON FIN_PRATICA-->
+	<many-to-one name="pratica" class="it.ras.arco.bean.FinPratica" lazy="proxy" column="PRATICA_ID" not-found="ignore" cascade="save-update,lock" /> 
+ 
+ <!-- RELAZIONE CON FIN_SOGG_BOZZA-->
+	<many-to-one name="soggettoBozza" class="it.ras.arco.bean.FinSoggettoBozza" lazy="proxy" column="SOG_BOZZA_AFAVORE_ID" not-found="ignore" cascade="save-update,lock" /> 
+ 
+ <!-- RELAZIONE CON SEGNAL_CC_DT_TITOLI -->
+  <set name="titoli" table="FIN_SEGNAL_CC_DT_TITOLI" cascade ="save-update,lock" inverse ="true">
+    <key column="SEGNAL_CC_DT_TITOLI_ID"/>
+    <one-to-many class="it.ras.arco.bean.FinSegnalazioniCCDTTitoliAdapterBase" not-found="ignore" />
+  </set>
+ 	
+ 	
+ </class>
+</hibernate-mapping>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO GENERICO PROMOTORE_MANAGER -->
+    
+    <bean id="InsertCrm1"
+    	class="it.ras.arco.service.CrmManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_CRM1</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertCrm2"
+    	class="it.ras.arco.service.CrmManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_CRM2</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertCrm3"
+    	class="it.ras.arco.service.CrmManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_CRM3</value>
+    	</property>
+    </bean>
+    
+    <bean id="InsertCrm4"
+    	class="it.ras.arco.service.CrmManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_CRM4</value>
+    	</property>
+    </bean>
+        
+    <bean id="InsertCrm1MD"    
+   		class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+      		<ref bean="RasBatchDao" />
+     	</property>
+     	<property name="query">
+      		<value>5</value>
+     	</property>
+     	<property name="queryName">
+      		<value>inserimento crm1</value>
+     	</property>
+     	<property name="parameters">
+      	<list>
+       		<value>CRM1</value>
+     	</list>
+     	</property>
+     	<property name="output">
+     		<value>CRM1</value>
+    	</property>
+     </bean>
+     
+     <bean id="InsertCrm2MD"    
+   		class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+      		<ref bean="RasBatchDao" />
+     	</property>
+     	<property name="query">
+      		<value>5</value>
+     	</property>
+     	<property name="queryName">
+      		<value>inserimento crm2</value>
+     	</property>
+     	<property name="parameters">
+      	<list>
+       		<value>CRM2</value>
+     	</list>
+     	</property>
+     	<property name="output">
+     		<value>CRM2</value>
+    	</property>
+     </bean>
+     
+     <bean id="InsertCrm3MD"    
+   		class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+      		<ref bean="RasBatchDao" />
+     	</property>
+     	<property name="query">
+      		<value>5</value>
+     	</property>
+     	<property name="queryName">
+      		<value>inserimento crm3</value>
+     	</property>
+     	<property name="parameters">
+      	<list>
+       		<value>CRM3</value>
+     	</list>
+     	</property>
+     	<property name="output">
+     		<value>CRM3</value>
+    	</property>
+     </bean>
+     
+     <bean id="InsertCrm4MD"    
+   		class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+      		<ref bean="RasBatchDao" />
+     	</property>
+     	<property name="query">
+      		<value>5</value>
+     	</property>
+     	<property name="queryName">
+      		<value>inserimento crm4</value>
+     	</property>
+     	<property name="parameters">
+      	<list>
+       		<value>CRM4</value>
+     	</list>
+     	</property>
+     	<property name="output">
+     		<value>CRM4</value>
+    	</property>
+     </bean>
+
+</beans> 
+
+	
+    
+    
+    
+    

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!--  TABELLA PRATICA-BOZZA -->
+  <class name="it.ras.arco.bean.FinPraticaBozza" table="FIN_PRATICA_BOZZA" discriminator-value="null" lazy="true" where="GSTD_ESIST_B='S'" >
+  <id name="praticaBozzaId" column="PRATICA_BOZZA_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_PRATICA_BOZZA_SEQ</param>
+   </generator>
+  </id>
+  <property name="statoOperazione" type="string" column="STATO_OPERAZIONE_T" length="3"/>
+  
+  <property name="librettoAssegni" type="string" column="LIB_ASSEGNI_B" length="1"/>
+  <property name="bancomat" type="string" column="BANCOMAT_B" length="1"/>
+  <property name="emittente" type="string" column="EMITTENTE_T" length="3"/>
+  <property name="circuito" type="string" column="CIRCUITO_T" length="3"/>
+  <property name="cartaAggiuntiva" type="string" column="CARTA_AGG_B" length="1"/>
+  <property name="primoIntestatario" type="string" column="PRIMO_INTESTATARIO_B" length="1"/>
+  <property name="circuitoCartaAggiuntiva" type="string" column="CIRCUITO_CARTA_AGG_T" length="3"/>
+  
+  
+   <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1" insert="true" update="true"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="20" insert="true" update="true"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="true" update="true"/>
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="true" update="true"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="true" update="true"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="true" update="true"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+
+  <!-- RELAZIONE CON FIN_SOGG_BOZZA-->
+  <many-to-one name="soggettoBozza" class="it.ras.arco.bean.FinSoggettoBozza" lazy="proxy" column="SOGG_BOZZA_ID" not-found="ignore" cascade="lock,none" insert="true" update="true"/>
+   
+   
+   <!-- RELAZIONE CON FIN_PRATICA-->
+   <many-to-one name="pratica" class="it.ras.arco.bean.FinPratica" column ="PRATICA_ID"  cascade="lock,none" lazy="proxy" not-found="ignore" insert="true" update="true"/>
+ </class>
+</hibernate-mapping>
+

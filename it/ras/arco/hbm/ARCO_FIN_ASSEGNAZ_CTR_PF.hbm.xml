@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ASSEGNAZIONI CONTRATTI-PF -->
+ <class name="it.ras.arco.bean.FinAssegnazCtrPf" table="FIN_ASSEGNAZ_CTR_PF" where="GSTD_ESIST_B='S'">
+  <id name="assegnazioneId" column="ASSEGNAZIONE_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_ASSEGNAZ_CTR_PF_SEQ</param>
+   </generator>
+  </id>
+  <property name="dataInizio" type="date" column="DATA_INIZIO_D"/>
+  <property name="dataFine" type="date" column="DATA_FINE_D"/>
+  <property name="flagAttuale" type="string" column="FLAG_ATTUALE" length="1"/>
+  <property name="flagSplit" type="string" column="FLAG_SPLIT" length="1"/>
+  <property name="percRipartiz" type="double" column="PERC_RIPARTIZ"/>
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="40"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="40"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimentoRecord" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="40"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+  <property name="promotorePrecId" type="integer" column="PROM_PREC_ID"/>
+  
+  <!-- RELAZIONE CON FIN_CONTRATTO -->
+  <many-to-one name="contratto" class="it.ras.arco.bean.FinContratto" column = "CONTRATTO_ID" not-found="ignore"/>
+  
+  <!-- RELAZIONE CON FIN_PROMOTORE -->
+  <many-to-one name="promotore" class="it.ras.arco.bean.FinPromotore" column = "PROMOTORE_ID" not-found="ignore"/>
+  
+ </class>
+ 
+ <query name="GetAssegnazioneByContrattoPromotore">select a from it.ras.arco.bean.FinAssegnazCtrPf a join a.contratto c join a.promotore p where c.contrattoId = ? and p.promotoreId = ? </query>
+ 
+</hibernate-mapping>
+  

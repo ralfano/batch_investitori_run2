@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO GENERICO SOGGETTOMANAGER -->
+    
+  
+	
+	
+	 <bean id="GetSaldoStoricoByNumContrattoSRV"      class="it.ras.arco.service.StoricoSaldoManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GetSaldoStoricoByNumContratto</value>
+		</property>
+	</bean>
+	
+	 <bean id="InsertSaldoStoricoSRV"
+    	class="it.ras.arco.service.StoricoSaldoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>InsertSaldoStorico</value>
+    	</property>
+    </bean>
+
+<bean id="UpdateSaldoStoricoSRV"
+    	class="it.ras.arco.service.StoricoSaldoManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UpdateSaldoStorico</value>
+    	</property>
+    </bean>
+
+
+
+
+	<bean id="GetSaldoStoricoByNumContratto"    
+    class="it.ras.flag.module.DefaultDbModule" >
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSaldoStoricoByNumContratto</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>NUM_RAPPORTO</value>	
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>STORICO</value>
+    	</property>
+    </bean>
+    
+    
+    <bean id="InsertStoricoSaldoMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		
+		<property name="parameters">
+			<list>
+				<value>STORICO</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>STORICO</value>
+		</property>
+	</bean>
+	
+	<bean id="UpdateStoricoSaldoMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+		
+		<property name="parameters">
+			<list>
+				<value>STORICO</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>STORICO</value>
+		</property>
+	</bean>
+   
+</beans> 
+
+

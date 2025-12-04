@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>  
+
+
+<bean id="getPraticaByPromotoreIdNumCCSRV"
+    	class="it.ras.arco.service.PraticaManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>ACTION_GET_PRATICA_BY_PROMOTOREID_NUMCC</value>
+    	</property>
+    </bean>
+  			   
+     <bean id="getPraticaByPromotoreIdNumCCMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+      		<value>getPraticaByPromotoreIdNumCC</value>
+     	</property>
+     	<property name="parameters"><!-- parametri nl serv -->
+      		<list>
+       			<value>NUMERO_CC</value>
+       			<value>PROMOTORE_ID</value>
+      		</list>
+     	</property>
+     	<property name="paramNames">
+    		<list>
+    			<value>n_cc</value>
+    			<value>promotore_id</value>
+    		</list>
+    	</property>
+     	<property name="output">
+      		<value>PRATICA</value>
+     	</property>
+    </bean>
+    
+    <bean id="updateStatopraticaDataaperutraSRV"
+    	class="it.ras.arco.service.PraticaManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>ACTION_UPDATE_STATOPRATICA_DATAAPERTURA</value>
+    	</property>
+    </bean>
+    
+    <bean id="UpdateStatopraticaDataaperturaMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>9</value>
+    	</property>
+    	
+	    	<property name="parameters">
+	    		<list>
+	    			<value>PRATICA</value>
+	    		</list>
+	    	</property>
+	    	<property name="output">
+	    		<value>PRATICA</value>
+	    	</property>
+    	
+    </bean>
+    
+    
+    
+
+</beans>

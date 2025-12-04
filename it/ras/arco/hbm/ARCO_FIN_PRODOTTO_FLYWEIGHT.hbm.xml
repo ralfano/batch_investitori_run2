@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+ <class name="it.ras.arco.bean.FinProdottoFlyweight" table="FIN_PRODOTTO" 
+ 	where="GSTD_ESIST_B='S' and VISIBILITA_CP='S'" 
+ 	select-before-update="false"
+ 	>
+ 	
+ 	
+  <id name="prodottoID" column="PRODOTTO_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_PRODOTTO_SEQ</param>
+   </generator>
+  </id>
+
+
+  
+  <property name="tipo" type="string" column="TIPO_T" length="3" insert="false" update="false"/>
+  <property name="area" type="string" column="AREA_T" length="3" insert="false" update="false"/>
+  <property name="sottoareaT" type="string" column="SOTTOAREA_T" length="3" insert="false" update="false"/>
+  <property name="descrizioneS" type="string" column="DESCRIZIONE_S" length="100" insert="false" update="false"/>
+  <property name="visibilitaCP" type="string" column="VISIBILITA_CP" length="1" insert="false" update="false"/>
+  
+  
+  <!--
+  		V: Aggiunto per le esigenze della Ricerca contratti.
+  -->
+  <property name="ricercaSingola" type="string" column="RICERCA_SINGOLA" length="1"/> 
+
+  
+  
+  
+  
+  <!-- RELAZIONE CON LA FIN_EMITTENTE -->
+  <many-to-one name="emittente" lazy="false"
+   	class="it.ras.arco.bean.FinEmittenteFlyweight" column="EMITTENTE_ID"
+   	update="false" insert="false" not-found="ignore" fetch="join"
+   	/>
+
+
+
+  <!-- RELAZIONE CON LA FIN_ATT_FIN   (lazy) -->
+  <set name="attFin" table="FIN_PRODOTTO_LINEA" inverse="true"
+   cascade="none" where="GSTD_ESIST_B='S'" outer-join="false"
+   >
+
+   <key column="PRODOTTO_ID"/>
+   
+   <composite-element class="it.ras.arco.bean.FinProdottoLineaFlyweight">
+	<parent name="prodotto"/>
+    
+	<many-to-one name="attFin" 
+		class="it.ras.arco.bean.FinAttivitaFinanziariaFlyweight"
+		column="ATTIVITA_FIN_ID" outer-join="false"
+		insert="false" update="false" not-found="ignore" fetch="join"
+	/>
+	
+   </composite-element>
+  </set>
+
+
+ </class>
+ 
+
+
+</hibernate-mapping>
+

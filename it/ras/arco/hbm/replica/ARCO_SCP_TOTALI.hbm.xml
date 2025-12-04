@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<!-- TABELLA DEI TOTALI DELLA SCP -->
+	<class dynamic-update="true" rowid="rowid" 
+	    name="@SCP_TOTALI.class@"
+		 table="SCP_TOTALI_BCK"
+		where="@SCP_TOTALI.where@">
+
+		<id name="totaliId" column="TOTALI_ID" type="integer">
+			<generator class="sequence">
+				<param name="sequence">SCP_TOTALI_SEQ</param>
+			</generator>
+		</id>
+
+		
+		<property name="scpNumber" type="integer" column="SCP_NUMBER"
+			length="18" />
+		<property name="squadraId" type="integer" column="SQUADRA_ID"
+			length="18" />
+		<property name="tipoTotaleS" type="string"
+			column="TIPO_TOTALE_S" length="1" />
+		<property name="tipoProdottoT" type="string"
+			column="TIPO_PRODOTTO_T" length="3" />		
+		<property name="areaProdottoT" type="string"
+			column="AREA_PRODOTTO_T" length="3" />
+		<property name="sottoAreaProdottoT" type="string"
+			column="SOTTOAREA_PRODOTTO_T" length="3" />
+		<property name="areaTerzoLiv" type="string"
+			column="AREA_TERZO_LIV" length="3" />			
+		<property name="tipologiaProdottoT" type="string"
+			column="TIPOLOGIA_PRODOTTO_T" length="20" />			
+		<property name="totale" type="double" column="TOTALE"
+			length="18" />
+	    <property name="flagDas" type="string"
+			column="FLG_DAS" length="1" />
+		 <property name="statoElaborazione" type="string" column="STATO_ELAB_B" 
+		 	length="2"/>			
+		
+		
+		<!-- 
+			Campi architetturali	  	
+		-->
+		<property name="userUltimaModifica" type="string"
+			column="GSTD_ULT_USER_S" length="20" />
+		<property name="proceduraUltimaModifica" type="string"
+			column="GSTD_ULT_PROC_S" length="20" />
+		<property name="dataUltimaModifica" type="timestamp"
+			column="GSTD_ULT_MOD_D" />
+		<property name="dataInserimento" type="timestamp"
+			column="GSTD_INSE_D" />
+		<property name="flagEsistenza" type="string"
+			column="GSTD_ESIST_B" length="1" />
+		<property name="utenteInserimento" type="string"
+			column="GSTD_USER_INS_S" length="20" />
+		<property name="tipoUltimaModifica" type="string"
+			column="GSTD_TIPO_MOD_B" length="1" />
+
+		<property name="userUltimaModificaSlave" type="string"
+			column="GSTD_ULT_USER_S" length="40" insert="false" update="false" />
+		<property name="proceduraUltimaModificaSlave" type="string"
+			column="GSTD_ULT_PROC_S" length="40" insert="false" update="false" />
+		<property name="dataUltimaModificaSlave" type="timestamp"
+			column="GSTD_ULT_MOD_D" insert="false" update="false" />
+		<property name="tipoUltimaModificaSlave" type="string"
+			column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false" />
+		
+		<!-- 
+			Campi architetturali fine	  	
+		-->
+			
+		<property name="dataEstrazione" type="timestamp"
+			column="DATA_ESTRAZIONE_D" />
+		
+		<!-- 
+			Relazioni con scp_elenco	  	
+		-->
+			
+		<many-to-one name="elenco" class="@SCP_ELENCO.class@"
+			column="ELENCO_ID" not-null="true" insert="true" lazy="proxy"
+			update="true" cascade="lock" />
+		
+	</class>
+</hibernate-mapping>
+
+
+
+
+
+
+
+

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxAntAnagraficaPfAnt" rowid="rowid" table="FLX_ANT_ANAGRAFICA_PF_ANT">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_ANT_ANAGRAFICA_PF_ANT_SEQ</param>
+   </generator>
+  </id>
+  <property name="codicePromotore" type="string" column="CODICE_PROMOTORE" length="8"/>
+  <property name="nome" type="string" column="NOME" length="35"/>
+  <property name="dataInizioRapporto" type="date" column="DATA_INIZIO_RAPPORTO"/>
+  <property name="dataFineRapporto" type="date" column="DATA_FINE_RAPPORTO"/>
+  <property name="dataIncarico" type="date" column="DATA_INCARICO"/>
+  <property name="dataInizioPreavviso" type="date" column="DATA_INIZIO_PREAVVISO"/>
+  <property name="dataFinePreavviso" type="date" column="DATA_FINE_PREAVVISO"/>
+  <property name="fittizio" type="string" column="FITTIZIO" length="1"/>
+  <property name="codiceFiscale" type="string" column="CODICE_FISCALE" length="16"/>
+  <property name="dimissioni" type="string" column="DIMISSIONI" length="1"/>
+  <property name="titoloStudio" type="string" column="TITOLO_STUDIO" length="2"/>
+  <property name="esperienza" type="string" column="ESPERIENZA" length="3"/>
+  <property name="provinciaVendita1" type="string" column="PROVINCIA_VENDITA_1" length="2"/>
+  <property name="provinciaVendita2" type="string" column="PROVINCIA_VENDITA_2" length="2"/>
+  <property name="provinciaVendita3" type="string" column="PROVINCIA_VENDITA_3" length="2"/>
+  <property name="provinciaVendita4" type="string" column="PROVINCIA_VENDITA_4" length="2"/>
+  <property name="provinciaVendita5" type="string" column="PROVINCIA_VENDITA_5" length="2"/>
+  <property name="regioneVendita" type="string" column="REGIONE_VENDITA" length="2"/>
+  <property name="dataNascita" type="date" column="DATA_NASCITA"/>
+  <property name="luogoNascita" type="string" column="LUOGO_NASCITA" length="20"/>
+  <property name="provinciaNascita" type="string" column="PROVINCIA_NASCITA" length="2"/>
+  <property name="presentatore" type="string" column="PRESENTATORE" length="8"/>
+  <property name="centroRaccolta" type="string" column="CENTRO_RACCOLTA" length="8"/>
+  <property name="telefonoResidenzaPrefisso" type="string" column="TELEFONO_RESIDENZA_PREFISSO" length="5"/>
+  <property name="telefonoResidenzaNumero" type="string" column="TELEFONO_RESIDENZA_NUMERO" length="8"/>
+  <property name="telefonoRecapitoPrefisso" type="string" column="TELEFONO_RECAPITO_PREFISSO" length="5"/>
+  <property name="telefonoRecapitoNumero" type="string" column="TELEFONO_RECAPITO_NUMERO" length="8"/>
+  <property name="indirizzoResidenza" type="string" column="INDIRIZZO_RESIDENZA" length="40"/>
+  <property name="capResidenza" type="string" column="CAP_RESIDENZA" length="5"/>
+  <property name="cittaResidenza" type="string" column="CITTA_RESIDENZA" length="32"/>
+  <property name="provinciaResidenza" type="string" column="PROVINCIA_RESIDENZA" length="2"/>
+  <property name="indirizzoRecapito" type="string" column="INDIRIZZO_RECAPITO" length="40"/>
+  <property name="capRecapito" type="string" column="CAP_RECAPITO" length="5"/>
+  <property name="cittaRecapito" type="string" column="CITTA_RECAPITO" length="32"/>
+  <property name="provinciaRecapito" type="string" column="PROVINCIA_RECAPITO" length="2"/>
+  <property name="grado" type="string" column="GRADO" length="3"/>
+  <property name="regioneGeografica" type="string" column="REGIONE_GEOGRAFICA" length="3"/>
+  <property name="dataComunicazioneCessazione" type="date" column="DATA_COMUNICAZIONE_CESSAZIONE"/>
+  <property name="regionalManager" type="string" column="REGIONAL_MANAGER" length="8"/>
+  <property name="districtManager" type="string" column="DISTRICT_MANAGER" length="8"/>
+  <property name="teamManager" type="string" column="TEAM_MANAGER" length="8"/>
+  <property name="naturaRapporto" type="string" column="NATURA_RAPPORTO" length="2"/>
+  <property name="gradoVendite" type="string" column="GRADO_VENDITE" length="3"/>
+  <property name="areaVendite" type="string" column="AREA_VENDITE" length="3"/>
+  <property name="divisioneSgmVendite" type="string" column="DIVISIONE_SGM_VENDITE" length="8"/>
+  <property name="manAmVendite" type="string" column="MAN_AM_VENDITE" length="8"/>
+  <property name="regRpVendite" type="string" column="REG_RP_VENDITE" length="8"/>
+  <property name="sejTutor" type="string" column="SEJ_TUTOR" length="8"/>
+  <property name="aliquotaFiscale" type="string" column="ALIQUOTA_FISCALE" length="1"/>
+  <property name="dataIscrizioneEnasarco" type="date" column="DATA_ISCRIZIONE_ENASARCO"/>
+  <property name="codiceEnasarco" type="string" column="CODICE_ENASARCO" length="8"/>
+  <property name="partitaIva" type="string" column="PARTITA_IVA" length="11"/>
+  <property name="provinciaCciaa" type="string" column="PROVINCIA_CCIAA" length="2"/>
+  <property name="numeroCciaa" type="string" column="NUMERO_CCIAA" length="17"/>
+  <property name="mandato" type="string" column="MANDATO" length="1"/>
+  <property name="certificazione" type="string" column="CERTIFICAZIONE" length="1"/>
+  <property name="pagamentoProvvigioni" type="string" column="PAGAMENTO_PROVVIGIONI" length="1"/>
+  <property name="codiceAbi" type="string" column="CODICE_ABI" length="5"/>
+  <property name="codiceCab" type="string" column="CODICE_CAB" length="5"/>
+  <property name="codiceCc1" type="string" column="CODICE_CC1" length="9"/>
+  <property name="descrizioneBanca" type="string" column="DESCRIZIONE_BANCA" length="40"/>
+  <property name="indirizzoBanca" type="string" column="INDIRIZZO_BANCA" length="40"/>
+  <property name="capBanca" type="string" column="CAP_BANCA" length="5"/>
+  <property name="cittaBanca" type="string" column="CITTA_BANCA" length="40"/>
+  <property name="siglaProvincia" type="string" column="SIGLA_PROVINCIA" length="2"/>
+  <property name="dataIscrizioneAnasf" type="date" column="DATA_ISCRIZIONE_ANASF"/>
+  <property name="dataProvvisoria" type="date" column="DATA_PROVVISORIA"/>
+  <property name="corriere" type="string" column="CORRIERE" length="1"/>
+  <property name="codiceAlbo" type="string" column="CODICE_ALBO" length="8"/>
+  <property name="dataInserimentoAlbo" type="date" column="DATA_INSERIMENTO_ALBO"/>
+  <property name="dichiarazioneDefinitiva" type="string" column="DICHIARAZIONE_DEFINITIVA" length="1"/>
+  <property name="codiceKab" type="string" column="CODICE_KAB" length="5"/>
+  <property name="controlloKab" type="string" column="CONTROLLO_KAB" length="1"/>
+  <property name="retePrecedente" type="string" column="RETE_PRECEDENTE" length="1"/>
+  <property name="fl2" type="string" column="FL_2" length="1"/>
+  <property name="fl3" type="string" column="FL_3" length="1"/>
+  <property name="fl4" type="string" column="FL_4" length="1"/>
+  <property name="fl5" type="string" column="FL_5" length="1"/>
+  <property name="cognomePf" type="string" column="COGNOME_PF" length="50"/>
+  <property name="nomePf" type="string" column="NOME_PF" length="50"/>
+  <property name="indirizzoEmail" type="string" column="INDIRIZZO_EMAIL" length="50"/>
+  <property name="codiceRete" type="string" column="CODICE_RETE" length="3"/>
+  <property name="codiceCompagnia" type="string" column="CODICE_COMPAGNIA" length="3"/>
+  <property name="cellulare" type="string" column="CELLULARE" length="15" />
+  <property name="agenziaAttualeOperativita" type="string" column="AGENZIA_ATTUALE_OPERATIVITA" length="8"/>
+  <property name="cpfAttualeOperativita" type="string" column="CPF_ATTUALE_OPERATIVITA" length="8"/>
+  <property name="ufficioPersAttOperativita" type="string" column="UFFICIO_PERS_ATT_OPERATIVITA" length="8"/>
+  <property name="sesso" type="string" column="SESSO" length="1"/>
+  <property name="regioneCommerciale" type="string" column="REGIONE_COMMERCIALE" length="3"/>
+  <property name="distretto" type="string" column="DISTRETTO" length="10"/>
+  <property name="aliquotaProvvigStandard" type="double" column="ALIQUOTA_PROVVIG_STANDARD"/>
+  <property name="aliquotaProvvigAssicurativo" type="integer" column="ALIQUOTA_PROVVIG_ASSICURATIVO"/>
+  <property name="faxPrefisso" type="string" column="FAX_PREFISSO" length="5"/>
+  <property name="faxNumero" type="string" column="FAX_NUMERO" length="8"/>
+  <property name="gradoGerarchicoEsterno" type="string" column="GRADO_GERARCHICO_ESTERNO" length="4"/>
+  <property name="fidoBancario" type="integer" column="FIDO_BANCARIO"/>
+  <property name="descrizioneFiliale" type="string" column="DESCRIZIONE_FILIALE" length="40"/>
+  <property name="descrizioneGradoGerarchico" type="string" column="DESCRIZIONE_GRADO_GERARCHICO" length="50"/>
+  <property name="flagCodicePfPrincipale" type="string" column="FLAG_CODICE_PF_PRINCIPALE" length="1"/>
+  <property name="telefonoResidenzaEsteso" type="string" column="TELEFONO_RESIDENZA_ESTESO" length="25"/>
+  <property name="telefonoRecapitoEsteso" type="string" column="TELEFONO_RECAPITO_ESTESO" length="25"/>
+  <property name="faxEsteso" type="string" column="FAX_ESTESO" length="25"/>
+  <property name="statoElaborazione" type="string" column="STATO_ELAB_B" length="2"/>
+  <property name="istanza" type="string" column="ISTANZA_S" length="1"/>
+  <property name="dataCaricamento" type="date" column="DATA_CARICAMENTO_S"/>
+  <property name="codiceCc2" type="string" column="CODICE_CC2" length="15"/> 
+  <property name="numeroMatricola" type="string" column="NUMERO_MATRICOLA" length="10"/> 
+  <property name="dataFineIncarico" type="date" column="DATA_FINE_INCARICO"/> 
+  <property name="dataRecessoSindacato" type="date" column="DATA_RECESSO_SINDACATO"/> 
+  <property name="qualifica" type="string" column="QUALIFICA" length="2"/> 
+  <property name="codiceFiscaleContributivo" type="string" column="COD_FIS_CONTRIB" length="2"/> 
+  <property name="flagPcDotazione" type="string" column="FLAG_PC" length="2"/> 
+  <property name="provinciaIscrizioneAlbo" type="string" column="PROV_ISCRIZ_ALBO" length="2"/> 
+  <property name="modalitaCollocamento" type="string" column="MODALITA_COLLOCAMENTO" length="2"/> 
+  <property name="aliquotaProvvigionaleMFee" type="integer" column="ALIQUOTA_PROVV_MFEE"/> 
+  <property name="tutor" type="string" column="TUTOR" length="8"/> 
+  <property name="dataDimissioni" type="date" column="DATA_DIMISSIONI"/> 
+  <property name="anzianitaConvenzionale" type="string" column="ANZIANITA_CONVENZIONALE" length="8"/> 
+  <property name="ufficioSedeOperativa" type="string" column="UFFICIO_SEDE_OPERATIVA" length="8"/> 
+  <property name="postazionePc" type="string" column="POSTAZIONE_PC" length="8"/> 
+  <property name="postalizzazione" type="string" column="POSTALIZZAZIONE" length="8"/> 
+  <property name="descrizioneErrore" type="string" column="DESCRIZIONE_ERRORE_S" length="100" />
+  <property name="dataErrore" type="date" column="DATA_ELAB_D" />
+    
+ </class>
+ <query name="ANAGRAFICA_PF_ANT">from it.ras.arco.batch.bean.FlxAntAnagraficaPfAnt a where a.statoElaborazione='D'</query>
+</hibernate-mapping>

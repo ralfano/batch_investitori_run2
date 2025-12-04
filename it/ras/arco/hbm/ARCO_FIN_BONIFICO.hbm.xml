@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DEI CONTRATTI BIS-->
+ <class name="it.ras.arco.bean.FinBonificoAdapterBase" table="FIN_BONIFICO_PF" where="GSTD_ESIST_B='S'">
+  <id name="bonificoId" column="ID_BONIFICO" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_BONIFICO_PF_SEQ</param>
+   </generator>
+  </id>
+  <property name="descrizioneBeneficiario"  	  column="DESCRIZIONE_BENEFICIARIO_S"     type="string" length="40" />
+  <property name="croBonifico"              	  column="NUMERO_CRO_S"                   type="string" length="26" />
+  <property name="dataValutaBeneficiario"         column="DATA_VALUTA_BENEF_D"            type="date"  />
+  <property name="dataInserimentoBonifico"        column="DATA_INSERIMENTO_D"             type="date" />
+  <property name="importo"                        column="IMPORTO"                        type="double"  />
+  <property name="causale"		                  column="CAUSALE_BONIFICO_S"             type="string" length="91"  />
+
+  <property name="abiBeneficiario"                column="ABI_BENEF"                      type="string" length="5" />
+  <property name="cabBeneficiario"                column="CAB_BENEF"                      type="string" length="5"  />
+  <property name="intestatario"                   column="INTESTATARIO"                   type="string" length="30"  />
+  <property name="mandato"                        column="MANDATO"                        type="string" length="11"  />
+  <property name="tipoFondoBeneficiario"          column="TIPO_FONDO_BENEF"               type="string" length="30"  />
+
+<property name="userUltimaModifica"             column="GSTD_ULT_USER_S"                type="string" length="40"  />
+<property name="proceduraUltimaModifica"        column="GSTD_ULT_PROC_S"                type="string" length="40"  />
+<property name="dataUltimaModifica"             column="GSTD_ULT_MOD_D"                 type="date"  />
+<property name="dataInserimento"                column="GSTD_INSE_D"                    type="date"  />
+<property name="flagEsistenza"                  column="GSTD_ESIST_B"                   type="string" length="1"  />
+<property name="utenteInserimento"              column="GSTD_USER_INS_S"                type="string" length="40"  />
+<property name="tipoUltimaModifica"             column="GSTD_TIPO_MOD_B"                type="string" length="1"  />
+
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+
+
+  <many-to-one name="ordinante" class="it.ras.arco.bean.FinContratto" 
+   column="CONTRATTO_ID" update="true" insert="true" unique="true" not-null="true" not-found="ignore" />
+
+  <many-to-one name="beneficiario" class="it.ras.arco.bean.FinContratto" 
+   column="CONTRATTO_BENEFICIARIO_ID" update="true" insert="true" unique="true" not-null="true" not-found="ignore" />
+
+  <many-to-one name="promotore" class="it.ras.arco.bean.FinPromotore" 
+   column="PROMOTORE_ID" update="true" insert="true" unique="true" not-null="true" not-found="ignore" />
+
+  <many-to-one name="soggettoOrdinante" class="it.ras.arco.bean.FinSoggetto" 
+   column="SOGGETTO_ID" update="true" insert="true" unique="true" not-null="true" not-found="ignore" />
+
+</class>
+
+
+</hibernate-mapping>

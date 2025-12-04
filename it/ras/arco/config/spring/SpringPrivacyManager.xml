@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO DOCUMENTO_MANAGER_SRV -->
+    
+    <bean id="InsertPrivacy"
+    	class="it.ras.arco.service.PrivacyManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_PRIVACY</value>
+    	</property>
+    </bean> 
+    <bean id="UpdatePrivacy"
+    	class="it.ras.arco.service.PrivacyManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UPDATE_PRIVACY</value>
+    	</property>
+    </bean>
+    
+    
+    
+    <bean id="InserimentoPrivacy"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>5</value>
+    	</property>
+    	
+	    	<property name="parameters">
+	    		<list>
+	    			<value>PRIVACY</value>
+	    		</list>
+	    	</property>
+	    	<property name="output">
+	    		<value>PRIVACY</value>
+	    	</property>
+    	
+    </bean>
+    <bean id="AggiornamentoPrivacy"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>9</value>
+    	</property>    	
+	    	<property name="parameters">
+	    		<list>
+	    			<value>PRIVACY</value>
+	    		</list>
+	    	</property>
+	    	<property name="output">
+	    		<value>PRIVACY</value>
+	    	</property>
+    	
+    </bean>
+        
+</beans> 

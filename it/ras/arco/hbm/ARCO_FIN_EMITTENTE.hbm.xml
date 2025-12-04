@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA EMITTENTE -->
+ <class name="it.ras.arco.bean.FinEmittente" table="FIN_EMITTENTE" where="GSTD_ESIST_B='S'"
+    select-before-update="true"
+	batch-size="50"    
+	dynamic-update="true"
+    >
+ 
+  <id name="emittenteId" column="EMITTENTE_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_EMITTENTE_SEQ</param>
+   </generator>
+  </id>
+  
+  <property name="descrizione" type="string" column="DESCRIZIONE_S" length="50"/>
+  <property name="flgInterna" type="string" column="FLG_INTERNA_B" length="1"/>
+  <property name="tipoSocieta" type="string" column="TIPO_SOCIETA_T" length="3"/>
+  <property name="codEmittExt" type="string" column="COD_EMITT_EXT_S" length="18"/>
+
+  <property name="visibilita" type="string" column="VISIBILITA_T" length="1"/>
+  <property name="gestioneArco" type="string" column="GEST_ARCO_FLAG" length="1" />
+  
+  <!-- RELAZIONE CON FIN_EVIDENZA-->
+  <set name="evidenze" cascade="lock" inverse="true" where ="GSTD_ESIST_B='S'">
+   <key column="EMITTENTE_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinEvidenza" not-found="ignore" />
+  </set>
+
+
+  <!-- RELAZIONE CON FIN_PRODOTTO-->
+  <set name="prodotto" cascade="lock" inverse="true" 
+		  where ="GSTD_ESIST_B='S'"  batch-size="50">
+   <key column="EMITTENTE_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinProdotto" not-found="ignore" />
+  </set>
+
+
+  <!-- RELAZIONE CON FIN_INTERFACCIA-->
+  <set name="interfaccia" where ="GSTD_ESIST_B='S'" cascade="lock" >
+   <key column="EMITTENTE_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinInterfaccia" not-found="ignore" />
+  </set>
+
+
+  <!-- 
+  	RELAZIONE CON FIN_ENTITA_PARAMETRO 
+  	
+  	fetch="join"
+  -->
+  <set 	name="listaParametri" 
+  		lazy="true" 
+  		cascade="lock"
+  		where="GSTD_ESIST_B='S' and DATA_FINE_D >= sysdate"
+  		sort="it.ras.arco.bean.ParameterComparator"
+  		inverse="true"
+  		batch-size="50"
+  	>
+   <key column="EMITTENTE_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinEntitaParametro" not-found="ignore" />
+  </set>
+  
+  
+  <!-- V: RELAZIONE CON FIN_SOTTOSCRIZIONE -->
+  <set name="sottoscrEmittenti" cascade="lock" 
+		  inverse="true" where ="GSTD_ESIST_B='S'">
+   <key column="EMITTENTE_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinSottoscrEmittente" not-found="ignore" />
+  </set>
+  
+  <!-- RELAZIONE CON DISP PAGAMENTI NEL CASO DI RIMBORSO CON INV. SU ALTRO PRODOTTO-->
+  <set name="disposizioniPagamento" 
+  	cascade="save-update,lock" 
+  	inverse="true" 
+  	where ="GSTD_ESIST_B='S'">
+   <key column="EMITTENTE_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinDispPagamento" not-found="ignore" />
+  </set>  
+  
+  
+  
+  <!--
+  	***********************
+  	  CAMPI STANDARD
+  	***********************
+  -->
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="40"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="40"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="40"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+  
+  <!-- Duplicazione campi standard x Update (SLAVE) -->	
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/> 
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  
+  
+ </class>
+  
+  
+  <query name="GetEmittenteByDescrizione">from it.ras.arco.bean.FinEmittente e where e.descrizione = ?</query>
+  
+  <query name="CP_CERCA_CODES_TABLE_SPECIFICA">
+  	from TblDecodifiche
+  	where nomeTabella = :nome_tabella_decodifica
+  </query>
+  
+  <query name="CARICA_EMITTENTI_PER_TABELLA_EVENTI">
+  	from it.ras.arco.bean.FinEmittente
+  	where visibilita = :visibilita_emittente
+  </query>
+  
+  <query name="CARICAMENTO_EMITTENTE_RAM">
+  <![CDATA[
+  	from it.ras.arco.bean.FinEmittente
+  	where emittenteId = 14
+  	and gestioneArco = 'S'
+  	]]>
+  </query>
+  
+  <query name="CARICAMENTO_EMITTENTE_BNL_SICAV">
+  <![CDATA[
+  	from it.ras.arco.bean.FinEmittente
+  	where emittenteId = 6
+  	and gestioneArco = 'S'
+  	]]>
+  </query>
+  
+  <query name="CARICAMENTO_EMITTENTI_SICAV">
+  <![CDATA[
+  	select distinct e
+  	from it.ras.arco.bean.FinEmittente e
+  	join e.prodotto p
+  	where p.tipo = 'CS'
+  	and e.gestioneArco = 'S'
+  	order by e.descrizione
+  	]]>
+  </query>
+  
+  <query name="CARICAMENTO_EMITTENTI_BNL_E_RAM">
+  <![CDATA[
+  	from it.ras.arco.bean.FinEmittente
+  	where emittenteId IN (14,5)
+  	and gestioneArco = 'S'
+  	]]>
+  </query>
+  
+  <query name="CARICAMENTO_EMITTENTI_NON_FITTIZIE">
+  <![CDATA[
+  	from it.ras.arco.bean.FinEmittente
+  	where visibilita is null
+  	or visibilita <> 'F' 
+  	]]>
+  </query>
+  
+</hibernate-mapping>
+

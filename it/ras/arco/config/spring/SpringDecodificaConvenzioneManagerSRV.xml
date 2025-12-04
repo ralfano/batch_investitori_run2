@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans> 
+ <bean id="GetPercentualeByCodiceSRV"
+    	class="it.ras.arco.service.DecodificaConvenzioneManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GetPercentualeByCodice</value>
+    	</property>
+    	
+    </bean>
+
+<bean id="GetPercentualeByCodice"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetPercentualeByCodice</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONVENZIONE</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>CONVENZIONE</value>
+    	</property>
+    </bean>
+
+
+
+
+</beans> 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA GESTIONI PATRIMONIALI  -->
+ <class name="it.ras.arco.bean.FinGPStorico" table="FIN_GP_STORICO" where="GSTD_ESIST_B='S'">
+  <id name="GpStoricoId" column="GP_STORICO_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_GP_STORICO_SEQ</param>
+   </generator>
+  </id>
+  <property name="contrattoId" type="integer" column="CONTRATTO_ID"/>
+ 
+  <property name="tipo" type="string" column="TIPO_T" length="3"/>
+  <property name="dataVal" type="date" column="DATA_VAL_D"/>
+ 
+  <property name="ctvTot" type="double" column="CTV_TOT_C"/>
+  <property name="liquidita" type="double" column="LIQUIDITA_C"/>
+  <property name="titoli" type="double" column="TITOLI_C"/>
+  <property name="perfNetta" type="double" column="PERF_NETTA_C"/>
+  <property name="perfNettaTri" type="double" column="PERF_NETTA_TRI_C"/>
+  <property name="perfNettaAnn" type="double" column="PERF_NETTA_ANN_C"/>
+  <property name="perfLordaTri" type="double" column="PERF_LORDA_TRI_C"/>
+  <property name="perfLordaAnn" type="double" column="PERF_LORDA_ANN_C"/>
+  <property name="perfBcmk" type="double" column="PERF_BCMK_C"/>
+  <property name="perfBcmkTri" type="double" column="PERF_BCMK_TRI_C"/>
+  <property name="perfBcmkAnn" type="double" column="PERF_BCMK_ANN_C"/>
+  <property name="prenotateDare" type="double" column="PRENOTATE_DARE_C"/>
+  <property name="prenotateAvere" type="double" column="PRENOTATE_AVERE_C"/>
+  <property name="dataPerf" type="date" column="DATA_PERF_D"/>
+  <property name="navPerf" type="double" column="NAV_PERF_C"/>
+    <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="utenteInserimento" type="string"
+   column="GSTD_USER_INS_S" length="20"/>
+ 
+  <property name="saldoSottoDossier" type="double" column="SALDO_DOSSIER_C" />
+<property name="PerfAnnInGest" type="double" column="PERF_ANN_IN_GEST"/>
+<property name="ImpCommissione" type="double" column="IMP_COMMISSIONE"/>
+
+<property name="DataStorico" type="date" column="DATA_STORICO"/>
+   
+   
+ </class>
+ 
+ <query name="GetGpStoricoByContrattoIdDataVal">select c from it.ras.arco.bean.FinGPStorico c where c.contrattoId = ? and c.dataVal=?</query>
+ 
+</hibernate-mapping>
+

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+ <!-- TABELLA ENTITA_PARAMETRO  -->
+ <class name="it.ras.arco.bean.FinEntitaParametro" 
+ 		table="FIN_ENTITA_PARAMETRO" 
+ 		where="GSTD_ESIST_B='S' and DATA_FINE_D >= sysdate"
+  		select-before-update="true"
+  		batch-size="50"
+  		dynamic-update="true"
+  		>
+  
+  <id name="entitaParametroId" column="ENTITA_PARAMETRO_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_ENTITA_PARAMETRO_SEQ</param>
+   </generator>
+  </id>
+  
+  
+  <!--
+   	DA CAVARE, SOSTITUITO DA EMITTENTE, PRODOTTO E AF
+  -->  
+  <property name="entitaId" type="integer" column="ENTITA_ID" length="18" />
+  <property name="tipoEntita" type="integer" column="TIPO_ENTITA" />
+
+
+  <property name="valore" type="string" column="VALORE" length="100"/>
+  <property name="dataInizio" type="timestamp" column="DATA_INIZIO_D"/>
+  <property name="dataFine" type="timestamp" column="DATA_FINE_D"/>
+  <property name="valoreDivisa" type="string" column="VALORE_DIVISA" length="20"/>
+  
+  
+
+
+
+  <!-- PARAMETRO ASSOCIATO -->
+  <many-to-one name="parametro" lazy="false"
+   class="it.ras.arco.bean.FinParametro" column="PARAMETRO_ID"
+   update="false" insert="true"
+   cascade="lock" not-found="ignore" fetch="join"
+   />
+
+
+  <!-- EMITTENTE ASSOCIATA -->
+  <many-to-one name="emittente" lazy="false"
+   class="it.ras.arco.bean.FinEmittente" column="EMITTENTE_ID"
+   update="true" insert="true"
+   cascade="lock" not-found="ignore" fetch="join"
+   />
+
+  <!-- PRODOTTO ASSOCIATO -->
+  <many-to-one name="prodotto" lazy="false"
+   class="it.ras.arco.bean.FinProdotto" column="PRODOTTO_ID"
+   update="true" insert="true" cascade="lock"
+   not-found="ignore" fetch="join"
+   />
+   
+  <!-- AF ASSOCIATA -->
+  <many-to-one name="attivitaFinanziaria" lazy="false"
+   class="it.ras.arco.bean.FinAttivitaFinanziaria" column="ATTIVITA_FIN_ID"
+   update="true" insert="true" cascade="lock"
+   not-found="ignore" fetch="join"
+   />
+  
+  <!--
+  	***********************
+  	  CAMPI STANDARD
+  	***********************
+  -->
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="40"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="40"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="40"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+
+  <!-- Duplicazione campi standard x Update (SLAVE) -->	
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  
+ </class>
+
+  <query name="GetListaParametriDiAttivita">
+  	from it.ras.arco.bean.FinEntitaParametro e
+  	where e.attivitaFinanziaria = ? 
+	and e.flagEsistenza = 'S'
+  </query>
+  
+  <query name="GetListaParametriDiProdotto">
+  	from it.ras.arco.bean.FinEntitaParametro e
+  	where e.prodotto = ? 
+  	and e.flagEsistenza = 'S'
+  </query>
+	
+</hibernate-mapping>
+

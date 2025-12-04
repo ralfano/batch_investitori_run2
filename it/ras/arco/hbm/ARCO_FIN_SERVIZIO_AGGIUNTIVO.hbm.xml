@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ 
+  <class name="it.ras.arco.bean.FinServizioAggiuntivo" table="FIN_SERVIZIO_AGGIUNTIVO" where="GSTD_ESIST_B='S'">
+  <id name="servAggiunId" column="SERV_AGGIUN_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_SERVIZIO_AGGIUNTIVO_SEQ</param>
+   </generator>
+  </id>
+  
+  <property name="dataCreazioneDisp"              column="DATA_CREAZIONE_DISP"            type="timestamp"   />
+  <!--<property name="contrattoId"                column="CONTRATTO_ID"                   type="integer"  />-->
+  <property name="numDispArco"                    column="NUM_DISP_ARCO"                  type="integer"   />
+  <property name="tipoOperazione"                 column="TIPO_OPERAZIONE"                type="string"   />
+  <property name="importoPrelievo"                column="IMPORTO_PRELIEVO"               type="double"  />
+  <property name="importo"                        column="IMPORTO"                        type="double"  />
+  <property name="numeroPolizza"                  column="NUMERO_POLIZZA"                 type="string"   />
+  <property name="dataAttivazione"                column="DATA_ATTIVAZIONE"               type="timestamp"  />
+  <property name="dataFineAttivazione"            column="DATA_FINE_ATTIVAZIONE"          type="timestamp"  />
+  <property name="dataPrelievo"                   column="DATA_PRELIEVO"                  type="timestamp"  />
+  <property name="posizioniEntrata"               column="POSIZIONI_ENTRATA"              type="string"   />
+  <property name="statoRid"  					  column="STATO_RID"  					  type="integer"  />
+  <property name="posizioniUscita" 				  column="POSIZIONI_USCITA"   			  type="string"/>
+  <property name="mezzoPagamento"                 column="MEZZO_PAGAMENTO"                type="string"   />
+  <property name="tipoFlusso"            		  column="TIPO_FLUSSO"                	  type="string"  />
+  <property name="periodicita"                    column="PERIODICITA"                    type="integer"  />
+  <property name="flagFineMese"                   column="FLAG_FINE_MESE"                 type="string"   />
+  <property name="abi"                            column="ABI"                            type="string"  />
+  <property name="cab"                            column="CAB"                            type="string"  />
+  <property name="cinIban"                        column="CIN_IBAN"                       type="string"   />
+  <property name="numeroCc"                       column="NUMERO_CC"                      type="string"   />
+  <property name="intestatarioCcRam"              column="INTESTATARIO_CC_RAM_S"          type="string"   />
+  <property name="quote"                          column="QUOTE"                          type="double"   />
+  <property name="percentualiEntrata"             column="PERCENTUALI_ENTRATA"            type="string"   />
+  <property name="numeroTrasferimenti"            column="NUMERO_TRASFERIMENTI"           type="integer"  />
+  <property name="checkDigitIban"                 column="CHECK_DIGIT_IBAN"               type="string"   />
+  <property name="codicePaeseIban"                column="CODICE_PAESE_IBAN"              type="string"   />
+  <property name="numeroPrelievi"                 column="NUMERO_PRELIEVI"                type="integer"  />
+  <property name="stato"				          column="STATO"             			  type="string"  />
+  <property name="numProgressivo" 	              column="NPROG"                          type="integer"  />
+  <property name="importoSwitch"                  column="IMPORTO_SWITCH"                 type="double"  />
+  <property name="importoRid"                     column="IMPORTO_RID"                    type="double"  />
+  <property name="fondoEntrata"                   column="FONDO_ENTRATA"                  type="string" length="2"  />
+  <property name="fondoUscita"                    column="FONDO_USCITA"                   type="string" length="2"  />
+  <property name="scontoComm"                     column="SCONTO_COMM"                    type="integer"  />
+  <property name="banca"                          column="BANCA"                          type="string" length="50"  />
+  <property name="scadenzaRid"                    column="SCADENZA_RID"                   type="integer"  />
+  <property name="flagBenestare"                  column="FLAG_BENESTARE"                 type="string"   />
+  <property name="tipoServizio"                   column="TIPO_SERVIZIO"                  type="string"   length="20"/> 
+  <property name="compagniaDestId"                column="COMPAGNIA_DEST_ID"              type="integer"   length="18"/> 
+  <property name="giacenzaMedia"                  column="GIACENZA_MEDIA"                 type="double"/>
+  <property name="giacenzaMinima"                 column="GIACENZA_MINIMA"                type="double"/>
+  <property name="giacenzaMassima"                column="GIACENZA_MASSIMA"               type="double"/>
+
+  <property name="sospendiDopo"                   column="SOSPENDI_DOPO_T"                type="string" length="5"  />
+  <property name="flagInvestimento"               column="FLAG_INVESTIMENTO_B"            type="string" length="1"  />	
+	
+  <property name="tipoRimborso"                   column="TIPO_RIMBORSO"                  type="string" length="2"  />
+  <property name="dataInizioPagamento"            column="DATA_INIZIO_PAGAMENTO"          type="timestamp"  />
+  <property name="numContrDestinazione"           column="NUM_CONTR_DESTINAZIONE"         type="string"   length="25"/> 
+  <property name="numAssegno"           	  	  column="NUM_ASSEGNO"                    type="string"   length="25"/> 
+  <property name="dataVersamento"           	  column="DATA_VERSAMENTO"                type="timestamp" /> 
+  <property name="indirizzoInvio"           	  column="INDIRIZZO_INVIO"                type="string"  length="100"/> 
+  <property name="comune"           	  		  column="COMUNE"                		  type="string"  length="40"/> 
+  <property name="provincia"           	  		  column="PROVINCIA"               		  type="string"  length="3"/> 
+  <property name="nazione"           	  		  column="NAZIONE"               		  type="string"  length="3"/> 
+  <property name="cap"           	  		  	  column="CAP"		               		  type="string"  length="7"/> 
+  <property name="denominazione"           	 	  column="DEST_DENOMINAZIONE_S"		      type="string"  length="150"/> 
+  <property name="codiceSocieta"		          column="COD_SOCIETA_S"		   	      type="string"  length="5"/> 
+  
+
+  <property name="dataInserimento"                column="GSTD_INSE_D"                    type="timestamp" />
+  <property name="utenteInserimento"              column="GSTD_USER_INS_S"                type="string"   />
+  <property name="flagEsistenza"                  column="GSTD_ESIST_B"                   type="string"   />
+  <property name="userUltimaModifica" 			  column="GSTD_ULT_USER_S"  			  type="string"    length="20"/>
+  <property name="proceduraUltimaModifica" 		  column="GSTD_ULT_PROC_S" 				  type="string"    length="20"/>
+  <property name="dataUltimaModifica" 			  column="GSTD_ULT_MOD_D" 				  type="timestamp" />
+  <property name="tipoUltimaModifica" 			  column="GSTD_TIPO_MOD_B"   			  type="string"    length="1"/>
+  <property name="userUltimaModificaSlave"        column="GSTD_ULT_USER_S"  			  type="string"    length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave"   column="GSTD_ULT_PROC_S" 				  type="string"    length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" 		  column="GSTD_ULT_MOD_D"  				  type="timestamp" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" 		  column="GSTD_TIPO_MOD_B"  			  type="string"    length="1" insert="false" update="false"/>
+
+   <!--many-to-one name="contratto"
+   class="it.ras.arco.bean.FinContratto" column="CONTRATTO_ID"  lazy="true" cascade="lock"
+   update="true" insert="true" /-->
+   
+   <!--
+   <many-to-one name="contratto"
+   class="it.ras.arco.bean.FinContratto" column="CONTRATTO_ID"  not-found="ignore" lazy="true" cascade="lock"
+   />
+   -->
+
+    <many-to-one name="posizione"
+	   class="it.ras.arco.bean.FinPosizione" column="POSIZIONE_ID" not-found="ignore" lazy="proxy" cascade="lock,save-update"/>
+   
+    <many-to-one name="posizioneUscita"
+	   class="it.ras.arco.bean.FinPosizione" column="POSIZIONE_USCITA" not-found="ignore" lazy="proxy" cascade="lock,save-update"/>
+   
+
+  <many-to-one name="soggetto"
+   class="it.ras.arco.bean.FinSoggetto" column="SOGGETTO_ID"
+   cascade="lock" 
+   not-found="ignore"
+   lazy="proxy" 
+   />
+
+<!--  vecchia relazione con la sottoscrizione
+   <many-to-one name="sottoscrizione"
+   class="it.ras.arco.bean.FinSottoscrizione" column="SOTTOSCRIZIONE_ID"  not-found="ignore" cascade="lock"  />
+  -->
+  <!-- nuova relazione con la sottoscrizione-->
+  <!-- 
+  <set name="sottoscrizione" cascade="lock" >
+    <key column="SERV_AGGIUN_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinSottoscrizione"  />
+ </set>
+  -->
+ 
+ <!--  Nuova tabella di legame tra la sottoscrizione e la servizio aggiuntivo -->
+ <set name="sottoscrServAgg" cascade="lock" 
+	inverse="true" where ="GSTD_ESIST_B='S'">
+   <key column="SERV_AGGIUN_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinSottoscrServAgg"/>
+  </set>
+  
+ 
+ </class>
+ <query name="GetServizio"> from it.ras.arco.bean.FinServizioAggiuntivo where tipoFlusso=? and posizione=?</query>
+<query name="GetServizioByPosizioneInOut"> from it.ras.arco.bean.FinServizioAggiuntivo where tipoFlusso=? and posizione=? and posizioneUscita=?</query>
+<query name="GetServizioPol"> from it.ras.arco.bean.FinServizioAggiuntivo where tipoFlusso=? and posizione=? and numeroPolizza=?</query>
+<query name="GetServizioNum"> from it.ras.arco.bean.FinServizioAggiuntivo where tipoFlusso=? and posizione=?</query>
+<query name="GetServizioBySott"> from it.ras.arco.bean.FinServizioAggiuntivo  where tipoFlusso=? and numDispArco=?</query>
+</hibernate-mapping>
+

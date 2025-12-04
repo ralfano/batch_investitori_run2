@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ATT_FIN -->
+ <class name="it.ras.arco.batch.bean.FlxMandnman" rowid="rowid" table="FLX_MANDMAN">
+  <id name="contratti_id" column="FLX_ID" type="java.lang.Integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_MANDNMAN_SEQ</param>
+   </generator>
+  </id>
+  <property name="dtulm" type="date" column="DTULM"/>
+  <property name="utent" type="string" column="UTENT" length="4"/>
+  <property name="keypr" type="string" column="KEYPR" length="9"/>
+  <property name="fondo" type="string" column="FONDO" length="2"/>
+  <property name="manda" type="string" column="MANDA" length="11"/>
+  <property name="ckdig" type="string" column="CKDIG" length="1"/>
+  <property name="baren" type="string" column="BAREN" length="5"/>
+  <property name="numco" type="string" column="NUMCO" length="11"/>
+  <property name="tppia" type="string" column="TPPIA" length="2"/>
+  <property name="clcli" type="string" column="CLCLI" length="7"/>
+  <property name="dtdem" type="date" column="DTDEM"/>
+  <property name="dtist" type="date" column="DTIST"/>
+  <property name="stman" type="string" column="STMAN" length="3"/>
+  <property name="numos" type="string" column="NUMOS" length="5"/>
+  <property name="dupia" type="string" column="DUPIA" length="3"/>
+  <property name="nuvmp" type="string" column="NUVMP" length="3"/>
+  <property name="toinv" type="double" column="TOINV"/>
+  <property name="modal" type="string" column="MODAL" length="1"/>
+  <property name="imvmu" type="double" column="IMVMU"/>
+  <property name="frece" type="string" column="FRECE" length="1"/>
+  <property name="pever" type="string" column="PEVER" length="2"/>
+  <property name="cospe" type="double" column="COSPE"/>
+  <property name="facor" type="string" column="FACOR" length="2"/>
+  <property name="dtcop" type="date" column="DTCOP"/>
+  <property name="dtscv" type="date" column="DTSCV"/>
+  <property name="evide" type="string" column="EVIDE" length="3"/>
+  <property name="dtevi" type="date" column="DTEVI"/>
+  <property name="compa" type="string" column="COMPA" length="2"/>
+  <property name="ageco" type="string" column="AGECO" length="7"/>
+  <property name="coret" type="string" column="CORET" length="1"/>
+  <property name="adage" type="string" column="ADAGE" length="10"/>
+  <property name="adspl" type="string" column="ADSPL" length="10"/>
+  <property name="dtria" type="date" column="DTRIA"/>
+  <property name="conve" type="string" column="CONVE" length="2"/>
+  <property name="totac" type="double" column="TOTAC"/>
+  <property name="qutoa" type="double" column="QUTOA"/>
+  <property name="qutoc" type="double" column="QUTOC"/>
+  <property name="codcc" type="string" column="CODCC" length="15"/>
+  <property name="prove" type="string" column="PROVE" length="1"/>
+  <property name="eccrt" type="double" column="ECCRT"/>
+  <property name="qutun" type="double" column="QUTUN"/>
+  <property name="dtesv" type="string" column="DTESV" length="8"/>
+  <property name="dtmtu" type="date" column="DTMTU"/>
+  <property name="famig" type="string" column="FAMIG" length="1"/>
+  <property name="cdsgr" type="string" column="CDSGR" length="1"/>
+  <property name="qublo" type="double" column="QUBLO"/>
+  <property name="flman" type="string" column="FLMAN" length="1"/>
+  <property name="dtupr" type="date" column="DTUPR"/>
+  <property name="codsq" type="string" column="CODSQ" length="7"/>
+  <property name="classe" type="string" column="CLASSE" length="1"/>
+  <property name="manrf" type="string" column="MANRF" length="11"/>
+  <property name="gstdStatoElab" type="string" column="STATO_ELAB_B" length="2"/>
+  <property name="istanza" type="string" column="ISTANZA_S" length="2"/>
+  
+  <property name="descrizioneErrore" type="string" column="DESCRIZIONE_ERRORE_S" length="100"/>
+  <property name="dataElaborazione" type="timestamp" column="DATA_ELAB_D"/>  
+ </class>
+ <query name="QUERY_MANDNMAN_SQL">from it.ras.arco.batch.bean.FlxMandnman c where c.gstdStatoElab in('D') and c.coret in ('D','R')</query>
+</hibernate-mapping>

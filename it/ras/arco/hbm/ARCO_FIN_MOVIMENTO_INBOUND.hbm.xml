@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA MOVIMENTO INBOUND  -->
+ <class name="it.ras.arco.bean.FinMovimentoInBound" table="FIN_MOVIMENTO_INBOUND" where="GSTD_ESIST_B='S'">
+  <id name="movimentoinboundId" column="MOVIMENTO_INBOUND_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_MOVIMENTO_INBOUND_SEQ</param>
+   </generator>
+  </id>
+  <property name="abi"                            column="ABI_S"                          type="string" length="5" />
+  <property name="cab"                            column="CAB_S"                          type="string" length="5" />
+  <property name="cambio"                         column="CAMBIO_C"                       type="double" />
+  <property name="causale"                        column="CAUSALE_S"                      type="string" length="3" />
+  <property name="cc"                             column="CC_S"                           type="string" length="15" />
+  <property name="chiaveExt"                      column="CHIAVE_EXT_S"                   type="string" length="50" />
+  <property name="codClienteExt"                  column="COD_CLIENTE_EXT_S"              type="string" length="12" />
+  <property name="codCollocatore"                 column="COD_COLLOCATORE_S"              type="string" length="5" />
+  <property name="codFondo"                       column="COD_FONDO_S"                    type="string" length="5" />
+  <property name="codFondoSw"                     column="COD_FONDO_SW_S"                 type="string" length="5" />
+  <property name="codIstituto"                    column="COD_ISTITUTO_S"                 type="integer" />
+  <property name="codicePromotore"                column="CODICE_PROMOTORE_S"             type="string" length="10" />
+  <property name="commBcaColloca"                 column="COMM_BCA_COLLOCA_C"             type="double" />
+  <property name="commConversione"                column="COMM_CONVERSIONE_C"             type="double" />
+  <property name="commIngresso"                   column="COMM_INGRESSO_C"                type="double" />
+  <property name="commIntervento"                 column="COMM_INTERVENTO_C"              type="double" />
+  <property name="commMantenimento"               column="COMM_MANTENIMENTO_C"            type="double" />
+  <property name="commPerformance"                column="COMM_PERFORMANCE_C"             type="double" />
+  <property name="commRimborso"                   column="COMM_RIMBORSO_C"                type="double" />
+  <property name="commSocGest"                    column="COMM_SOC_GEST_C"                type="double" />
+  <property name="commValuta"                     column="COMM_VALUTA_C"                  type="double" />
+  <property name="commissione"                    column="COMMISSIONE_C"                  type="double" />
+  <property name="dataCambioConferm"              column="DATA_CAMBIO_CONFERM_D"          type="date" />
+  <property name="dataCambio"                     column="DATA_CAMBIO_D"                  type="date" />
+  <property name="dataCambioFisc"                 column="DATA_CAMBIO_FISC_D"             type="date" />
+  <property name="dataCambioSwitch"               column="DATA_CAMBIO_SWITCH_D"           type="date" />
+  <property name="dataCaricamento"                column="DATA_CARICAMENTO_D"             type="date" />
+  <property name="dataRegolamento"                column="DATA_REGOLAMENTO_D"             type="date" />
+  <property name="dataOperazione"                 column="DATA_OPERAZIONE_D"              type="date" />
+  <property name="dataSottoscrizione"             column="DATA_SOTTOSCRIZIONE_D"          type="date" />
+  <property name="divisa"                         column="DIVISA_T"                       type="string" length="3" />
+  <property name="flxId"                          column="FLX_ID"                         type="integer" />
+  <property name="impMinusvalFisc"                column="IMP_MINUSVAL_FISC_C"            type="double" />
+  <property name="impPlusvalFisc"                 column="IMP_PLUSVAL_FISC_C"             type="double" />
+  <property name="importo"                        column="IMPORTO_C"                      type="double" />
+  <property name="importoLordoValuta"             column="IMPORTO_LORDO_VALUTA_C"         type="double" />
+  <property name="istanza"                        column="ISTANZA_S"                      type="string" length="1" />
+  <property name="mezzoPagamento"                 column="MEZZO_PAGAMENTO_T"              type="string" length="3" />
+  <property name="contrattoExt"                   column="CONTRATTO_EXT_S"                type="string" length="25" />
+  <property name="numOperazione"                  column="NUM_OPERAZIONE_N"               type="string" length="20" />
+  <property name="numeroCertificato"              column="NUMERO_CERTIFICATO_N"           type="integer" />
+  <property name="numeroRate"                     column="NUMERO_RATE_N"                  type="integer" />
+  <property name="numeroRecord"                   column="NUMERO_RECORD_N"                type="integer" />
+  <property name="numeroSottoscrizione"           column="NUMERO_SOTTOSCRIZIONE_C"        type="string"  length="11"/>
+  <property name="prezzo"                         column="PREZZO_C"                       type="double" />
+  <property name="progInvioCollocatore"           column="PROG_INVIO_COLLOCATORE_N"       type="integer" />
+  <property name="quantita"                       column="QUANTITA_C"                     type="double" />
+  <property name="ritenutaFisc"                   column="RITENUTA_FISC_N"                type="double" />
+  <property name="speseBcaColloca"                column="SPESE_BCA_COLLOCA_C"            type="double" />
+  <property name="speseBcaCorr"                   column="SPESE_BCA_CORR_C"               type="double" />
+  <property name="speseEmisCertf"                 column="SPESE_EMIS_CERTF_C"             type="double" />
+  <property name="speseFondo"                     column="SPESE_FONDO_C"                  type="double" />
+  <property name="speseGeneriche"                 column="SPESE_GENERICHE_C"              type="double" />
+  <property name="speseSocGest"                   column="SPESE_SOC_GEST_C"               type="double" />
+  <property name="speseTipoPag"                   column="SPESE_TIPO_PAG_C"               type="double" />
+  <property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2" />
+  <property name="tassoCambioSwitch"              column="TASSO_CAMBIO_SWITCH_C"          type="double" />
+  <property name="tipoOperazione"                 column="TIPO_OPERAZIONE_T"              type="integer" />
+  <property name="tipoOpzioneFisc"                column="TIPO_OPZIONE_FISC"              type="string" length="2" />
+  <property name="tipoRecord"                     column="TIPO_RECORD_T"                  type="integer" />
+  <property name="importoNetto"                   column="IMPORTO_NETTO_C"                type="double" />
+  <property name="descrizioneErrore"              column="DESCRIZIONE_ERRORE_S"           type="string" length="100" />
+  <property name="codEmittente"              	  column="CODICE_EMITTENTE"           	  type="string" length="5" />
+  <property name="codIsin"            			  column="CODICE_ISIN"       			  type="string" length="12" />
+  <property name="divisaCommissioni"     		  column="DIVISA_COMMISSIONI"     		  type="string" length="3" />
+  <property name="importoNettoValuta"    		  column="IMPORTO_NETTO_VALUTA_C"    	  type="double" />
+  <property name="codEmittenteEsterno"            column="CODICE_EMITTENTE_ESTERNO"       type="string" length="3" />
+  <property name="tipoQuote"            		  column="TIPO_QUOTE"       			  type="string" length="1" />
+  <property name="quoLibCont"            		  column="QUO_LIB_CONT"       		      type="integer" />
+  <property name="numRifEnteExt"            	  column="N_RIF_ENTE_EXT"       	      type="string" length="11" />
+  <property name="idTempMov"            		  column="ID_TEMPORANEO_MOVIMENTO"        type="integer" />
+  <property name="ordineId"            		      column="ORDINE_ID"                      type="string" length="50" />
+  <property name="prezzoValuta"            	 	  column="PREZZO_VALUTA_C"                type="double"/>
+  <property name="speseGenericheValuta"           column="SPESE_GENERICHE_VALUTA_C"       type="double" />
+  <property name="sottoscrizioneId"          	  column="SOTTOSCRIZIONE_ID"       	      type="integer" />
+  <property name="scontoQuoteTunnel"          	  column="SCONTO_QUOTE_TUNNEL"       	  type="double" />
+  <property name="cambioCommissioni"              column="CAMBIO_COMMISSIONI_C"           type="double" />
+  <property name="numeroOperazioneSwitch"         column="NUMERO_OPERAZIONE_SWITCH"       type="integer" />
+  <property name="codiceDivLor"            		  column="CODICE_DIVISA_LORDO_S"          type="string" length="3" />
+  <property name="cambioDivLorSuEur"              column="CAMBIO_DIVISA_LORDO_SU_EURO"    type="double"/>
+  <property name="dataCambioDivisaLordo"          column="DATA_CAMBIO_DIVISA_LORDO_D"     type="date" />
+  <property name="dataStorno"                     column="DATA_STORNO_D "                 type="date" />
+  <property name="descrCausale"            		  column="DESCRIZIONE_CAUSALE"            type="string" length="45" />
+  <property name="crap"            		          column="CRAP_N"          				  type="string" length="13" />
+  <property name="tasse"            			  column="TASSE_N"      				  type="double" />
+  <property name="dataElaborazione"               column="DATA_ELABORAZIONE_D "           type="timestamp" />
+  <property name="dataValuta"                     column="DATA_VALUTA_D "              	  type="date" />
+  <property name="codrgRam"         			  column="CODRG_RAM"       				  type="integer" />
+  <property name="numQuoCert"                     column="N_QUOTE_CERT"                   type="double" />
+  <property name="ndispRam"                       column="N_DISP_RAM"       type="integer" />
+   <property name="codRete"            		  column="CODICE_RETE"            type="string" length="1" />
+
+ </class> 
+
+<query name="CURSOR_MOVIMENTO_INBOUND">from it.ras.arco.bean.FinMovimentoInBound mov where mov.statoElab in('D')  order by mov.contrattoExt, mov.codEmittente</query>
+
+</hibernate-mapping>
+

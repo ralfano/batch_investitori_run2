@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxSecAnagDt" rowid="rowid" table="FLX_SEC_ANAG_DT">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SEC_ANAG_DT_SEQ</param>
+   </generator>
+  </id>
+ 
+<property name="ndgIntestazione"                column="NDG_INTESTAZIONE"               type="string"  />
+<property name="ndgPrimoIntestatario"           column="NDG_PRIMO_INTESTATARIO"         type="string"  />
+<property name="codFilSec"                      column="COD_FIL_SEC"                    type="string"  />
+<property name="codCatSec"                      column="COD_CAT_SEC"                    type="string"  />
+<property name="numPratSec"                     column="NUM_PRAT_SEC"                   type="string"  />
+<property name="tipoProdotto"                   column="TIPO_PRODOTTO"                  type="string" length="1"  />
+<property name="deroga"                         column="DEROGA"                         type="string" length="1"  />
+<property name="dataApertura"                   column="DATA_APERTURA"                  type="date"  />
+<property name="dataChiusura"                   column="DATA_CHIUSURA"                  type="date"  />
+<property name="cfil"                           column="CFIL"                           type="string"  />
+<property name="cage"                           column="CAGE"                           type="string"  />
+<property name="cprg"                           column="CPRG"                           type="string"  />
+<property name="csdp"                           column="CSDP"                           type="string"  />
+<property name="indirizzoCorrisp"               column="INDIRIZZO_CORRISP"              type="string" length="35"  />
+<property name="cittaCorrisp"                   column="CITTA_CORRISP"                  type="string" length="30"  />
+<property name="capCorrisp"                     column="CAP_CORRISP"                    type="string" length="5"  />
+<property name="provCorrisp"                    column="PROV_CORRISP"                   type="string" length="2"  />
+<property name="codAgeProm"                     column="COD_AGE_PROM"                   type="string" length="5"  />
+<property name="codRete"                        column="COD_RETE"                       type="string" length="1"  />
+<property name="codCompagnia"                   column="COD_COMPAGNIA"                  type="string" length="2"  />
+<property name="numRappApp"                     column="NUM_RAPP_APP"                   type="string" length="8"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+<property name="rapporto"                        column="RAPPORTO"                      type="string"   />
+ <property name="descrizioneErrore"  column="DESCRIZIONE_ERRORE_S" type="string" length="100"  />
+  <property name="dataElab" column="DATA_ELAB_D" type="timestamp"  />
+ <property name="nazione" column="NAZIONE_T" type="string"  />
+ 
+ </class>
+ <query name="SEC_ANAGRAFICA_DT">from
+it.ras.arco.batch.bean.FlxSecAnagDt pc where pc.statoElab='D1' order by pc.rapporto,pc.csdp
+</query>
+
+
+</hibernate-mapping>

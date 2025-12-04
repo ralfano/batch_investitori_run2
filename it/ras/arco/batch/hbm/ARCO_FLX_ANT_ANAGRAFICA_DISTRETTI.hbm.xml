@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ANAGRAFICA AGENZIA -->
+ <class name="it.ras.arco.batch.bean.FlxAntAnagraficaDistretti" rowid="rowid" table="FLX_ANT_ANAGRAFICA_DISTRETTI">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_ANT_ANAG_DISTRETTI_SEQ</param>
+   </generator>
+  </id>  
+  <property name="codRete" type="string" column="CODICE_RETE"/>  
+  <property name="codCompagnia" type="string" column="CODICE_COMPAGNIA"/>  
+  <property name="codDistretto" type="string" column="CODICE_DISTRETTO"/>  
+  <property name="desDistretto" type="string" column="DISTRETTO"/>  
+  <property name="comune" type="string" column="COMUNE"/>  
+  <property name="provincia" type="string" column="SIGLA_PROVINCIA"/>  
+  <property name="desProvincia" type="string" column="PROVINCIA"/>  
+  <property name="dataInizioValidita" type="date" column="DATA_INIZIO_D"/>
+  <property name="dataFineValidita" type="date" column="DATA_FINE_D"/>  
+  <property name="descrizioneErrore" type="string" column="DESCRIZIONE_ERRORE_S" length="100" />
+  <property name="dataErrore" type="date" column="DATA_ELAB_D" />
+  <property name="statoElaborazione" type="string" column="STATO_ELAB_B"/>
+  <property name="istanza" type="string" column="ISTANZA_S"/>
+  <property name="dataCaricamento" type="date" column="DATA_CARICAMENTO_S"/>
+   
+ </class>
+  <!-- QUERY -->
+ <query name="ANT_ANAGRAFICA_DISTRETTI">from it.ras.arco.batch.bean.FlxAntAnagraficaDistretti ad where ad.statoElaborazione='D' order by ad.codDistretto</query>
+ 
+</hibernate-mapping>
+
+

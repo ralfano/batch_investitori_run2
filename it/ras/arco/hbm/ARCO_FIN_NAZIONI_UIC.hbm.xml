@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.bean.FinNazioniUic" table="FIN_NAZIONI_UIC">
+  <id name="nazioneId" column="NAZIONE_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_NAZIONI_UIC_SEQ</param>
+   </generator>
+  </id>
+<property name="codiceIso"                      column="CODICE_ISO_S"                   type="string" length="2"  />
+<property name="descrizione"                    column="DESCRIZIONE_S"                  type="string" length="255"  />
+<property name="codiceUic"                      column="CODICE_UIC_S"                   type="string" length="3"  />
+<property name="userUltimaModifica"             column="GSTD_ULT_USER_S"                type="string" length="40"  />
+<property name="proceduraUltimaModifica"        column="GSTD_ULT_PROC_S"                type="string" length="40"  />
+<property name="dataUltimaModifica"             column="GSTD_ULT_MOD_D"                 type="date"  />
+<property name="dataInserimento"                column="GSTD_INSE_D"                    type="date"  />
+<property name="flagEsistenza"                  column="GSTD_ESIST_B"                   type="string" length="1"  />
+<property name="utenteInserimento"              column="GSTD_USER_INS_S"                type="string" length="40"  />
+<property name="tipoUltimaModifica"             column="GSTD_TIPO_MOD_B"                type="string" length="1"  />
+
+ </class>
+ 
+ <query name="GetNazioneByCodIso">from it.ras.arco.bean.FinNazioniUic o where o.codiceIso = ?    </query> 
+ <query name="GetNazioneByCodUic">from it.ras.arco.bean.FinNazioniUic o where o.codiceUic = ?    </query> 
+ 
+</hibernate-mapping>
+

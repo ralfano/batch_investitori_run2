@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA FLX_SEC_SALDI_MEDI_ANNUALI CC -->
+ <class name="it.ras.arco.batch.bean.FlxSecSaldiMediAnnuali" table="FLX_SEC_SALDI_MEDI_ANNUALI" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SEC_SALDI_MEDI_ANNUALI_SEQ</param>
+   </generator>
+  </id>
+  <property name="codAgeProm"                     column="COD_AGE_PROM"                   type="string" length="5"  />
+<property name="codRete"                        column="COD_RETE"                       type="string" length="1"  />
+<property name="codCompagnia"                   column="COD_COMPAGNIA"                  type="string" length="2"  />
+<property name="conto"                          column="CONTO"                          type="string" length="8" />
+<property name="giacenza"                       column="GIACENZA"                       type="double"  />
+<property name="fido"                           column="FIDO"                           type="double"  />
+<property name="dataRiferimento"                column="DATA_RIFERIMENTO"               type="date"  />
+<property name="flagSubagente"                  column="FLAG_SUBAGENTE"                 type="string"  />
+<property name="flagSinergia"                   column="FLAG_SINERGIA"                  type="string"  />
+<property name="delta"                          column="DELTA_N"                          type="double"  />
+<property name="flagEstinzione"                 column="FLAG_ESTINZIONE"                type="string" length="1"  />
+<property name="filiale"                        column="FILIALE"                        type="string" length="5" />
+<property name="codProd"                        column="COD_PROD"                       type="string" length="4"  />
+<property name="convenzione"                    column="CONVENZIONE"                    type="string" length="10"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+<property name="descrizioneErrore"                column="DESCRIZIONE_ERRORE_S"             type="string" length="100" />
+<property name="dataElaborazione"                column="DATA_ELAB_D"             type="date"  />
+
+</class>
+ <query name="SEC_SALDI_MEDI_ANNUALI_SQL">from  
+ it.ras.arco.batch.bean.FlxSecSaldiMediAnnuali</query>
+</hibernate-mapping>

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO GENERICO SOGGETTOMANAGER -->
+    
+  
+	
+	 <bean id="InsCointestazione"      class="it.ras.arco.service.CointestazioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>INSERT</value>
+		</property>
+	</bean>
+	
+	 <bean id="InsCointestazioneRAM"      class="it.ras.arco.service.CointestazioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>INSERT_RAM</value>
+		</property>
+	</bean>
+
+	<bean id="GetCointestazioneBySoggettoIdMono"      class="it.ras.arco.service.CointestazioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_BY_SOGG_ID_MONO</value>
+		</property>
+	</bean>
+	
+	 <bean id="GetCointestazione"      class="it.ras.arco.service.CointestazioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET</value>
+		</property>
+	</bean>
+	<bean id="GetCointestazioneByNdg"      class="it.ras.arco.service.CointestazioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_BY_NDG</value>
+		</property>
+	</bean>
+	
+	<bean id="GetCointestazioneByNdgFabbrSRV"      class="it.ras.arco.service.CointestazioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_BY_CODICE_ESTERNO_FABBRICA</value>
+		</property>
+	</bean>
+	
+	 <bean id="GetCointestazioneBySoggettoId"      class="it.ras.arco.service.CointestazioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_BY_SOGG_ID</value>
+		</property>
+	</bean>
+	
+	<bean id="GetCointestazioneBySoggCoin"      class="it.ras.arco.service.CointestazioneManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_BY_SOGGCOINT</value>
+		</property>
+	</bean>
+		
+		 <bean id="updateCointestazioneSRV"
+    	class="it.ras.arco.service.CointestazioneManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>updateCointestazione</value>
+    	</property>
+      </bean>
+      
+      
+      
+      <bean id="updateCointestazione" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>8</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>LISTCOINT</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>LISTCOINT</value>
+		</property>
+	</bean>
+      
+      
+		
+	<bean id="CensimentoCointestazioneMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>5</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>ROWCOINT</value>
+      </list>
+     </property>
+     <property name="output">
+       <value>COINT</value>
+     </property>
+     </bean>   
+  
+    <bean id="GetCointByNdgMD"    
+    class="it.ras.flag.module.DefaultDbModule" >
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetCointestazioneByExternalCode</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>FABBRICA</value>
+    			<value>NDG</value>	
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>OBJ_DECOD_NDG</value>
+    	</property>
+    </bean>
+    
+    
+      <bean id="GetCointByNdgGenMD"    
+    class="it.ras.flag.module.DefaultDbModule" >
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetCointestazioneByExternalCodeGen</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>FABBRICA</value>
+    			<value>NDG</value>	
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>OBJ_DECOD_NDG</value>
+    	</property>
+    </bean>
+    
+    
+   
+   
+    <bean id="GetCointBySoggIdMD"    
+   class="it.ras.flag.module.DefaultDbModule">
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetCointestazioneBySoggettoId</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>SOGGETTO_ID</value>
+    		</list>
+
+    	</property>
+    	<property name="paramNames">
+    	<list>
+    			<value>soggettoId</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>COINTESTAZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetCointBySoggIdMonoMD"    
+   class="it.ras.flag.module.DefaultDbModule">
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetCointestazioneBySoggettoIdMono</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>SOGGETTO_ID</value>
+    			<value>TIPO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>COINTESTAZIONE</value>
+    	</property>
+    </bean>
+    
+    
+    
+    
+   <bean id="GetCointestazioneMD"    
+   class="it.ras.flag.module.DefaultDbModule">
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetCointestazione</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>SOGGCOIN</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>soggCoin</value>
+    			
+    		</list>
+    	</property>
+  
+    	<property name="output">
+    		<value>ELENCO_COINT_OBJ</value>
+    	</property>
+    </bean>
+   
+   <bean id="CheckCointestazioneOrderedMD"    
+   class="it.ras.flag.module.DefaultDbModule" >
+   <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>Check_Cointestazione</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>COINTESTAZIONE</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>COINTESTAZIONE_VIEW</value>
+    	</property>
+    </bean>
+
+
+</beans> 
+
+

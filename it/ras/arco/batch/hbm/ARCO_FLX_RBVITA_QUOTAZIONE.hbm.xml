@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxRBvitaQuotazione" rowid="rowid" table="FLX_RBVITA_QUOTAZIONE" where="STATO_ELAB_B='D'">
+  <id name="flxid" column="FLX_ID" type="java.lang.Integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_RBVITA_QUOTAZIONE_SEQ</param>
+   </generator>
+  </id>
+<property name="comp"                           column="COMP"                           type="string" length="2"  />
+<property name="fondofin"                       column="FONDOFIN"                       type="string" length="10" />
+<property name="descr"                          column="DESCR"                          type="string" length="30"  />
+<property name="dtquota"                        column="DTQUOTA"                        type="date"  />
+<property name="valquota"                       column="VALQUOTA"                       type="double"  />
+<property name="divisa"                         column="DIVISA"                         type="integer"  />
+<property name="diviso"                         column="DIVISO"                         type="string" length="3"  />
+<property name="cambio"                         column="CAMBIO"                         type="double"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="descrizioneErrore"              column="DESCRIZIONE_ERRORE_S"           type="string" length="100"  />
+<property name="dataElab"                       column="DATA_ELAB_D"                    type="timestamp"  />
+
+
+ </class>
+ <query name="RBVITA_QUOTAZIONI_SQL">from it.ras.arco.batch.bean.FlxRBvitaQuotazione</query>
+</hibernate-mapping>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA PREMI POLIZZE-->
+ <class name="it.ras.arco.bean.FinPremioPolizza"
+  table="FIN_PREMIO_POLIZZA" where="GSTD_ESIST_B='S'">
+  <id name="premioPolizzaId" column="PREMIO_POLIZZA_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_PREMIO_POLIZZA_SEQ</param>
+   </generator>
+  </id>
+  <property name="priPrmPag" type="double" column="PRI_PRM_PAG_C"/>
+  <property name="priPrmPagCi" type="double" column="PRI_PRM_PAG_CI_C"/>
+  <property name="cmlPrmLr" type="double" column="CML_PRM_LR_C"/>
+  <property name="cmlPrmLrCi" type="double" column="CML_PRM_LR_CI_C"/>
+  <property name="cmlPrmNt" type="double" column="CML_PRM_NT_C"/>
+  <property name="cmlPrmNtCi" type="double" column="CML_PRM_NT_CI_C"/>
+  <property name="ultPrmPagLr" type="double" column="ULT_PRM_PAG_LR_C"/>
+  <property name="ultPrmPagNt" type="double" column="ULT_PRM_PAG_NT_C"/>
+  <property name="ultRtEmsLr" type="double" column="ULT_RT_EMS_LR_C"/>
+  <property name="ultRtEmsLrCi" type="double" column="ULT_RT_EMS_LR_CI_C"/>
+  <property name="ultRtEmsNt" type="double" column="ULT_RT_EMS_NT_C"/>
+  <property name="ultRtEmsNtCi" type="double" column="ULT_RT_EMS_NT_CI_C"/>
+  <property name="ultRtPagLr" type="double" column="ULT_RT_PAG_LR_C"/>
+  <property name="ultRtPagLrCi" type="double" column="ULT_RT_PAG_LR_CI_C"/>
+  <property name="ultRtPagNt" type="double" column="ULT_RT_PAG_NT_C"/>
+  <property name="ultRtPagNtCi" type="double" column="ULT_RT_PAG_NT_CI_C"/>
+  <property name="dirittiPerf" type="double" column="DIRITTI_PERF_C"/>
+  <property name="dirittiQuiet" type="double" column="DIRITTI_QUIET_C"/>
+  <property name="codTassaVita" type="double" column="COD_TASSA_VITA_C"/>
+  <property name="codTassaCi" type="double" column="COD_TASSA_CI_C"/>
+  <property name="costoComplInv" type="double" column="COSTO_COMPL_INV_C"/>
+  <property name="dtUltRataPag" type="date" column="DT_ULT_RATA_PAG_D"/>
+  <property name="dtUltRataInc" type="date" column="DT_ULT_RATA_INC_D"/>
+  <property name="dtProxQuiet" type="date" column="DT_PROX_QUIET_D"/>
+  <property name="dtUltRtEme" type="date" column="DT_ULT_RT_EME_D"/>
+  <property name="cmbUltRataEme" type="double" column="CMB_ULT_RATA_EME_C"/>
+  <property name="cmbUltRataPag" type="double" column="CMB_ULT_RATA_PAG_C"/>
+  <property name="userUltimaModifica" type="string"
+   column="GSTD_ULT_USER_S" length="20"/>
+  <property name="proceduraUltimaModifica" type="string"
+   column="GSTD_ULT_PROC_S" length="20"/>
+  <property name="dataUltimaModifica" type="date" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="date" column="GSTD_INSE_D"/>
+  <property name="utenteInserimento" type="string"
+   column="GSTD_USER_INS_S" length="20"/>
+  <property name="tipoUltimaModifica" type="string"
+   column="GSTD_TIPO_MOD_B" length="1"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="flagInvalidita" type="string" column="FLG_INVALIDITA" length="5"/>
+    <property name="percInvalidita"                 column="PERC_INVALIDITA"                type="double"  />
+	<property name="baseTecnica"                    column="BASE_TECNICA"                   type="string" length="5"  />
+	<property name="tassoTariffa"                   column="TASSO_TARIFFA"                  type="double"  />
+	<property name="impSovrapprezzoProf"            column="IMP_SOVRAPPREZZO_PROF"          type="double"  />
+	<property name="impSovrapprezzoSport"           column="IMP_SOVRAPPREZZO_SPORT"         type="double"  />
+	<property name="impSovrapprezzoSanit"           column="IMP_SOVRAPPREZZO_SANIT"         type="double"  />
+	<property name="impSovrapprezzoGener"           column="IMP_SOVRAPPREZZO_GENER"         type="double"  />
+	<property name="impPrestConcCli"                column="IMP_PREST_CONC_CLI"             type="double"  />
+	<property name="capitaleMaturatoCa"             column="CAPITALE_MATURATO_CA"           type="double"  />
+	<property name="capitaleMaturatoCu"             column="CAPITALE_MATURATO_CU"           type="double"  />
+	<property name="capitaleMaturatoCi"             column="CAPITALE_MATURATO_CI"           type="double"  />
+	<property name="capitaleDifferito"              column="CAPITALE_DIFFERITO"             type="double"  />
+	<property name="renditaMaturataCa"              column="RENDITA_MATURATA_CA"            type="double"  />
+	<property name="renditaMaturataCu"              column="RENDITA_MATURATA_CU"            type="double"  />
+	<property name="renditaDifferita"               column="RENDITA_DIFFERITA"              type="double"  />
+	<property name="partiValuta"                    column="PARTI_VALUTA"                   type="double"  />
+	<property name="prestazIniziale"                column="PRESTAZ_INIZIALE"               type="double"  />
+	<property name="indiceInizValuta"               column="INDICE_INIZ_VALUTA"             type="double"  />
+	<property name="dataRifValuta"                	column="DATA_RIF_VALUTA"                type="date"  />
+	
+	<property name="impPremioAnnuo"                column="IMP_PREMIO_ANNUO"               type="double"  />
+	<property name="impPremioUnico"                column="IMP_PREMIO_UNICO"               type="double"  />
+	<property name="impCorrentePremiAnnui"         column="IMP_CORRENTE_PREMI_ANNUI"       type="double"  />
+	<property name="impCorrenteProvvAnnue"         column="IMP_CORRENTE_PROVV_ANNUE"       type="double"  />
+	<property name="impCapAScadenza"               column="IMP_CAP_A_SCADENZA"             type="double"  />
+	<property name="impRendita"                    column="IMP_RENDITA"                    type="double"  />
+	<property name="impPremioAgg"                  column="IMP_PREMIO_AGG"                 type="double"  />
+	<property name="impPrestito"                   column="IMP_PRESTITO"                   type="double"  />
+	<property name="impRiservaMat"                 column="IMP_RISERVA_MAT"                type="double"  />
+	<property name="impCapLiquidato"               column="IMP_CAP_LIQUIDATO"              type="double"  />
+	
+	<property name="divisaUic"               	   column="DIVISA_UIC_T"			           type="string"  length="3" />
+	<property name="dataElaborazione"              column="DATA_ELABORAZIONE_D"                type="date"  />
+		
+	
+ <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  
+
+
+  <!-- RELAZIONE CON FIN_POLIZZA-->
+  <many-to-one name="polizza" class="it.ras.arco.bean.FinPolizza" 
+    	column="CONTRATTO_ID" not-null="true" cascade="all,lock" insert="true" update="true" not-found="ignore" />
+
+ </class>
+</hibernate-mapping>
+

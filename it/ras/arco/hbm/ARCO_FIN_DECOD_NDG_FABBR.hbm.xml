@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DECODIFICA NDG FABBRICA -->
+ <class name="it.ras.arco.bean.FinDecodNdgFabbr"
+  table="FIN_DECOD_NDG_FABBR" where="GSTD_ESIST_B='S'" discriminator-value="not-null">
+  <id name="decodNdgFabbricaId" column="DECOD_NDG_FABBRICA_ID" type="integer" >
+   <generator class="sequence">
+    <param name="sequence">FIN_DECOD_NDG_FABBR_SEQ</param>
+   </generator>
+  </id>
+  <!--
+      <discriminator column="FABBRICA_T" insert="false" /> 
+  -->
+  <discriminator type="string" not-null="false" insert="false"
+   	formula="case when FABBRICA_T in ('RAM') then 'RAM' else 'OTHERS' end" /> 
+ 
+  
+  <property name="fabbrica" type="string" column="FABBRICA_T" length="3"/> 
+  <property name="ndgFab" type="string" column="NDG_FABBR_S" length="20"/>
+  <property name="ultiPromoId" type="integer" column="ULTI_PROMO_ID"/>
+  <property name="datiSupl" type="string" column="DATI_SUPL_S" length="20"/>
+  <property name="userUltimaModifica" type="string"
+   column="GSTD_ULT_USER_S" length="20"/>
+  <property name="proceduraUltimaModifica" type="string"
+   column="GSTD_ULT_PROC_S" length="20"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="utenteInserimento" type="string"
+   column="GSTD_USER_INS_S" length="20"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="tipoUltimaModifica" type="string"
+   column="GSTD_TIPO_MOD_B" length="1"/>
+
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  <property name="tipo" type="string" column="TIPO_T" length="3"/> 
+   <!-- RELAZIONE CON FIN_SOGGETTO-->
+   <many-to-one name="soggetto" class="it.ras.arco.bean.FinSoggetto" cascade="lock" 
+   			column="SOGGETTO_ID" not-null="false" lazy="proxy" not-found="ignore" outer-join="false"/>
+
+  <set name="decodContrattoOld" cascade="lock" lazy="true" where ="GSTD_ESIST_B='S'">
+   <key column="DECOD_NDG_FABBR_OLD_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinContrattoDecod" not-found="ignore"/>
+  </set>
+
+  <set name="decodContrattoNew" cascade="lock" lazy="true" where ="GSTD_ESIST_B='S'">
+   <key column="DECOD_NDG_FABBR_NEW_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinContrattoDecod" not-found="ignore"/>
+  </set>
+
+   
+   <subclass name="it.ras.arco.bean.FinDecodNdgFabbrRam" discriminator-value="RAM" >
+  
+    <!--  RELAZIONE CON FIN_COINTESTAZIONE  --> 
+      <many-to-one name="cointestazione" class="it.ras.arco.bean.FinCointestazione"
+   			column="COINTESTAZIONE_ID" cascade="lock" not-null="false" lazy="false"  not-found="ignore" />
+    </subclass>
+    
+    <subclass name="it.ras.arco.bean.FinDecodNdgFabbrOth" discriminator-value="OTHERS" >
+  
+    
+    </subclass>
+   
+  <!-- RELAZIONE CON FIN_CONTRATTO_DECOD -->
+<!--
+  <set name="contrattoDecod" inverse="@CONTRATTO-decod.inverse@" cascade="@CONTRATTO-decod.cascade@" 
+       lazy="@CONTRATTO-decod.lazy@" where ="GSTD_ESIST_B='S'">
+   <key column="DECOD_NDG_FABBRICA_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinContrattoDecod"/>
+  </set>
+    -->
+    
+
+ 
+  
+ </class>
+ <!-- 
+ <query name="GetCointestazioneBySoggExternalCode">from it.ras.arco.bean.FinDecodNdgFabbr c where c.ndgCointFab = ? and c.ndgIntestFab = ? and c.fabbrica = ?</query>
+ <query name="GetCointestazioneByCointExternalCode">from it.ras.arco.bean.FinDecodNdgFabbr c where c.ndgCointFab = ? and c.fabbrica = ?</query>
+
+ <query name="GetSoggettoByCodiceEsterno_Fabbrica">select s from it.ras.arco.bean.FinSoggetto s join s.decodNdgFabbr d where d.ndgFab = ? and d.fabbrica = ? </query>
+ --> 
+ <query name="GetDecodBySoggettoIdFabbrica">select d from it.ras.arco.bean.FinDecodNdgFabbr d join d.soggetto s where d.fabbrica = :fabbrica and s.soggettoId = :soggettoId and s.flagEsistenza='S'</query> 
+ <query name="GetSoggettoByCodiceEsterno_Fabbrica">select s from it.ras.arco.bean.FinDecodNdgFabbr d join d.soggetto s where d.ndgFab = ? and d.fabbrica = ? and d.tipo = 'M' and s.flagEsistenza='S'</query> 
+ <query name="GetSquadraByCodiceEsterno_Fabbrica">select s from it.ras.arco.bean.FinDecodNdgFabbrRam d join d.soggetto s where d.ndgFab = ? and d.fabbrica = ? and d.tipo = ? and s.flagEsistenza='S'</query> 
+ <query name="GetCointestazioneByExternalCode">from it.ras.arco.bean.FinDecodNdgFabbrRam c where c.fabbrica = ? and c.ndgFab = ? and c.tipo = 'C'</query>
+ <query name="GetCointestazioneByExternalCodeGen">select p from it.ras.arco.bean.FinDecodNdgFabbrOth p where p.fabbrica = ? and  p.ndgFab = ? and p.tipo = 'C'</query>
+ <query name="GetSoggettoByCodiceEsterno_Fabbrica_Tipo">select s from it.ras.arco.bean.FinDecodNdgFabbr d join d.soggetto s where d.ndgFab = ? and d.fabbrica = ? and d.tipo = ?</query> 
+ <query name="GetDecodFabbricaNdgFab">select d from it.ras.arco.bean.FinDecodNdgFabbr d  where d.fabbrica = :fabbrica and d.ndgFab = :ndgFab </query> 
+  
+</hibernate-mapping>
+

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+
+ <!-- TABELLA PRODOTTO_LINEA  -->
+ <class name="it.ras.arco.bean.FinProdottoLineaFlyweight"
+  	table="FIN_PRODOTTO_LINEA" where="GSTD_ESIST_B='S'"
+  	select-before-update="false">
+  
+
+  <id name="prodottoLineaId" column="PRODOTTO_LINEA_ID" type="integer">
+	<generator class="sequence">
+		<param name="sequence">FIN_PRODOTTO_LINEA_SEQ</param>
+	</generator>
+  </id>
+
+  
+  <!-- 
+  	RELAZIONE CON LA FIN_PRODOTTO 
+  -->
+  <many-to-one name="prodotto" 
+   	class="it.ras.arco.bean.FinProdottoFlyweight" 
+   	column="PRODOTTO_ID"
+   	update="false" insert="false" cascade="none" 
+   	not-found="ignore" fetch="join"
+   	/>
+
+  <!-- RELAZIONE CON LA FIN_ATT_FIN -->
+  <many-to-one name="attFin" 
+   	class="it.ras.arco.bean.FinAttivitaFinanziariaFlyweight" 
+   	column="ATTIVITA_FIN_ID"
+   	update="false" insert="false" cascade="none"
+   	not-found="ignore" fetch="join"
+   	/>
+ 
+
+ </class>
+ 
+
+</hibernate-mapping>
+

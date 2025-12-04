@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO ALTRI_PRODOTTI_MANAGER_SRV -->
+
+    <bean id="GetAltroProdottoByPosizioneEsterna"
+    	class="it.ras.arco.service.AltriProdottiManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_ALTRO_PRODOTTO_BY_POSIZIONE_ESTERNA</value>
+    	</property>
+    </bean>
+
+    <bean id="insertAltriProdotti"
+    	class="it.ras.arco.service.AltriProdottiManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT_ALTRI_PRODOTTI</value>
+    	</property>
+    </bean> 
+    
+    <bean id="updateAltriProdotti"
+    	class="it.ras.arco.service.AltriProdottiManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UPDATE_ALTRI_PRODOTTI</value>
+    	</property>
+    </bean>
+    
+    
+    <bean id="InserimentoAltriProdotti"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>5</value>
+    	</property>
+    	
+	    	<property name="parameters">
+	    		<list>
+	    			<value>ALTRI_PRODOTTI</value>
+	    		</list>
+	    	</property>
+	    	<property name="output">
+	    		<value>ALTRI_PRODOTTI</value>
+	    	</property>
+    	
+    </bean>
+
+    <bean id="AggiornamentoAltriProdotti"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>9</value>
+    	</property>
+    	
+	    	<property name="parameters">
+	    		<list>
+	    			<value>ALTRI_PRODOTTI</value>
+	    		</list>
+	    	</property>
+	    	<property name="output">
+	    		<value>ALTRI_PRODOTTI</value>
+	    	</property>
+    	
+    </bean>
+    
+    <bean id="GetAltroProdottoByPosizioneEsternaMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetAltroProdottoByPosizioneEsterna</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>POSIZIONE_ESTERNA</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>ALTRI_PRODOTTI</value>
+    	</property>
+    </bean>
+        
+</beans>

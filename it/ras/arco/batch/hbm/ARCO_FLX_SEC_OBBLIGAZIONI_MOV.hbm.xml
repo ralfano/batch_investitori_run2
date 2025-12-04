@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ANAGRAFICA CC -->
+ <class name="it.ras.arco.batch.bean.FlxSecObbligazioniMov" rowid="rowid" table="FLX_SEC_OBBLIGAZIONI_MOV" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SEC_OBBLIGAZIONI_MOV_SEQ</param>
+   </generator>
+  </id>
+  
+  <property name="ndg"                            column="NDG"                            type="string"   />
+<property name="codProm"                        column="COD_PROM"                       type="string"   />
+<property name="codRete"                        column="COD_RETE"                       type="string"   />
+<property name="fil"                            column="FIL"                            type="string"  />
+<property name="deposito"                       column="DEPOSITO"                       type="string"  />
+<property name="csdp"                           column="CSDP"                           type="string"  />
+<property name="dataOrdine"                 column="DATA_ORDINE"                      type="date"  />
+<property name="ctit"                         column="CTIT"                         type="string"  />
+<property name="nregter"                       column="NREGTER"                       type="string"  />
+<property name="nregann"                       column="NREGANN"                       type="string"  />
+<property name="nregnum"                       column="NREGNUM"                       type="string"  />
+<property name="nregsnr"                        column="NREGSNR"                        type="string"  />
+<property name="ccau"                           column="CCAU"                           type="string"   />
+<property name="cstt"                           column="CSTT"                           type="string"  />
+<property name="dreg"                           column="DREG"                           type="date"  />
+<property name="dval"                           column="DVAL"                           type="date"  />
+<property name="quantitaAssegnata"              column="QUANTITA_ASSEGNATA"             type="double"  />
+<property name="controvalore"                   column="CONTROVALORE"                   type="double"  />
+<property name="prezzo"                         column="PREZZO"                         type="double"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="timestamp"  />
+  <property name="dataElab"                column="DATA_ELAB_D"             type="timestamp"  />
+  
+   <property name="descrizioneErrore"  column="DESCRIZIONE_ERRORE_S" type="string" length="100"  />
+	</class>
+ <query name="SEC_OBBLIGAZIONI_MOV_SQL">from  
+ it.ras.arco.batch.bean.FlxSecObbligazioniMov p where p.statoElab='D'</query>
+</hibernate-mapping>
+  

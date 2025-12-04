@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ALTRI PRODOTTI -->
+ <class name="it.ras.arco.bean.FinAltriProdotti" table="FIN_ALTRI_PRODOTTI" where="GSTD_ESIST_B='S'">
+  <id name="altriProdottiId" column="ALTRI_PRODOTTI_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_ALTRO_PRODOTTO_SEQ</param>
+   </generator>
+  </id>
+  <property name="promotoreSplitId"        type="integer"   column="PROMOTORE_SPLIT_ID"/>
+  <property name="stato"                   type="string"    column="STATO_B"                       length="1"/>
+  <property name="dataRicevimentoProposta" type="date"      column="DATA_RICEVIMENTO_PROPOSTA_D"/>
+  <property name="dataRegolamento"         type="date"      column="DATA_REGOLAMENTO_D"/>
+  <property name="dataImpBaseProv"         type="date"      column="DATA_IMP_BASE_PROV_D"/>
+  <property name="dataChiusura"            type="date"      column="DATA_CHIUSURA_D"/>
+  <property name="dataAnnullamento"        type="date"      column="DATA_ANNULLAMENTO_D"/>
+  <property name="dataApprovazione"        type="date"      column="DATA_APPROVAZIONE_D"/>
+  
+  <property name="dataSottoscrizione"      type="date"      column="DATA_SOTTOSCRIZIONE_D"/>
+  <property name="dataScadenza"            type="date"      column="DATA_SCADENZA_D"/>
+  <property name="attivitaFinId"           type="integer"   column="ATTIVITA_FIN_ID"/>
+  <property name="tipo"                    type="string"    column="TIPO_T"                        length="3"/>
+  <property name="prodottoId"              type="integer"   column="PRODOTTO_ID"/>
+  <property name="numContrattoSiff"        type="string"    column="NUM_CONTRATTO_SIFF_S"          length="10"/>
+  <property name="numContrattoEsterno"     type="string"    column="NUM_CONTRATTO_ESTERNO_S"       length="15"/>
+  <property name="numCC"                   type="string"    column="NUM_CC_S"                      length="16"/>
+  <property name="abi"                     type="string"    column="ABI_S"                         length="5"/>
+  <property name="cab"                     type="string"    column="CAB_S"                         length="5"/>
+  <property name="soggettoIntId"           type="integer"   column="SOGGETTO_INT_ID"/>
+  <property name="tipoCarta"               type="string"    column="TIPO_CARTA_S"                  length="1"/>
+  <property name="sportelloBnl"            type="double"    column="SPORTELLO_BNL_S"/>
+  <property name="codiceConvenzione"       type="string"    column="CODICE_CONVENZIONE_S"          length="3"/>
+  <property name="tipoMutuo"               type="string"    column="TIPO_MUTUO_S"                  length="30"/>
+  <property name="importoContratto"        type="double"    column="IMPORTO_CONTRATTO_C"/>
+  <property name="importoRichiesto"        type="double"    column="IMPORTO_RICHIESTO_C"/>
+  <property name="importoTot"              type="double"    column="IMPORTO_TOT_C"/>
+  <property name="commissioni"             type="double"    column="COMMISSIONI_C"/>
+  <property name="percComm"                type="double"    column="PERC_COMM_C"/>
+  <property name="spese"                   type="double"    column="SPESE_C"/>
+  <property name="note"                    type="string"    column="NOTE_S"                        length="150"/>
+  <property name="cope"                    type="string"    column="COPE_S"                        length="10"/>
+  <property name="oggettoLocazione"        type="string"    column="OGGETTO_LOCAZIONE_S"           length="20"/>
+  <property name="filiale"                 type="string"    column="FILIALE_S"                     length="20"/>
+  <property name="plafond"                 type="string"    column="PLAFOND_S"                     length="2"/>
+  <property name="dataFinePlafond"         type="date"      column="DATA_FINE_PLAFOND_D"/>
+  <property name="descrizione"             type="string"    column="DESCRIZIONE_S"                 length="20"/>
+  <property name="modalitaPagamento"       type="string"    column="MODALITA_PAGAMENTO_S"          length="2"/>
+  <property name="codiceTipologiaInv"      type="string"    column="CODICE_TIPOLOGIA_INV_S"        length="1"/>
+  <property name="modalitaAcquisto"        type="string"    column="MODALITA_ACQUISTO_S"           length="2"/>
+  <property name="numQuote"                type="double"    column="NUM_QUOTE_C"/>
+  <property name="valoreQuota"             type="double"    column="VALORE_QUOTA_C"/>
+  <property name="durata"                  type="integer"    column="DURATA_I"/>
+  <property name="capitaleAScadenza"       type="double"    column="CAPITALE_A_SCADENZA_C"/>
+  <property name="operativita"             type="string"    column="OPERATIVITA_S"                 length="3"/>
+  <property name="rinnovo"                 type="string"    column="RINNOVO_S"                     length="3"/>
+  <property name="dataScadenzaRinnovo"     type="date"      column="DATA_SCADENZA_RINNOVO_D"/>
+  <property name="codiceTitolo"            type="double"    column="CODICE_TITOLO_S"/>
+  <property name="tipoCommissioni"         type="string"    column="TIPO_COMMISSIONI_S"            length="2"/>
+  <property name="importoAssegno"          type="double"    column="IMPORTO_ASSEGNO_C"/>
+  <property name="importoBaseProv"         type="double"    column="IMPORTO_BASE_PROV_C"/>
+  <property name="numPezzi"                type="double"    column="NUM_PEZZI_C"/>
+  <property name="tipoPolizza"             type="string"    column="TIPO_POLIZZA_T"                length="2"/>
+  <property name="codiceMovimento"         type="integer"   column="CODICE_MOVIMENTO_T"/>
+  <property name="posizioneEsternaId"      type="integer"   column="POSIZIONE_ESTERNA_ID"/>
+  <property name="codiceCin"               type="string"    column="CODICE_CIN_S"                  length="1"/>
+  <property name="dettaglioTipologia"      type="string"    column="DETTAGLIO_TIPOLOGIA_S"         length="25"/>
+  <property name="finalitaMutuo"           type="string"    column="FINALITA_MUTUO_T"              length="3"/>
+  <property name="tipoGaranzia"            type="string"    column="TIPO_GARANZIA_S"               length="20"/>
+  <property name="dettaglioGaranzia"       type="string"    column="DETTAGLIO_GARANZIA_S"          length="20"/>
+  <property name="flagPromozione"          type="string"    column="FLAG_PROMOZIONE_S"             length="10"/>
+  <property name="importoMutuo"            type="double"    column="IMPORTO_MUTUO_C"/>
+  <property name="patrimonioGarantito"     type="double"    column="PATRIMONIO_GARANTITO_C"/>
+  <property name="importoRimborsato"       type="double"    column="IMPORTO_RIMBORSATO_C"/>
+  <property name="importoDaRimborsare"     type="double"    column="IMPORTO_DA_RIMBORSARE_C"/>
+  <property name="importoProgPagamenti"    type="double"    column="IMPORTO_PROG_PAGAMENTI_C"/>
+  <property name="tasso"                   type="double"    column="TASSO_C"/>
+  <property name="frequenzaRimborso"       type="string"    column="FREQUENZA_RIMBORSO_S"          length="1"/>
+  <property name="codicePromotore"         type="string"    column="CODICE_PROMOTORE_T"            length="5"/>
+  <property name="reteVenditaPromotore"    type="string"    column="RETE_VENDITA_PROMOTORE_T"      length="3"/>
+  <property name="importoProvvigioneUt"    type="double"    column="IMPORTO_PROVVIGIONE_UT_C"/>
+  <property name="minimoGarantitoUt"       type="double"    column="MINIMO_GARANTITO_UT_C"/>
+  <property name="importoProvvRicorrente"  type="double"    column="IMPORTO_PROVV_RICORRENTE_C"/>
+  <property name="dataInserimentoRecord"   type="timestamp" column="DATA_INSERIMENTO_D"/>
+  <property name="altriProdottiIDXP"       type="string"    column="ALTRI_PRODOTTI_ID_XP"          length="10"/> 
+  <property name="bene"                    type="string"    column="BENE_S"                       length="20"/>
+ 
+  <property name="userUltimaModifica"      type="string"    column="GSTD_ULT_USER_S"               length="40"/>
+  <property name="proceduraUltimaModifica" type="string"    column="GSTD_ULT_PROC_S"               length="40"/>
+  <property name="dataUltimaModifica"      type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="flagEsistenza"           type="string"    column="GSTD_ESIST_B"                  length="1"/>
+  <property name="utenteInserimento"       type="string"    column="GSTD_USER_INS_S"               length="40"/>
+  <property name="tipoUltimaModifica"      type="string"    column="GSTD_TIPO_MOD_B"               length="1"/>
+  <property name="invioCommissioning"      type="string"    column="INVIO_COMM_B"                  length="1"/>	
+  <property name="dataInserimento"         type="date"      column="GSTD_INSE_D"/>
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+ 
+  
+  <!-- RELAZIONE CON FIN_SOGGETTO -->
+  <many-to-one name="soggetto" class="it.ras.arco.bean.FinSoggetto" column = "SOGGETTO_ID" not-found="ignore" />
+  
+  <!-- RELAZIONE CON FIN_PROMOTORE -->
+  <many-to-one name="promotoreAperturaId" class="it.ras.arco.bean.FinPromotore" column = "PROMOTORE_APERTURA_ID" not-found="ignore" />
+
+  <!-- RELAZIONE CON FIN_ALTRI_PROD_DET -->
+  <many-to-one name="altriProdottiDet" class="it.ras.arco.bean.FinContratto" column = "CONTRATTO_ID"  cascade="lock" lazy="proxy" not-found="ignore" />
+
+
+
+  </class>
+
+  <query name="GetAltroProdottoByPosizioneEsterna">from it.ras.arco.bean.FinAltriProdotti p where p.posizioneEsternaId = ? and p.flagEsistenza = 'S'</query>
+  <query name="GetAltroProdottoByNumContrattoProdottoId">from it.ras.arco.bean.FinAltriProdotti ap where ap.altriProdottiIDXP =:numContratto and ap.prodottoId =:prodottoId</query>
+	
+  <query name="GetTipiMutuoAltriProdottiByProdottoId">
+ 	select	distinct ap.tipoMutuo
+ 	from 	it.ras.arco.bean.FinAltriProdotti ap
+ 	where 	ap.prodottoId = :prodottoId
+	group by ap.tipoMutuo 	
+ </query>
+ 
+ <query name="GetAltroProdottoByAltroProdottoId"> 
+ 	from it.ras.arco.bean.FinAltriProdotti ap where ap.altriProdottiId =:altriProdottiId 	
+ </query>
+  
+
+	<sql-query name="OutboundAltriProdotti">
+		<return alias="ap" class="it.ras.arco.bean.FinAltriProdotti"/>
+			select {ap.*} from FIN_ALTRI_PRODOTTI ap, FIN_ALTRI_PROD_DET apDet,FIN_CONTRATTO con
+			where
+			ap.STATO_B in ('X')
+			and
+			ap.gstd_esist_b='S'
+			and con.GSTD_ESIST_B='S'
+			and ap.CONTRATTO_ID = apDet.CONTRATTO_ID
+			and apDet.CONTRATTO_ID =con.CONTRATTO_ID
+			and ap.GSTD_INSE_D>=to_date('03042006','ddmmyyyy')
+	</sql-query>
+
+ </hibernate-mapping>
+  
+

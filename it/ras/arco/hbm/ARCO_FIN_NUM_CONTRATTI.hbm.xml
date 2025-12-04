@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA NUM_CONTRATTI -->
+ <class name="it.ras.arco.bean.FinNumContratti" table="FIN_NUM_CONTRATTI" where="GSTD_ESIST_B='S'"
+    select-before-update="true">
+ 
+  <id name="numContrattiId" column="NUM_CONTRATTI_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_NUM_CONTRATTI_SEQ</param>
+   </generator>
+  </id>
+  
+  <property name="numeroContratto" type="string" column="NUM_CONTRATTO_S" length="21"/>
+  <property name="stato" type="string" column="STATO_T" length="1"/>
+  <property name="tipoGenerazione" type="string" column="TIPO_GENERAZIONE_T" length="3"/>
+  <property name="oggettoGenerazione" type="string" column="OGGETTO_GENERAZIONE_S" length="200"/>
+  
+  <!-- RELAZIONE CON FIN_EMITTENTE-->
+  <many-to-one name="emittente" lazy="false"
+   	class="it.ras.arco.bean.FinEmittente" column="EMITTENTE_ID"
+   	update="true" insert="true" cascade="lock" 
+   	not-found="ignore" />
+  
+  <!--
+  	***********************
+  	  CAMPI STANDARD
+  	***********************
+  -->
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="40"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="40"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="40"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+  <property name="tipoProdotto" type="string" column="TIPO_PRODOTTO" length="3"/>
+  
+  <!-- Duplicazione campi standard x Update (SLAVE) -->	
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/> 
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  
+ </class>
+  
+  <query name="GetNumeroNuovoContrattoByEmittenteID">
+  	from 
+  		it.ras.arco.bean.FinNumContratti n 
+  	where 
+	  	n.stato = 'L' 
+	  	and 
+	  	n.emittente.emittenteId = :emittenteId
+	  	and
+	  	n.tipoProdotto = :tipoProdotto
+	  	and	  	
+	  	rowNum = 1 
+	  	order by n.dataInserimento ASC, n.numeroContratto ASC
+  </query>
+  
+  <query name="GetNumeroContrattoPrenotato">
+  from it.ras.arco.bean.FinNumContratti n where n.stato = 'P'
+  and n.emittente.emittenteId = :emittenteId
+  and n.numeroContratto = :numeroContratto
+  and n.tipoProdotto = :tipoProdotto
+  </query>
+  
+</hibernate-mapping>
+

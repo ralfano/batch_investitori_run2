@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!-- TABELLA MOVIMENTI -->
+	<class name="it.ras.arco.bean.FinMovimento" table="FIN_MOVIMENTO"
+		where="GSTD_ESIST_B='S'">
+		<id name="movimentoId" column="MOVIMENTO_ID" type="integer">
+			<generator class="sequence">
+				<param name="sequence">FIN_MOVIMENTO_SEQ</param>
+			</generator>
+		</id>
+
+		<property name="tipo" type="string" column="TIPO_T" length="3" />
+		<property name="causale" type="string" column="CAUSALE_T"
+			length="3" />
+		<property name="dataMovimento" type="date"
+			column="DATA_INSERIMENTO_D" />
+		<property name="dataCompetenza" type="date"
+			column="DATA_COMPETENZA_D" />
+		<property name="dataValuta" type="date" column="DATA_VALUTA_D" />
+		<property name="dataRegistraz" type="date"
+			column="DATA_REGISTRAZ_D" />
+		<property name="dataNAV" type="date"
+			column="DATA_NAV_D" />
+		<property name="divisa" type="string" column="DIVISA_T"
+			length="3" />
+		<property name="impVersatoLordo" type="double"
+			column="IMP_VERSATO_LORDO_C" />
+		<property name="impPrelevLordo" type="double"
+			column="IMP_PRELEV_LORDO_C" />
+		<property name="impGiroconLordo" type="double"
+			column="IMP_GIROCON_LORDO_C" />
+		<property name="impVersatoNetto" type="double"
+			column="IMP_VERSATO_NETTO_C" />
+		<property name="impPrelevNetto" type="double"
+			column="IMP_PRELEV_NETTO_C" />
+		<property name="impGiroconNetto" type="double"
+			column="IMP_GIROCON_NETTO_C" />
+		<property name="importo" type="double" column="IMPORTO_C" />
+		<property name="quantita" type="double" column="QUANTITA_C" />
+		<property name="prezzo" type="double" column="PREZZO_C" />
+		<property name="cambio" type="double" column="CAMBIO_C" />
+		<property name="ctvLordo" type="double" column="CTV_LORDO_C" />
+		<property name="ctvNetto" type="double" column="CTV_NETTO_C" />
+		<property name="commissioni" type="double"
+			column="COMMISSIONI_C" />
+		<property name="spese" type="double" column="SPESE_C" />
+		<property name="tasse" type="double" column="TASSE_C" />
+		<property name="numMovExt" type="string" column="NUM_MOV_EXT_S"
+			length="20" />
+		<property name="scontoTunnel" type="double"
+			column="SCONTO_TUNNEL_C" />
+		<property name="nmRatePagVers" type="integer"
+			column="NM_RATE_PAG_VERS_C" />
+		<property name="nmRatePagPrec" type="integer"
+			column="NM_RATE_PAG_PREC_C" />
+		<property name="nmPolizzaDest" type="string"
+			column="NM_POLIZZA_DEST_S" length="18" />
+		<property name="fndDestinazione" type="string"
+			column="FND_DESTINAZIONE_S" length="50" />
+		<property name="nomeBenef" type="string" column="NOME_BENEF_S"
+			length="50" />
+		<property name="flgRid" type="string" column="FLG_RID_B"
+			length="1" />
+		<property name="flgStampaConf" type="string"
+			column="FLG_STAMPA_CONF_B" length="1" />
+		<property name="userUltimaModifica" type="string"
+			column="GSTD_ULT_USER_S" length="40" />
+		<property name="proceduraUltimaModifica" type="string"
+			column="GSTD_ULT_PROC_S" length="40" />
+		<property name="dataUltimaModifica" type="timestamp"
+			column="GSTD_ULT_MOD_D" />
+		<property name="dataInserimento" type="timestamp"
+			column="GSTD_INSE_D" />
+		<property name="flagEsistenza" type="string"
+			column="GSTD_ESIST_B" length="1" />
+		<property name="utenteInserimento" type="string"
+			column="GSTD_USER_INS_S" length="40" />
+		<property name="tipoUltimaModifica" type="string"
+			column="GSTD_TIPO_MOD_B" length="1" />
+		<property name="codiceAgente" type="string"
+			column="CODICE_AGENTE" length="10" />
+		<property name="numQuoteCert" type="double"
+			column="NUM_QUOTE_CERT" />
+		<property name="tipoProdotto" type="string"
+			column="TIPO_PRODOTTO_T" length="3" />
+		<property name="dataStorno" type="date" column="DATA_STORNO_D" />
+		<property name="dataRegolamento" type="date"
+			column="DATA_REGOLAMENTO_D" />
+		<property name="dataEsecuzione" type="date"
+			column="DATA_ESECUZIONE_D" />
+		<property name="importoNettoValuta" type="double"
+			column="IMPORTO_NETTO_VALUTA_C" />
+		<property name="commissioniValuta" type="double"
+			column="COMMISSIONI_VALUTA_C" />
+		<property name="speseValuta" type="double"
+			column="SPESE_VALUTA_C" />
+		<property name="tasseValuta" type="double"
+			column="TASSE_VALUTA_C" />
+		<property name="divisaCommissioni" type="string"
+			column="DIVISA_COMMISSIONI_C" length="3" />
+		<property name="cambioCommissioni" type="double"
+			column="CAMBIO_COMMISSIONI_C" />
+		<property name="prezzoValuta" type="double"
+			column="PREZZO_VALUTA_C" />
+		<property name="userUltimaModificaSlave" type="string"
+			column="GSTD_ULT_USER_S" length="40" insert="false" update="false" />
+		<property name="proceduraUltimaModificaSlave" type="string"
+			column="GSTD_ULT_PROC_S" length="40" insert="false" update="false" />
+		<property name="dataUltimaModificaSlave" type="timestamp"
+			column="GSTD_ULT_MOD_D" insert="false" update="false" />
+		<property name="tipoUltimaModificaSlave" type="string"
+			column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false" />
+			
+			<property name="descrizione" type="string"
+			column="DESCRIZIONE_S" length="200" />
+		<property name="promotoreId" type="integer"
+			column="PROMOTORE_ID" insert="false" update="false"/>
+  
+  <property name="dataValutaNetto" type="date" column="DATA_VALUTA_NETTO_D"/>
+  <property name="divisaNetto" type="string" column="DIVISA_NETTO_T" length="3"/>
+  <property name="cambioNetto" type="double" column="CAMBIO_NETTO_C"/>
+
+		<!-- RELAZIONE CON FIN_DISP_PAGAMENTO -->
+		<!--set name="dispPagamento" table="FIN_DISP_PAG_MOV" lazy="true" 
+			cascade="all" where="GSTD_ESIST_B='S'" outer-join="false">
+			<key column="MOVIMENTO_ID"/>
+			<composite-element class="it.ras.arco.bean.FinDispPagMov">
+			<parent name="movimento"/>
+			<many-to-one name="dispPagamento" lazy="true"
+			class="it.ras.arco.bean.FinDispPagamento" column="DISPOSIZIONE_ID" not-null="true" outer-join="false" not-found="ignore"  />
+			
+			<property name="userUltimaModifica"             column="GSTD_ULT_USER_S"                type="string" length="40"  />
+			<property name="proceduraUltimaModifica"        column="GSTD_ULT_PROC_S"                type="string" length="40"  />
+			<property name="dataUltimaModifica"             column="GSTD_ULT_MOD_D"                 type="date"  />
+			<property name="dataInserimento"                column="GSTD_INSE_D"                    type="date"  />
+			<property name="flagEsistenza"                  column="GSTD_ESIST_B"                   type="string" length="1"  />
+			<property name="utenteInserimento"              column="GSTD_USER_INS_S"                type="string" length="40"  />
+			<property name="tipoUltimaModifica"             column="GSTD_TIPO_MOD_B"                type="string" length="1"  />
+			
+			
+			</composite-element>
+			</set-->
+
+
+		<!-- FINE RELAZIONE CON FIN_DISP_PAGAMENTO-->
+
+
+  <set name="estrazioni"  cascade="lock" lazy="true" where ="FL_INVIATO='N' AND TABLE_NAME='FIN_MOVIMENTO' " >
+   <key column="ID"/>
+   <one-to-many class="it.ras.arco.bean.SnpEstrazioni" not-found="ignore" />
+  </set>
+
+  <set name="estrazioniAnt" cascade="lock" lazy="true" where ="FL_INVIATO='E' AND TABLE_NAME='FIN_MOVIMENTO' and DEST='ANT' " >
+   <key column="ID"/>
+   <one-to-many class="it.ras.arco.bean.SnpEstrazioni" not-found="ignore" />
+  </set>
+
+		<!-- RELAZIONE CON FIN_POSIZIONE-->
+		<many-to-one name="posizione" class="it.ras.arco.bean.FinPosizione"
+			column="POSIZIONE_ID" not-null="true" cascade="save-update,lock"
+			not-found="ignore" />
+		<many-to-one name="promotore" class="it.ras.arco.bean.FinPromotore"
+			column="PROMOTORE_ID" not-null="false" cascade="lock"
+			not-found="ignore" />
+		<!-- RELAZIONE CON FIN_ORDINE -->
+		<many-to-one name="ordine" class="it.ras.arco.bean.FinOrdine"
+			column="ORDINE_ID" not-null="false" not-found="ignore" lazy="proxy" cascade="lock,none"/>
+		<!-- RELAZIONE CON FIN_CONTRATTO-->
+		<many-to-one name="contratto" class="it.ras.arco.bean.FinContratto"
+			column="CONTRATTO_ID" not-null="true" not-found="ignore" />
+		<!-- RELAZIONE CON FIN_ATT_FIN-->
+		<many-to-one name="attivitaFin" class="it.ras.arco.bean.FinAttivitaFinanziaria"
+			column="ATTIVITA_FIN_ID" not-null="true" not-found="ignore" />
+
+	</class>
+	<query name="Ricerca_Movimento">
+		from it.ras.arco.bean.FinMovimento m where m.numMovExt = ?
+	</query>
+
+	<query name="GetMovimentoByOrdineId">
+		from it.ras.arco.bean.FinMovimento m where m.ordine = ?
+	</query>
+
+	<sql-query
+		name="GetMovimentoByNumMovimentoContrattoIdPosizioneIdAttFinId">
+		<return alias="movimento" class="it.ras.arco.bean.FinMovimento" />
+		select {movimento.*} from FIN_MOVIMENTO movimento where
+		movimento.NUM_MOV_EXT_S = :numMovExt and movimento.POSIZIONE_ID
+		= :posizioneId and movimento.CONTRATTO_ID = :contrattoId and
+		movimento.ATTIVITA_FIN_ID = :attivitaFinId and movimento.GSTD_ESIST_B='S'
+	</sql-query>
+
+	<sql-query name="GetMovimentoByContrattoIdPosizioneIdAttFinId">
+		<return alias="movimento" class="it.ras.arco.bean.FinMovimento" />
+		select {movimento.*} from FIN_MOVIMENTO movimento where
+		movimento.POSIZIONE_ID = :posizioneId and movimento.CONTRATTO_ID
+		= :contrattoId and movimento.ATTIVITA_FIN_ID = :attivitaFinId and movimento.GSTD_ESIST_B='S'
+	</sql-query>
+
+
+	<sql-query name="GetMovimentoByNumMovimentoContrattoId">
+		<return alias="movimento" class="it.ras.arco.bean.FinMovimento" />
+		select {movimento.*} from FIN_MOVIMENTO movimento where
+		movimento.NUM_MOV_EXT_S = :numMov and movimento.CONTRATTO_ID =
+		:contrattoId and movimento.GSTD_ESIST_B='S'
+
+	</sql-query>
+	
+	<sql-query name="OutboundSottoscrizioneMovimenti">
+ <return alias="mov" class="it.ras.arco.bean.FinMovimento"/> 
+		select 
+		distinct {mov.*}
+		from
+		SNP_ESTRAZIONI a, 
+		FIN_MOVIMENTO mov
+		where 
+		a.ID = mov.MOVIMENTO_ID and
+		a.DEST = 'ANT' and
+		a.TABLE_NAME = 'FIN_MOVIMENTO'
+		and 		a.FL_INVIATO='N'
+ </sql-query>
+	
+	
+<sql-query name="OutboundMovimentiFondiSicav">
+<return alias="mov" class="it.ras.arco.bean.FinMovimento"/>
+	 select 
+	 distinct {mov.*}
+	 from
+	 SNP_ESTRAZIONI a, 
+	 fin_movimento mov
+	 where 
+	 a.ID = mov.movimento_id and
+	 a.DEST = 'PGS' 
+	 and a.TABLE_NAME = 'FIN_MOVIMENTO'
+	 and a.FL_INVIATO='N' and
+	 mov.TIPO_PRODOTTO_T in ('CS')
+</sql-query>
+
+<sql-query name="MovimentoVeloce">
+<return alias="mov" class="it.ras.arco.bean.FinMovimento"/>
+ 	select {mov.*} from fin_movimento mov where mov.contratto_id=4174945
+</sql-query>
+
+
+
+<sql-query name="OutboundMovimentiFondiBnl">
+<return alias="mov" class="it.ras.arco.bean.FinMovimento"/>
+	 select 
+	 distinct {mov.*}
+	 from
+	 SNP_ESTRAZIONI a, 
+	 fin_movimento mov
+	 where 
+	 a.ID = mov.movimento_id and
+	 a.DEST = 'PGF' 
+	 and a.TABLE_NAME = 'FIN_MOVIMENTO'
+	 and a.FL_INVIATO='N' and
+	 mov.TIPO_PRODOTTO_T in ('FN','FNF')
+</sql-query>
+	
+	
+	
+</hibernate-mapping>
+

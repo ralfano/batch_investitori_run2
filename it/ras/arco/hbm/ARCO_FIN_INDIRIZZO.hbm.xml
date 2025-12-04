@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!--  TABELLA INDIRIZZI -->
+  <class name="it.ras.arco.bean.FinIndirizzo" table="FIN_INDIRIZZO" discriminator-value="null" 
+ 			batch-size="1"
+  			lazy="true" where="GSTD_ESIST_B='S'" 
+  			>
+  
+  
+  <id name="indirizzoId" column="INDIRIZZO_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_INDIRIZZO_SEQ</param>
+   </generator>
+  </id>
+ 
+  <discriminator type="string" not-null="false" insert="false"
+     formula="case when TIPO_INDIRIZZO_T='COS' then 'COS' else 'OTH' end"/>
+  <property name="codToponimo" type="string" column="COD_TOPONIMO_T" length="5"/>
+  <property name="desToponimo" type="string" column="DES_TOPONIMO_S" length="15"/>
+  <property name="indirizzo" type="string" column="INDIRIZZO_S" length="100"/>
+  <property name="tipoIndirizzo" type="string" column="TIPO_INDIRIZZO_T" />
+  <property name="cap" type="string" column="CAP_S" length="7"/>
+  <property name="prov" type="string" column="PROV_T" length="3"/>
+  <property name="comune" type="string" column="COMUNE_S" length="40"/>
+  <property name="localita" type="string" column="LOCALITA_S" length="40"/>
+  <property name="nazione" type="string" column="NAZIONE_T" length="3"/>   
+  <property name="presso" type="string" column="PRESSO_S" length="50"/>
+  <property name="numeroCivico" type="string" column="NUMERO_CIVICO_S" length="10"/>
+  <property name="cabResidenza" type="string" column="CAB_RES" length="6"/>
+  <property name="presNote" type="string" column="PRES_NOTE_B" length="1"/>
+  <property name="indiSeparato" type="string" column="INDI_SEPARATO_B" length="1"/>
+  <property name="datiSupl" type="string" column="DATI_SUPL_S" length="20"/>
+  <property name="flagNormalizzato" type="string" column="FLAG_NORMALIZZATO_B" length="1"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+
+
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="20"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="20"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="20"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+
+
+  <property name="provDatiAnag" type="string" column="PROV_DATI_ANAG_T" length="3"/>
+
+
+  <!-- RELAZIONE CON FIN_CONTRATTO_INDIR-->
+  <set name="contratto" inverse="true" cascade="all,lock" lazy="true"  where="GSTD_ESIST_B='S'" outer-join="false">
+   <key column="INDIRIZZO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinContrattoIndir"/>
+  </set>
+  
+  <!-- RELAZIONE CON FIN_SOGGETTO_INDIR-->
+  <set name="soggetto" inverse="true" cascade="all,lock" lazy="true"  where="GSTD_ESIST_B='S'" outer-join="false">
+   <key column="INDIRIZZO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinSoggettoIndir"/>
+  </set>
+  
+  <!-- RELAZIONE CON FIN_SOGG_SCHEDA_INDIR
+  <set name="soggScheda" inverse="true" cascade="all, lock" lazy="true"  where="GSTD_ESIST_B='S'" outer-join="false">
+   <key column="INDIRIZZO_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinSoggSchedaIndir"/>
+  </set>
+  -->
+  <!-- RELAZIONE CON FIN_SOTTOSCRIZIONE-->   
+  <set name="sottoscrizioni" inverse="true" cascade="save-update,lock" lazy="true"  where="GSTD_ESIST_B='S'" outer-join="false">
+   <key column="INDIRIZZO_ID"/>                                  
+   <one-to-many class="it.ras.arco.bean.FinSottoscrizione"/>
+  </set>
+  
+  <!-- RELAZIONE CON FIN_DISP_PAGAMENTO-->   
+  <set name="dispPagamento" inverse="true" cascade="lock" lazy="true"  where="GSTD_ESIST_B='S'">
+   <key column="INDIRIZZO_ID"/>                                  
+   <one-to-many class="it.ras.arco.bean.FinDispPagamento"/>
+  </set>
+  
+  <!-- RELAZIONE CON FIN_LEGAME_INDIR-->   
+  <set name="legameIndir" inverse="true" cascade="save-update" lazy="true"  where="GSTD_ESIST_B='S' and GSTD_INSE_D>sysdate">
+   <key column="LEGAME_INDIR_ID"/>                                  
+   <one-to-many class="it.ras.arco.bean.FinLegameIndir"/>
+  </set>
+  
+   <subclass name="it.ras.arco.bean.FinIndirizzoRam" discriminator-value="COS" lazy="true">
+   		<many-to-one name="soggettoRam" class="it.ras.arco.bean.FinSoggetto"
+   			column="SOGGETTO_ID" cascade="all, lock" not-null="false" lazy="proxy" not-found="ignore" /> 
+  </subclass>
+  
+  <subclass name="it.ras.arco.bean.FinIndirizzoOth" discriminator-value="OTH" lazy="true">
+  
+  </subclass>
+  
+</class>
+<query name="CURSOR_INDIRIZZO">select i from it.ras.arco.bean.FinIndirizzo i where i.presNote = 'D'</query>
+ 
+</hibernate-mapping>
+
+

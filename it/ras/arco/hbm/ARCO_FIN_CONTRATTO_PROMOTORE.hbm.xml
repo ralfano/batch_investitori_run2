@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA CONTRATTO-PROMOTORE -->
+ <class name="it.ras.arco.bean.FinContrattoPromotore" table="FIN_CONTRATTO_PROMOTORE" where="GSTD_ESIST_B='S'">
+  <id name="contrattoPromotoreId" column="CONTRATTO_PROMOTORE_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_CONTRATTO_PROMOTORE_SEQ</param>
+   </generator>
+  </id>
+  <property name="dataInizio" type="date" column="DATA_INIZIO_D"/>
+  <property name="dataFine" type="date" column="DATA_FINE_D"/>
+  <property name="flagAttuale" type="string" column="FLAG_ATTUALE" length="1"/>
+  <property name="flagSplit" type="string" column="FLAG_SPLIT" length="1"/>
+  <property name="percRipartiz" type="double" column="PERC_RIPARTIZ"/>
+  <property name="promotorePrecId" type="integer" column="PROM_PREC_ID"/>
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="40"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="40"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="40"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+   <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  
+  
+  <!-- RELAZIONE CON FIN_CONTRATTO -->
+  <many-to-one name="contratto" class="it.ras.arco.bean.FinContratto" column = "CONTRATTO_ID" cascade="lock" not-found="ignore"/>
+  
+  <!-- RELAZIONE CON FIN_PROMOTORE -->
+  <many-to-one name="promotore" class="it.ras.arco.bean.FinPromotore" column = "PROMOTORE_ID" cascade="lock" not-found="ignore" />
+  
+ </class>
+ 
+ <query name="GetAssegnazioneAttivaByContrattoPromotore">select a from it.ras.arco.bean.FinContrattoPromotore a join a.contratto c join a.promotore p where c.contrattoId = ? and p.promotoreId = ? and a.flagAttuale = 'S' </query>
+ <!--
+ <query name="GetAssegnazione">select a from it.ras.arco.bean.FinContrattoPromotore a join a.contratto c join a.promotore p where c.contrattoId = ? and p.promotoreId = ? and a.flagSplit = ? and a.flagAttuale = ? </query> 
+ -->
+ <query name="GetPromotoreAttualeByContrattoId">from it.ras.arco.bean.FinContrattoPromotore a where a.contratto = ? and a.flagSplit = 'N' and a.flagAttuale = 'S'</query>
+ 
+ <query name="GetAssegnazione">select a from it.ras.arco.bean.FinContrattoPromotore a join a.contratto c where c.contrattoId = ? and a.flagSplit = ? and a.flagAttuale = ? </query> 
+ <query name="GetAssegnazione2">select a from it.ras.arco.bean.FinContrattoPromotore a join a.contratto c join a.promotore p where c.contrattoId = ? and p.promotoreId = ? and a.flagSplit = ? and a.flagAttuale = ? </query> 
+ <query name="GetPromotoreByContrattoId">from it.ras.arco.bean.FinContrattoPromotore a where a.contratto = ? and a.flagSplit = 'N'</query>
+ <query name="GetPrimaAssegnazione">select a from it.ras.arco.bean.FinContrattoPromotore a join a.contratto c where c.contrattoId = ? and a.dataInizio = ? </query> 
+ 
+</hibernate-mapping>
+  

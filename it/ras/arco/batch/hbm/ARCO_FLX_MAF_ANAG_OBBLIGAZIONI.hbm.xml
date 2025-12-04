@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+
+ <class name="it.ras.arco.batch.bean.FlxAnagraficaObbligazioni" rowid="rowid" 
+ 	table="FLX_MAF_ANAG_OBBLIGAZIONI">
+	
+	<id name="flxId" column="FLX_ID" type="integer">
+		<generator class="sequence">
+			<param name="sequence">FLX_MAF_ANAG_OBBLIGAZIONI_SEQ</param>
+		</generator>
+	</id>
+
+	<!--	*******	CAMPI STRUMENTO FINANZIARIO *******		-->
+	<property name="codiceMAF" 			column="CODICE_MAF"	type="string" length="64"  />
+	<property name="nome" 				column="NOME" 		type="string" length="64"  />
+	<property name="tipo" 				column="TIPO" 		type="string" length="64"  />
+	<property name="sottotipo" 			column="SOTTO_TIPO" 	type="string" length="64"  />
+	<property name="isin" 				column="ISIN" 		type="string" length="64"  />
+	<property name="divisa" 			column="DIVISA" 	type="string" length="64"  />
+	<property name="dataInizioValidita" 		column="DATA_INIZIO_VALIDITA" 	type="string" length="64"  />
+	<property name="dataFineValidita" 		column="DATA_FINE_VALIDITA" 	type="string" length="64"  />
+	<property name="attivo" 			column="ATTIVO" 	type="string" length="64"  />
+	<property name="societaGestione" 		column="SOCIETA_GESTIONE" 	type="string" length="64"  />
+	<property name="paese" 				column="PAESE" 		type="string" length="64"  />
+	<property name="codiceSettoreIndustriale"	column="COD_SETT_INDUSTR" 	type="string" length="64"  />
+
+
+	<!--	*******	CAMPI OBBLIGAZIONE *******		-->
+	<property name="codicePiazza" 			column="CODICE_PIAZZA" 		type="string" length="64"  />
+	<property name="simboloPiazza" 			column="SIMBOLO_PIAZZA" 	type="string" length="64"  />
+	<property name="descrizioneBreve" 		column="DESCRIZIONE_BREVE" 	type="string" length="64"  />
+
+	<property name="dataScadenzaObbligazione" 	column="DATA_SCAD_OBBLIGAZIONE" type="string" length="64"  />
+	<property name="dataEmissionePrestito" 		column="DATA_EMISS_PRESTITO" 	type="string" length="64"  />
+	<property name="dataInizioAccumuloInteressi" 	column="DATA_INIZIO_ACC_INTERESSI" 	type="string" length="64"  />
+	<property name="lottoMinimoContrattazione" 	column="LOTTO_MIN_CONTRATTAZIONE" 	type="string" length="64"  />
+	<property name="tipoRendimento" 		column="TIPO_RENDIMENTO" 	type="string" length="64"  />
+	<property name="codiceGiorniBaseCalcoloCedola" 	column="COD_GIORNI_BASE_CALC_CED" 	type="string" length="64"  />
+	<property name="frequenzaRiscossioneCedola" 	column="FREQ_RISCOSSIONE_CEDOLA" 	type="string" length="64"  />
+	<property name="tipologiaObbligazione" 		column="TIPO_OBBLIGAZIONE" 	type="string" length="64"  />
+	<property name="perpetua" 			column="PERPETUA_B" 		type="string" length="64"  />
+	<property name="importiPercentuali" 		column="IMP_PERCENTUALI_B" 	type="string" length="64"  />
+	<property name="valutaInteressi" 		column="VALUTA_INTERESSI" 	type="string" length="64"  />
+	<property name="valoreRimborso" 		column="VALORE_RIMBORSO" 	type="string" length="64"  />
+	<property name="importoNominaleUnitario" 	column="IMP_NOMINALE_UNIT" 	type="string" length="64"  />
+	<property name="importoEmissione" 		column="IMP_EMISSIONE" 		type="string" length="64"  />
+	<property name="importoOutstanding" 		column="IMP_OUTSTANDING" 	type="string" length="64"  />
+	<property name="minimoRendimentoCedola" 	column="MIN_RENDIMENTO_CEDOLA" 	type="string" length="64"  />
+	<property name="massimoRendimentoCedola" 	column="MAX_RENDIMENTO_CEDOLA" 	type="string" length="64"  />
+	<property name="tassoFissoPercentuale" 		column="TASSO_FISSO_PERCENT" 	type="string" length="64"  />
+	<property name="indiceRiferimento" 		column="INDICE_RIFERIMENTO" 	type="string" length="64"  />
+	<property name="spread" 			column="SPREAD" 		type="string" length="64"  />
+	<property name="possibilePut" 			column="PUTABLE_B" 		type="string" length="64"  />
+	<property name="prezzoPut" 			column="PREZZO_PUT" 		type="string" length="64"  />
+	<property name="primaDataPutable" 		column="PRIMA_DATA_PUT" 	type="string" length="64"  />
+	<property name="ultimaDataPutable" 		column="ULTIMA_DATA_PUT" 	type="string" length="64"  />
+	<property name="callable" 			column="CALLABLE_B" 		type="string" length="64"  />
+	<property name="prezzoCall" 			column="PREZZO_CALL" 		type="string" length="64"  />
+	<property name="primaDataCallable" 		column="PRIMA_DATA_CALLABLE" 	type="string" length="64"  />
+	<property name="ultimaDataCallable" 		column="ULTIMA_DATA_CALLABLE" 	type="string" length="64"  />
+	<property name="liquidabile" 			column="LIQUIDABILE_B" 		type="string" length="64"  />
+	<property name="dataInizioLiquidabile" 		column="DATA_INIZIO_LIQUIDABILE" 	type="string" length="64"  />
+	<property name="prezzoRimborsoAnticipato" 	column="PREZZO_RIMBORSO_ANTIC" 	type="string" length="64"  />
+	<property name="collocatoPressoPrivati" 	column="COLLOC_PRESSO_PRIVATI" 	type="string" length="64"  />
+	<property name="predefinita" 			column="PREDEFINITA_B" 		type="string" length="64"  />
+
+
+	<!--	*******	CAMPI STANDARD	*******		-->
+	<property name="statoElaborazione" 		column="STATO_ELAB_B" 		type="string" length="2"  />
+	<property name="istanza" 	   		column="ISTANZA_S" 	 	type="string" length="1"  />
+	<property name="dataCaricamento"   		column="DATA_CARICAMENTO_D" 	type="timestamp"  />
+
+
+
+
+	<!-- RELAZIONE CON FIN_ATT_FIN -->  
+	<many-to-one name="attivitaFinanziaria"
+	  	 class="it.ras.arco.bean.FinAttivitaFinanziaria" 
+	  	 column="ATTIVITA_FIN_ID"
+	  	 insert="true" update="true"
+	  	 cascade="none"
+	  	 lazy="false"
+	  	 />
+
+
+  
+ </class>
+ 
+ 
+ 
+ <!--	*******		CURSORE		********	-->
+ <query name="MAF_ANAG_OBBLIGAZIONI_SQL">
+ 	from it.ras.arco.batch.bean.FlxAnagraficaObbligazioni flusso where flusso.statoElaborazione ='D'
+ </query>
+
+ <!--	*******		CURSORE PER DECODIFICA		********	-->
+ <query name="MAF_ANAG_OBBLIGAZIONI_DECODIFICA_SQL">
+ 	from it.ras.arco.batch.bean.FlxAnagraficaObbligazioni flusso where flusso.statoElaborazione ='DD'
+ </query>
+
+
+</hibernate-mapping>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA SY_MIG_INDIRIZZI -->
+ <class name="it.ras.arco.batch.bean.FlxBnlGesPart03" rowid="rowid" table="FLX_BNL_GES_PARTECIPANTI_03">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_BNL_GES_PART_03_SEQ</param>
+   </generator>
+  </id>
+<property name="tipoRecord03"                   column="TIPO_RECORD_03"                 type="integer"  />
+<property name="numAccordo03"                   column="NUM_ACCORDO_03"                 type="integer"  />
+<property name="codiceProdotto03"               column="CODICE_PRODOTTO_03"             type="string" length="4"  />
+<property name="cope03"                         column="COPE_03"                        type="integer"  />
+<property name="coplist03"                      column="COPLIST_03"                     type="integer"  />
+<property name="ndg03"                          column="NDG_03"                         type="integer"  />
+<property name="codiceSgr03"                    column="CODICE_SGR_03"                  type="integer"  />
+<property name="ruolo03"                        column="RUOLO_03"                       type="string" length="2"  />
+<property name="flagSocpri03"                   column="FLAG_SOCPRI_03"                 type="string" length="1"  />
+<property name="titolo03"                       column="TITOLO_03"                      type="string" length="2"  />
+<property name="cognome03"                      column="COGNOME_03"                     type="string" length="20"  />
+<property name="nome03"                         column="NOME_03"                        type="string" length="15"  />
+<property name="cognomeAcq03"                   column="COGNOME_ACQ_03"                 type="string" length="20"  />
+<property name="nominativo03"                   column="NOMINATIVO_03"                  type="string" length="2"  />
+<property name="sesso03"                        column="SESSO_03"                       type="string" length="1"  />
+<property name="statoCiv03"                     column="STATO_CIV_03"                   type="integer"  />
+<property name="professione03"                  column="PROFESSIONE_03"                 type="integer"  />
+<property name="dataDiNasc03"                   column="DATA_DI_NASC_03"                type="date"  />
+<property name="cittaN03"                       column="CITTA_N_03 "                    type="string" length="20"  />
+<property name="provN03"                        column="PROV_N_03"                      type="string" length="2"  />
+<property name="nazionalita03"                  column="NAZIONALITA_03"                 type="string" length="3"  />
+<property name="tipoVia03"                      column="TIPO_VIA_03"                    type="string" length="2"  />
+<property name="via03"                          column="VIA_03"                         type="string" length="25"  />
+<property name="numciv03"                       column="NUMCIV_03"                      type="string" length="7"  />
+<property name="cap03"                          column="CAP_03"                         type="integer"  />
+<property name="cittaR03"                       column="CITTA_R_03"                     type="string" length="35"  />
+<property name="provR03"                        column="PROV_R_03"                      type="string" length="2"  />
+<property name="statoR03"                       column="STATO_R_03"                     type="string" length="3"  />
+<property name="sgr"                            column="SGR"                            type="integer"  />
+<property name="ramo03"                         column="RAMO_03"                        type="integer"  />
+<property name="sramo03"                        column="SRAMO_03"                       type="integer"  />
+<property name="codFiscale03"                   column="COD_FISCALE_03"                 type="string" length="16"  />
+<property name="tipoD03"                        column="TIPO_D_03"                      type="string" length="2"  />
+<property name="dataD03"                        column="DATA_D_03"                      type="date"  />
+<property name="numDoc03"                       column="NUM_DOC_03"                     type="string" length="15"  />
+<property name="luogoDoc03"                     column="LUOGO_DOC_03"                   type="string" length="20"  />
+<property name="cab03"                          column="CAB_03"                         type="integer"  />
+<property name="numTel03"                       column="NUM_TEL_03"                     type="string" length="13"  />
+<property name="privacy03"                      column="PRIVACY_03"                     type="string" length="1"  />
+<property name="sportelloBnl03"                 column="SPORTELLO_BNL_03"               type="integer"  />
+<property name="dataInizio03"                   column="DATA_INIZIO_03"                 type="date"  />
+<property name="dataFine03"                     column="DATA_FINE_03"                   type="date"  />
+<property name="frazione03"                     column="FRAZIONE_03"                    type="string" length="25"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+  
+
+
+
+ </class>
+<query name="GetPartecipantiByNumContratto">from it.ras.arco.batch.bean.FlxBnlGesPart03 c where c.numAccordo03 =:numContratto </query> 
+
+
+</hibernate-mapping>

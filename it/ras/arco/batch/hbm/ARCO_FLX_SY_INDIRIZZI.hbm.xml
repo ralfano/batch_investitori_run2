@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA INDIRIZZI SY -->
+ <class name="it.ras.arco.batch.bean.FlxSyIndirizzi" rowid="rowid"
+  table="FLX_SY_INDIRIZZI" where="STATO_ELAB_B='D'"
+	dynamic-update="true" dynamic-insert="true" batch-size="100" lazy="true" >
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SY_INDIRIZZI_SEQ</param>
+   </generator>
+  </id>
+  <property name="tipoEvento" type="string" column="TIPO_EVENTO" length="1"/>
+  <property name="codPromotore" type="string" column="COD_PROMOTORE" length="5"/>
+  <property name="codRete" type="string" column="COD_RETE" length="1"/>
+  <property name="codCompagn" type="integer" column="COD_COMPAGN" />
+  <property name="tipoProd" type="integer" column="TIPO_PROD"/>
+  <property name="codSottoscr" type="integer" column="COD_SOTTOSCR"/>
+  <property name="codComparto" type="integer" column="COD_COMPARTO"/>
+  <property name="indPostale" type="string" column="IND_POSTALE" length="32"/>
+  <property name="locIndPostale" type="string" column="LOC_IND_POSTALE" length="32"/>
+  <property name="provIndPostale" type="string" column="PROV_IND_POSTALE"/>
+  <property name="cap" type="integer" column="CAP"/>
+  <property name="nazIndPostale" type="string" column="NAZ_IND_POSTALE" length="3"/>
+  <property name="statoElabB" type="string" column="STATO_ELAB_B" length="2"/>
+  <property name="istanzaS" type="string" column="ISTANZA_S" length="1"/>
+ </class>
+ <query name="CURSOR_SY_INDIRIZZI">from it.ras.arco.batch.bean.FlxSyIndirizzi</query>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DECODIFICA SOGGETTI SEC -->
+ <class name="it.ras.arco.batch.bean.FlxSecQuotazioni" rowid="rowid"
+  table="FLX_SEC_QUOTAZIONI" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_GENERIC_SEQ</param>
+   </generator>
+  </id>
+    <property name="codiceFabbrica"                 column="CODICE_FABBRICA"                type="string" length="5"  />
+	<property name="tipoProdotto"                   column="TIPO_PRODOTTO"                  type="integer"  />
+	<property name="codiceProdottoSec"              column="CODICE_PRODOTTO_SEC"            type="integer"  />
+	<property name="codiceProdottoFabbrica"         column="CODICE_PRODOTTO_FABBRICA"       type="string" length="5"  />
+	<property name="descrizioneProdotto"            column="DESCRIZIONE_PRODOTTO"           type="string" length="35"  />
+	<property name="codiceCompartoSec"              column="CODICE_COMPARTO_SEC"            type="integer"  />
+	<property name="codiceCompartoFabbrica"         column="CODICE_COMPARTO_FABBRICA"       type="string" length="5"  />
+	<property name="descrizioneComparto"            column="DESCRIZIONE_COMPARTO"           type="string" length="35"  />
+	<property name="descrizioneBreveComparto"       column="DESCRIZIONE_BREVE_COMPARTO"     type="string" length="8"  />
+	<property name="data"                           column="DATA_QUOT"                      type="date"  />
+	<property name="divisa"                         column="DIVISA"                         type="string" length="3"  />
+	<property name="quotazione"                     column="QUOTAZIONE"                     type="string" length="18"  />
+	<property name="isin"                           column="ISIN"                           type="string" length="12"  />
+	<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+	<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+	<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+	<property name="descrizioneErrore"              column="DESCRIZIONE_ERRORE_S"           type="string" length="100"  />
+	<property name="dataErrore"                     column="DATA_ERRORE"                    type="date" />
+ </class>
+<query name="CURSOR_SEC_QUOTAZIONI">from it.ras.arco.batch.bean.FlxSecQuotazioni</query>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxArchivioStacCedola" rowid="rowid" table="FLX_ARCHIVIO_STAC_CEDOLA">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_ARCHIVIO_STAC_CEDOLA_SEQUENCE</param>
+   </generator>
+  </id>
+  
+<property name="numeroMandato"                  column="NUMERO_MANDATO"                 type="string" length="11"  />
+<property name="codiceIntestatario"             column="CODICE_INTESTATARIO"            type="string" length="7"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="timestamp"  />
+  <property name="tipoOperazione"                column="TIPO_OPERAZIONE"             type="string"  />
+  
+  </class>
+ <query name="ARCHIVIO_STAC_CEDOLA">from
+it.ras.arco.batch.bean.FlxArchivioStacCedola pc where pc.statoElab='D' order by pc.flxId</query>
+
+
+</hibernate-mapping>

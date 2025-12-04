@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxSecSaldoContra" table="FLX_SEC_SALDO_CON">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SEC_SALDO_CON_SEQ</param>
+   </generator>
+  </id>
+ 
+
+<property name="filialeRapporto"                column="FILIALE_RAPPORTO"               type="string"  />
+<property name="categoriaRapporto"              column="CATEGORIA_RAPPORTO"             type="string"  />
+<property name="numRapporto"                    column="NUM_RAPPORTO"                   type="string"  />
+<property name="tipoProdotto"                   column="TIPO_PRODOTTO"                  type="integer"  />
+<property name="dataValorizzazione"             column="DATA_VALORIZZAZIONE"            type="date"  />
+<property name="divisa"                         column="DIVISA"                         type="string"  />
+<property name="saldoContabile"                 column="SALDO_CONTABILE"                type="double"  />
+<property name="saldoDisponibile"               column="SALDO_DISPONIBILE"              type="double"  />
+<property name="saldoLiquido"                   column="SALDO_LIQUIDO"                  type="double"  />
+<property name="fidoDisponibile"                column="FIDO_DISPONIBILE"               type="double"  />
+<property name="saldoDossier"                   column="SALDO_DOSSIER"                  type="double"  />
+<property name="disponibilita"                  column="DISPONIBILITA"                  type="double"  />
+<property name="partitePrenotateDare"           column="PARTITE_PRENOTATE_DARE"         type="double"  />
+<property name="partitePrenotateAvere"          column="PARTITE_PRENOTATE_AVERE"        type="double"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="timestamp"  />
+ <property name="descrizioneErrore"  column="DESCRIZIONE_ERRORE_S" type="string" length="100"  />
+  <property name="dataElab" column="DATA_ELAB_D" type="timestamp"  />
+ <property name="estero"                column="ESTERO_B"             type="string" length="1" />
+ 
+ <property name="cfil"                column="CFIL"               type="string"  />
+<property name="cage"              column="CAGE"             type="string"  />
+<property name="cprg"                    column="CPRG"                   type="string"  />
+<property name="sottocodiceRapp"                   column="SOTTOCODICE_RAPP"                  type="string"  />
+ 
+ 
+ 
+ 
+ 
+ </class>
+<query name="SEC_SALDO_CON">from
+it.ras.arco.batch.bean.FlxSecSaldoContra pc where pc.statoElab='D' 
+</query>
+
+
+</hibernate-mapping>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+
+ <class name="it.ras.arco.batch.bean.FlxAnagraficaFondi" rowid="rowid" table="FLX_MAF_ANAG_FONDI">
+	
+	<id name="flxId" column="FLX_ID" type="integer">
+		<generator class="sequence">
+			<param name="sequence">FLX_MAF_ANAG_FONDI_SEQ</param>
+		</generator>
+	</id>
+
+	<!--	*******	CAMPI STRUMENTO FINANZIARIO *******		-->
+	<property name="codiceMAF" 			column="CODICE_MAF"	type="string" length="64"  />
+	<property name="nome" 				column="NOME" 		type="string" length="64"  />
+	<property name="tipo" 				column="TIPO" 		type="string" length="64"  />
+	<property name="sottotipo" 			column="SOTTO_TIPO" 	type="string" length="64"  />
+	<property name="isin" 				column="ISIN" 		type="string" length="64"  />
+	<property name="divisa" 			column="DIVISA" 	type="string" length="64"  />
+	<property name="dataInizioValidita" 		column="DATA_INIZIO_VALIDITA" 	type="string" length="64"  />
+	<property name="dataFineValidita" 		column="DATA_FINE_VALIDITA" 	type="string" length="64"  />
+	<property name="attivo" 			column="ATTIVO" 	type="string" length="64"  />
+	<property name="societaGestione" 		column="SOCIETA_GESTIONE" 	type="string" length="64"  />
+	<property name="paese" 				column="PAESE" 		type="string" length="64"  />
+	<property name="codiceSettoreIndustriale"	column="COD_SETT_INDUSTR" 	type="string" length="64"  />
+
+
+	<!--	*******	CAMPI FONDO *******		-->
+ 	<property name="categoriaAssogestioni" 		column="CAT_ASSOGESIONI" 	type="string" length="64"  />
+	<property name="prevedeCedola" 			column="PREVEDE_CED_B" 		type="string" length="64"  />
+	<property name="frequenzaCedola" 		column="FREQ_CEDOLA" 		type="string" length="64"  />
+	<property name="codiceValutaDividendi" 		column="COD_VALUTA_DIVIDENDI" 	type="string" length="64"  />
+	<property name="codiceTipoInvestimento" 	column="COD_TIPO_INVESTIMENTO"  type="string" length="64"  />
+	<property name="codiceAreaGeografica" 		column="COD_AREA_GEOGRAFICA" 	type="string" length="64"  />
+	<property name="sicav" 				column="SICAV_B" 		type="string" length="64"  />
+	<property name="aperto" 			column="APERTO_B" 		type="string" length="64"  />
+	<property name="investimentoMinimo" 		column="MIN_INVESTIMENTO" 	type="string" length="64"  />
+	<property name="rimborsoMinimo" 		column="MIN_RIMBORSO" 		type="string" length="64"  />
+	<property name="classe" 			column="CLASSE" 		type="string" length="64"  />
+	<property name="rischioCambio" 			column="RISCHIO_CAMBIO_B" 	type="string" length="64"  />
+
+
+
+	<!--	*******	CAMPI STANDARD	*******		-->
+	<property name="statoElaborazione" 		column="STATO_ELAB_B" 		type="string" length="2"  />
+	<property name="istanza"			column="ISTANZA_S" 	 	type="string" length="1"  />
+	<property name="dataCaricamento"   		column="DATA_CARICAMENTO_D" 	type="timestamp"  />
+
+
+
+	<!-- RELAZIONE CON FIN_ATT_FIN -->  
+	<many-to-one name="attivitaFinanziaria"
+	  	 class="it.ras.arco.bean.FinAttivitaFinanziaria" 
+	  	 column="ATTIVITA_FIN_ID"
+	  	 insert="true" update="true"
+	  	 cascade="none"
+	  	 lazy="false"
+	  	 />
+
+  
+ </class>
+ 
+ 
+ <!--	*******		CURSORE		********	-->
+ <query name="MAF_ANAG_FONDI_SQL">
+ 	from it.ras.arco.batch.bean.FlxAnagraficaFondi flusso where flusso.statoElaborazione ='D'
+ </query>
+
+ <!--	*******		CURSORE	PER DECODIFICA	********	-->
+ <query name="MAF_ANAG_FONDI_DECODIFICA_SQL">
+ 	from it.ras.arco.batch.bean.FlxAnagraficaFondi flusso where flusso.statoElaborazione ='DD'
+ </query>
+
+</hibernate-mapping>

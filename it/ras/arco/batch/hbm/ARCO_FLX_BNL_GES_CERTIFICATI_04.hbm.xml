@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA SY_MIG_INDIRIZZI -->
+ <class name="it.ras.arco.batch.bean.FlxBnlGesCertificati04" rowid="rowid" table="FLX_BNL_GES_CERTIFICATI_04">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_BNL_GES_CERTIFICATI_04_SEQ</param>
+   </generator>
+  </id>
+<property name="tipoRecord04"                   column="TIPO_RECORD_04"                 type="integer"  />
+<property name="numAccordo04"                   column="NUM_ACCORDO_04"                 type="integer"  />
+<property name="codiceProdotto04"               column="CODICE_PRODOTTO_04"             type="string" length="4"  />
+<property name="numCertifBnl04"                 column="NUM_CERTIF_BNL_04"              type="integer"  />
+<property name="numCertifSgr04"                 column="NUM_CERTIF_SGR_04"              type="integer"  />
+<property name="dataEmissione04"                column="DATA_EMISSIONE_04"              type="date"  />
+<property name="dataDistruzio04"                column="DATA_DISTRUZIO_04"              type="date"  />
+<property name="tipoCertificato04"              column="TIPO_CERTIFICATO_04"            type="string" length="2"  />
+<property name="codLuogoinv04"                  column="COD_LUOGOINV_04"                type="string" length="3"  />
+<property name="dataRichiesta04"                column="DATA_RICHIESTA_04"              type="date"  />
+<property name="codAbi04"                       column="COD_ABI_04"                     type="string" length="5"  />
+<property name="codCab04"                       column="COD_CAB_04"                     type="string" length="5"  />
+<property name="numerQuote04"                   column="NUMER_QUOTE_04"                 type="double"  />
+<property name="segnoImp04"                     column="SEGNO_IMP_04"                   type="string" length="1"  />
+<property name="codMovimen04"                   column="COD_MOVIMEN_04"                 type="integer"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+<property name="descrizioneErrore"              column="DESCRIZIONE_ERRORE_S"           type="string" length="100"  />
+<property name="dataErrore"                     column="DATA_ERRORE"                    type="date" />
+
+ </class>
+ <query name="GetCertificatoByNumCertNumAcc">from it.ras.arco.batch.bean.FlxBnlGesCertificati04 where numCertifSgr04=? and 
+ numAccordo04=?
+ </query>
+
+
+</hibernate-mapping>

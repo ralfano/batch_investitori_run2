@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxSecAggiornaPratica" rowid="rowid" table="FLX_SEC_AGGIORNA_PRATICA" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SEC_AGGIORNA_PRATICA_SEQ</param>
+   </generator>
+  </id> 
+  	<property name="parametro"						column="PARAMETRO"						type="string" length="1"  />
+  	<property name="codiceAgente"					column="CODICE_AGENTE"                  type="string" length="5"  />
+  	<property name="codiceRete"						column="CODICE_RETE"                   	type="string" length="1"  />
+  	<property name="codiceCompagnia"                column="CODICE_COMPAGNIA"            	type="string" length="2"  />
+  	<property name="statoPratica"					column="STATO_PRATICA"					type="string" length="1"  />
+  	<property name="numPresentazione"				column="NUMERO_PRESENTAZIONE"			type="string" length="10" />
+  	<property name="numPratica"						column="NUMERO_PRATICA"					type="string" length="9"  />
+  	<property name="dataAperturaPra"				column="DATA_APERTURA_PRA"				type="date"  />
+  	<property name="numCC"							column="NUMERO_CC"						type="string" length="8"  />
+  	<property name="statoElab"						column="STATO_ELAB_B"					type="string" length="2"  />
+  	<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+	<property name="dataCaricamento"                column="DATA_CARICAMENTO_D"             type="date" />
+	<property name="descrizioneErrore"              column="DESCRIZIONE_ERRORE_S"           type="string" length="100" />														
+  	<property name="dataElaborazione"               column="DATA_ELAB_D"    		        type="timestamp"  />
+  	
+  	
+	
+	</class>
+  <query name="SEC_AGGIORNA_PRATICA_SQL">from  
+ it.ras.arco.batch.bean.FlxSecAggiornaPratica p where p.statoElab='D'</query> 
+</hibernate-mapping>
+  

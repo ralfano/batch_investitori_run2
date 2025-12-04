@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ANAGRAFICA CC -->
+ <class name="it.ras.arco.batch.bean.FlxAnagraficaCliente" rowid="rowid" table="FLX_ANAGRAFICA_CLIENTE">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_CCDT_ANACC_SEQ</param>
+   </generator>
+  </id>
+  <property name="nominativo" type="string" column="NOMINATIVO" length="2"/>
+  <property name="codiceFiscale" type="string" column="CODICE_FISCALE" length="16"/>
+  <property name="dataDiNascita" type="date" column="DATA_DI_NASCITA"/>
+  <property name="codiceAgente" type="string" column="CODICE_AGENTE"/>
+  <property name="codiceRete" type="string" column="CODICE_RETE" length="1"/>
+  <property name="codiceCompagnia" type="string"
+   column="CODICE_COMPAGNIA" length="2"/>
+  <property name="indirizzoResidenza" type="string"
+   column="INDIRIZZO_RESIDENZA" length="32"/>
+  <property name="capResidenza" type="string" column="CAP_RESIDENZA" length="5"/>
+  <property name="localitaResidenza" type="string"
+   column="LOCALITA_RESIDENZA" length="32"/>
+  <property name="provinciaResidenza" type="string"
+   column="PROVINCIA_RESIDENZA" length="2"/>
+  <property name="telefonoResidenza" type="string"
+   column="TELEFONO_RESIDENZA" length="15"/>
+  <property name="telefonoUfficio" type="string"
+   column="TELEFONO_UFFICIO" length="15"/>
+  <property name="telefonoCellulare" type="string"
+   column="TELEFONO_CELLULARE" length="15"/>
+  <property name="statoElab" type="string" column="STATO_ELAB_B" length="2"/>
+ </class>
+ <query name="ANAGRAFICA_CLIENTE_SQL">from  
+ it.ras.arco.batch.bean.FlxAnagraficaCliente p where p.statoElab in ('D','KO')</query>
+</hibernate-mapping>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA SY_MIG_INDIRIZZI -->
+ <class name="it.ras.arco.batch.bean.FlxBnlGesRapColl05" table="FLX_BNL_GES_RAPP_COLL_05">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_BNL_GES_RAPP_COLL_05_SEQ</param>
+   </generator>
+  </id>
+<property name="tipoRecord05"                   column="TIPO_RECORD_05"                 type="integer"  />
+<property name="numAccordo05"                   column="NUM_ACCORDO_05"                 type="integer"  />
+<property name="codiceProdotto05"               column="CODICE_PRODOTTO_05"             type="string" length="4"  />
+<property name="abi05"                          column="ABI_05"                         type="integer"  />
+<property name="cab05"                          column="CAB_05"                         type="integer"  />
+<property name="sportelloBnl05"                 column="SPORTELLO_BNL_05"               type="integer"  />
+<property name="numCc05"                        column="NUM_CC_05"                      type="string" length="12"  />
+<property name="dataInizio05"                   column="DATA_INIZIO_05"                 type="date"  />
+<property name="dataFine05"                     column="DATA_FINE_05"                   type="date"  />
+<property name="tipoCollegamento05"             column="TIPO_COLLEGAMENTO_05"           type="string" length="3"  />
+<property name="tipoRimborso05"                 column="TIPO_RIMBORSO_05"               type="string" length="1"  />
+<property name="importo05"                      column="IMPORTO_05"                     type="double"  />
+<property name="contrattoDest05"                column="CONTRATTO_DEST_05"              type="integer"  />
+<property name="frequenza05"                    column="FREQUENZA_05"                   type="integer"  />
+<property name="ndg05"                          column="NDG_05"                         type="integer"  />
+<property name="codFiscale05"                   column="COD_FISCALE_05"                 type="string" length="16"  />
+<property name="mezzoPagamento05"               column="MEZZO_PAGAMENTO_05"             type="string" length="1"  />
+<property name="giornoMese05"                   column="GIORNO_MESE_05"                 type="integer"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+
+
+ </class>
+ <query name="GetRapCollByNumContratto">from it.ras.arco.batch.bean.FlxBnlGesRapColl05 c where c.numAccordo05 =:numContratto </query> 
+
+</hibernate-mapping>

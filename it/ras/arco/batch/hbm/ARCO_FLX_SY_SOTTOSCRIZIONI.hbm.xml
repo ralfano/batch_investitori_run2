@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA SOTTOSCRIZIONI SY -->
+ <class name="it.ras.arco.batch.bean.FlxSYSottoscrizioni" rowid="rowid"
+  table="FLX_SY_SOTTOSCRIZIONI" where="STATO_ELAB_B='D'"
+  dynamic-update="true" dynamic-insert="true" batch-size="100" lazy="true">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_GENERIC_SEQ</param>
+   </generator>
+  </id>
+  <property name="outTipoEvento" type="string" column="OUT_TIPO_EVENTO" length="1"/>
+  <property name="outTipoProd" type="string" column="OUT_TIPO_PROD" length="1"/>
+  <property name="outCodComparto" type="string"
+   column="OUT_COD_COMPARTO" length="5"/>
+  <property name="outCodSottoscr" type="string"
+   column="OUT_COD_SOTTOSCR" length="11"/>
+  <property name="outCliente" type="string" column="OUT_CLIENTE" length="9"/>
+  <property name="outCodPromotore" type="string"
+   column="OUT_COD_PROMOTORE" length="5"/>
+  <property name="outCodRete" type="string" column="OUT_COD_RETE" length="1"/>
+  <property name="outCodCompagn" type="string" column="OUT_COD_COMPAGN" length="2"/>
+  <property name="outFlag" type="string" column="OUT_FLAG" length="1"/>
+  <property name="outCodContratto" type="string"
+   column="OUT_COD_CONTRATTO" length="25"/>
+  <property name="statoElab" type="string" column="STATO_ELAB_B" length="2"/>
+  <property name="istanza" type="string" column="ISTANZA_S" length="1"/>
+ </class>
+ <query name="CURSOR_SY_SOTTOSCRIZIONI">from it.ras.arco.batch.bean.FlxSYSottoscrizioni s order by s.outCodContratto</query>
+</hibernate-mapping>

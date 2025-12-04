@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+ <!-- TABELLA INDIRIZZI -->
+ <class name="it.ras.arco.batch.bean.FlxIndirizzoXP" rowid="rowid"
+  table="FIN_INDIRIZZO_XP" lazy="true" where="STATO_ELAB_B='D'">
+  <id name="indirizzoXpId" column="INDIRIZZO_XP_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_INDIRIZZO_XP_SEQ</param>
+   </generator>
+  </id>  
+<property name="statoElab"                     	column="STATO_ELAB_B"                  	type="string" length="2" />
+<property name="soggettoId"                     column="SOGGETTO_ID"                    type="integer"  />
+<property name="contrattoId"                    column="CONTRATTO_ID"                   type="integer"  />
+<property name="codToponimo"                    column="COD_TOPONIMO_T"                 type="string" length="5"  />
+<property name="destToponimo"                   column="DES_TOPONIMO_S"                	type="string" length="15"  />
+<property name="indirizzo"                      column="INDIRIZZO_S"                    type="string" length="50"  />
+<property name="numeroCivico"                   column="NUMERO_CIVICO_S"                type="string" length="10"  />
+<property name="CAP"                            column="CAP_S"                          type="string" length="7"  />
+<property name="provincia"                      column="PROV_T"                    		type="string" length="3"  />
+<property name="comune"                         column="COMUNE_S"                       type="string" length="40"  />
+<property name="localita"                       column="LOCALITA_S"                     type="string" length="40"  />
+<property name="nazione"                        column="NAZIONE_T"                      type="string" length="3"  />
+<property name="presso"                         column="PRESSO_S"                       type="string" length="64"  />
+<property name="pressoNote"                     column="PRES_NOTE_B"                  	type="string" length="1"  />
+<property name="indirizzoSeparato"              column="INDI_SEPARATO_B"           		type="string" length="1"  />
+<property name="datiSuplS"                      column="DATI_SUPL_S"                    type="string" length="20"  />
+<property name="gstdInseD"                		column="GSTD_INSE_D"                    type="date"  />
+<property name="gstdUserInsS"              		column="GSTD_USER_INS_S"                type="string" length="40"  />
+</class>
+ <query name="CURSOR_INDIRIZZO_XP">from it.ras.arco.batch.bean.FlxIndirizzoXP p</query>
+</hibernate-mapping>

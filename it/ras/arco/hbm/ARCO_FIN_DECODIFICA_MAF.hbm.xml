@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+
+ <class name="it.ras.arco.bean.FinDecodificaMaf" rowid="rowid" table="FIN_DECODIFICA_MAF">
+	
+	<id name="decodificaId" column="DECODIFICA_MAF_ID" type="integer">
+		<generator class="sequence">
+			<param name="sequence">FIN_DECODIFICA_MAF_SEQ</param>
+		</generator>
+	</id>
+
+
+	<property name="nomeDecodifica" column="NOME_DECODIFICA_S" 	type="string" length="32"  />
+	<property name="codice" 	column="CODICE_S" 		type="string" length="50"  />
+	<property name="descrizione" 	column="DESCRIZIONE_S" 		type="string" length="64"  />
+
+
+
+	<!--
+	***********************
+	  CAMPI STANDARD
+	***********************
+	-->
+	<property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="40"/>
+	<property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="40"/>
+	<property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+	<property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+	<property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+	<property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="40"/>
+	<property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+	
+	<!-- Duplicazione campi standard x Update (SLAVE) -->	
+	<property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+	<property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+	<property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+	<property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+
+
+ </class>
+ 
+ 
+ 
+ 
+ <!--	*******	 RICERCA   ********	-->
+ <query name="FIN_DECODIFICA_MAF_CARICA_DECODIFICA_SQL">
+ 	from 	it.ras.arco.bean.FinDecodificaMaf dm 
+ 	where 	dm.nomeDecodifica = :nome_decodifica_maf
+ 	and	dm.codice = :codice_decodifica_maf
+ </query>
+
+
+ 
+</hibernate-mapping>
+

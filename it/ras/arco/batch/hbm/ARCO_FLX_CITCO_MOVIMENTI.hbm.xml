@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ANAGRAFICA SY00 -->
+ <class name="it.ras.arco.batch.bean.FlxCITCOMovimenti"
+  table="FLX_CITCO_MOVIMENTI" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_GENERIC_SEQ</param>
+   </generator>
+  </id>
+  <property name="tipoRecord" type="integer" column="TIPO_RECORD"/>
+  <property name="numeroRecord" type="integer" column="NUMERO_RECORD"/>
+  <property name="nInvioCollocatore" type="integer" column="N_INVIO_COLLOCATORE"/>
+  <property name="codIstituto" type="integer" column="COD_ISTITUTO"/>
+  <property name="codEnteCollocatore" type="integer" column="COD_ENTE_COLLOCATORE"/>
+  <property name="codClienteColl" type="string"
+   column="COD_CLIENTE_COLL" length="12"/>
+  <property name="codSocGestione" type="integer" column="COD_SOC_GESTIONE"/>
+  <property name="chiaveColl" type="string" column="CHIAVE_COLL" length="50"/>
+  <property name="codFondo" type="string" column="COD_FONDO" length="5"/>
+  <property name="causale" type="string" column="CAUSALE" length="2"/>
+  <property name="nOperazione" type="integer" column="N_OPERAZIONE"/>
+  <property name="tipoOperazione" type="integer" column="TIPO_OPERAZIONE"/>
+  <property name="nQuote" type="integer" column="N_QUOTE"/>
+  <property name="importo" type="integer" column="IMPORTO"/>
+  <property name="divisa" type="string" column="DIVISA" length="3"/>
+  <property name="prezzo" type="integer" column="PREZZO"/>
+  <property name="tassoCambioFondo" type="integer" column="TASSO_CAMBIO_FONDO"/>
+  <property name="dataCambioFondo" type="date" column="DATA_CAMBIO_FONDO"/>
+  <property name="tassoCambioSwitch" type="integer" column="TASSO_CAMBIO_SWITCH"/>
+  <property name="dataCambioSwitch" type="date" column="DATA_CAMBIO_SWITCH"/>
+  <property name="dataOperazione" type="date" column="DATA_OPERAZIONE"/>
+  <property name="commIngresso" type="integer" column="COMM_INGRESSO"/>
+  <property name="commIntervento" type="integer" column="COMM_INTERVENTO"/>
+  <property name="commRimborso" type="integer" column="COMM_RIMBORSO"/>
+  <property name="commConversione" type="integer" column="COMM_CONVERSIONE"/>
+  <property name="commValuta" type="integer" column="COMM_VALUTA"/>
+  <property name="commMantenimento" type="integer" column="COMM_MANTENIMENTO"/>
+  <property name="commPerformance" type="integer" column="COMM_PERFORMANCE"/>
+  <property name="commFondo" type="integer" column="COMM_FONDO"/>
+  <property name="commBcaColloca" type="integer" column="COMM_BCA_COLLOCA"/>
+  <property name="commSocGest" type="integer" column="COMM_SOC_GEST"/>
+  <property name="tipoOpzioneFisc" type="string"
+   column="TIPO_OPZIONE_FISC" length="2"/>
+  <property name="impMinusvalFisc" type="integer" column="IMP_MINUSVAL_FISC"/>
+  <property name="impPlusvalFisc" type="integer" column="IMP_PLUSVAL_FISC"/>
+  <property name="ritenutaFisc" type="integer" column="RITENUTA_FISC"/>
+  <property name="cambioFisc" type="integer" column="CAMBIO_FISC"/>
+  <property name="dataCambioFisc" type="date" column="DATA_CAMBIO_FISC"/>
+  <property name="speseSocGest" type="integer" column="SPESE_SOC_GEST"/>
+  <property name="speseBcaCorr" type="integer" column="SPESE_BCA_CORR"/>
+  <property name="speseFondo" type="integer" column="SPESE_FONDO"/>
+  <property name="speseBcaColloca" type="integer" column="SPESE_BCA_COLLOCA"/>
+  <property name="speseTipoPag" type="integer" column="SPESE_TIPO_PAG"/>
+  <property name="speseEmisCertf" type="integer" column="SPESE_EMIS_CERTF"/>
+  <property name="speseGeneriche" type="integer" column="SPESE_GENERICHE"/>
+  <property name="numeroSottoscrizione" type="integer" column="NUMERO_SOTTOSCRIZIONE"/>
+  <property name="mezzoPagamento" type="string" column="MEZZO_PAGAMENTO" length="2"/>
+  <property name="codFondoSw" type="string" column="COD_FONDO_SW" length="5"/>
+  <property name="numeroCertificato" type="integer" column="NUMERO_CERTIFICATO"/>
+  <property name="importoValuta" type="integer" column="IMPORTO_VALUTA"/>
+  <property name="cambioConferimento" type="integer" column="CAMBIO_CONFERIMENTO"/>
+  <property name="dataCambioConferm" type="date" column="DATA_CAMBIO_CONFERM"/>
+  <property name="dataDiRegolamento" type="date" column="DATA_DI_REGOLAMENTO"/>
+  <property name="nContratto" type="string" column="N_CONTRATTO" length="16"/>
+  <property name="codCliente" type="integer" column="COD_CLIENTE"/>
+  <property name="statoElabB" type="string" column="STATO_ELAB_B" length="2"/>
+  <property name="istanzaS" type="string" column="ISTANZA_S" length="1"/>
+ </class>
+ <query name="FLX_CITCO_MOVIMENTI_SQL">from  
+ it.ras.arco.batch.bean.FlxAnagraficaClienteSY00 pc</query>
+</hibernate-mapping>

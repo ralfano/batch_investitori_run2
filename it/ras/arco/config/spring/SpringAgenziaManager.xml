@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>             
+    <bean id="GetAgenziaByCodice"
+    	class="it.ras.arco.service.AgenziaManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_AGENZIA_BY_CODICE</value>
+    	</property>
+    </bean>
+
+    <bean id="InsertAgenzia"
+    	class="it.ras.arco.service.AgenziaManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT</value>
+    	</property>
+    </bean>
+
+    <bean id="UpdateAgenzia"
+    	class="it.ras.arco.service.AgenziaManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UPDATE</value>
+    	</property>
+    </bean>
+
+    <!-- INSERIMENTO BEAN PER IL MODULO GENERICO DI ACCESSO AL DB -->
+
+    <bean id="GetAgenziaByCodiceMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetAgenziaByCodice</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CODICE_AGENZIA</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>AGENZIA</value>
+    	</property>
+    </bean>
+    
+    
+     <bean id="InsertAgenziaMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>5</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>AGENZIA</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>AGENZIA</value>			
+		</property>
+	</bean>
+    
+     <bean id="UpdateAgenziaMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>AGENZIA</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>AGENZIA</value>
+		</property>
+	</bean>
+</beans> 
+
+

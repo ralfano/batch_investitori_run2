@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+   
+    
+  
+	
+	 <bean id="InsPrezzo"      class="it.ras.arco.service.PrezzoManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>INSERT_PREZZO</value>
+		</property>
+	</bean>
+	 
+	<bean id="GetPrezzo"      class="it.ras.arco.service.PrezzoManagerSRV"   	   singleton="false" >
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+		<property name="action">
+			<value>GET_PREZZO</value>
+		</property>
+	</bean>
+	
+	
+	
+	
+
+	
+	<bean id="INSERTPREZZO_MD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>5</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>PREZZO</value>
+      </list>
+     </property>
+    
+     </bean>   
+	
+	<bean id="GetPrezzoMD"    
+    class="it.ras.flag.module.DefaultDbModule" >
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetPrezzo</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>ATT_FIN_ID</value>
+    			<value>DATA_QUO</value>	
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>PREZZO</value>
+    	</property>
+    </bean>
+	
+		
+	<bean id="UpdAttFinMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>9</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>ATTFIN</value>
+      </list>
+     </property>
+    
+     </bean>   
+	
+	
+
+</beans> 
+
+

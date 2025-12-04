@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+ <class name="it.ras.arco.batch.bean.FlxArchivioRidRam" rowid="rowid"
+  table="FLX_ARCHIVIO_RID_RAM" where="GSTD_ESIST_B='S'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_ARCHIVIO_RID_RAM_SEQ</param>
+   </generator>
+  </id>
+                      
+<property name="tipoRecord"                     column="TIPO_RECORD"                    type="string" length="1"  />
+<property name="codiceFondo"                    column="CODICE_FONDO"                   type="string" length="2"  />
+<property name="numeroMandato"                  column="NUMERO_MANDATO"                 type="string" length="11"  />
+<property name="importo"                        column="IMPORTO"                        type="double"  />
+<property name="periodicita"                    column="PERIODICITA"                    type="string" length="2"  />
+<property name="fineMese"                       column="FINE_MESE"                      type="string" length="1"  />
+<property name="codiceRichiedente"              column="CODICE_RICHIEDENTE"             type="string" length="9"  />
+<property name="stato"                          column="STATO"                          type="string" length="3"  />
+<property name="cinIban"                        column="CIN_IBAN"                       type="string" length="1"  />
+<property name="checkDigitIban"                 column="CHECK_DIGIT_IBAN"               type="string" length="2"  />
+<property name="codicePaeseIban"                column="CODICE_PAESE_IBAN"              type="string" length="2"  />
+<property name="numeroContoCorrente"            column="NUMERO_CONTO_CORRENTE"          type="string" length="15"  />
+<property name="codiceCab"                      column="CODICE_CAB"                     type="integer"  />
+<property name="codiceAbi"                      column="CODICE_ABI"                     type="integer"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="timestamp"  />
+  
+ </class>
+</hibernate-mapping>

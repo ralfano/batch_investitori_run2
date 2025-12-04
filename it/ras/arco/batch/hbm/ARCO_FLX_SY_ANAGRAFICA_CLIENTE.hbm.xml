@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ANAGRAFICA SY00 -->
+ <class name="it.ras.arco.batch.bean.FlxAnagraficaClienteSY00" rowid="rowid"
+  table="FLX_SY_ANAGRAFICA_CLIENTE" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_GENERIC_SEQ</param>
+   </generator>
+  </id>
+  <property name="dataInvio" type="date" column="DATA_INVIO"/>
+  <property name="oraInvio" type="string" column="ORA_INVIO" length="8"/>
+  <property name="progInvio" type="string" column="PROG_INVIO" length="9"/>
+  <property name="userInvio" type="string" column="USER_INVIO" length="4"/>
+  <property name="fonte" type="string" column="FONTE" length="2"/>
+  <property name="codFisc" type="string" column="COD_FISC" length="16"/>
+  <property name="partitaIva" type="string" column="PARTITA_IVA" length="11"/>
+  <property name="flagAnag" type="string" column="FLAG_ANAG" length="1"/>
+  <property name="denominazione" type="string" column="DENOMINAZIONE" length="50"/>
+  <property name="titOnorifico" type="string" column="TIT_ONORIFICO" length="5"/>
+  <property name="titStudio" type="string" column="TIT_STUDIO" length="3"/>
+  <property name="tipoSoggetto" type="string" column="TIPO_SOGGETTO" length="1"/>
+  <property name="dataNasc" type="date" column="DATA_NASC"/>
+  <property name="sesso" type="string" column="SESSO" length="1"/>
+  <property name="flagEsistenza" type="string" column="FLAG_ESISTENZA" length="1"/>
+  <property name="dataMorte" type="date" column="DATA_MORTE"/>
+  <property name="tipoIndirizzo" type="string" column="TIPO_INDIRIZZO" length="2"/>
+  <property name="flagIndirizzo" type="string" column="FLAG_INDIRIZZO" length="1"/>
+  <property name="indirizzo" type="string" column="INDIRIZZO" length="85"/>
+  <property name="cap" type="string" column="CAP" length="7"/>
+  <property name="loc" type="string" column="LOC" length="25"/>
+  <property name="prov" type="string" column="PROV" length="3"/>
+  <property name="nazIndirizzo" type="string" column="NAZ_INDIRIZZO" length="3"/>
+  <property name="nazionalita" type="string" column="NAZIONALITA" length="3"/>
+  <property name="locNasc" type="string" column="LOC_NASC" length="25"/>
+  <property name="provNasc" type="string" column="PROV_NASC" length="3"/>
+  <property name="nazNasc" type="string" column="NAZ_NASC" length="3"/>
+  <property name="stato" type="string" column="STATO" length="2"/>
+  <property name="flagCapof" type="string" column="FLAG_CAPOF" length="1"/>
+  <property name="ndgCod" type="integer" column="NDG_COD"/>
+  <property name="compagnia" type="integer" column="COMPAGNIA"/>
+  <property name="agenzia" type="integer" column="AGENZIA"/>
+  <property name="tipoCanale" type="string" column="TIPO_CANALE" length="1"/>
+  <property name="codCanale" type="integer" column="COD_CANALE"/>
+  <property name="codDocumento" type="string" column="COD_DOCUMENTO" length="2"/>
+  <property name="dataRilascio" type="date" column="DATA_RILASCIO"/>
+  <property name="dataScadenza" type="date" column="DATA_SCADENZA"/>
+  <property name="numDocumento" type="string" column="NUM_DOCUMENTO" length="10"/>
+  <property name="provenienza" type="string" column="PROVENIENZA" length="3"/>
+  <property name="locDocumento" type="string" column="LOC_DOCUMENTO" length="25"/>
+  <property name="nazDocumento" type="string" column="NAZ_DOCUMENTO" length="3"/>
+  <property name="ente" type="string" column="ENTE" length="30"/>
+  <property name="codEnte" type="string" column="COD_ENTE" length="2"/>
+  <property name="tipoRecapito1" type="string" column="TIPO_RECAPITO_1" length="2"/>
+  <property name="usoRecapito1" type="string" column="USO_RECAPITO_1" length="2"/>
+  <property name="descRecapito1" type="string" column="DESC_RECAPITO_1" length="50"/>
+  <property name="tipoRecapito2" type="string" column="TIPO_RECAPITO_2" length="2"/>
+  <property name="usoRecapito2" type="string" column="USO_RECAPITO_2" length="2"/>
+  <property name="descRecapito2" type="string" column="DESC_RECAPITO_2" length="50"/>
+  <property name="tipoRecapito3" type="string" column="TIPO_RECAPITO_3" length="2"/>
+  <property name="usoRecapito3" type="string" column="USO_RECAPITO_3" length="2"/>
+  <property name="descRecapito3" type="string" column="DESC_RECAPITO_3" length="50"/>
+  <property name="tipoRecapito4" type="string" column="TIPO_RECAPITO_4" length="2"/>
+  <property name="usoRecapito4" type="string" column="USO_RECAPITO_4" length="2"/>
+  <property name="descRecapito4" type="string" column="DESC_RECAPITO_4" length="50"/>
+  <property name="statoElabB" type="string" column="STATO_ELAB_B" length="2"/>
+  <property name="istanzaS" type="string" column="ISTANZA_S" length="1"/>
+ </class>
+ <query name="FLX_ANAGRAFICA_SY00_CLIENTE_SQL">from  
+ it.ras.arco.batch.bean.FlxAnagraficaClienteSY00 pc</query>
+</hibernate-mapping>

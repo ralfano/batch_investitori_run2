@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ 
+ <class name="it.ras.arco.batch.bean.FlxGpramSaldiMensili" rowid="rowid" table="FLX_GPRAM_SALDI_MENSILI">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_GPRAM_SALDI_MENSILI_SEQ</param>
+   </generator>
+  </id>
+ 
+<property name="numeroRapporto"                 column="NUMERO_RAPPORTO"                type="string" length="8"  />
+<property name="saldoProdotto"                  column="SALDO_PRODOTTO"                 type="double" length="19"  />
+<property name="dataValorizzazione"             column="DATA_VALORIZZAZIONE"            type="date"  />
+<property name="performanceNettaDaInizioTr"     column="PERFORMANCE_NETTA_DA_INIZIO_TR" type="double" length="8"  />
+<property name="performanceNettaDaInizioAn"     column="PERFORMANCE_NETTA_DA_INIZIO_AN" type="double"  />
+<property name="performanceAnnualizzataDaIn"    column="PERFORMANCE_ANNUALIZZATA_DA_IN" type="double"  />
+<property name="performanceLordaDaInizioAn"     column="PERFORMANCE_LORDA_DA_INIZIO_AN" type="double"  />
+<property name="performanceLordaDaInizioTr"     column="PERFORMANCE_LORDA_DA_INIZIO_TR" type="double"  />
+<property name="dataElaborazionePerformance"    column="DATA_ELABORAZIONE_PERFORMANCE"  type="date"  />
+<property name="navCalcoloPerformance"          column="NAV_CALCOLO_PERFORMANCE"        type="double"  />
+<property name="performanceBenchInizioTrime"    column="PERFORMANCE_BENCH_INIZIO_TRIME" type="double"  />
+<property name="performanceBenchInizioAnno"     column="PERFORMANCE_BENCH_INIZIO_ANNO"  type="double"  />
+<property name="importoCommissioniRete"         column="IMPORTO_COMMISSIONI_RETE"       type="double"  />
+<property name="percentualeCommissioniRete"     column="PERCENTUALE_COMMISSIONI_RETE"   type="double"  />
+<property name="importoCommissioniCliente"      column="IMPORTO_COMMISSIONI_CLIENTE"    type="double"  />
+<property name="segnoNav"                       column="SEGNO_NAV"                      type="string" length="1"  />
+<property name="segnoCommissioniRete"           column="SEGNO_COMMISSIONI_RETE"         type="string" length="1"  />
+<property name="codiceEsternoPortafoglio"       column="CODICE_ESTERNO_PORTAFOGLIO"     type="string" length="15"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+<property name="descrizioneErrore"              column="DESCRIZIONE_ERRORE_S"           type="string" length="100"  />
+<property name="dataElab"                       column="DATA_ELAB_D"                    type="date"  />
+ 
+ </class>
+ <query name="GPRAM_SALDI_MENSILI">from it.ras.arco.batch.bean.FlxGpramSaldiMensili m where m.statoElab='D'</query>
+</hibernate-mapping>

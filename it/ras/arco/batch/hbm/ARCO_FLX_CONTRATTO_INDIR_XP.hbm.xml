@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+ <!-- TABELLA SOGGETTO XP -->
+ <class name="it.ras.arco.batch.bean.FlxContrattoIndirXP" table="FIN_CONTRATTO_INDIR_XP" where="GSTD_ESIST_B='S'" lazy="true">
+  
+ <id name="contrattoId"                    column="CONTRATTO_ID"                   type="integer"  />
+<property name="indirizzoId"                    column="INDIRIZZO_ID"                   type="integer"  />
+<property name="dataInizio"                     column="DATA_INIZIO_D"                  type="date"  />
+<property name="dataFine"                       column="DATA_FINE_D"                    type="date"  />
+<property name="userUltimaModifica"             column="GSTD_ULT_USER_S"                type="string" length="40"  />
+<property name="proceduraUltimaModifica"        column="GSTD_ULT_PROC_S"                type="string" length="40"  />
+<property name="dataUltimaModifica"             column="GSTD_ULT_MOD_D"                 type="date"  />
+<property name="dataInserimento"                column="GSTD_INSE_D"                    type="date"  />
+<property name="flagEsistenza"                  column="GSTD_ESIST_B"                   type="string" length="1"  />
+<property name="utenteInserimento"              column="GSTD_USER_INS_S"                type="string" length="40"  />
+<property name="tipoUltimaModifica"             column="GSTD_TIPO_MOD_B"                type="string" length="1"  />
+<property name="tipoIndirizzo"                  column="TIPO_INDIRIZZO_T"               type="string" length="3"  />
+ </class>
+<query name="CURSOR_CONTRATTO_INDIR_XP">from it.ras.arco.batch.bean.FlxContrattoIndirXP p</query>
+<query name="GetByContrIndir">select s from it.ras.arco.batch.bean.FlxContrattoIndirXP s where s.indirizzoId=:indirizzoId</query>
+ 
+</hibernate-mapping>

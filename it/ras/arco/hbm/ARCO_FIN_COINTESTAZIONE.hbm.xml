@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA COINTESTAZIONI ANAGRAFICHE -->
+ <class name="it.ras.arco.bean.FinCointestazione" table="FIN_COINTESTAZIONE" 
+ 		batch-size="1"
+ 		where="GSTD_ESIST_B=&apos;S&apos;"
+ 		>
+ 
+  <id name="cointestazioneId" column="COINTESTAZIONE_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_COINTESTAZIONE_SEQ</param>
+   </generator>
+  </id>
+  <!-- <property name="soggCoin" type="integer" column="SOGG_COIN_N"/> -->
+  <!-- <property name="soggettoId" type="integer" column="SOGGETTO_ID"/> -->
+  <property name="ordine" type="integer" column="ORDINE_N"/>
+  <property name="tipo" type="string" column="TIPO_T" length="3"/>
+  <property name="stato" type="string" column="STATO_T" length="3"/>
+  <!--  <property name="intestazione" type="string" column="INTESTAZIONE_S" length="100"/> -->
+  <property name="dataInizio" type="timestamp" column="DATA_INIZIO_D"/>
+  <property name="dataFine" type="timestamp" column="DATA_FINE_D"/>
+  <property name="cointSign" type="string" column="COINT_SIGN"/>
+  <property name="codiceSconto" type="string" column="CODICE_SCONTO" length="8"/>
+  <property name="codiceConvenzione" type="string" column="COD_CONVENZIONE" length="2"/>
+  <property name="flgNoPagAmministrative" type="string" column="FLG_NO_PAG_AMMINISTRATIVE" length="1"/>
+  <property name="squadraPrincipale" type="string" column=" SQUADRA_PRINCIPALE_B" length="1"/>
+  
+ 
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="20"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="20"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="20"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+  
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+    
+  <set name="estrazioni"  cascade="lock" lazy="true" where ="FL_INVIATO='N' AND TABLE_NAME='FIN_COINTESTAZIONE' " >
+   <key column="ID"/>
+   <one-to-many class="it.ras.arco.bean.SnpEstrazioni" not-found="ignore" />
+  </set>
+
+  <!-- RELAZIONE CON FIN_SOGGETTO-->
+  <many-to-one name="soggetto"
+		class="it.ras.arco.bean.FinSoggetto"  column="SOGGETTO_ID" not-null="false" 
+		lazy="proxy"  not-found="ignore" 
+   		fetch="select"   			
+		cascade="lock" />
+  
+  <!-- SELF JOIN da cointestazione_id a sogg_coin_n  -->
+  <set name="cointestazioni" lazy="true" 
+  		inverse="true"
+  		fetch="select" 
+       	cascade="lock" where ="GSTD_ESIST_B='S'" >
+   <key column="SOGG_COIN_N"/>
+   <one-to-many class="it.ras.arco.bean.FinCointestazione" not-found="ignore" />
+  </set>
+   
+  <!--  SELF JOIN da Sogg_coin_n -->
+  <many-to-one name="squadra"
+		class="it.ras.arco.bean.FinCointestazione"  column="SOGG_COIN_N" not-null="false" 
+		lazy="proxy"
+   		fetch="select"   			
+		not-found="ignore" cascade="lock" />
+   
+  <!-- RELAZIONE CON FIN_CONTRATTO -->
+  <set name="contratto" lazy="true" inverse="true" 
+       cascade="lock" where ="GSTD_ESIST_B='S'"  >
+   <key column="COINTESTAZIONE_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinContratto" not-found="ignore"/>
+  </set>
+
+
+  <!-- RELAZIONE CON DECOD_NDG_FABBR-->
+  <set name="decodNdgFabbr" lazy="true" inverse="true" where ="GSTD_ESIST_B='S'"  >
+   <key column="COINTESTAZIONE_ID"/>
+   <one-to-many class="it.ras.arco.bean.FinDecodNdgFabbr" not-found="ignore" />
+  </set>
+ </class>
+
+<sql-query name="GetOutboundCointestazione">
+<return alias="cointestazione2" class="it.ras.arco.bean.FinCointestazione"/>
+		select 
+		distinct {cointestazione2.*}
+		from
+		SNP_ESTRAZIONI a, 
+		FIN_COINTESTAZIONE cointestazione2
+		where 
+		a.ID = cointestazione2.COINTESTAZIONE_ID and
+		a.DEST = 'ANT' and
+		a.TABLE_NAME = 'FIN_COINTESTAZIONE'
+		and a.FL_INVIATO='N'
+</sql-query>
+
+<sql-query name="GetCointestazione">
+<return alias="cointestazione" class="it.ras.arco.bean.FinCointestazione"/>
+select {cointestazione.*} from FIN_COINTESTAZIONE cointestazione    
+where
+ cointestazione.SOGG_COIN_N=:soggCoin order by cointestazione.ORDINE_N
+</sql-query>
+
+
+<query name="Check_Cointestazione_principale">from it.ras.arco.bean.FinCointestazione c where c.cointSign=? and c.squadraPrincipale='S'</query> 
+<query name="Check_Cointestazione">from it.ras.arco.bean.FinCointestazione c where c.cointSign=?</query> 
+<query name="GetCointestazioneBySoggettoId">from it.ras.arco.bean.FinCointestazione c where c.soggetto=:soggettoId </query> 
+<query name="GetCointestazioneBySoggettoIdMono">from it.ras.arco.bean.FinCointestazione c where c.soggetto=? and c.tipo=?</query> 
+<query name="GetCointestazioneBySoggettoIdNonMono">from it.ras.arco.bean.FinCointestazione c where c.soggetto.soggettoId=? and c.tipo&lt;&gt;'M'</query> 
+
+<query name="GetCointestazioneBySoggettoIdConMono">from it.ras.arco.bean.FinCointestazione c where c.soggetto.soggettoId=?</query> 
+
+
+</hibernate-mapping>

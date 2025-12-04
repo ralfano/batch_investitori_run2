@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DATI EVIDENZA -->
+ <class name="it.ras.arco.bean.FinEvidenza"
+  table="FIN_EVIDENZA" where="GSTD_ESIST_B='S'">
+  <id name="evidenzaId" column="EVIDENZA_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_EVIDENZA_SEQ</param>
+   </generator>
+  </id>
+  <!--<property name="evidenzaId" type="integer" column="EVIDENZA_ID"/>-->
+  <property name="codEvidenza" type="integer" column="COD_EVIDENZA_N"/>
+  <property name="descrizione" type="string" column="DESCRIZIONE_S" length="100"/>
+  <property name="entita" type="string" column="ENTITA_S" length="1"/>
+  <property name="gravValFab" type="string" column="GRAV_VAL_FAB_S" length="3"/>
+  <property name="gravValArco" type="string" column="GRAV_VAL_ARCO_S" length="3"/>
+  <property name="userUltimaModifica" type="string"
+   column="GSTD_ULT_USER_S" length="20"/>
+  <property name="proceduraUltimaModifica" type="string"
+   column="GSTD_ULT_PROC_S" length="20"/>
+  <property name="dataUltimaModifica" type="date" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="date" column="GSTD_INSE_D"/>
+  <property name="utenteInserimento" type="string"
+   column="GSTD_USER_INS_S" length="20"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="tipoUltimaModifica" type="string"
+   column="GSTD_TIPO_MOD_B" length="1"/>
+    <property name="visibilita" type="string"
+   column="VISIBILITA_S" length="1"/>
+  
+   <property name="soloEmittente" type="string" column="SOLO_EMITTENTE_B" length="1"/>
+   <property name="tipoProdotto" type="string"    column="TIPO_PRODOTTO_T" length="3"/>
+   <property name="visibilitaSottoscrizione" type="string"   column="VISIBILITA_SOTTOSCR_S" length="1"/>
+   
+  <!--  property name="emittenteId" type="integer" column="EMITTENTE_ID"/-->
+
+<!-- RELAZIONE CON LA FIN_EMITTENTE -->
+  <many-to-one name="emittente" lazy="proxy"
+   	class="it.ras.arco.bean.FinEmittente" column="EMITTENTE_ID"
+   	update="true" insert="true" not-found="ignore"  />
+
+</class>
+	
+	<query name="GetEvidenzaByCodEvidenzaEmittenteId">
+		select e 
+		from it.ras.arco.bean.FinEvidenza e 
+		where e.emittente.emittenteId = ? 
+		and e.codEvidenza = ?
+	</query>
+</hibernate-mapping>
+

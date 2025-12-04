@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.bean.FinDettaglioMov" table="FIN_DETTAGLIO_MOV">
+  <id name="extDettaglioMovID" column="EXT_DETTAGLIO_MOV_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_DETTAGLIO_MOV_SEQ</param>
+   </generator>
+  </id>
+  <property name="numeroMovimentoEsterno" type="string"
+   column="NUM_MOV_EXT" length="17"/>
+  <property name="attivitaFinanziariaID" type="integer"
+   column="ATT_FIN_ID" length="18"/>
+  <property name="contrattoID" type="integer" column="CONTRATTO_ID" length="18"/>
+  <property name="numeroMovimento" type="integer" column="NUM_MOV" length="5"/>
+  <property name="numeroProgressivo" type="integer" column="NUM_PROG" length="3"/>
+  <property name="dataCompetenza" type="date" column="DATA_COMP"/>
+  <property name="quoteOperazione" type="double" column="QUOTE_OPERAZ" length="15"/>
+  <property name="quoteLibereContabili" type="double"
+   column="QUOTE_LIBERE_CONT" length="15"/>
+  <property name="quoteCertificate" type="double"
+   column="QUOTE_CERTIFICATE" length="15"/>
+  <property name="tipoQuote" type="string" column="TIPO_QUOTE" length="1"/>
+  <property name="dataCompetenzaOriginale" type="date" column="DATA_COMP_ORIG"/>
+  <property name="coeffRicalQuoteAmmort" type="double"
+   column="COEFF_RIC_QUOT_AMM" length="7"/>
+  <property name="fondoProvRicalAmmort" type="string"
+   column="FONDO_PROV_RICAL_AMM" length="2"/>
+  <property name="scontoQuoteTunnel" type="double"
+   column="SCONTO_QUOTE_TUNNEL" length="5"/>
+ 
+  <property name="proceduraUltimaModifica" type="string"
+   column="GSTD_ULT_PROC_S" length="40"/>
+  <property name="dataUltimaModifica" type="date" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimentoRecord" type="date" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string"
+   column="GSTD_USER_INS_S" length="40"/>
+  <property name="tipoUltimaModifica" type="string"
+   column="GSTD_TIPO_MOD_B" length="1"/>
+  <property name="statoElaborazione" type="string" column="STATO_ELAB_B" length="2"/> 
+  <property name="userUltimaModifica"             column="GSTD_ULT_USER_S"                type="string" length="40"  />
+ <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  
+ </class>
+ 
+ <query name="CheckExtDettaglioMov">select m from it.ras.arco.bean.FinDettaglioMov m where m.numeroMovimentoEsterno = ?   and m.contrattoID = ? </query> 
+</hibernate-mapping>
+

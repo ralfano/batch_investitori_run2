@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA MOVIMENTI CC -->
+ <class name="it.ras.arco.batch.bean.FlxSecAssegni" table="FLX_SEC_ASSEGNI" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SEC_ASSEGNI_SEQ</param>
+   </generator>
+  </id>
+<property name="filialeRapporto"                column="FILIALE_RAPPORTO"               type="string" length="5" />
+<property name="categoriaRapporto"              column="CATEGORIA_RAPPORTO"             type="string" length="5" />
+<property name="numeroPartita"                  column="NUMERO_PARTITA"                 type="string" length="8" />
+<property name="numeroCarnet"                   column="NUMERO_CARNET"                  type="string"  length="13"/>
+<property name="dataEmissione"                  column="DATA_EMISSIONE"                 type="date"  />
+<property name="statoAssegno1"                   column="STATO_ASSEGNO_1"                type="string" length="2"  />
+<property name="statoAssegno2"                   column="STATO_ASSEGNO_2"                type="string" length="2"  />
+<property name="statoAssegno3"                   column="STATO_ASSEGNO_3"                type="string" length="2"  />
+<property name="statoAssegno4"                   column="STATO_ASSEGNO_4"                type="string" length="2"  />
+<property name="statoAssegno5"                   column="STATO_ASSEGNO_5"                type="string" length="2"  />
+<property name="statoAssegno6"                   column="STATO_ASSEGNO_6"                type="string" length="2"  />
+<property name="statoAssegno7"                   column="STATO_ASSEGNO_7"                type="string" length="2"  />
+<property name="statoAssegno8"                   column="STATO_ASSEGNO_8"                type="string" length="2"  />
+<property name="statoAssegno9"                   column="STATO_ASSEGNO_9"                type="string" length="2"  />
+<property name="statoAssegno10"                 column="STATO_ASSEGNO_10"               type="string" length="2"  />
+<property name="statoAssegno11"                 column="STATO_ASSEGNO_11"               type="string" length="2"  />
+<property name="statoAssegno12"                 column="STATO_ASSEGNO_12"               type="string" length="2"  />
+<property name="statoAssegno13"                 column="STATO_ASSEGNO_13"               type="string" length="2"  />
+<property name="statoAssegno14"                 column="STATO_ASSEGNO_14"               type="string" length="2"  />
+<property name="statoAssegno15"                 column="STATO_ASSEGNO_15"               type="string" length="2"  />
+<property name="statoAssegno16"                 column="STATO_ASSEGNO_16"               type="string" length="2"  />
+<property name="statoAssegno17"                 column="STATO_ASSEGNO_17"               type="string" length="2"  />
+<property name="statoAssegno18"                 column="STATO_ASSEGNO_18"               type="string" length="2"  />
+<property name="statoAssegno19"                 column="STATO_ASSEGNO_19"               type="string" length="2"  />
+<property name="statoAssegno20"                 column="STATO_ASSEGNO_20"               type="string" length="2"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                      	column="ISTANZA_S"                   	type="string" length="1"  />
+<property name="dataCaricamento" type="date" column="DATA_CARICAMENTO_S"/>
+<property name="descrizioneErrore"                column="DESCRIZIONE_ERRORE_S"             type="string" length="100" />
+<property name="dataElaborazione"                column="DATA_ELAB_D"             type="date"  />
+
+</class>
+ <query name="SEC_ASSEGNI_SQL">from  
+ it.ras.arco.batch.bean.FlxSecAssegni</query>
+</hibernate-mapping>

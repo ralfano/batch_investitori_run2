@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping>
+ <!-- TABELLA SOTTOSCRIZIONE  -->
+ <class name="it.ras.arco.bean.VwSoggettoPg"
+ 	 table="FIN_SOGGETTO_PG" where="FL_INVIATO='N'">
+  <id name="VW_id" column="VW_ID" type="long">
+  </id>
+
+		<property name="cognome" column="COGNOME_S" type="string"   />
+		<property name="nome" column="NOME_S" type="string"   />
+		<property name="denominazione" column="DENOMINAZIONE_S" type="string"   />
+		<property name="partitaIva" column="PARTITA_IVA_S" type="string"   />
+		<property name="comuneNas" column="COMUNE_NASCITA_S" type="string"   />
+		<property name="provNas" column="PROV_NASCITA_T" type="string"   />
+		<property name="nazNas" column="NAZ_NASCITA_T" type="string"   />
+		<property name="sesso" column="SESSO_B" type="string"   />
+		<property name="regAntit" column="REG_ANTIRIC_B" type="string"   />
+		<property name="attivita" column="ATTIVITA_T" type="string"   />
+		<property name="settore" column="SETTORE_T" type="string"   />
+		<property name="attPrisma" column="ATT_ECO_PRISMA" type="string"   />
+		<property name="codToponimo" column="COD_TOPONIMO_T" type="string"   />
+		<property name="indirizzo" column="INDIRIZZO_S" type="string"   />
+		<property name="civico" column="NUMERO_CIVICO_S" type="string"   />
+		<property name="comune" column="COMUNE_S" type="string"   />
+		<property name="prov" column="PROV_T" type="string"   />
+		<property name="cap" column="CAP_S" type="string"   />
+		<property name="nazione" column="NAZIONE_T" type="string"   />
+		<property name="cab" column="CAB_RES" type="string"   />
+		<property name="localita" column="LOCALITA_S" type="string"   />
+		<property name="tipoDoc" column="TIPO_DOC_T" type="string"   />
+		<property name="numeroDoc" column="NUMERO_DOC_S" type="string"   />
+		<property name="enteRilascio" column="DESC_ENTE_RILASCIO_S" type="string"   />
+		<property name="docRischi" column="DOC_RISCHI_FIN_B" type="string"   />
+		<property name="privacyZero" column="CONS_PRIVACY0_B" type="string"   />
+		<property name="privacyUno" column="CONS_PRIVACY1_B" type="string"   />
+		<property name="privacyDue" column="CONS_PRIVACY2_B" type="string"   />
+		<property name="privacyTre" column="CONS_PRIVACY3_B" type="string"   />
+		<property name="privacyQuattro" column="CONS_PRIVACY4_B" type="string"   />
+		<property name="privacyCinque" column="CONS_PRIVACY5_B" type="string"   />
+		<property name="privacySei" column="CONS_PRIVACY6_B" type="string"   />
+		<property name="privacySette" column="CONS_PRIVACY7_B" type="string"   />
+		<property name="privacyOtto" column="CONS_PRIVACY8_B" type="string"   />
+		<property name="privacyNove" column="CONS_PRIVACY9_B" type="string"   />
+		<property name="fabbrica" column="FABBRICA_T" type="string"   />
+		<property name="codPromotore" column="COD_PROMOTORE" type="string"   />
+		<property name="codiceFiscale" column="CODICE_FISCALE_S" type="string"   />		
+ 
+    	<property name="ndgArco" column="NDG_ARCO_N" type="integer" />
+    	<property name="soggettoId" column="SOGGETTO_ID" type="integer" />
+		<property name="ndgFabbr" column="NDG_FABBR_S" type="string"   />		
+
+		<property name="dataCons" column="DATA_CONS_D" type="date"  />
+		<property name="dataDeroga" column="DATA_DEROGA_SEGR_BANC_D" type="date"  />
+		<property name="dataConf" column="DATA_CONF_INT_D" type="date"  />
+		<property name="dataAut" column="DATA_AUT_MRK_D" type="date"  />
+		<property name="dataComp" column="DATA_COMP_DOC_RISK_D" type="date"  />
+		<property name="dataRilascio" column="DATA_RILASCIO_D" type="date"  />
+		<property name="dataNascita" column="DATA_NASCITA_D" type="date"  />
+		<property name="dataSott" column="DATA_SOTT_RIS_D" type="date"  />
+		<property name="nazioneRilascio" column="NAZIONE_RILASCIO_T" type="string"  />		
+		<property name="inviato" column="FL_INVIATO" type="string"  />		
+
+	</class>
+
+	<sql-query name="OutboundVistaSoggetto">
+	 <return alias="soggetto" class="it.ras.arco.bean.VwSoggettoPg"/>
+		select 
+		distinct {soggetto.*} from
+		FIN_SOGGETTO_PG soggetto where soggetto.FL_INVIATO = 'N' 
+	</sql-query>
+	
+	
+</hibernate-mapping>

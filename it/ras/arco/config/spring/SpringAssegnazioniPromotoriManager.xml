@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO GENERICO PROMOTORE_MANAGER -->
+    
+    <bean id="GetAssegnazioneAttivaByContrattoPromotore"
+    	class="it.ras.arco.service.AssegnazioniManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_ASSEGNAZIONE_ATTIVA_BY_CONTRATTO_PROMOTORE</value>
+    	</property>
+    </bean>
+
+    <bean id="GetAssegnazione"
+    	class="it.ras.arco.service.AssegnazioniManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_ASSEGNAZIONE</value>
+    	</property>
+    </bean>
+
+    <bean id="GetAssegnazione2"
+    	class="it.ras.arco.service.AssegnazioniManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_ASSEGNAZIONE_2</value>
+    	</property>
+    </bean>
+   
+   <bean id="GetAssegnazioneFittizia"
+    	class="it.ras.arco.service.AssegnazioniManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_ASSEGNAZIONE_FITTIZIA</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetPrimaAssegnazione"
+    	class="it.ras.arco.service.AssegnazioniManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_PRIMA_ASSEGNAZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetProdottoArcoByProdottoAnt"
+    	class="it.ras.arco.service.AssegnazioniManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET_PRODOTTO_ARCO_BY_PRODOTTO_ANT</value>
+    	</property>
+    </bean>
+
+    <bean id="InsertAssegnazione"
+    	class="it.ras.arco.service.AssegnazioniManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT</value>
+    	</property>
+    </bean>
+    
+    <bean id="UpdateAssegnazione"
+    	class="it.ras.arco.service.AssegnazioniManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UPDATE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetAssegnazioneAttivaByContrattoPromotoreMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetAssegnazioneAttivaByContrattoPromotore</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			<value>PROMOTORE</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>ASSEGNAZIONE</value>
+    	</property>
+    </bean>
+
+    <bean id="GetAssegnazioneMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetAssegnazione</value>
+    	</property>
+    	<property name="parameters">
+    		<list>    		
+    			<value>CONTRATTO</value>
+    			<value>FLAG_SPLIT</value>
+    			<value>FLAG_ATTUALE</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>ASSEGNAZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetAssegnazione2MD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetAssegnazione2</value>
+    	</property>
+    	<property name="parameters">
+    		<list>    		
+    			<value>CONTRATTO</value>
+    			<value>PROMOTORE</value>
+    			<value>FLAG_SPLIT</value>
+    			<value>FLAG_ATTUALE</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>ASSEGNAZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetAssegnazioneFittiziaMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetAssegnazioneFittizia</value>
+    	</property>
+    	<property name="parameters">
+    		<list>    		
+    			<value>CONTRATTO</value>
+    			<value>PROMOTORE</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>ASSEGNAZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetPrimaAssegnazioneMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetPrimaAssegnazione</value>
+    	</property>
+    	<property name="parameters">
+    		<list>    		
+    			<value>CONTRATTO</value>
+    			<value>DATA_INIZIO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>ASSEGNAZIONE</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetProdottoArcoByProdottoAntMD"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetProdottoArcoByProdottoAnt</value>
+    	</property>
+    	<property name="parameters">
+    		<list>    		
+    			<value>PRODOTTO</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>ASSEGNAZIONE</value>
+    	</property>
+    </bean>
+
+    <bean id="InsertAssegnazioneMD"    
+   		class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+      		<ref bean="RasBatchDao" />
+     	</property>
+     	<property name="query">
+      		<value>5</value>
+     	</property>
+     	<property name="parameters">
+      	<list>
+       		<value>ASSEGNAZIONE</value>
+     	</list>
+     	</property>
+     	<property name="output">
+     		<value>ASSEGNAZIONE</value>
+    	</property>
+     </bean>
+     
+     <bean id="UpdateAssegnazioneMD" class="it.ras.flag.module.DefaultDbModule">
+		<property name="dao">
+			<ref bean="RasBatchDao" />
+		</property>
+		<property name="query">
+			<value>9</value>
+		</property>
+		<property name="parameters">
+			<list>
+				<value>ASSEGNAZIONE</value>
+			</list>
+		</property>
+		<property name="output">
+			<value>ASSEGNAZIONE</value>
+		</property>
+	</bean>
+
+</beans> 
+
+	
+    
+    
+    
+    

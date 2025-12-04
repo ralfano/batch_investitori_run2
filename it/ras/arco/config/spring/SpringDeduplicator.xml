@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>     
+    <bean id="RasDeduplicator" class="it.ras.arco.deduplicator.RasDeduplicator" singleton="true"
+		init-method="init" destroy-method="destroy">
+		<property name="configTransaction">
+			<ref bean="deduplicatorTx" />
+		</property>
+		<property name="onLine">
+			<value>false</value>
+		</property>
+	</bean>
+	
+	<bean id="deduplicatorSessionFactory"
+	class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="mappingResources">
+		<value>
+			/it/ras/flag/resources/ras-arch-logging-mapping.hbm.xml,
+			/it/ras/flag/resources/ras-arch-mappings.hbm.xml
+		</value>
+		</property>
+	</bean>
+
+	<bean id="deduplicatorBatchDao"
+	class="it.ras.flag.batch.skeleton.RasBatchReadOnlyDao" singleton="false">
+		<property name="sessionFactory">
+			<ref bean="deduplicatorSessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+	class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="deduplicatorSessionFactory" />
+		</property>
+	</bean>
+
+ 	<bean id="txInterceptor"
+	class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="transactionAttributeSource">
+			<value>
+				it.ras.flag.transaction.IRasRequiredTransaction.transaction=PROPAGATION_REQUIRED,-it.ras.flag.exception.RasTransactionException
+				it.ras.flag.transaction.IRasSupportedTransaction.transaction=PROPAGATION_SUPPORTS
+			</value>
+		</property>
+	</bean>
+
+	<bean id="deduplicatorService"
+	class="it.ras.arco.deduplicator.DeduplicatorService">
+		<property name="moduleManager">
+			<ref bean="RasModuleManager" />
+		</property>
+	</bean>
+
+	<bean id="deduplicatorTxTarget"
+	class="it.ras.flag.transaction.RasSingleServiceRequiredTx">
+		<property name="service">
+			<ref bean="deduplicatorService" />
+		</property>
+	</bean>
+
+	<bean id="deduplicatorTx"
+	class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="proxyInterfaces">
+			<value>
+				it.ras.flag.transaction.IRasRequiredTransaction
+			</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>txInterceptor</value>
+				<value>deduplicatorTxTarget</value>
+			</list>
+		</property>
+	</bean>
+ 
+ 	<bean id="GetSoggettoByCodiceFiscaleCognomeNomeDataNascitaNdgfabbr"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoByCodiceFiscaleCognomeNomeDataNascitaNdgfabbr</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CODICE_FISCALE</value>
+    			<value>COGNOME</value>
+    			<value>NOME</value>
+    			<value>DATA_NASCITA</value>
+    			<value>TIPO_SOGGETTO</value>
+    			<value>FABBRICA</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>codiceFiscale</value>
+    			<value>cognome</value>
+    			<value>nome</value>
+    			<value>dataNascita</value>
+    			<value>tipoSogg</value>
+    			<value>fabbrica</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+  </bean>
+  
+  <bean id="GetSoggettoByPartitaIvaDenominazioneNdgfabbr"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoByPartitaIvaDenominazioneNdgfabbr</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>PARTITA_IVA</value>
+    			<value>DENOMINAZIONE</value>
+    			<value>TIPO_SOGGETTO</value>
+    			<value>FABBRICA</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>partitaIva</value>
+    			<value>denominazione</value>
+    			<value>tipoSogg</value>
+    			<value>fabbrica</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+    
+     <bean id="GetSoggettoMCByMatchCodeFullNdgFabbrMD"	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoMCByMatchCodeFullNdgFabbr</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>COD_MATC_CODE_NOM1</value>
+    			<value>COD_MATC_CODE_NOM2</value>
+    			<value>COD_MATC_CODE_DNAS</value>
+    			<value>COD_MATC_CODE_CFIS</value>
+    			<value>COD_STRI_RIC1</value>
+    			<value>COD_STRI_RIC2</value>
+    			<value>COD_TIPO_SOGG</value>
+    			<value>FABBRICA</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>codMatchCodeNom1</value>
+    			<value>codMatchCodeNom2</value>
+    			<value>codMatchCodeDNas</value>
+    			<value>codMatchCodeCFis</value>
+    			<value>codStriRic1</value>
+    			<value>codStriRic2</value>
+    			<value>tipoSogg</value>
+    			<value>fabbrica</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+      
+ <bean id="GetSoggettoMCByMatchCodeFullMD"	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoMCByMatchCodeFull</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>COD_MATC_CODE_NOM1</value>
+    			<value>COD_MATC_CODE_NOM2</value>
+    			<value>COD_MATC_CODE_DNAS</value>
+    			<value>COD_MATC_CODE_CFIS</value>
+    			<value>COD_STRI_RIC1</value>
+    			<value>COD_STRI_RIC2</value>
+    			<value>COD_TIPO_SOGG</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>codMatchCodeNom1</value>
+    			<value>codMatchCodeNom2</value>
+    			<value>codMatchCodeDNas</value>
+    			<value>codMatchCodeCFis</value>
+    			<value>codStriRic1</value>
+    			<value>codStriRic2</value>
+    			<value>tipoSogg</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetSoggettoByMCNullCFNdgFabbrMD"	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoByMCNullCFNdgFabbr</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>COD_MATC_CODE_NOM1</value>
+    			<value>COD_MATC_CODE_NOM2</value>
+    			<value>COD_MATC_CODE_DNAS</value>
+    			<value>COD_MATC_CODE_CFIS</value>
+    			<value>COD_TIPO_SOGG</value>
+    			<value>FABBRICA</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>codMatchCodeNom1</value>
+    			<value>codMatchCodeNom2</value>
+    			<value>codMatchCodeDNas</value>
+    			<value>codMatchCodeCFis</value>
+    			<value>tipoSogg</value>
+    			<value>fabbrica</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetSoggettoByMCNullCFMD"	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoByMCNullCF</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>COD_MATC_CODE_NOM1</value>
+    			<value>COD_MATC_CODE_NOM2</value>
+    			<value>COD_MATC_CODE_DNAS</value>
+    			<value>COD_MATC_CODE_CFIS</value>
+    			<value>COD_TIPO_SOGG</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>codMatchCodeNom1</value>
+    			<value>codMatchCodeNom2</value>
+    			<value>codMatchCodeDNas</value>
+    			<value>codMatchCodeCFis</value>
+    			<value>tipoSogg</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetSoggettoByMCWithoutCFMD"	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoByMCWithoutCF</value>
+    	</property>
+    	<property name="parameters">
+    	
+    		<list>
+    			<value>COD_MATC_CODE_NOM1</value>
+    			<value>COD_MATC_CODE_NOM2</value>
+    			<value>COD_MATC_CODE_DNAS</value>
+    			<value>COD_STRI_RIC1</value>
+    			<value>COD_STRI_RIC2</value>
+    			<value>COD_TIPO_SOGG</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>codMatchCodeNom1</value>
+    			<value>codMatchCodeNom2</value>
+    			<value>codMatchCodeDNas</value>
+    			<value>codStriRic1</value>
+    			<value>codStriRic2</value>
+    			<value>tipoSogg</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+     <bean id="GetSoggettoByMCWithoutCFNdgFabbrMD"	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoByMCWithoutCFNdgFabbr</value>
+    	</property>
+    	<property name="parameters">
+    	
+    		<list>
+    			<value>COD_MATC_CODE_NOM1</value>
+    			<value>COD_MATC_CODE_NOM2</value>
+    			<value>COD_MATC_CODE_DNAS</value>
+    			<value>COD_STRI_RIC1</value>
+    			<value>COD_STRI_RIC2</value>
+    			<value>COD_TIPO_SOGG</value>
+    			<value>FABBRICA</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>codMatchCodeNom1</value>
+    			<value>codMatchCodeNom2</value>
+    			<value>codMatchCodeDNas</value>
+    			<value>codStriRic1</value>
+    			<value>codStriRic2</value>
+    			<value>tipoSogg</value>
+    			<value>fabbrica</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+    
+     <bean id="GetSoggettoMCByStringaRicerca3LikeMD"	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoMCByStringaRicerca3Like</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>COD_STRI_RIC3</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>codStriRic3</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO_MC</value>
+    	</property>
+    </bean>
+    
+    
+    
+     <bean id="GetSoggettoByCodiceFiscale"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoByCodiceFiscale</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CODICE_FISCALE</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>codiceFiscale</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+    
+    <bean id="GetSoggettoByPartitaIva"
+    	class="it.ras.flag.module.DefaultDbModule">
+    	<property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetSoggettoByPartitaIva</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>PARTITA_IVA</value>
+    		</list>
+    	</property>
+    	<property name="paramNames">
+    		<list>
+    			<value>partitaIva</value>
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SOGGETTO</value>
+    	</property>
+    </bean>
+    
+    
+    
+    
+	 
+</beans> 

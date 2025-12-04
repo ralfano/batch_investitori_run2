@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DEI CONTRATTI -->
+ <class name="it.ras.arco.bean.FinProiezionePolizza" table="FIN_PROIEZIONE_POLIZZA" where="GSTD_ESIST_B='S'">
+  <id name="proiezionePolId" column="PROIEZIONE_POL_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_PROIEZIONE_POLIZZA_SEQ</param>
+   </generator>
+  </id>
+
+
+<property name="tipoRecord"                     column="TIPO_RECORD"                    type="string" length="3"  />
+<property name="provPortafoglio"                column="PROV_PORTAFOGLIO"               type="integer"  />
+<property name="dataElaborazione"               column="DATA_ELABORAZIONE"              type="string" length="8"  />
+<property name="filler1"                        column="FILLER1"                        type="string" length="30"  />
+<property name="compagnia"                      column="COMPAGNIA"                      type="integer"  />
+<property name="ramo"                           column="RAMO"                           type="integer"  />
+<property name="numeroContratto"                column="NUMERO_CONTRATTO"               type="string"  />
+<property name="filler2"                        column="FILLER2"                        type="string" length="15"  />
+<property name="dataDecorrenzaContr"            column="DATA_DECORRENZA_CONTR"          type="date"  />
+<property name="dataScadenzaContr"              column="DATA_SCADENZA_CONTR"            type="date"  />
+<property name="dataInPagPrem"                  column="DATA_IN_PAG_PREM"               type="date"  />
+<property name="dataFinePagPrem"                column="DATA_FINE_PAG_PREM"             type="date"  />
+<property name="codStGiuCtr"                    column="COD_ST_GIU_CTR"                 type="integer"  />
+<property name="codStOprCtr"                    column="COD_ST_OPR_CTR"                 type="integer"  />
+<property name="filler3"                        column="FILLER3"                        type="string" length="10"  />
+<property name="flagDifferimento"               column="FLAG_DIFFERIMENTO"              type="string" length="2"  />
+<property name="flagProiezPoss"                 column="FLAG_PROIEZ_POSS"               type="string" length="2"  />
+<property name="tipoPrestPrev"                  column="TIPO_PREST_PREV"                type="string" length="2"  />
+<property name="renditaGarantita"               column="RENDITA_GARANTITA"              type="string" length="2"  />
+<property name="importoPremiVersati"            column="IMPORTO_PREMI_VERSATI"          type="double"  />
+<property name="importoUltPremiVers"             column="IMPORTO_ULT_PREMI_VERS"          type="double"  />
+<property name="capitaleLordoScad"              column="CAPITALE_LORDO_SCAD"            type="double"  />
+<property name="capitaleLordoDiff5"             column="CAPITALE_LORDO_DIFF5"           type="double"  />
+<property name="capitaleLordoDiff10"            column="CAPITALE_LORDO_DIFF10"          type="double"  />
+<property name="capitaleLordoDiff15"            column="CAPITALE_LORDO_DIFF15"          type="double"  />
+<property name="capitaleMinlordoScad"           column="CAPITALE_MINLORDO_SCAD"         type="double"  />
+<property name="capitaleMinlordoDiff5"          column="CAPITALE_MINLORDO_DIFF5"        type="double"  />
+<property name="capitaleMinlordoDiff10"         column="CAPITALE_MINLORDO_DIFF10"       type="double"  />
+<property name="capitaleMinlordoDiff15"         column="CAPITALE_MINLORDO_DIFF15"       type="double"  />
+<property name="capitaleNettoScad"              column="CAPITALE_NETTO_SCAD"            type="double"  />
+<property name="capitaleNettoDiff5"             column="CAPITALE_NETTO_DIFF5"           type="double"  />
+<property name="capitaleNettoDiff10"            column="CAPITALE_NETTO_DIFF10"          type="double"  />
+<property name="capitaleNettoDiff15"            column="CAPITALE_NETTO_DIFF15"          type="double"  />
+<property name="capitaleMinNettoScad"           column="CAPITALE_MIN_NETTO_SCAD"        type="double"  />
+<property name="capitaleMinNettoDiff5"          column="CAPITALE_MIN_NETTO_DIFF5"       type="double"  />
+<property name="capitaleMinNettoDiff10"         column="CAPITALE_MIN_NETTO_DIFF10"      type="double"  />
+<property name="capitaleMinNettoDiff15"         column="CAPITALE_MIN_NETTO_DIFF15"      type="double"  />
+<property name="renditaInizLordaScad"           column="RENDITA_INIZ_LORDA_SCAD"        type="double"  />
+<property name="renditaInizLordaDiff5"          column="RENDITA_INIZ_LORDA_DIFF5"       type="double"  />
+<property name="renditaInizLordaDiff10"         column="RENDITA_INIZ_LORDA_DIFF10"      type="double"  />
+<property name="renditaInizLordaDiff15"         column="RENDITA_INIZ_LORDA_DIFF15"      type="double"  />
+<property name="renditaMinInizLordaScad"        column="RENDITA_MIN_INIZ_LORDA_SCAD"    type="double"  />
+<property name="renditaMinInizLordaDiff5"       column="RENDITA_MIN_INIZ_LORDA_DIFF5"   type="double"  />
+<property name="renditaMinInizLordaDiff10"      column="RENDITA_MIN_INIZ_LORDA_DIFF10"  type="double"  />
+<property name="renditaMinInizLordaDiff15"      column="RENDITA_MIN_INIZ_LORDA_DIFF15"  type="double"  />
+<property name="renditaInizNettaScad"           column="RENDITA_INIZ_NETTA_SCAD"        type="double"  />
+<property name="renditaInizNettaDiff5"          column="RENDITA_INIZ_NETTA_DIFF5"       type="double"  />
+<property name="renditaInizNettaDiff10"         column="RENDITA_INIZ_NETTA_DIFF10"      type="double"  />
+<property name="renditaInizNettaDiff15"         column="Rendita_Iniz_Netta_Diff15"      type="string" length="18"  />
+<property name="renditaMininizNettaScad"        column="Rendita_MinIniz_Netta_Scad"     type="string" length="18"  />
+<property name="renditaMininizNettaDiff5"       column="Rendita_MinIniz_Netta_Diff5"    type="string" length="18"  />
+<property name="renditaMininizNettaDiff10"      column="Rendita_MinIniz_Netta_Diff10"   type="string" length="18"  />
+<property name="renditaMininizNettaDiff15"      column="Rendita_MinIniz_Netta_Diff15"   type="string" length="18"  />
+<property name="renditaLordaAttesao"            column="Rendita_Lorda_AttesaO"          type="string" length="18"  />
+<property name="renditaNettaAttesao"            column="Rendita_Netta_AttesaO"          type="string" length="18"  />
+<property name="ultimaRendAnnuaLorda"           column="Ultima_Rend_Annua_Lorda"        type="string" length="18"  />
+<property name="ultimaRendAnnuaNetta"           column="Ultima_Rend_Annua_Netta"        type="string" length="18"  />
+<property name="maxAnniDas"                     column="Max_Anni_Das"                   type="string" length="2"  />
+<property name="filler4"                        column="Filler4"                        type="string" length="255"  />
+<property name="progCop"                        column="Prog_Cop"                       type="string" length="2"  />
+<property name="tipoCop"                        column="Tipo_Cop"                       type="string" length="2"  />
+<property name="flagCopPrinc"                   column="Flag_Cop_Princ"                 type="string" length="2"  />
+<property name="codValuta"                      column="Cod_Valuta"                     type="string" length="2"  />
+<property name="cambio"                         column="Cambio"                         type="string" length="18"  />
+<property name="filler5"                        column="Filler5"                        type="string" length="2"  />
+<property name="tipologiaPremi"                 column="Tipologia_Premi"                type="string" length="2"  />
+<property name="presta1BaseR"                    column="Presta1_Base_R"                 type="string" length="18"  />
+<property name="presta1BonusBaseR"               column="Presta1_Bonus_Base_R"           type="string" length="18"  />
+<property name="presta2BaseR"                    column="Presta2_Base_R"                 type="string" length="18"  />
+<property name="presta2BonusBaseR"               column="Presta2_Bonus_Base_R"           type="string" length="18"  />
+<property name="presta3BaseR"                    column="Presta3_Base_R"                 type="string" length="18"  />
+<property name="presta3BonusBaseR"               column="Presta3_Bonus_Base_R"           type="string" length="18"  />
+<property name="riservaMatemAccum"              column="Riserva_Matem_Accum"            type="string" length="18"  />
+<property name="riservaMatemDiff"               column="Riserva_Matem_Diff"             type="string" length="18"  />
+<property name="rendimentoIsvap"                column="Rendimento_IsVap"               type="string" length="8"  />
+<property name="rendimMinGarAccum"              column="Rendim_Min_Gar_Accum"           type="string" length="8"  />
+<property name="rendimMinGarDiff"               column="Rendim_Min_Gar_Diff"            type="string" length="8"  />
+<property name="renMingarTxTecnAccum"           column="Ren_MinGar_Tx_Tecn_Accum"       type="string" length="8"  />
+<property name="renMingarTxTecnDiff"            column="Ren_MinGar_Tx_Tecn_Diff"        type="string" length="8"  />
+<property name="rendMinTrattAccum"              column="Rend_Min_Tratt_Accum"           type="string" length="8"  />
+<property name="rendMinTrattDiff"               column="Rend_Min_Tratt_Diff"            type="string" length="8"  />
+<property name="txTecnRenditaAccum"             column="Tx_Tecn_Rendita_Accum"          type="string" length="18"  />
+<property name="txTecnRenditaDiff"              column="Tx_Tecn_Rendita_Diff"           type="string" length="18"  />
+<property name="txTecnRenditaErog"              column="Tx_Tecn_Rendita_Erog"           type="string" length="18"  />
+<property name="aliqRetrocessAccum"             column="Aliq_Retrocess_Accum"           type="string" length="8"  />
+<property name="aliqRetrocessDiff"              column="Aliq_Retrocess_Diff"            type="string" length="8"  />
+<property name="ipotesiIncremPremi"             column="Ipotesi_Increm_Premi"           type="string" length="8"  />
+<property name="impPremiVersatiUnit"            column="Imp_Premi_Versati_Unit"         type="string" length="18"  />
+<property name="riportoPremi"                   column="Riporto_Premi"                  type="string" length="18"  />
+<property name="userUltimaModifica"             column="GSTD_ULT_USER_S"                type="string" length="40"  />
+<property name="proceduraUltimaModifica"        column="GSTD_ULT_PROC_S"                type="string" length="40"  />
+<property name="dataUltimaModifica" 			type="timestamp" column="GSTD_ULT_MOD_D"/>
+<property name="dataInserimento" 				type="timestamp" column="GSTD_INSE_D"/>
+<property name="flagEsistenza"                  column="GSTD_ESIST_B"                   type="string" length="1"  />
+<property name="utenteInserimento"              column="GSTD_USER_INS_S"                type="string" length="40"  />
+<property name="tipoUltimaModifica"             column="GSTD_TIPO_MOD_B"                type="string" length="1"  />
+  <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  
+     <many-to-one name="polizza" class="it.ras.arco.bean.FinPolizza"  column="POLIZZA_ID" update="false" insert="true" cascade="lock"  not-found="ignore" />
+    
+    
+    
+ </class>
+ <sql-query name="GetProiezioneByContrattoId">
+<return alias="polizza" class="it.ras.arco.bean.FinProiezionePolizza"/>
+select {polizza.*} from FIN_PROIEZIONE_POLIZZA polizza    
+where
+ polizza.CONTRATTO_ID =:contrattoId
+</sql-query>
+ </hibernate-mapping>
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="it.ras.arco.batch.bean.FlxSecAdeguatezza" table="FLX_SEC_ADEGUATEZZA">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SEC_ADEGUATEZZA_SEQ</param>
+   </generator>
+  </id>
+  
+  
+  <property name="ndg"                            column="NDG"                            type="integer"  />
+<property name="cfil"                           column="CFIL"                           type="integer"  />
+<property name="cage"                           column="CAGE"                           type="integer"  />
+<property name="cprg"                           column="CPRG"                           type="integer"  />
+<property name="csdp"                           column="CSDP"                           type="integer"  />
+<property name="codiceEsperienza"               column="CODICE_ESPERIENZA"              type="string" length="2"  />
+<property name="descrEsperienza"                column="DESCR_ESPERIENZA"               type="string" length="50"  />
+<property name="codRischio"                     column="COD_RISCHIO"                    type="string" length="2"  />
+<property name="descrRischio"                   column="DESCR_RISCHIO"                  type="string" length="50"  />
+<property name="codProfRischio"                 column="COD_PROF_RISCHIO"               type="string" length="2"  />
+<property name="descrProfRischio"               column="DESCR_PROF_RISCHIO"             type="string" length="70"  />
+<property name="dataInizioValidita"             column="DATA_INIZIO_VALIDITA"           type="date"  />
+<property name="obiettivoInterno"               column="OBIETTIVO_INTERNO"              type="string" length="3"  />
+<property name="situazioneFinanziaria"          column="SITUAZIONE_FINANZIARIA"         type="string" length="1"  />
+<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"             type="date"  />
+ <property name="descrizioneErrore"  column="DESCRIZIONE_ERRORE_S" type="string" length="100"  />
+  <property name="dataElab" column="DATA_ELAB_D" type="timestamp"  />
+</class>
+<query name="SEC_ADEGUATEZZA_DT">from
+it.ras.arco.batch.bean.FlxSecAdeguatezza pc where pc.statoElab='D' 
+</query>
+
+
+</hibernate-mapping>

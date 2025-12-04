@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA DEI CONTRATTI -->
+ <class name="it.ras.arco.batch.bean.FinContratto" table="FIN_CONTRATTO" where="GSTD_ESIST_B='S'">
+  <id name="contrattoId" column="CONTRATTO_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_CONTRATTO_SEQ</param>
+   </generator>
+  </id>
+  <property name="prodottoId" type="integer" column="PRODOTTO_ID"/>
+ <!--  <property name="cointestazioneId" type="integer" column="COINTESTAZIONE_ID"/>
+  <property name="soggettoPrimoIntId" type="integer" column="SOGGETTO_PRIMO_INT_ID"/>
+   -->
+  <property name="numContratto" type="string" column="NUM_CONTRATTO_S" length="20"/>
+  <property name="dossierTecnico" type="string"
+   column="DOSSIER_TECNICO_S" length="20"/>
+  <property name="dataApertura" type="date" column="DATA_APERTURA_D"/>
+  <property name="tipoProdotto" type="string" column="TIPO_PRODOTTO_T" length="3"/>
+  <property name="statoContratto" type="string"
+   column="STATO_CONTRATTO_T" length="3"/>
+  <property name="codConvenzione" type="string"
+   column="COD_CONVENZIONE_S" length="10"/>
+  <property name="userUltimaModifica" type="string"
+   column="GSTD_ULT_USER_S" length="20"/>
+  <property name="proceduraUltimaModifica" type="string"
+   column="GSTD_ULT_PROC_S" length="20"/>
+  <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="utenteInserimento" type="string"
+   column="GSTD_USER_INS_S" length="20"/>
+  <property name="tipoUltimaModifica" type="string"
+   column="GSTD_TIPO_MOD_B" length="1"/>
+  <property name="flagMulti" type="string" column="FLAG_MULTI" length="1"/>
+  
+  <!-- RELAZIONE CON FIN_COINTESTAZIONE
+  <many-to-one name="cointestazione" class="it.ras.arco.batch.bean.FinCointestazione" 
+   column="COINTESTAZIONE_ID" update="true" insert="true"/>-->
+  
+  <!-- RELAZIONE CON FIN_SOGGETTO
+   <many-to-one name="soggetto" class="it.ras.arco.batch.bean.FinSoggetto" 
+   column="SOGGETTO_PRIMO_INT_ID" update="true" insert="true"/>
+  -->
+  <!-- RELAZIONE CON FIN_GP
+  <set name="gp" lazy="false">
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.batch.bean.FinGP"/>
+  </set>-->
+  <!-- RELAZIONE CON FIN_POSIZIONE
+  <set name="posizione" lazy="false">
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.batch.bean.FinPosizione"/>
+  </set>-->
+  <!-- RELAZIONE CON FIN_FONDO_SICAV
+  <set name="fondo_sicav">
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.batch.bean.FinFondiSicav"/>
+  </set>-->
+  <!-- RELAZIONE CON FIN_RUOLO
+  <set name="ruolo">
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.batch.bean.FinRuolo"/>
+  </set>-->
+  <!-- RELAZIONE CON FIN_SOTTOSCRIZIONE
+  <set name="sottoscrizione" table="FIN_SOTTOSCR_CONT" lazy="false"
+   cascade="all" where="GSTD_ESIST_B='S'">
+   <key column="CONTRATTO_ID"/>
+   <composite-element class="it.ras.arco.batch.bean.FinSottoscrizioneCont">
+    <parent name="contratto"/>
+    <many-to-one name="sottoscrizione"
+     class="it.ras.arco.batch.bean.FinSottoscrizione"
+     column="SOTTOSCRIZIONE_ID" not-null="true"/>
+    <property name="userUltimaModifica" type="string"
+     column="GSTD_ULT_USER_S" length="20"/>
+    <property name="proceduraUltimaModifica" type="string"
+     column="GSTD_ULT_PROC_S" length="20"/>
+    <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+    <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+    <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+    <property name="utenteInserimento" type="string"
+     column="GSTD_USER_INS_S" length="20"/>
+    <property name="tipoUltimaModifica" type="string"
+     column="GSTD_TIPO_MOD_B" length="1"/>
+   </composite-element>
+  </set>-->
+  
+  <!-- RELAZIONE CON LA FIN_PRODOTTO -->
+  <many-to-one name="prodotto"
+   class="it.ras.arco.batch.bean.FinProdotto" column="PRODOTTO_ID"
+   update="false" insert="false"/>
+   
+  <!-- RELAZIONE CON LA FIN_INDIRIZZO 
+  <set name="indirizzo" table="FIN_CONTRATTO_INDIR" lazy="false"
+   cascade="all" where="GSTD_ESIST_B='S'">
+   <key column="CONTRATTO_ID"/>
+   <composite-element class="it.ras.arco.batch.bean.FinContrattoIndir">
+    <parent name="contratto"/>
+    <many-to-one name="indirizzo"
+     class="it.ras.arco.batch.bean.FinIndirizzo" column="INDIRIZZO_ID" not-null="true"/>
+    <property name="tipoIndirizzo" type="string"
+     column="TIPO_INDIRIZZO_T" length="3"/>
+    <property name="userUltimaModifica" type="string"
+     column="GSTD_ULT_USER_S" length="20"/>
+    <property name="proceduraUltimaModifica" type="string"
+     column="GSTD_ULT_PROC_S" length="20"/>
+    <property name="dataInizio" type="date" column="DATA_INIZIO_D"/>
+    <property name="dataFine" type="date" column="DATA_FINE_D"/>
+    <property name="dataUltimaModifica" type="timestamp" column="GSTD_ULT_MOD_D"/>
+    <property name="dataInserimento" type="timestamp" column="GSTD_INSE_D"/>
+    <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+    <property name="utenteInserimento" type="string"
+     column="GSTD_USER_INS_S" length="20"/>
+    <property name="tipoUltimaModifica" type="string"
+     column="GSTD_TIPO_MOD_B" length="1"/>
+   </composite-element>
+  </set>-->
+  <!-- RELAZIONE CON FIN_POLIZZA
+  <set name="polizza" lazy="false" inverse="true">
+   <key column="CONTRATTO_ID"/>
+   <one-to-many class="it.ras.arco.batch.bean.FinPolizza"/>
+  </set>-->
+  
+ </class>
+ 
+ <!--<query name="GetContrattoByContrattoId">select c from it.ras.arco.batch.bean.FinContratto c where c.contrattoId = ?</query>
+ <query name="GetContrattoByNumContratto">select c from it.ras.arco.batch.bean.FinContratto c where c.numContratto = ?</query>
+ -->
+ <query name="GetContrattoByNumContrattoCodInterfaccia">select c from it.ras.arco.batch.bean.FinContratto c 
+ join c.prodotto p join p.emittente e join e.interfaccia i where c.numContratto = ? and i.interfaccia = ?</query>
+ 
+ 
+ <!-- <query name="GetContrattoByNumContrattoProdottoIdSoggCoin">select c from it.ras.arco.batch.bean.FinContratto c where c.numContratto = ? and c.prodottoId = ? and c.soggCoin = ?</query> 
+ <query name="GetContrattoByNumContrattoProdottoId">select c from it.ras.arco.batch.bean.FinContratto c where c.numContratto = ? and c.prodottoId = ?</query>
+ <query name="GetContrattoByNumContrattoCodEmittente">select c from it.ras.arco.batch.bean.FinContratto c 
+ join c.prodotto p join p.emittente e where c.numContratto = ? and e.codEmittExt = ?</query>
+
+ <query name="GetContrattoByNumContrattoCodEmittenteCodInterfaccia">select c from it.ras.arco.batch.bean.FinContratto c 
+ join c.prodotto p join p.emittente e join e.interfaccia i where c.numContratto = ? and e.codEmittExt = ? and i.interfaccia = ?</query>
+ 
+
+ 
+ <query name="GetIndirizzoByContrattoId">select i from it.ras.arco.batch.bean.FinContratto c  
+  	join c.indirizzo cin join cin.indirizzo i 
+  	where c.contrattoId= ?
+	and cin.tipoIndirizzo = ?
+	and cin.dataFine > ? 
+ </query>
+ 
+ <query name="GetContrattoByNumContrattoAttFin">select c from it.ras.arco.batch.bean.FinContratto c
+      join c.posizione p join p.attivitaFin a
+      where c.numContratto = ? 
+      and a.attivitaFinId = ?
+ </query>
+ 
+ 
+ 
+ <query name="getPosizioneByNumContrattoAttFinanziaria">select p from it.ras.arco.batch.bean.FinContratto c
+      join c.posizione p join p.attivitaFin a
+      where a.attivitaFinId = ?  
+      and c.numContratto = ?
+ </query>-->
+ 
+<!-- 
+<query name="CheckGetPosizioneByContrattoIDMD">select p from it.ras.arco.batch.bean.FinContratto c join c.posizione p where p.contrattoId = ?</query>
+-->
+</hibernate-mapping>

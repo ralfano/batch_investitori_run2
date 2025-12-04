@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA MOVIMENTI -->
+ <class name="it.ras.arco.bean.FinExtIndiciRam"
+  table="FIN_EXT_INDICI_FONDI_RAM" where="GSTD_ESIST_B='S'">
+  <id name="extIndiciFondiRam" column="EXT_INDICI_FONDI_RAM_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FIN_EXT_INDICI_FONDI_RAM_SEQ</param>
+   </generator>
+  </id>
+  
+  <property name="dataUltManut" type="date" column="DATA_ULT_MANUT"/>
+  <property name="utenteUltManut" type="string" column="UTENTE_ULT_MANUT" length="4"/>
+  <property name="codGestione" type="string" column="COD_GESTIONE" length="3"/>
+  <property name="statoElaboraz" type="string" column="STATO_ELABORAZ" length="1"/>
+  <property name="dValQuot" type="date" column="D_VAL_QUOT"/>
+  <property name="valQuotEuro" type="double" column="VAL_QUOT_EURO"/>
+  <property name="valQuotLire" type="double" column="VAL_QUOT_LIRE"/>
+  <property name="valQuotValuta" type="double" column="VAL_QUOT_VALUTA"/>
+  <property name="valStaccoCedol" type="double" column="VAL_STACCO_CEDOL"/>
+  <property name="dPagamCedola" type="date" column="D_PAGAM_CEDOLA"/>
+  <property name="navLordo" type="double" column="NAV_LORDO"/>
+  <property name="impProgLordo" type="double" column="IMP_PROG_LORDO"/>
+  <property name="impProgNetto" type="double" column="IMP_PROG_NETTO"/>
+  <property name="commRete" type="double" column="COMM_RETE"/>
+  <property name="speseAmm" type="double" column="SPESE_AMM"/>
+  <property name="quoteCircol" type="double" column="QUOTE_CIRCOL"/>
+  <property name="settCompeten" type="string" column="SETT_COMPETEN" length="2"/>
+  <property name="giorSett" type="string" column="GIOR_SETT" length="1"/>
+  <property name="nonUtiliz" type="string" column="NON_UTILIZ" length="1"/>
+  <property name="dataCorrStamp" type="date" column="DATA_CORR_STAMP"/>
+  <property name="classe" type="string" column="CLASSE" length="1"/>
+  <property name="statoElabB" type="string" column="STATO_ELAB_B" length="2"/>
+  <property name="istanzaS" type="string" column="ISTANZA_S" length="1"/>
+  <property name="userUltimaModifica" type="string" column="GSTD_ULT_USER_S" length="20"/>
+  <property name="proceduraUltimaModifica" type="string" column="GSTD_ULT_PROC_S" length="20"/>
+  <property name="dataUltimaModifica" type="date" column="GSTD_ULT_MOD_D"/>
+  <property name="dataInserimento" type="date" column="GSTD_INSE_D"/>
+  <property name="utenteInserimento" type="string" column="GSTD_USER_INS_S" length="20"/>
+  <property name="flagEsistenza" type="string" column="GSTD_ESIST_B" length="1"/>
+  <property name="tipoUltimaModifica" type="string" column="GSTD_TIPO_MOD_B" length="1"/>
+    <property name="userUltimaModificaSlave" type="string" column="GSTD_ULT_USER_S" length="40" insert="false" update="false"/>
+  <property name="proceduraUltimaModificaSlave" type="string" column="GSTD_ULT_PROC_S" length="40" insert="false" update="false"/>
+  <property name="dataUltimaModificaSlave" type="timestamp" column="GSTD_ULT_MOD_D" insert="false" update="false"/>
+  <property name="tipoUltimaModificaSlave" type="string" column="GSTD_TIPO_MOD_B" length="1" insert="false" update="false"/>
+  
+ </class>
+</hibernate-mapping>
+

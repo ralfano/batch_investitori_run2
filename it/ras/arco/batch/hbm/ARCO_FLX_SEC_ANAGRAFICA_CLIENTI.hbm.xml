@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <!-- TABELLA ANAGRAFICA CC -->
+ <class name="it.ras.arco.batch.bean.FlxSecAnagraficaClienti" rowid="rowid" table="FLX_SEC_ANAGRAFICA_CLIENTI" where="STATO_ELAB_B='D'">
+  <id name="flxId" column="FLX_ID" type="integer">
+   <generator class="sequence">
+    <param name="sequence">FLX_SEC_ANAGRAFICA_CLIENTI_SEQ</param>
+   </generator>
+  </id> 
+  	<property name="codPersSec"                     column="COD_PERS_SEC"                   type="string" length="20"  />
+	<property name="cognome"                        column="COGNOME"                        type="string" length="30"  />
+	<property name="nome"                           column="NOME"                           type="string" length="30"  />
+	<property name="denominazione"                  column="DENOMINAZIONE"                  type="string" length="70"  />
+	<property name="idePers"                        column="IDE_PERS"                       type="string" length="1"  />
+	<property name="codFisco"                       column="COD_FISCO"                      type="string" length="16"  />
+	<property name="dtnascCost"                     column="DTNASC_COST"                    type="date"  />
+	<property name="sesso"                          column="SESSO"                          type="string" length="1"  />
+	<property name="luogoNascita"                   column="LUOGO_NASCITA"                  type="string" length="40"  />
+	<property name="statoNascita"                   column="STATO_NASCITA"                  type="string" length="3"  />
+	<property name="provNascita"                    column="PROV_NASCITA"                   type="string" length="2"  />
+	<property name="capNascita"                     column="CAP_NASCITA"                    type="string" length="5"  />
+	<property name="indirResid"                     column="INDIR_RESID"                    type="string" length="50"  />
+	<property name="capResid"                       column="CAP_RESID"                      type="string" length="5"  />
+	<property name="comuneResid"                    column="COMUNE_RESID"                   type="string" length="40"  />
+	<property name="provResid"                      column="PROV_RESID"                     type="string" length="2"  />
+	<property name="nazioneResid"                   column="NAZIONE_RESID"                  type="string" length="3"  />
+	<property name="telAbit"                        column="TEL_ABIT"                       type="string" length="16"  />
+	<property name="telUfficio"                     column="TEL_UFFICIO"                    type="string" length="16"  />
+	<property name="telCell"                        column="TEL_CELL"                       type="string" length="14"  />
+	<property name="fax"                            column="FAX"                            type="string" length="16"  />
+	<property name="email"                          column="EMAIL"                          type="string" length="50"  />
+	<property name="dataElab"                       column="DATA_ELAB"                      type="date"  />
+	<property name="timeElab"                       column="TIME_ELAB"                      type="date"  />
+	<property name="codTipoNdg"                     column="COD_TIPO_NDG"                   type="string" length="5"  />
+	<property name="partitaIva"                     column="PARTITA_IVA"                    type="string" length="11"  />
+	<property name="sae"                            column="SAE"                            type="string" length="3"  />
+	<property name="rae"                            column="RAE"                            type="string" length="3"  />
+	<property name="dataIscrizRea"                  column="DATA_ISCRIZ_REA"                type="date"  />
+	<property name="numeroRea"                      column="NUMERO_REA"                     type="string" length="13"  />
+	<property name="provinciaRea"                   column="PROVINCIA_REA"                  type="string" length="2"  />
+	<property name="dataFondSoc"                    column="DATA_FOND_SOC"                  type="date"  />
+	<property name="capitaleSociale"                column="CAPITALE_SOCIALE"               type="string" length="15"  />
+	<property name="tipoDocum"                      column="TIPO_DOCUM"                     type="string" length="3"  />
+	<property name="numDocum"                       column="NUM_DOCUM"                      type="string" length="15"  />
+	<property name="enteRilascio"                   column="ENTE_RILASCIO"                  type="string" length="50"  />
+	<property name="dataRilascio"                   column="DATA_RILASCIO"                  type="date"  />
+	<property name="luogoRilascio"                  column="LUOGO_RILASCIO"                 type="string" length="40"  />
+	<property name="provRilascio"                   column="PROV_RILASCIO"                  type="string" length="2"  />
+	<property name="nazioneRilascio"                column="NAZIONE_RILASCIO"               type="string" length="3"  />
+	<property name="dataScadenza"                   column="DATA_SCADENZA"                  type="date"  />
+	<property name="cittadinanza"                   column="CITTADINANZA"                   type="string" length="3"  />
+	<property name="statoCivile"                    column="STATO_CIVILE"                   type="string" length="1"  />
+	<property name="regimePatrimon"                 column="REGIME_PATRIMON"                type="string" length="2"  />
+	<property name="iscrizCameraComm"               column="ISCRIZ_CAMERA_COMM"             type="string" length="10"  />
+	<property name="privacy1"                        column="PRIVACY_1"                      type="string" length="1"  />
+	<property name="privacy2"                        column="PRIVACY_2"                      type="string" length="1"  />
+	<property name="privacy3"                        column="PRIVACY_3"                      type="string" length="1"  />
+	<property name="privacy4"                        column="PRIVACY_4"                      type="string" length="1"  />
+	<property name="privacy5"                        column="PRIVACY_5"                      type="string" length="1"  />
+	<property name="privacy6"                        column="PRIVACY_6"                      type="string" length="1"  />
+	<property name="privacy7"                        column="PRIVACY_7"                      type="string" length="1"  />
+	<property name="privacy8"                        column="PRIVACY_8"                      type="string" length="1"  />
+	<property name="privacy9"                        column="PRIVACY_9"                      type="string" length="1"  />
+	<property name="dataPrivacy"                    column="DATA_PRIVACY"                   type="date"  />
+	<property name="statoElab"                      column="STATO_ELAB_B"                   type="string" length="2"  />
+	<property name="istanza"                        column="ISTANZA_S"                      type="string" length="1"  />
+	<property name="dataCaricamento"                column="DATA_CARICAMENTO_S"                      type="date" />
+	<property name="descrizioneErrore"                column="DESCRIZIONE_ERRORE_S"             type="string" length="100" />
+<property name="dataElaborazione"                column="DATA_ELAB_D"             type="timestamp"  />
+
+	<property name="codUserMc"                column="COD_USER_MC"             type="string"  />
+	<property name="statoRapportoMc"                column="STATO_RAPPORTO_MC"             type="string"  />
+	
+	
+	</class>
+ <query name="SEC_ANAGRAFICA_CLIENTI_SQL">from  
+ it.ras.arco.batch.bean.FlxSecAnagraficaClienti p where p.statoElab='D'</query>
+</hibernate-mapping>
+  
