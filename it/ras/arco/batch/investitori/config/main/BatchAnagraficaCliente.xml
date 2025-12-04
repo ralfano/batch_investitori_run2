@@ -1,0 +1,65 @@
+<BATCH>
+
+	<NUMBEROFTHREAD>1</NUMBEROFTHREAD>
+
+	<NUMBEROFOPERATION>1</NUMBEROFOPERATION>
+
+	<COMMITPOINT>1</COMMITPOINT>  
+    
+	<MAXWARNING>1000000</MAXWARNING>
+
+	<EXECUTIONTYPE>RUN</EXECUTIONTYPE>
+	 
+	<ELABORATIONTYPE>DB</ELABORATIONTYPE>
+
+	<CURSORNAME></CURSORNAME>
+ 
+    <PATHRESOURCES>/</PATHRESOURCES>
+
+	<XMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringSessionFactory.xml</PARAMXMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringModuleManager.xml</PARAMXMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringCodesTableManager.xml</PARAMXMLFACTORY>	
+		<PARAMXMLFACTORY>it/ras/arco/batch/investitori/config/spring/SpringAnagraficaCliente.xml</PARAMXMLFACTORY>				
+	    <PARAMXMLFACTORY>it/ras/arco/config/spring/SpringNormalizer.xml</PARAMXMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringDeduplicator.xml</PARAMXMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringCointestazioneManager.xml</PARAMXMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringSoggettoManager.xml</PARAMXMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringRecapitoManager.xml</PARAMXMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringIndirizzoManager.xml</PARAMXMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringDocumentoManager.xml</PARAMXMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringPrivacyManager.xml</PARAMXMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringCodificaManagerSRV.xml</PARAMXMLFACTORY>
+	</XMLFACTORY>
+			    
+	<BATCHNAME>ANAG_INVESTITORI</BATCHNAME>
+
+	<DIROUTPUTFILE></DIROUTPUTFILE>
+
+	<SQLFLUSH>Y</SQLFLUSH>
+
+	<FILEFLUSH>N</FILEFLUSH> 
+
+	<XMLFILEPATH></XMLFILEPATH>
+
+	<DESCOUTPUTFILE>
+	</DESCOUTPUTFILE>
+
+	<LISTOUTPUTFILE>
+	</LISTOUTPUTFILE>
+
+	<BUSINESSLOGICPARAM>
+	</BUSINESSLOGICPARAM>
+
+	<DBSTRINGCURSORPARAM>
+
+	</DBSTRINGCURSORPARAM>
+
+	<DBOBJECTCURSORPARAM>
+
+	</DBOBJECTCURSORPARAM>
+
+	<DBQUERYNAME>ANAG_CLIENTE_SQL</DBQUERYNAME>
+
+
+</BATCH> 	

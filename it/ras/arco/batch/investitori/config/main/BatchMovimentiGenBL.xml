@@ -1,0 +1,62 @@
+<BATCH>
+
+	<NUMBEROFTHREAD>1</NUMBEROFTHREAD>
+
+	<NUMBEROFOPERATION>10000</NUMBEROFOPERATION>
+
+	<COMMITPOINT>1</COMMITPOINT>  
+    
+	<MAXWARNING>100000</MAXWARNING>
+
+	<EXECUTIONTYPE>RUN</EXECUTIONTYPE>
+	 
+	<ELABORATIONTYPE>DB</ELABORATIONTYPE>
+
+	<CURSORNAME></CURSORNAME>  
+				   
+ 	<PATHRESOURCES>/</PATHRESOURCES>
+
+	<XMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringSessionFactory.xml</PARAMXMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringModuleManager.xml</PARAMXMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringCodesTableManager.xml</PARAMXMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/batch/investitori/config/spring/SpringMovimentiGenBL.xml</PARAMXMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringContrattoManagerSRV.xml</PARAMXMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringPosizioneManagerSRV.xml</PARAMXMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringSottoscrizioneManager.xml</PARAMXMLFACTORY>
+		<PARAMXMLFACTORY>it/ras/arco/config/spring/SpringProdottoAttFinManagerSRV.xml</PARAMXMLFACTORY>	
+        <PARAMXMLFACTORY>it/ras/arco/config/spring/SpringPromotoreManager.xml</PARAMXMLFACTORY>
+	    <PARAMXMLFACTORY>it/ras/arco/config/spring/SpringAssegnazioniPromotoriManager.xml</PARAMXMLFACTORY>
+	    <PARAMXMLFACTORY>it/ras/arco/config/spring/SpringAssegnazioniPromotoriManager.xml</PARAMXMLFACTORY>
+	    
+	
+	</XMLFACTORY>
+			    
+	<BATCHNAME>INV_MOVIM_GEN</BATCHNAME>
+
+	<DIROUTPUTFILE></DIROUTPUTFILE>
+
+	<SQLFLUSH>Y</SQLFLUSH>
+
+	<FILEFLUSH>Y</FILEFLUSH> 
+
+	<XMLFILEPATH></XMLFILEPATH>
+
+	<DESCOUTPUTFILE>
+	</DESCOUTPUTFILE>
+
+	<LISTOUTPUTFILE>
+	</LISTOUTPUTFILE>
+
+	<BUSINESSLOGICPARAM>
+	</BUSINESSLOGICPARAM>
+
+	<DBSTRINGCURSORPARAM>
+	</DBSTRINGCURSORPARAM>
+
+	<DBOBJECTCURSORPARAM>
+	</DBOBJECTCURSORPARAM>
+				 
+	<DBQUERYNAME>CURSOR_INV_MOVIM_GEN</DBQUERYNAME>
+
+</BATCH> 	

@@ -1,0 +1,388 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>                
+    <!-- MODIFICARE --> 
+    <bean id="BusinessLogicObject"   class="it.ras.arco.batch.ramgp.businesslogic.GPGestioni" singleton="false">
+     	<property name="batchManager">
+    		<ref bean="RasThreadBatchManager"/>
+    	</property>
+    	<property name="codesTableManager">
+    		<ref bean="codesTableManager"/> 
+    	</property>
+    </bean>
+
+
+
+    <bean id="RasBatchMain"          class="it.ras.flag.batch.skeleton.RasBatchMain" singleton="true" >
+    	<property name="batchManager">
+    		<ref bean="RasThreadBatchManager"/>
+    	</property>
+    	<property name="sessionFactory">
+    		<ref bean="sessionFactory"/>
+    	</property>
+    </bean>
+
+   <bean id="RasThread"              class="it.ras.flag.batch.skeleton.RasThread" singleton="false" >
+    	<property name="batchManager">
+    		<ref bean="RasThreadBatchManager"/>
+    	</property>
+    	<property name="blObject">
+    		<ref bean="BusinessLogicObject"/>
+    	</property>
+    	<property name="exeLogger">
+    		<ref bean="ExecutionLogger"/>
+    	</property>
+    	<property name="sessionFactory">
+    		<ref bean="sessionFactory"/>
+    	</property>
+    	<property name="mode">
+    		<value>refresh</value>
+    	</property>
+
+
+    </bean> 
+    
+
+    <bean id="BatchSession" 		 class="it.ras.flag.batch.skeleton.BatchSession" 		   singleton="false" >
+    </bean>
+    
+	
+    <bean id="RasMain"               class="it.ras.flag.batch.RasMain"                        singleton="false" />
+    
+    
+
+    <bean id="RasBatchDao"			 class="it.ras.flag.batch.skeleton.RasBatchDao" 		   singleton="false">
+	    <property name="sessionFactory">
+    		<ref bean="sessionFactory"/>
+    	</property>
+    </bean>
+
+	<bean id="OutputFile" class="it.ras.flag.batch.utils.OutputFile" singleton="false">
+    	<property name="batchManager">
+    		<ref bean="RasThreadBatchManager" />
+    	</property>
+		<property name="dirOutputFile">
+			<value>C:/Test/</value>
+		</property>
+		<property name="xmlFilePath">
+			<value>/it/ras/arco/batch/ramgp/config/flusso/OutboundGPGestioni.xml</value>
+		</property>
+	</bean>
+
+
+
+    <bean id="PreProcessor"			 class="it.ras.flag.batch.file.PreProcessor"			   singleton="true" >
+		<property name="rasDao">
+    		<ref bean="RasBatchDao"/>
+    	</property>
+    </bean>
+
+    <bean id="PostProcessor"		 class="it.ras.flag.batch.file.PostProcessor"			   singleton="true" >
+		<property name="rasDao">
+    		<ref bean="RasBatchDao"/>
+    	</property>
+    </bean>
+    
+    <!--  LOG Architetturale ed applicativo -->
+    <bean id="ExecutionLogger"   	 class="it.ras.flag.batch.logging.ExecutionLog"           singleton="true"  />
+    <bean id="LogConstants"   		 class="it.ras.flag.batch.logging.LogConstants"           singleton="false" />
+    <bean id="TblCommit"      		 class="it.ras.flag.batch.logging.TblCommit"              singleton="false" />
+    <bean id="TblExeLog"      		 class="it.ras.flag.batch.logging.TblExeLog"              singleton="false" />
+ 
+ 	<!--  Cursore da DB  -->
+    <bean id="RasDBCursor"         class="it.ras.flag.batch.cursors.RasDBCursor"          singleton="true">
+    	<property name="batchManager">
+    		<ref bean="RasThreadBatchManager" />
+    	</property>
+    	<property name="rasDao">
+    		<ref local="RasBatchDao"/>
+    	</property>
+    	<property name="maxRows">  
+			<value>10000</value>
+		</property> 
+		<property name="initRow">  
+			<value>0</value>
+		</property> 
+    </bean>
+    
+    <bean id="RasDBSubCursor"        class="it.ras.arco.batch.ramgp.cursor.GPGestioniCursor"          singleton="false">
+    	 <property name="rasDao">
+    		<ref bean="RasBatchDao"/>
+    	</property>
+		<!--
+    	<property name="classList">
+     		<list>
+				<value>it.ras.arco.bean.FinOrdine</value>
+			</list>
+		</property>
+
+     	<property name="methodList">
+     		<list>
+				<value>stato</value>
+			</list>
+		</property>
+
+          
+     	<property name="methodParams">
+     		<list>
+				<value>A</value>
+			</list>
+		</property>
+		-->
+    </bean>	
+   
+   <bean id="CodiceProdotto" class="it.ras.arco.batch.ramgp.rules.CodiceProdotto">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>							
+				<value>1</value>
+			</list>
+		</property>
+		<property name="codesTableManager">
+    		<ref bean="codesTableManager"/> 
+    	</property>
+	</bean>
+   
+   	<bean id="ModSottoscrizione" class="it.ras.arco.batch.ramgp.rules.ModSottoscrizione">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>	
+				<value>1</value>					
+			</list>
+		</property>
+	</bean>
+
+	<bean id="SchedaCliente" class="it.ras.arco.batch.ramgp.rules.SchedaCliente">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>
+				<value>1</value>
+				<value>2</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="CodiceRuolo" class="it.ras.arco.batch.ramgp.rules.CodiceRuolo">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>
+				<value>1</value>
+				<value>2</value>
+			</list>
+		</property>
+	</bean>   
+
+   	<bean id="CodRuolo" class="it.ras.arco.batch.ramgp.rules.CodRuolo">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>
+				<value>1</value>
+			</list>
+		</property>
+	</bean>   
+	
+   	<bean id="CodicePersona" class="it.ras.arco.batch.ramgp.rules.CodicePersona">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>
+			</list>
+		</property>
+	</bean>   
+	   
+   <bean id="StampaAccordo" class="it.ras.arco.batch.ramgp.rules.StampaAccordo">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>
+				<value>1</value>
+				<value>2</value>				
+				<value>3</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="StampaAccumulo" class="it.ras.arco.batch.ramgp.rules.StampaAccumulo">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>							
+				<value>1</value>  
+				<value>2</value> 
+				<value>3</value> 	
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="StampaAnaCoint" class="it.ras.arco.batch.ramgp.rules.StampaAnaCoint">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>							
+				<value>1</value>
+				<value>2</value>							
+				<value>3</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="CodPartecipanti" class="it.ras.arco.batch.ramgp.rules.codPartecipanti">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>							
+				<value>1</value>	
+				<value>2</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="TipoVariazione" class="it.ras.arco.batch.ramgp.rules.TipoVariazione">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>							
+				<value>1</value>	
+			</list>
+		</property>
+	</bean>
+
+	<bean id="FlagRimborso" class="it.ras.arco.batch.ramgp.rules.FlagRimborso">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>							
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="RegimeFiscale" class="it.ras.arco.batch.ramgp.rules.RegimeFiscale">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>	
+				<value>1</value>	
+				<value>2</value>							
+			</list>
+		</property>
+	</bean>
+
+	<bean id="Nazionalita" class="it.ras.arco.batch.ramgp.rules.Nazionalita">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>							
+				<value>1</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="SessionSottoscrizione" class="it.ras.arco.batch.rules.SessionSottoscrizione">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>								
+			</list>
+		</property>
+	</bean>
+
+	<bean id="SessionContratto" class="it.ras.arco.batch.rules.SessionContratto">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>								
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="SessionOrdine" class="it.ras.arco.batch.rules.SessionOrdine">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>								
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="ContaRecord" class="it.ras.arco.batch.ramgp.rules.ContaRecord">
+		<property name="appDataPositionList">
+			<list>
+				<value>0</value>							
+				<value>1</value>	
+				<value>2</value>
+			</list>
+		</property>
+	</bean>
+	
+   	<bean id="ruleBase" class="it.ras.flag.config.rules.RuleBase" init-method="init" destroy-method="destroy">
+		<property name="rulesBean">
+			<map>
+				<entry>
+					<key><value>CodiceProdotto</value></key>
+					<ref bean="CodiceProdotto" />
+				</entry>
+				<entry>
+					<key><value>ModSottoscrizione</value></key>
+					<ref bean="ModSottoscrizione" />
+				</entry>
+				<entry>
+					<key><value>SchedaCliente</value></key>
+					<ref bean="SchedaCliente" />
+				</entry>
+				<entry>
+					<key><value>FlagRimborso</value></key>
+					<ref bean="FlagRimborso" />
+				</entry>			
+				<entry>
+					<key><value>CodiceRuolo</value></key>
+					<ref bean="CodiceRuolo" />
+				</entry>
+				<entry>
+					<key><value>CodRuolo</value></key>
+					<ref bean="CodRuolo" />
+				</entry>				
+				<entry>
+					<key><value>CodicePersona</value></key>
+					<ref bean="CodicePersona" />
+				</entry>
+				<entry>
+					<key><value>StampaAccordo</value></key>
+					<ref bean="StampaAccordo" />
+				</entry>
+				<entry>
+					<key><value>StampaAccumulo</value></key>
+					<ref bean="StampaAccumulo" />
+				</entry>
+				<entry>
+					<key><value>StampaAnaCoint</value></key>
+					<ref bean="StampaAnaCoint" />
+				</entry>
+				<entry>
+					<key><value>CodPartecipanti</value></key>
+					<ref bean="CodPartecipanti" />
+				</entry>
+				<entry>
+					<key><value>TipoVariazione</value></key>
+					<ref bean="TipoVariazione" />
+				</entry>
+				<entry>
+					<key><value>SessionSottoscrizione</value></key>
+					<ref bean="SessionSottoscrizione" />
+				</entry>
+				<entry>
+					<key><value>SessionContratto</value></key>
+					<ref bean="SessionContratto" />
+				</entry>
+				<entry>
+					<key><value>SessionOrdine</value></key>
+					<ref bean="SessionOrdine" />
+				</entry>
+				<entry>
+					<key><value>RegimeFiscale</value></key>
+					<ref bean="RegimeFiscale" />
+				</entry>
+				<entry>
+					<key><value>Nazionalita</value></key>
+					<ref bean="Nazionalita" />
+				</entry>
+				<entry>
+					<key><value>ContaRecord</value></key>
+					<ref bean="ContaRecord" />
+				</entry>
+   			</map>
+		</property>	
+	</bean>
+  
+	<bean id="ruleEngine" class="it.ras.flag.config.rules.RuleEngine" >
+		<property name="ruleBase"><ref bean="ruleBase" /></property>
+	</bean>	
+
+</beans>

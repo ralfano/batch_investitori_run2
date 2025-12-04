@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    
+    <!-- INSERIMENTO BEAN PER SERVIZIO GENERICO SOGGETTOMANAGER -->
+    
+    <bean id="GetRasBankGpSquadra"
+    	class="it.ras.arco.batch.service.RasBankGpSquadraManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>GET</value>
+    	</property>
+    </bean>
+   
+    <bean id="InsRasBankGpSquadra"
+    	class="it.ras.arco.batch.service.RasBankGpSquadraManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>INSERT</value>
+    	</property>
+    </bean>
+    
+     <bean id="UpdRasBankGpSquadra"
+    	class="it.ras.arco.batch.service.RasBankGpSquadraManagerSRV" singleton="false">
+    	<property name="moduleManager">
+    		<ref bean="RasModuleManager" />
+    	</property>
+    	<property name="action">
+    		<value>UPDATE</value>
+    	</property>
+    </bean>
+    
+  
+	<bean id="CheckGetSquadraMD"    
+    class="it.ras.flag.module.DefaultDbModule" >
+    <property name="dao">
+    		<ref bean="RasBatchDao" />
+    	</property>
+    	<property name="query">
+    		<value>0</value>
+    	</property>
+    	<property name="queryName">
+    		<value>GetRasBankGpSquadra</value>
+    	</property>
+    	<property name="parameters">
+    		<list>
+    			<value>CONTRATTO</value>
+    			
+    		</list>
+    	</property>
+    	<property name="output">
+    		<value>SQUADRAROW</value>
+    	</property>
+    </bean>
+   
+   <bean id="InsFlxSquadraMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>5</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>SQUADRAOBJ</value>
+      </list>
+     </property>
+     
+     </bean>   
+	
+	 <bean id="UpdFlxSquadraMD"    
+	class="it.ras.flag.module.DefaultDbModule"  >
+	 <property name="dao">
+      <ref bean="RasBatchDao" />
+     </property>
+     <property name="query">
+      <value>9</value>
+     </property>
+     <property name="parameters">
+      <list>
+       <value>SQUADRAOBJ</value>
+      </list>
+     </property>
+     
+     </bean>   
+	
+   
+</beans> 
+

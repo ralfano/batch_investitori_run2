@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>             
+    <bean id="BusinessLogicObject"   class="it.ras.arco.batch.investitori.businesslogic.MovimentiGenBL"    singleton="false" >
+		<property name="batchManager">
+    		<ref bean="RasThreadBatchManager"/>
+    	</property>
+    	<property name="codesTableManager">
+    		<ref bean="codesTableManager"/> 
+    	</property>
+  
+    </bean>
+    
+ <bean id="RasBatchMain"          class="it.ras.flag.batch.skeleton.RasBatchMain"                   singleton="true" >
+    	<property name="batchManager">
+    		<ref bean="RasThreadBatchManager"/>
+    	</property>
+    	<property name="sessionFactory">
+    		<ref bean="sessionFactory"/>
+    	</property>
+    </bean>
+    
+   
+    <bean id="RasThread"             class="it.ras.flag.batch.skeleton.RasThread"             singleton="false" >
+    	<property name="batchManager">
+    		<ref bean="RasThreadBatchManager"/>
+    	</property>
+    	<property name="blObject">
+    		<ref bean="BusinessLogicObject"/>
+    	</property>
+    	<property name="exeLogger">
+    		<ref bean="ExecutionLogger"/>
+    	</property>
+    	<property name="sessionFactory">
+    		<ref bean="sessionFactory"/>
+    	</property>
+    </bean>
+    
+   <bean id="BatchSession" class="it.ras.flag.batch.skeleton.BatchSession" singleton="false" />
+    
+    <bean id="RasMain" class="it.ras.flag.batch.RasMain" singleton="true" />
+   
+  
+    
+     <bean id="RasBatchDao"			 class="it.ras.flag.batch.skeleton.RasBatchDao" 		   singleton="false">
+	    <property name="sessionFactory">
+    		<ref bean="sessionFactory"/>
+    	</property>
+    </bean>
+    
+   
+    
+    <bean id="OutputFile"            class="it.ras.flag.batch.utils.OutputFile"               singleton="false" />
+    <bean id="PreProcessor"			 class="it.ras.flag.batch.file.PreProcessor"			   singleton="true" >
+		<property name="rasDao">
+    		<ref bean="RasBatchDao"/>
+    	</property>
+    </bean>
+    <bean id="PostProcessor"		 class="it.ras.flag.batch.file.PostProcessor"			   singleton="true" >
+		<property name="rasDao">
+    		<ref bean="RasBatchDao"/>
+    	</property>
+    </bean>
+    
+    <!--  LOG Architetturale ed applicativo -->
+    <bean id="ExecutionLogger"   	 class="it.ras.flag.batch.logging.ExecutionLog"           singleton="true"  />
+    <bean id="LogConstants"   		 class="it.ras.flag.batch.logging.LogConstants"           singleton="false" />
+    <bean id="TblCommit"      		 class="it.ras.flag.batch.logging.TblCommit"              singleton="false" />
+    <bean id="TblExeLog"      		 class="it.ras.flag.batch.logging.TblExeLog"         singleton="false" />
+    
+
+    <!--  Cursore da DB -->
+   
+   <bean id="RasDBCursor"         class="it.ras.flag.batch.cursors.RasDBCursor"          singleton="true">
+	<property name="batchManager">
+		<ref bean="RasThreadBatchManager" />
+	</property>
+	<property name="rasDao">
+		<ref bean="RasBatchDao"/>
+	</property>   
+	<property name="maxRows">  
+		<value>0</value>
+	</property> 
+	<property name="initRow">  
+		<value>0</value>
+	</property> 
+</bean> 	       	  
+    <bean id="RasDBSubCursor"      	 class="it.ras.arco.batch.investitori.cursor.MovimentiInvGenCursor" singleton="false" >
+    <property name="rasDao">
+		<ref bean="RasBatchDao"/>
+	</property>   
+	</bean>
+ 
+
+</beans> 
