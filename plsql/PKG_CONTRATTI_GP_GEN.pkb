@@ -101,11 +101,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_CONTRATTI_GP_GEN AS
     v_gp.totale_prelevato := p_cursor_row.TOTALE_PRELEVATO;
     
     -- Handle blocco operativo
-    IF p_cursor_row.BLOCCO_OPERATIVO = '00' THEN
-      v_gp.blocco_operativo := 'S';
-    ELSE
-      v_gp.blocco_operativo := 'N';
-    END IF;
+    v_gp.blocco_operativo := CASE WHEN p_cursor_row.BLOCCO_OPERATIVO = '00' THEN 'S' ELSE 'N' END;
     
   END set_gp;
 
@@ -600,10 +596,14 @@ CREATE OR REPLACE PACKAGE BODY PKG_CONTRATTI_GP_GEN AS
     BEGIN
       SELECT af.ATTIVITA_FIN_ID, p.PRODOTTO_ID, p.TIPO
       INTO v_attivita_fin_id, v_prodotto_id, v_tipo_prodotto
-      FROM FIN_ATTIVITA_FINANZIARIA af
-      JOIN FIN_PRODOTTO p ON p.PRODOTTO_ID = af.PRODOTTO_ID
-      WHERE af.COD_ATT_FIN_EXT = v_cursor_row.CODICE_LINEA
-        AND ROWNUM = 1;
+      FROM (
+        SELECT af.ATTIVITA_FIN_ID, p.PRODOTTO_ID, p.TIPO
+        FROM FIN_ATTIVITA_FINANZIARIA af
+        JOIN FIN_PRODOTTO p ON p.PRODOTTO_ID = af.PRODOTTO_ID
+        WHERE af.COD_ATT_FIN_EXT = v_cursor_row.CODICE_LINEA
+        ORDER BY af.ATTIVITA_FIN_ID
+      )
+      WHERE ROWNUM = 1;
     EXCEPTION
       WHEN NO_DATA_FOUND THEN
         update_flx_contratto(p_investitori_contratto_id, 'KO', c_ERR_ATT_NOT_FOUND);
@@ -620,19 +620,27 @@ CREATE OR REPLACE PACKAGE BODY PKG_CONTRATTI_GP_GEN AS
     BEGIN
       SELECT CONTRATTO_ID
       INTO v_contratto_id
-      FROM FIN_GP
-      WHERE NUM_CONTRATTO = v_cursor_row.NUMERO_RAPPORTO
-        AND PRODOTTO_ID = v_prodotto_id
-        AND ROWNUM = 1;
+      FROM (
+        SELECT CONTRATTO_ID
+        FROM FIN_GP
+        WHERE NUM_CONTRATTO = v_cursor_row.NUMERO_RAPPORTO
+          AND PRODOTTO_ID = v_prodotto_id
+        ORDER BY CONTRATTO_ID DESC
+      )
+      WHERE ROWNUM = 1;
       
       -- Contract FOUND - update flow
       -- Get soggetto and cointestazione from GPRAM_SQUADRA
       BEGIN
         SELECT SOGGETTO_ID, COINTESTAZIONE_ID
         INTO v_soggetto_id, v_cointestazione_id
-        FROM FLX_GPRAM_SQUADRA
-        WHERE NUMERO_RAPPORTO = v_cursor_row.NUMERO_RAPPORTO
-          AND ROWNUM = 1;
+        FROM (
+          SELECT SOGGETTO_ID, COINTESTAZIONE_ID
+          FROM FLX_GPRAM_SQUADRA
+          WHERE NUMERO_RAPPORTO = v_cursor_row.NUMERO_RAPPORTO
+          ORDER BY SOGGETTO_ID
+        )
+        WHERE ROWNUM = 1;
       EXCEPTION
         WHEN NO_DATA_FOUND THEN
           update_flx_contratto(p_investitori_contratto_id, 'KO', 'COINTESTAZIONE NON TROVATA');
@@ -673,9 +681,13 @@ CREATE OR REPLACE PACKAGE BODY PKG_CONTRATTI_GP_GEN AS
         BEGIN
           SELECT SOGGETTO_ID, COINTESTAZIONE_ID
           INTO v_soggetto_id, v_cointestazione_id
-          FROM FLX_GPRAM_SQUADRA
-          WHERE NUMERO_RAPPORTO = v_cursor_row.NUMERO_RAPPORTO
-            AND ROWNUM = 1;
+          FROM (
+            SELECT SOGGETTO_ID, COINTESTAZIONE_ID
+            FROM FLX_GPRAM_SQUADRA
+            WHERE NUMERO_RAPPORTO = v_cursor_row.NUMERO_RAPPORTO
+            ORDER BY SOGGETTO_ID
+          )
+          WHERE ROWNUM = 1;
         EXCEPTION
           WHEN NO_DATA_FOUND THEN
             update_flx_contratto(p_investitori_contratto_id, 'KO', 'COINTESTAZIONE NON TROVATA');

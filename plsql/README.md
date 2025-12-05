@@ -137,8 +137,7 @@ IF tipo_fabbrica = 'GPINVEST' AND codice_compagnia = '00' THEN cod_comp := '01'
 ### Address Handling
 - Addresses starting with "C/O" are treated as "presso" addresses
 - The "C/O" prefix is moved to the PRESSO field
-- Addresses are normalized using the InsertCorrispondenza service
-- If normalization fails, InsertCorrispondenzaSenzaNormalizzazione is used
+- Addresses are inserted directly into FIN_INDIRIZZO table
 
 ### Date Handling
 - Maximum date (31/12/9999) indicates an open contract (stato_contratto = 'A')
@@ -150,13 +149,14 @@ All errors are logged in the FLX_INVESTITORI_CONTRATTO table:
 - `STATO_ELABORAZIONE` - Processing status ('OK', 'KO')
 - `DESCRIZIONE_ERRORE` - Error description
 
+Error logging updates are committed separately from the main transaction to ensure errors are persisted.
+
 ## Dependencies
 This package requires the following database objects:
 - Tables: All FIN_* and FLX_* tables listed in Table Mappings
 - Table: CODES_TABLE_NAZIONE_GPRAM (for nation code conversion)
 
 ## Notes
-- The package uses autonomous transactions for error logging
 - All inserts/updates include audit fields (DATA_INSERIMENTO, UTENTE_INSERIMENTO, etc.)
 - The batch name 'BatchContrattoGPInvestitori' is used as the user identifier
 - COMMIT is executed at the end of successful processing
