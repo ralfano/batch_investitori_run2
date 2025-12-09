@@ -1,0 +1,47 @@
+# PostgreSQL 17 Database Configuration Template
+# Copy this file to database.properties and update with your settings
+# ==========================================================================
+
+# Database Connection Settings
+db.driver=org.postgresql.Driver
+db.url=jdbc:postgresql://localhost:5432/batch_investitori
+db.username=batch_investitori
+db.password=CHANGE_ME
+
+# For Docker environment, use:
+# db.url=jdbc:postgresql://postgres:5432/batch_investitori
+
+# Connection Pool Settings
+db.pool.initialSize=5
+db.pool.maxTotal=20
+db.pool.maxIdle=10
+db.pool.minIdle=5
+db.pool.maxWaitMillis=10000
+
+# Schema Settings
+db.schema=investitori
+
+# Hibernate Settings
+hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+hibernate.show_sql=false
+hibernate.format_sql=true
+hibernate.hbm2ddl.auto=validate
+hibernate.default_schema=investitori
+
+# JDBC Batch Settings
+hibernate.jdbc.batch_size=50
+hibernate.jdbc.fetch_size=100
+
+# Cache Settings
+hibernate.cache.use_second_level_cache=true
+hibernate.cache.use_query_cache=true
+
+# PostgreSQL Specific Settings
+postgresql.standard_conforming_strings=on
+postgresql.client_encoding=UTF8
+postgresql.timezone=Europe/Rome
+
+# Application Settings
+batch.commit.size=100
+batch.max.warnings=1000000
+batch.thread.count=1
